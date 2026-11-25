@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "id": "ethics.ch0",
+  "key": "ch0",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "绪论",
+  "title": "担当复兴大任 成就时代新人",
+  "desc": "新时代与时代新人 · 思想道德素质与法治素养",
+  "collection": {
+    "id": "ethics",
+    "name": "思想道德与法治"
+  },
+  "subject": {
+    "key": "ethics",
+    "name": "思想道德与法治",
+    "typepack": "ethics"
+  },
+  "count": 15,
+  "types": [
+    "multi",
+    "single"
+  ],
+  "topics": [
+    "0.1 我们处在中国特色社会主义新时代",
+    "0.2 新时代呼唤时代新人",
+    "0.3 时代新人的历史使命",
+    "0.4 提升思想道德素质和法治素养"
+  ],
+  "sources": [
+    "《思想道德与法制》配套题库（原卷 PDF）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 1
+}

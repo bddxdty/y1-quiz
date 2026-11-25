@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "cs.u7",
+  "key": "u7",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第七单元",
+  "title": "软件开发基础与软件工程",
+  "desc": "第 7 章 · 程序设计语言、编译与解释、编程范式、软件生命周期与过程模型",
+  "collection": {
+    "id": "cs",
+    "name": "计算机导论"
+  },
+  "subject": {
+    "key": "cs",
+    "name": "计算机导论",
+    "typepack": "cs"
+  },
+  "count": 92,
+  "types": [
+    "comp",
+    "fill",
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "7.1 程序设计语言与语言层次",
+    "7.2 程序的编译与解释",
+    "7.3 编程范式",
+    "7.4 软件与软件工程",
+    "7.5 软件生命周期",
+    "7.6 软件开发过程模型",
+    "7.7 软件工程方法学"
+  ],
+  "sources": [
+    "第 7 章课件（7-软件开发基础和软件工程概论.pptx / 陈7 课件 PDF）",
+    "第 7 章课件（7-软件开发基础和软件工程概论.pptx）",
+    "第 7 章课件（陈7 课件 PDF）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 10
+}

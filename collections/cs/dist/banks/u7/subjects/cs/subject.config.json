@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "u7",
+      "kind": "unit",
+      "label": "第七单元",
+      "title": "软件开发基础与软件工程",
+      "desc": "第 7 章 · 程序设计语言、编译与解释、编程范式、软件生命周期与过程模型",
+      "bank": "bank/u7.json",
+      "order": 10
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

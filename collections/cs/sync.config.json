@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "note": "云端同步参数。key 从 keyFile 读取并注入页面，keyFile 不进仓库（见 .gitignore）；env 留 __ENV_ID__ 时由 Key 的 JWT 自动推导，换云环境只换 Key 一处。没有 Key 时页面照常构建，同步 UI 存在但整体关闭。rpc 留空则由 qb-sync.js 从 env 拼出。",
+  "env": "__ENV_ID__",
+  "keyFile": "../../tools/publishable-key.txt",
+  "rpc": "",
+  "quiz": "global",
+  "codeKey": "csquiz_sync_code_v1",
+  "payloadVersion": 1
+}

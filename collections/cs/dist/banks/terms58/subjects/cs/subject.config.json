@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "terms58",
+      "kind": "topic",
+      "label": "名词解释专题（第 5～8 章）",
+      "title": "第 5～8 章术语过关",
+      "desc": "按章归集的名词解释（第 5～8 章），主观题自评",
+      "bank": "bank/terms58.json",
+      "order": 12
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

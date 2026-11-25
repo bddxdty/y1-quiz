@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学",
+  "typepack": "math",
+  "units": [
+    {
+      "key": "u7",
+      "kind": "unit",
+      "label": "第 8 章",
+      "title": "向量代数与空间解析几何",
+      "desc": "向量的运算、平面与直线、曲面与空间曲线",
+      "bank": "bank/u7.json",
+      "order": 7
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

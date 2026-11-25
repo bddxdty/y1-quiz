@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "final",
+      "kind": "final",
+      "label": "期末冲刺",
+      "title": "2019 真题全录与八章核心考点",
+      "desc": "2019 真题 27 题 + 分章冲刺 113 题，共 140 题；第 1～4 章与第 5～8 章各 70 题，附参考答案与解析",
+      "bank": "bank/final.json",
+      "order": 13
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

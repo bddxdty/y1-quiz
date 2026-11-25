@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "grade": {
+    "key": "y1",
+    "name": "大一题库",
+    "desc": "大一学年题库总入口。下挂若干题库集，每个题库集下挂若干可独立部署的题库。"
+  },
+  "collections": [
+    {
+      "id": "cs",
+      "name": "计算机导论",
+      "dir": "collections/cs",
+      "subject": "cs",
+      "accent": "#2557c7",
+      "status": "active",
+      "order": 1
+    },
+    {
+      "id": "math",
+      "name": "高等数学",
+      "dir": "collections/math",
+      "subject": "math",
+      "accent": "#0f766e",
+      "status": "active",
+      "order": 2
+    },
+    {
+      "id": "ethics",
+      "name": "思想道德与法治",
+      "dir": "collections/ethics",
+      "subject": "ethics",
+      "accent": "#7c3aed",
+      "status": "active",
+      "order": 3
+    }
+  ],
+  "builtAt": "2026-11-25 23:29",
+  "stats": {
+    "collections": 3,
+    "banks": 32,
+    "uniqueQuestions": 1552,
+    "records": 1631
+  }
+}

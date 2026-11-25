@@ -1,0 +1,389 @@
+{
+ "version": 1,
+ "unit": "final",
+ "questions": [
+  {
+   "qid": "math.final-001",
+   "type": "blank",
+   "topic": "9.1 多元函数的概念",
+   "diff": "易",
+   "stem": "设 f(x−y, x+y) = x² − y²，则 f(x, y) = ______。",
+   "exp": "x² − y² = (x−y)(x+y)。令 u = x−y、v = x+y，则 f(u,v) = uv，即 f(x,y) = xy。",
+   "answers": [
+    "xy",
+    "x*y"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.1",
+    "tex": {
+     "stem": "设 $f(x-y,\\,x+y)=x^{2}-y^{2}$，则 $f(x,y)=$ ______。",
+     "exp": "$x^{2}-y^{2}=(x-y)(x+y)$。令 $u=x-y$、$v=x+y$，则 $f(u,v)=uv$，即 $f(x,y)=xy$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-002",
+   "type": "blank",
+   "topic": "8.1 向量的乘积",
+   "diff": "易",
+   "stem": "设向量 a = (1,2,3)，b = (4,5,6)，则 a×b = ______。",
+   "exp": "按行列式展开：a×b = (2·6 − 3·5, 3·4 − 1·6, 1·5 − 2·4) = (−3, 6, −3)。",
+   "answers": [
+    "(−3,6,−3)",
+    "(-3,6,-3)",
+    "−3i+6j−3k"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.2",
+    "tex": {
+     "stem": "设向量 $\\boldsymbol{a}=(1,2,3)$，$\\boldsymbol{b}=(4,5,6)$，则 $\\boldsymbol{a}\\times\\boldsymbol{b}=$ ______。",
+     "exp": "按行列式展开：$\\boldsymbol{a}\\times\\boldsymbol{b}=(2\\cdot 6-3\\cdot 5,\\;3\\cdot 4-1\\cdot 6,\\;1\\cdot 5-2\\cdot 4)=(-3,\\,6,\\,-3)$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-003",
+   "type": "blank",
+   "topic": "9.1 多元函数的概念",
+   "diff": "易",
+   "stem": "函数 z = arcsin(x/y²) 的定义域为 ______。",
+   "exp": "反正弦要求 |x/y²| ≤ 1，即 |x| ≤ y²；同时分母 y² ≠ 0，即 y ≠ 0。",
+   "answers": [
+    "|x| ≤ y² 且 y ≠ 0",
+    "−y² ≤ x ≤ y² 且 y≠0",
+    "-y^2<=x<=y^2 且 y≠0"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.3",
+    "tex": {
+     "stem": "函数 $z=\\arcsin\\dfrac{x}{y^{2}}$ 的定义域为 ______。",
+     "exp": "反正弦要求 $\\left|\\dfrac{x}{y^{2}}\\right|\\le 1$，即 $|x|\\le y^{2}$；同时分母 $y^{2}\\ne 0$，即 $y\\ne 0$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-004",
+   "type": "blank",
+   "topic": "9.2 二元函数的极限",
+   "diff": "中",
+   "stem": "lim(x→0, y→0) xy/(√(xy+9) − 3) = ______。",
+   "exp": "分子有理化：xy(√(xy+9) + 3)/((xy+9) − 9) = √(xy+9) + 3 → 6。",
+   "answers": [
+    "6"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.4",
+    "tex": {
+     "stem": "$\\lim\\limits_{\\substack{x\\to 0\\\\ y\\to 0}}\\dfrac{xy}{\\sqrt{xy+9}-3}=$ ______。",
+     "exp": "分子有理化：$\\dfrac{xy\\left(\\sqrt{xy+9}+3\\right)}{(xy+9)-9}=\\sqrt{xy+9}+3\\to 6$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-005",
+   "type": "blank",
+   "topic": "9.3 全微分",
+   "diff": "中",
+   "stem": "设 z = x²y + x/y，则 dz = ______。",
+   "exp": "∂z/∂x = 2xy + 1/y，∂z/∂y = x² − x/y²，故 dz = (2xy + 1/y)dx + (x² − x/y²)dy。",
+   "answers": [
+    "(2xy + 1/y)dx + (x² − x/y²)dy",
+    "(2xy+1/y)dx+(x^2-x/y^2)dy"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.5",
+    "tex": {
+     "stem": "设 $z=x^{2}y+\\dfrac{x}{y}$，则 $\\mathrm{d}z=$ ______。",
+     "exp": "$\\dfrac{\\partial z}{\\partial x}=2xy+\\dfrac{1}{y}$，$\\dfrac{\\partial z}{\\partial y}=x^{2}-\\dfrac{x}{y^{2}}$，故 $\\mathrm{d}z=\\left(2xy+\\dfrac{1}{y}\\right)\\mathrm{d}x+\\left(x^{2}-\\dfrac{x}{y^{2}}\\right)\\mathrm{d}y$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-006",
+   "type": "blank",
+   "topic": "10.2 交换积分次序",
+   "diff": "中",
+   "stem": "交换积分次序：∫₀²dy ∫_{y²}^{2y} f(x,y)dx = ______。",
+   "exp": "积分区域由抛物线 x = y² 与直线 x = 2y 围成，交点为 (0,0) 与 (4,2)。改按 x 先定限：0 ≤ x ≤ 4 时 x/2 ≤ y ≤ √x。",
+   "answers": [
+    "∫₀⁴dx ∫_{x/2}^{√x} f(x,y)dy",
+    "∫_0^4 dx∫_(x/2)^(√x) f(x,y)dy"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.6",
+    "tex": {
+     "stem": "交换积分次序：$\\displaystyle\\int_{0}^{2}\\mathrm{d}y\\int_{y^{2}}^{2y}f(x,y)\\,\\mathrm{d}x=$ ______。",
+     "exp": "积分区域由抛物线 $x=y^{2}$ 与直线 $x=2y$ 围成，交点为 $(0,0)$ 与 $(4,2)$。改按 $x$ 先定限：$0\\le x\\le 4$ 时 $\\dfrac{x}{2}\\le y\\le\\sqrt{x}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-007",
+   "type": "blank",
+   "topic": "10.1 二重积分的计算",
+   "diff": "难",
+   "stem": "设 D：0 ≤ x ≤ π/4，−1 ≤ y ≤ 1，则二重积分 ∬_D x·cos(2xy) dxdy = ______。",
+   "exp": "先对 y 积分可利用 cos(2xy) 关于 y 的偶性：∫₋₁¹cos(2xy)dy = 2∫₀¹cos(2xy)dy = sin(2x)/x，再乘 x 得 sin 2x，最后 ∫₀^{π/4} sin 2x dx = 1/2。",
+   "answers": [
+    "1/2",
+    "0.5"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.7",
+    "tex": {
+     "stem": "设 $D$：$0\\le x\\le\\dfrac{\\pi}{4}$，$-1\\le y\\le 1$，则二重积分 $\\displaystyle\\iint_{D}x\\cos(2xy)\\,\\mathrm{d}x\\,\\mathrm{d}y=$ ______。",
+     "exp": "先对 $y$ 积分，利用 $\\cos(2xy)$ 关于 $y$ 的偶性：$\\displaystyle\\int_{-1}^{1}\\cos(2xy)\\,\\mathrm{d}y=2\\int_{0}^{1}\\cos(2xy)\\,\\mathrm{d}y=\\dfrac{\\sin 2x}{x}$，再乘 $x$ 得 $\\sin 2x$，最后 $\\displaystyle\\int_{0}^{\\pi/4}\\sin 2x\\,\\mathrm{d}x=\\dfrac{1}{2}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-008",
+   "type": "blank",
+   "topic": "11.1 对弧长的曲线积分",
+   "diff": "中",
+   "stem": "设曲线 L：y = x²（0 ≤ x ≤ √2），则 ∫_L x ds = ______。",
+   "exp": "ds = √(1 + 4x²)dx，故 ∫₀^{√2} x√(1+4x²)dx = (1/12)(1+4x²)^{3/2}|₀^{√2} = (27 − 1)/12 = 13/6。",
+   "answers": [
+    "13/6"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.8",
+    "tex": {
+     "stem": "设曲线 $L$：$y=x^{2}$（$0\\le x\\le\\sqrt{2}$），则 $\\displaystyle\\int_{L}x\\,\\mathrm{d}s=$ ______。",
+     "exp": "$\\mathrm{d}s=\\sqrt{1+4x^{2}}\\,\\mathrm{d}x$，故 $\\displaystyle\\int_{0}^{\\sqrt{2}}x\\sqrt{1+4x^{2}}\\,\\mathrm{d}x=\\dfrac{1}{12}(1+4x^{2})^{3/2}\\Big|_{0}^{\\sqrt{2}}=\\dfrac{27-1}{12}=\\dfrac{13}{6}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-009",
+   "type": "blank",
+   "topic": "12.2 幂级数的收敛域",
+   "diff": "中",
+   "stem": "若 lim(n→∞) |aₙ/aₙ₊₁| = L（0 < L < +∞），则幂级数 ∑(n=1→∞) aₙ(x−1)ⁿ 的收敛区间（不考虑端点）是 ______。",
+   "exp": "由比值法，收敛半径 R = L，收敛中心为 x = 1，故收敛区间为 |x−1| < L，即 (1−L, 1+L)。",
+   "answers": [
+    "(1−L, 1+L)",
+    "(1-L,1+L)",
+    "|x−1| < L"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.9",
+    "tex": {
+     "stem": "若 $\\lim\\limits_{n\\to\\infty}\\left|\\dfrac{a_{n}}{a_{n+1}}\\right|=L$（$0<L<+\\infty$），则幂级数 $\\displaystyle\\sum_{n=1}^{\\infty}a_{n}(x-1)^{n}$ 的收敛区间（不考虑端点）是 ______。",
+     "exp": "由比值法，收敛半径 $R=L$，收敛中心为 $x=1$，故收敛区间为 $|x-1|<L$，即 $(1-L,\\;1+L)$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-010",
+   "type": "blank",
+   "topic": "12.4 傅里叶级数",
+   "diff": "难",
+   "stem": "设 f(x) 是以 2π 为周期的周期函数，它在一个周期内的表达式为 f(x) = x（−π ≤ x < π），设它的傅里叶级数的和函数为 S(x)，则 S(3π/2) = ______。",
+   "exp": "3π/2 与 −π/2 相差一个周期，S 以 2π 为周期；x = −π/2 处 f 连续，故 S(−π/2) = f(−π/2) = −π/2。",
+   "answers": [
+    "−π/2",
+    "-π/2",
+    "−1.5708"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.10",
+    "tex": {
+     "stem": "设 $f(x)$ 是以 $2\\pi$ 为周期的周期函数，它在一个周期内的表达式为 $f(x)=x$（$-\\pi\\le x<\\pi$），设它的傅里叶级数的和函数为 $S(x)$，则 $S\\left(\\dfrac{3\\pi}{2}\\right)=$ ______。",
+     "exp": "$\\dfrac{3\\pi}{2}$ 与 $-\\dfrac{\\pi}{2}$ 相差一个周期，而 $S$ 以 $2\\pi$ 为周期；$x=-\\dfrac{\\pi}{2}$ 处 $f$ 连续，故 $S\\left(-\\dfrac{\\pi}{2}\\right)=f\\left(-\\dfrac{\\pi}{2}\\right)=-\\dfrac{\\pi}{2}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-011",
+   "type": "calc",
+   "topic": "9.4 隐函数求偏导",
+   "diff": "中",
+   "stem": "设方程 z³ − 3xyz = 1 确定了隐函数 z = z(x, y)，求 ∂z/∂x。",
+   "exp": "三元隐函数用 Fₓ/F_z 的公式最快，注意对 x 求偏导时把 y、z 都看作独立变量。",
+   "ref": "设 F(x,y,z) = z³ − 3xyz − 1，则 Fₓ = −3yz，F_z = 3z² − 3xy。由隐函数求导公式 ∂z/∂x = −Fₓ/F_z = yz/(z² − xy)。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.1",
+    "tex": {
+     "stem": "设方程 $z^{3}-3xyz=1$ 确定了隐函数 $z=z(x,y)$，求 $\\dfrac{\\partial z}{\\partial x}$。",
+     "ref": "设 $F(x,y,z)=z^{3}-3xyz-1$，则 $F_{x}=-3yz$，$F_{z}=3z^{2}-3xy$。由隐函数求导公式 $\\dfrac{\\partial z}{\\partial x}=-\\dfrac{F_{x}}{F_{z}}=\\dfrac{yz}{z^{2}-xy}$。",
+     "exp": "三元隐函数用 $-\\dfrac{F_{x}}{F_{z}}$ 的公式最快，注意对 $x$ 求偏导时把 $y$、$z$ 都看作独立变量。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-012",
+   "type": "calc",
+   "topic": "9.5 曲面的切平面与法线",
+   "diff": "中",
+   "stem": "求曲面 xy + yz + zx = 1 上点 (1, −2, −3) 处的切平面及法线方程。",
+   "exp": "曲面 F = 0 在点 P 处的法向量就是 ∇F(P)，切平面写成 n·(r − r₀) = 0。",
+   "ref": "设 F = xy + yz + zx − 1，则 Fₓ = y + z，F_y = x + z，F_z = x + y，在 (1,−2,−3) 处法向量 n = (−5, −2, −1)。切平面：−5(x−1) − 2(y+2) − (z+3) = 0；法线：(x−1)/(−5) = (y+2)/(−2) = (z+3)/(−1)。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.2",
+    "tex": {
+     "stem": "求曲面 $xy+yz+zx=1$ 上点 $(1,-2,-3)$ 处的切平面及法线方程。",
+     "ref": "设 $F=xy+yz+zx-1$，则 $F_{x}=y+z$，$F_{y}=x+z$，$F_{z}=x+y$，在 $(1,-2,-3)$ 处法向量 $\\boldsymbol{n}=(-5,\\,-2,\\,-1)$。切平面：$-5(x-1)-2(y+2)-(z+3)=0$；法线：$\\dfrac{x-1}{-5}=\\dfrac{y+2}{-2}=\\dfrac{z+3}{-1}$。",
+     "exp": "曲面 $F=0$ 在点 $P$ 处的法向量就是 $\\nabla F(P)$，切平面写成 $\\boldsymbol{n}\\cdot(\\boldsymbol{r}-\\boldsymbol{r}_{0})=0$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-013",
+   "type": "calc",
+   "topic": "9.6 复合函数求偏导",
+   "diff": "难",
+   "stem": "设 z = f(u, x, y)，u = x²y，其中 f 具有二阶连续偏导数，求 ∂²z/∂x∂y。",
+   "exp": "注意 u 同时依赖 x 与 y，对 y 求导时 u 的中间变量项要再乘 ∂u/∂y = x²；二阶混合偏导连续时 f₁₃ = f₃₁。",
+   "ref": "∂z/∂x = 2xy·f₁ + f₂。再对 y 求偏导：∂²z/∂x∂y = 2x·f₁ + 2xy(x²·f₁₁ + f₁₃) + (x²·f₂₁ + f₂₃) = 2x f₁ + 2x³y f₁₁ + 2xy f₁₃ + x² f₂₁ + f₂₃。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.3",
+    "tex": {
+     "stem": "设 $z=f(u,x,y)$，$u=x^{2}y$，其中 $f$ 具有二阶连续偏导数，求 $\\dfrac{\\partial^{2}z}{\\partial x\\partial y}$。",
+     "ref": "$\\dfrac{\\partial z}{\\partial x}=2xy\\,f_{1}+f_{2}$。再对 $y$ 求偏导：$\\dfrac{\\partial^{2}z}{\\partial x\\partial y}=2xf_{1}+2xy\\left(x^{2}f_{11}+f_{13}\\right)+\\left(x^{2}f_{21}+f_{23}\\right)=2xf_{1}+2x^{3}y\\,f_{11}+2xy\\,f_{13}+x^{2}f_{21}+f_{23}$。",
+     "exp": "注意 $u$ 同时依赖 $x$ 与 $y$，对 $y$ 求导时 $u$ 的中间变量项要再乘 $\\dfrac{\\partial u}{\\partial y}=x^{2}$；二阶混合偏导连续时 $f_{13}=f_{31}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-014",
+   "type": "calc",
+   "topic": "10.1 二重积分的计算",
+   "diff": "中",
+   "stem": "计算 ∬_D cos(x+y) dxdy，其中 D 是由 x = 0、y = x、y = π 所围成的区域。",
+   "exp": "先画区域再定限：以 y 为外层，x 从 0 到 y，一次积分即可。",
+   "ref": "D 可表示为 0 ≤ y ≤ π，0 ≤ x ≤ y。原式 = ∫₀^π dy ∫₀^y cos(x+y)dx = ∫₀^π [sin(2y) − sin y]dy = [−cos(2y)/2 + cos y]₀^π = −2。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.4",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\iint_{D}\\cos(x+y)\\,\\mathrm{d}x\\,\\mathrm{d}y$，其中 $D$ 是由 $x=0$、$y=x$、$y=\\pi$ 所围成的区域。",
+     "ref": "$D$ 可表示为 $0\\le y\\le\\pi$，$0\\le x\\le y$。原式 $=\\displaystyle\\int_{0}^{\\pi}\\mathrm{d}y\\int_{0}^{y}\\cos(x+y)\\,\\mathrm{d}x=\\int_{0}^{\\pi}\\left[\\sin 2y-\\sin y\\right]\\mathrm{d}y=\\left[-\\dfrac{\\cos 2y}{2}+\\cos y\\right]_{0}^{\\pi}=-2$。",
+     "exp": "先画区域再定限：以 $y$ 为外层，$x$ 从 $0$ 到 $y$，一次积分即可。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-015",
+   "type": "calc",
+   "topic": "11.2 格林公式",
+   "diff": "难",
+   "stem": "计算 ∫_L eˣ(1 − 2cos y)dx + 2eˣ sin y dy，其中 L 为曲线 y = sin x 上由点 A(π, 0) 到点 O(0, 0) 的一段弧。",
+   "exp": "P = eˣ(1−2cos y)，Q = 2eˣ sin y，恰好 ∂Q/∂x = ∂P/∂y，属「与路径无关」型；补线用格林公式最省力。",
+   "ref": "补上直线段 OA：y = 0（0 ≤ x ≤ π），与 L 围成闭区域 D。由格林公式，∮_{L+OA} = ∬_D (∂Q/∂x − ∂P/∂y)dxdy = ∬_D 0 dxdy = 0。故 ∫_L = −∫_{OA} = −∫₀^π eˣdx = e^π − 1（方向：OA 从 O 到 A，与闭合正向一致）。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.5",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\int_{L}\\mathrm{e}^{x}(1-2\\cos y)\\,\\mathrm{d}x+2\\mathrm{e}^{x}\\sin y\\,\\mathrm{d}y$，其中 $L$ 为曲线 $y=\\sin x$ 上由点 $A(\\pi,0)$ 到点 $O(0,0)$ 的一段弧。",
+     "ref": "记 $P=\\mathrm{e}^{x}(1-2\\cos y)$，$Q=2\\mathrm{e}^{x}\\sin y$，则 $\\dfrac{\\partial Q}{\\partial x}=2\\mathrm{e}^{x}\\sin y=\\dfrac{\\partial P}{\\partial y}$，积分与路径无关。取原函数 $\\varphi(x,y)=\\mathrm{e}^{x}(1-2\\cos y)$，则 $\\displaystyle\\int_{L}=\\varphi(O)-\\varphi(A)=\\mathrm{e}^{0}(1-2)-\\mathrm{e}^{\\pi}(1-2)=\\mathrm{e}^{\\pi}-1$。",
+     "exp": "$\\dfrac{\\partial Q}{\\partial x}=\\dfrac{\\partial P}{\\partial y}$ 是「与路径无关」的判据，此时找原函数比补线用格林公式更省力，也不容易在方向上出错。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-016",
+   "type": "calc",
+   "topic": "11.3 对面积的曲面积分",
+   "diff": "中",
+   "stem": "计算 ∬_Σ √(R² − x² − y²) dS，其中 Σ 为上半球面 z = √(R² − x² − y²)。",
+   "exp": "被积函数与 dS 中的分母相消，是球面面积分的典型化简。",
+   "ref": "dS = √(1 + zₓ² + z_y²)dxdy = R/√(R² − x² − y²) dxdy，投影区域 D 为 x² + y² ≤ R²。故原式 = ∬_D R dxdy = R·πR² = πR³。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.6",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\iint_{\\Sigma}\\sqrt{R^{2}-x^{2}-y^{2}}\\,\\mathrm{d}S$，其中 $\\Sigma$ 为上半球面 $z=\\sqrt{R^{2}-x^{2}-y^{2}}$。",
+     "ref": "$\\mathrm{d}S=\\sqrt{1+z_{x}^{2}+z_{y}^{2}}\\,\\mathrm{d}x\\,\\mathrm{d}y=\\dfrac{R}{\\sqrt{R^{2}-x^{2}-y^{2}}}\\,\\mathrm{d}x\\,\\mathrm{d}y$，投影区域 $D$ 为 $x^{2}+y^{2}\\le R^{2}$。故原式 $=\\displaystyle\\iint_{D}R\\,\\mathrm{d}x\\,\\mathrm{d}y=R\\cdot\\pi R^{2}=\\pi R^{3}$。",
+     "exp": "被积函数与 $\\mathrm{d}S$ 中的分母相消，是球面面积分的典型化简。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-017",
+   "type": "calc",
+   "topic": "11.4 高斯公式",
+   "diff": "难",
+   "stem": "计算 ∬_Σ 2x³dydz + 2y³dzdx + 3(z² − 1)dxdy，其中 Σ 为曲面 z = 1 − x² − y²（z ≥ 0）部分的上侧。",
+   "exp": "第二类曲面积分补面用高斯公式时，注意补面的侧向决定正负号；散度 6(x²+y²+z) 用柱坐标最省事。",
+   "ref": "补平面 Σ₁：z = 0（x² + y² ≤ 1）取下侧，与 Σ 围成闭区域 Ω。由高斯公式，∬_Σ = ∬_{Σ+Σ₁} − ∬_{Σ₁} = ∭_Ω (6x² + 6y² + 6z)dv + 3∬_{D_xy}(0 − 1)dxdy。用柱坐标算得 ∭_Ω = 2π，后一项为 −3π，故结果为 −π。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.7",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\iint_{\\Sigma}2x^{3}\\,\\mathrm{d}y\\,\\mathrm{d}z+2y^{3}\\,\\mathrm{d}z\\,\\mathrm{d}x+3(z^{2}-1)\\,\\mathrm{d}x\\,\\mathrm{d}y$，其中 $\\Sigma$ 为曲面 $z=1-x^{2}-y^{2}$（$z\\ge 0$）部分的上侧。",
+     "ref": "补平面 $\\Sigma_{1}$：$z=0$（$x^{2}+y^{2}\\le 1$）取下侧，与 $\\Sigma$ 围成闭区域 $\\Omega$。散度为 $6(x^{2}+y^{2}+z)$，用柱坐标算得 $\\displaystyle\\iiint_{\\Omega}6(x^{2}+y^{2}+z)\\,\\mathrm{d}v=2\\pi$。$\\Sigma_{1}$ 取下侧，故 $\\displaystyle\\iint_{\\Sigma_{1}}3(z^{2}-1)\\,\\mathrm{d}x\\,\\mathrm{d}y=-\\iint_{D_{xy}}(-3)\\,\\mathrm{d}x\\,\\mathrm{d}y=3\\pi$。由高斯公式，$\\displaystyle\\iint_{\\Sigma}=2\\pi-3\\pi=-\\pi$。",
+     "exp": "补面用高斯公式时，补面的侧向决定正负号；散度 $6(x^{2}+y^{2}+z)$ 用柱坐标最省事。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-018",
+   "type": "calc",
+   "topic": "12.3 幂级数的和函数",
+   "diff": "难",
+   "stem": "求幂级数 ∑(n=1→∞) xⁿ/(n·2ⁿ) 的收敛域，并求其在收敛域内的和函数。",
+   "exp": "「先求导后积分」是幂级数求和的标准手法；端点必须单独判别，收敛域与和函数的定义域要一致。",
+   "ref": "R = lim|aₙ/aₙ₊₁| = 2。x = 2 时为调和级数发散，x = −2 时为交错调和级数收敛，故收敛域为 [−2, 2)。设 S(x) = ∑xⁿ/(n2ⁿ)，逐项求导得 S′(x) = (1/2)·1/(1 − x/2) = 1/(2−x)，且 S(0) = 0，积分得 S(x) = −ln(1 − x/2)。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.8",
+    "tex": {
+     "stem": "求幂级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{x^{n}}{n\\cdot 2^{n}}$ 的收敛域，并求其在收敛域内的和函数。",
+     "ref": "$R=\\lim\\limits_{n\\to\\infty}\\left|\\dfrac{a_{n}}{a_{n+1}}\\right|=2$。$x=2$ 时为调和级数，发散；$x=-2$ 时为交错调和级数，收敛。故收敛域为 $[-2,\\,2)$。设 $S(x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{x^{n}}{n\\,2^{n}}$，逐项求导得 $S'(x)=\\dfrac{1}{2}\\cdot\\dfrac{1}{1-x/2}=\\dfrac{1}{2-x}$，且 $S(0)=0$，积分得 $S(x)=-\\ln\\left(1-\\dfrac{x}{2}\\right)$。",
+     "exp": "「先求导后积分」是幂级数求和的标准手法；端点必须单独判别，收敛域与和函数的定义域要一致。"
+    }
+   }
+  },
+  {
+   "qid": "math.final-019",
+   "type": "calc",
+   "topic": "12.5 函数展开成幂级数",
+   "diff": "中",
+   "stem": "将函数 f(x) = 1/(x² − 5x + 6) 展开成 x 的幂级数。",
+   "exp": "先裂项，再用 1/(1−t) = ∑tⁿ 的几何级数展开；两个展开式收敛域取交，得 |x| < 2。",
+   "ref": "f(x) = 1/[(x−2)(x−3)] = 1/(x−3) − 1/(x−2) = −(1/3)·1/(1 − x/3) + (1/2)·1/(1 − x/2) = ∑(n=0→∞)(1/2^{n+1} − 1/3^{n+1})xⁿ，收敛域 |x| < 2。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.9",
+    "tex": {
+     "stem": "将函数 $f(x)=\\dfrac{1}{x^{2}-5x+6}$ 展开成 $x$ 的幂级数。",
+     "ref": "$f(x)=\\dfrac{1}{(x-2)(x-3)}=\\dfrac{1}{x-3}-\\dfrac{1}{x-2}=-\\dfrac{1}{3}\\cdot\\dfrac{1}{1-x/3}+\\dfrac{1}{2}\\cdot\\dfrac{1}{1-x/2}=\\displaystyle\\sum_{n=0}^{\\infty}\\left(\\dfrac{1}{2^{n+1}}-\\dfrac{1}{3^{n+1}}\\right)x^{n}$，收敛域 $|x|<2$。",
+     "exp": "先裂项，再用 $\\dfrac{1}{1-t}=\\sum t^{n}$ 的几何级数展开；两个展开式收敛域取交，得 $|x|<2$。"
+    }
+   }
+  }
+ ]
+}

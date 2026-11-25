@@ -1,0 +1,15 @@
+{
+ "version": 1,
+ "id": "ethics",
+ "name": "思想道德与法治",
+ "grade": "y1",
+ "subjectKey": "ethics",
+ "accent": "#7c3aed",
+ "desc": "绪论 + 六章，7 个独立题库，250 题（单选 153 / 多选 85 / 简答 12）。",
+ "status": "active",
+ "order": 3,
+ "upstream": {
+  "source": "思想道德与法制配套题库 PDF（绪论 + 第一章 ~ 第六章）",
+  "note": "题目与选项取自原卷，解析与错因按教材补写；三处原卷答案按教材订正。"
+ }
+}

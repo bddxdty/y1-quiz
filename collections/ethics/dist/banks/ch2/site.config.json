@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "site": {
+    "title": "思想道德与法治 · 第二章 追求远大理想 坚定崇高信念",
+    "defaultSubject": "ethics"
+  },
+  "subjects": [
+    {
+      "key": "ethics",
+      "name": "思想道德与法治",
+      "accent": "#7c3aed",
+      "status": "active"
+    }
+  ],
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  }
+}

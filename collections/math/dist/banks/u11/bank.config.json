@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "id": "math.u11",
+  "key": "u11",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 12 章",
+  "title": "无穷级数",
+  "desc": "常数项级数的审敛法、幂级数的收敛域与和函数、函数展开、傅里叶级数",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 4,
+  "types": [
+    "blank",
+    "calc"
+  ],
+  "topics": [
+    "12.2 幂级数的收敛域",
+    "12.3 幂级数的和函数",
+    "12.4 傅里叶级数",
+    "12.5 函数展开成幂级数"
+  ],
+  "sources": [
+    "高等数学 A（下）测试卷（2023）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 11
+}

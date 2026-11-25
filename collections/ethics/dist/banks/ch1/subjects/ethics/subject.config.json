@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "ethics",
+  "name": "思想道德与法治",
+  "typepack": "ethics",
+  "units": [
+    {
+      "key": "ch1",
+      "kind": "unit",
+      "label": "第一章",
+      "title": "领悟人生真谛 把握人生方向",
+      "desc": "人生观 · 人生价值 · 个人与社会 · 创造有意义的人生",
+      "bank": "bank/ch1.json",
+      "order": 2
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

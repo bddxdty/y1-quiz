@@ -1,0 +1,322 @@
+{
+ "version": 1,
+ "unit": "u2",
+ "questions": [
+  {
+   "qid": "math.u2-001",
+   "type": "single",
+   "topic": "2.1 导数的概念",
+   "diff": "易",
+   "stem": "「函数 f(x) 在 x₀ 处可导」是「函数 f(x) 在 x₀ 处连续」的（　）",
+   "exp": "可导必连续，连续未必可导（如 y = |x| 在 x = 0 处），故为充分非必要条件。",
+   "options": [
+    "充分必要条件",
+    "必要非充分条件",
+    "充分非必要条件",
+    "既非充分也非必要条件"
+   ],
+   "answer": [
+    2
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "一.3",
+    "tex": {
+     "stem": "「函数 $f(x)$ 在 $x_{0}$ 处可导」是「函数 $f(x)$ 在 $x_{0}$ 处连续」的（　）",
+     "exp": "可导必连续，连续未必可导（如 $y=|x|$ 在 $x=0$ 处），故为充分非必要条件。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-002",
+   "type": "single",
+   "topic": "2.2 微分",
+   "diff": "中",
+   "stem": "设 y = e^(cos(1/x))，则微分 dy = （　）",
+   "exp": "dy = e^(cos(1/x))·d(cos(1/x)) = e^(cos(1/x))·(−sin(1/x))·d(1/x) = −e^(cos(1/x))·sin(1/x) d(1/x)。注意 d(1/x) = −dx/x²，故 D 的符号正好相反。",
+   "options": [
+    "−e^(cos(1/x))·sin(1/x) dx",
+    "−e^(cos(1/x))·sin(1/x) d(sin(1/x))",
+    "−e^(cos(1/x))·sin(1/x) d(1/x)",
+    "−(1/x²)·e^(cos(1/x))·sin(1/x) dx"
+   ],
+   "answer": [
+    2
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "一.4",
+    "tex": {
+     "stem": "设 $y=\\mathrm{e}^{\\cos\\frac{1}{x}}$，则微分 $\\mathrm{d}y=$（　）",
+     "options": [
+      "$-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}x$",
+      "$-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}\\left(\\sin\\dfrac{1}{x}\\right)$",
+      "$-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}\\left(\\dfrac{1}{x}\\right)$",
+      "$-\\dfrac{1}{x^{2}}\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}x$"
+     ],
+     "exp": "$\\mathrm{d}y=\\mathrm{e}^{\\cos\\frac{1}{x}}\\,\\mathrm{d}\\left(\\cos\\dfrac{1}{x}\\right)=\\mathrm{e}^{\\cos\\frac{1}{x}}\\left(-\\sin\\dfrac{1}{x}\\right)\\mathrm{d}\\left(\\dfrac{1}{x}\\right)=-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}\\left(\\dfrac{1}{x}\\right)$。注意 $\\mathrm{d}\\left(\\dfrac{1}{x}\\right)=-\\dfrac{\\mathrm{d}x}{x^{2}}$，故 D 的符号正好相反。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-003",
+   "type": "single",
+   "topic": "2.1 导数的概念",
+   "diff": "难",
+   "stem": "设 f(x) = { (2/3)x³，x ≤ 1 ； x²，x > 1 }，则 f(x) 在 x = 1 处（　）",
+   "exp": "左导数：lim(h→0⁻)[(2/3)(1+h)³ − 2/3]/h = 2，存在；右导数：lim(h→0⁺)[(1+h)² − 2/3]/h = lim[(1/3)/h + 2] = ∞，不存在。函数在 x = 1 处本身不连续，右导数因此发散。",
+   "options": [
+    "左、右导数都存在",
+    "左导数存在，右导数不存在",
+    "左导数不存在，右导数存在",
+    "左、右导数都不存在"
+   ],
+   "answer": [
+    1
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "一.5",
+    "tex": {
+     "stem": "设 $f(x)=\\begin{cases}\\dfrac{2}{3}x^{3}, & x\\le 1\\\\[2pt] x^{2}, & x>1\\end{cases}$，则 $f(x)$ 在 $x=1$ 处（　）",
+     "exp": "左导数：$\\lim\\limits_{h\\to 0^{-}}\\dfrac{\\frac{2}{3}(1+h)^{3}-\\frac{2}{3}}{h}=2$，存在；右导数：$\\lim\\limits_{h\\to 0^{+}}\\dfrac{(1+h)^{2}-\\frac{2}{3}}{h}=\\lim\\limits_{h\\to 0^{+}}\\left(\\dfrac{1/3}{h}+2\\right)=\\infty$，不存在。函数在 $x=1$ 处本身不连续，右导数因此发散。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-004",
+   "type": "blank",
+   "topic": "2.3 求导法则",
+   "diff": "中",
+   "stem": "已知 y = x^(sin x)（x > 0），则 y′ = ______。",
+   "exp": "取对数 ln y = sin x·ln x，两边求导得 y′/y = cos x·ln x + sin x/x，故 y′ = x^(sin x)(cos x·ln x + sin x/x)。",
+   "answers": [
+    "x^(sin x)·(cos x·ln x + sin x/x)",
+    "x^sinx(cosxlnx+sinx/x)",
+    "x^(sinx)*(cosx*lnx+sinx/x)"
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "二.4",
+    "tex": {
+     "stem": "已知 $y=x^{\\sin x}$（$x>0$），则 $y'=$ ______。",
+     "answers": [
+      "$x^{\\sin x}\\left(\\cos x\\ln x+\\dfrac{\\sin x}{x}\\right)$",
+      "$x^{\\sin x}(\\cos x\\ln x+\\sin x/x)$",
+      "$x^{\\sin x}\\cdot\\left(\\cos x\\ln x+\\dfrac{\\sin x}{x}\\right)$"
+     ],
+     "exp": "取对数 $\\ln y=\\sin x\\ln x$，两边求导得 $\\dfrac{y'}{y}=\\cos x\\ln x+\\dfrac{\\sin x}{x}$，故 $y'=x^{\\sin x}\\left(\\cos x\\ln x+\\dfrac{\\sin x}{x}\\right)$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-005",
+   "type": "blank",
+   "topic": "2.3 求导法则",
+   "diff": "难",
+   "stem": "设 f(x) = x(x−1)(x−2)⋯(x−2024)，则 f′(2024) = ______。",
+   "exp": "f(x) = (x−2024)·g(x)，其中 g(x) = x(x−1)⋯(x−2023)。f′(2024) = g(2024) = 2024·2023⋯1 = 2024!。",
+   "answers": [
+    "2024!",
+    "2024 的阶乘"
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "二.5",
+    "tex": {
+     "stem": "设 $f(x)=x(x-1)(x-2)\\cdots(x-2024)$，则 $f'(2024)=$ ______。",
+     "exp": "$f(x)=(x-2024)g(x)$，其中 $g(x)=x(x-1)\\cdots(x-2023)$。$f'(2024)=g(2024)=2024\\cdot 2023\\cdots 1=2024!$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-006",
+   "type": "blank",
+   "topic": "2.4 参数方程求导",
+   "diff": "中",
+   "stem": "已知 { x = ln(1+t) ； y = t² + 2t }，则 dy/dx = ______。",
+   "exp": "dy/dx = (dy/dt)/(dx/dt) = (2t+2)/(1/(1+t)) = 2(t+1)²。",
+   "answers": [
+    "2(t+1)²",
+    "2(t+1)^2",
+    "2(t+1)*(t+1)"
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "二.6a",
+    "tex": {
+     "stem": "已知 $\\begin{cases}x=\\ln(1+t)\\\\ y=t^{2}+2t\\end{cases}$，则 $\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=$ ______。",
+     "exp": "$\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=\\dfrac{\\mathrm{d}y/\\mathrm{d}t}{\\mathrm{d}x/\\mathrm{d}t}=\\dfrac{2t+2}{1/(1+t)}=2(t+1)^{2}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-007",
+   "type": "blank",
+   "topic": "2.4 参数方程求导",
+   "diff": "难",
+   "stem": "已知 { x = ln(1+t) ； y = t² + 2t }，则 d²y/dx² = ______。",
+   "exp": "d²y/dx² = [d/dt(dy/dx)]/(dx/dt) = 4(t+1)·(1+t) = 4(t+1)²。",
+   "answers": [
+    "4(t+1)²",
+    "4(t+1)^2",
+    "4(t+1)*(t+1)"
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "二.6b",
+    "tex": {
+     "stem": "已知 $\\begin{cases}x=\\ln(1+t)\\\\ y=t^{2}+2t\\end{cases}$，则 $\\dfrac{\\mathrm{d}^{2}y}{\\mathrm{d}x^{2}}=$ ______。",
+     "exp": "$\\dfrac{\\mathrm{d}^{2}y}{\\mathrm{d}x^{2}}=\\dfrac{\\frac{\\mathrm{d}}{\\mathrm{d}t}\\left(\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\right)}{\\mathrm{d}x/\\mathrm{d}t}=4(t+1)\\cdot(1+t)=4(t+1)^{2}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-008",
+   "type": "blank",
+   "topic": "2.5 隐函数求导",
+   "diff": "中",
+   "stem": "曲线 y − 1 + x·e^y = 0 在点 (0,1) 处的切线方程为 ______。",
+   "exp": "两边对 x 求导：y′ + e^y + x·e^y·y′ = 0，在 (0,1) 处得 y′(1 + 0) = −e，即 y′ = −e。切线为 y − 1 = −e(x − 0)。",
+   "answers": [
+    "y = −ex + 1",
+    "y=−ex+1",
+    "y = 1 − ex",
+    "y=1-ex"
+   ],
+   "meta": {
+    "source": "高等数学（基础）期中测验题（2024）",
+    "paper": "mid2024",
+    "paperNo": "二.7",
+    "tex": {
+     "stem": "曲线 $y-1+x\\mathrm{e}^{y}=0$ 在点 $(0,1)$ 处的切线方程为 ______。",
+     "exp": "两边对 $x$ 求导：$y'+\\mathrm{e}^{y}+x\\mathrm{e}^{y}y'=0$，在 $(0,1)$ 处得 $y'(1+0)=-\\mathrm{e}$，即 $y'=-\\mathrm{e}$。切线为 $y-1=-\\mathrm{e}(x-0)$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-009",
+   "type": "single",
+   "topic": "2.1 导数的概念",
+   "diff": "中",
+   "stem": "设 f(x) 为可导函数，且满足条件 lim(x→0) [f(1) − f(1−x)]/(2x) = −1，则曲线 y = f(x) 在 (1, f(1)) 处的切线斜率为（　）。",
+   "exp": "f(1) − f(1−x) ≈ f′(1)·x，故极限为 f′(1)/2 = −1，得 f′(1) = −2。",
+   "options": [
+    "−2",
+    "2",
+    "1",
+    "−1"
+   ],
+   "answer": [
+    0
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "一.2",
+    "tex": {
+     "stem": "设 $f(x)$ 为可导函数，且满足条件 $\\lim\\limits_{x\\to 0}\\dfrac{f(1)-f(1-x)}{2x}=-1$，则曲线 $y=f(x)$ 在 $(1,f(1))$ 处的切线斜率为（　）。",
+     "exp": "$f(1)-f(1-x)\\approx f'(1)\\,x$，故极限为 $\\dfrac{f'(1)}{2}=-1$，得 $f'(1)=-2$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-010",
+   "type": "single",
+   "topic": "2.1 导数的概念",
+   "diff": "中",
+   "stem": "判断：若 f(x) 在点 x = x₀ 处可导，则 |f(x)| 在点 x = x₀ 处连续未必可导。",
+   "exp": "可导必连续，|f| 由连续函数复合绝对值仍连续；但如 f(x) = x 在 x₀ = 0 处，|x| 不可导。故「连续未必可导」成立。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "answer": [
+    0
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "二.2",
+    "tex": {
+     "stem": "判断：若 $f(x)$ 在点 $x=x_{0}$ 处可导，则 $|f(x)|$ 在点 $x=x_{0}$ 处连续未必可导。",
+     "exp": "可导必连续，$|f|$ 由连续函数复合绝对值仍连续；但如 $f(x)=x$ 在 $x_{0}=0$ 处，$|x|$ 不可导。故「连续未必可导」成立。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-011",
+   "type": "single",
+   "topic": "2.2 微分",
+   "diff": "中",
+   "stem": "判断：若 f(x) 可微，当 Δx→0 时，在点 x 处的 Δy − dy 是关于 Δx 的高阶无穷小。",
+   "exp": "这正是可微的定义：Δy = AΔx + o(Δx)，其中 AΔx 即 dy，余项 o(Δx) 是比 Δx 高阶的无穷小。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "answer": [
+    0
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "二.4",
+    "tex": {
+     "stem": "判断：若 $f(x)$ 可微，当 $\\Delta x\\to 0$ 时，在点 $x$ 处的 $\\Delta y-\\mathrm{d}y$ 是关于 $\\Delta x$ 的高阶无穷小。",
+     "exp": "这正是可微的定义：$\\Delta y=A\\Delta x+o(\\Delta x)$，其中 $A\\Delta x$ 即 $\\mathrm{d}y$，余项 $o(\\Delta x)$ 是比 $\\Delta x$ 高阶的无穷小。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-012",
+   "type": "blank",
+   "topic": "2.2 微分",
+   "diff": "中",
+   "stem": "函数 f(x) 可微，y = f(sin x) − sin f(x)，则 dy = ______。",
+   "exp": "dy = f′(sin x)·d(sin x) − cos f(x)·d f(x) = [f′(sin x)cos x − cos f(x)·f′(x)]dx。",
+   "answers": [
+    "[f′(sin x)cos x − cos f(x)·f′(x)]dx",
+    "[f'(sinx)cosx-cosf(x)*f'(x)]dx"
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "三.5",
+    "tex": {
+     "stem": "函数 $f(x)$ 可微，$y=f(\\sin x)-\\sin f(x)$，则 $\\mathrm{d}y=$ ______。",
+     "answers": [
+      "$[f'(\\sin x)\\cos x-\\cos f(x)\\cdot f'(x)]\\,\\mathrm{d}x$"
+     ],
+     "exp": "$\\mathrm{d}y=f'(\\sin x)\\,\\mathrm{d}(\\sin x)-\\cos f(x)\\,\\mathrm{d}f(x)=[f'(\\sin x)\\cos x-\\cos f(x)f'(x)]\\,\\mathrm{d}x$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u2-013",
+   "type": "calc",
+   "topic": "2.5 隐函数求导",
+   "diff": "中",
+   "stem": "设函数 y = y(x) 由方程 ln(x² + y) = x³y + sin x 确定，求 dy/dx 在 x = 0 处的值。",
+   "exp": "隐函数求导先求函数值再代点，能省掉整理 y′ 表达式的步骤。",
+   "ref": "x = 0 时由原方程得 ln y = 0，故 y = 1。两边对 x 求导：(2x + y′)/(x² + y) = 3x²y + x³y′ + cos x。代入 x = 0、y = 1 得 y′/1 = 0 + 0 + 1，即 y′ = 1。",
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "四.3",
+    "tex": {
+     "stem": "设函数 $y=y(x)$ 由方程 $\\ln(x^{2}+y)=x^{3}y+\\sin x$ 确定，求 $\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}$ 在 $x=0$ 处的值。",
+     "ref": "$x=0$ 时由原方程得 $\\ln y=0$，故 $y=1$。两边对 $x$ 求导：$\\dfrac{2x+y'}{x^{2}+y}=3x^{2}y+x^{3}y'+\\cos x$。代入 $x=0$、$y=1$ 得 $\\dfrac{y'}{1}=0+0+1$，即 $y'=1$。",
+     "exp": "隐函数求导先求函数值再代点，能省掉整理 $y'$ 表达式的步骤。"
+    }
+   }
+  }
+ ]
+}

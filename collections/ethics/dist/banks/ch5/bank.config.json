@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "id": "ethics.ch5",
+  "key": "ch5",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第五章",
+  "title": "遵守道德规范 锤炼道德品格",
+  "desc": "道德的起源与本质 · 中华传统美德 · 社会公德与职业道德 · 个人品德",
+  "collection": {
+    "id": "ethics",
+    "name": "思想道德与法治"
+  },
+  "subject": {
+    "key": "ethics",
+    "name": "思想道德与法治",
+    "typepack": "ethics"
+  },
+  "count": 38,
+  "types": [
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "5.1 道德的起源与本质",
+    "5.2 中华传统美德",
+    "5.3 中国革命道德",
+    "5.4 社会主义道德",
+    "5.5 公共生活中的道德",
+    "5.7 职业生活中的道德",
+    "5.8 家庭美德",
+    "5.9 个人品德"
+  ],
+  "sources": [
+    "《思想道德与法制》配套题库（原卷 PDF）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 6
+}

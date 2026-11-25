@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "unit": "u4",
+  "questions": [
+    {
+      "qid": "math.u4-001",
+      "type": "single",
+      "topic": "4.1 原函数与不定积分",
+      "diff": "中",
+      "stem": "判断：幂函数的原函数一定是幂函数。",
+      "exp": "反例：1/x = x⁻¹ 是幂函数，其原函数为 ln|x| + C，不是幂函数。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "二.5",
+        "tex": {
+          "stem": "判断：幂函数的原函数一定是幂函数。",
+          "exp": "反例：$\\dfrac{1}{x}=x^{-1}$ 是幂函数，其原函数为 $\\ln|x|+C$，不是幂函数。"
+        }
+      },
+      "_unit": "u4"
+    },
+    {
+      "qid": "math.u4-002",
+      "type": "blank",
+      "topic": "4.3 分部积分",
+      "diff": "难",
+      "stem": "设 ∫x·f(x)dx = x·e^(x²) − ∫e^(x²)dx 成立，则 f(x) = ______。",
+      "exp": "两边求导：x·f(x) = e^(x²) + 2x²e^(x²) − e^(x²) = 2x²e^(x²)，故 f(x) = 2x·e^(x²)。",
+      "answers": [
+        "2x·e^(x²)",
+        "2xe^(x²)",
+        "2x*e^(x^2)"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.7",
+        "tex": {
+          "stem": "设 $\\displaystyle\\int xf(x)\\,\\mathrm{d}x=x\\mathrm{e}^{x^{2}}-\\int \\mathrm{e}^{x^{2}}\\,\\mathrm{d}x$ 成立，则 $f(x)=$ ______。",
+          "exp": "两边求导：$xf(x)=\\mathrm{e}^{x^{2}}+2x^{2}\\mathrm{e}^{x^{2}}-\\mathrm{e}^{x^{2}}=2x^{2}\\mathrm{e}^{x^{2}}$，故 $f(x)=2x\\mathrm{e}^{x^{2}}$。"
+        }
+      },
+      "_unit": "u4"
+    },
+    {
+      "qid": "math.u4-003",
+      "type": "blank",
+      "topic": "4.1 原函数与不定积分",
+      "diff": "难",
+      "stem": "已知函数 f(x) 连续，且 f(x) = x − ∫₀¹ f(x)dx，则函数 f(x) = ______。",
+      "exp": "设 A = ∫₀¹ f(x)dx（常数），则 f(x) = x − A，代回 A = ∫₀¹(x−A)dx = 1/2 − A，得 A = 1/4，故 f(x) = x − 1/4。",
+      "answers": [
+        "x − 1/4",
+        "x-1/4",
+        "x−0.25"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.8",
+        "tex": {
+          "stem": "已知函数 $f(x)$ 连续，且 $f(x)=x-\\displaystyle\\int_{0}^{1}f(x)\\,\\mathrm{d}x$，则函数 $f(x)=$ ______。",
+          "exp": "设 $A=\\displaystyle\\int_{0}^{1}f(x)\\,\\mathrm{d}x$（常数），则 $f(x)=x-A$，代回得 $A=\\displaystyle\\int_{0}^{1}(x-A)\\,\\mathrm{d}x=\\dfrac{1}{2}-A$，故 $A=\\dfrac{1}{4}$，$f(x)=x-\\dfrac{1}{4}$。"
+        }
+      },
+      "_unit": "u4"
+    },
+    {
+      "qid": "math.u4-004",
+      "type": "calc",
+      "topic": "4.2 换元积分法",
+      "diff": "中",
+      "stem": "求 ∫ (2x + 1)/(x² + 2x + 5) dx。",
+      "exp": "有理函数积分标准两步：分子拆出分母的导数，余项配方后用反正切。",
+      "ref": "拆成 ∫(2x+2)/(x²+2x+5)dx − ∫1/(x²+2x+5)dx。前者凑微分得 ln(x²+2x+5)；后者配方为 (x+1)² + 2²，积分为 (1/2)arctan((x+1)/2)。故原式 = ln(x²+2x+5) − (1/2)arctan((x+1)/2) + C。",
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "四.4",
+        "tex": {
+          "stem": "求 $\\displaystyle\\int\\dfrac{2x+1}{x^{2}+2x+5}\\,\\mathrm{d}x$。",
+          "ref": "拆成 $\\displaystyle\\int\\dfrac{2x+2}{x^{2}+2x+5}\\,\\mathrm{d}x-\\int\\dfrac{\\mathrm{d}x}{x^{2}+2x+5}$。前者凑微分得 $\\ln(x^{2}+2x+5)$；后者配方为 $(x+1)^{2}+2^{2}$，积分为 $\\dfrac{1}{2}\\arctan\\dfrac{x+1}{2}$。故原式 $=\\ln(x^{2}+2x+5)-\\dfrac{1}{2}\\arctan\\dfrac{x+1}{2}+C$。",
+          "exp": "有理函数积分标准两步：分子拆出分母的导数，余项配方后用反正切。"
+        }
+      },
+      "_unit": "u4"
+    }
+  ]
+}

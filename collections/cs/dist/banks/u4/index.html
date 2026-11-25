@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>计算机导论 · 第四单元 数据结构与算法</title>
+<style>/* qb-page.css — 题库页面样式（内核共用，不含任何科目特有内容） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef; --ok-line:#b7e6cf;
+  --bad:#b42318; --bad-soft:#fdecea; --bad-line:#f6c9c4;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:20px 16px 72px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+.top h1{font-size:21px;margin:0;letter-spacing:.2px}
+.top .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.top .spacer{flex:1}
+.home{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.home:hover{color:var(--accent);border-color:#c7dbff;text-decoration:none}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.block{padding:14px 16px;margin-bottom:14px}
+
+/* stats */
+#stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px;margin-bottom:14px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:19px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:7px;overflow:hidden}
+.stat-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl+.ctl{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.seg{display:inline-flex;background:#f1f4fa;border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:13.5px;color:#48505f}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+select,input[type=search]{
+  font:inherit;font-size:13.5px;color:var(--text);border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:7px 10px;outline:none
+}
+select:focus,input[type=search]:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=search]{min-width:170px;flex:1}
+.btn{
+  border:1px solid var(--line);background:#fff;color:#3c4353;border-radius:9px;padding:7px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;transition:.15s
+}
+.btn:hover:not(:disabled){border-color:#c7dbff;color:var(--accent);background:var(--accent-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#2557c7;border-color:#2557c7;color:#fff}
+.btn.ghost{background:#fff}
+.btn.ghost.on{color:#b54708;border-color:#f5dcb4;background:var(--warn-soft)}
+.btn.small{padding:5px 11px;font-size:13px}
+
+/* card */
+#card{padding:18px 18px 16px;margin-bottom:14px}
+.q-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fafbfd;white-space:nowrap}
+.tag-type{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.tag-diff.d-0{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.tag-diff.d-1{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.tag-diff.d-2{color:var(--bad);border-color:var(--bad-line);background:var(--bad-soft)}
+.q-topic{font-size:12.5px;color:var(--muted2)}
+.q-no{margin-left:auto;font-size:12.5px;color:var(--muted2);font-variant-numeric:tabular-nums}
+.q-stem{font-size:16.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.q-img{max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line)}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;
+  font:inherit;font-size:15px;line-height:1.6;cursor:pointer;transition:.13s;color:var(--text)
+}
+.opt:hover:not(:disabled){border-color:#c7dbff;background:#fafcff}
+.opt:disabled{cursor:default}
+.opt-k{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#f1f4fa;color:#48505f;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600
+}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt.picked .opt-k{background:var(--accent);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .opt-k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .opt-k{background:var(--bad);color:#fff}
+
+/* inputs */
+.in,.ta{
+  width:100%;margin-top:14px;font:inherit;font-size:15px;color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:11px 13px;outline:none;background:#fff;resize:vertical
+}
+.in:focus,.ta:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+.in:disabled,.ta:disabled{background:#fafbfd;color:var(--muted)}
+
+/* action bar */
+.q-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12.5px;color:var(--muted2)}
+.verdict{font-size:14px;font-weight:650;padding:5px 12px;border-radius:999px}
+.verdict.ok{color:var(--ok);background:var(--ok-soft)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft)}
+.verdict.mid{color:var(--warn);background:var(--warn-soft)}
+
+/* explanation */
+.exp{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.exp-h{font-size:12.5px;color:var(--muted2);letter-spacing:.4px;margin-bottom:7px}
+.exp-a{font-size:14.5px;margin:0 0 8px;padding:10px 12px;background:#f7f9fd;border-radius:9px;border:1px solid var(--line2)}
+.exp-p{font-size:14.5px;color:#333a49;margin:0 0 6px;white-space:pre-wrap}
+.exp-src{font-size:12px;color:var(--muted2);margin:6px 0 0}
+.self{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* nav */
+#nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nav-mid{flex:1;text-align:center;font-size:13px;color:var(--muted2);font-variant-numeric:tabular-nums}
+
+/* mastery */
+#mastery{padding:14px 16px;margin-bottom:14px}
+.mt{width:100%;border-collapse:collapse;font-size:13.5px}
+.mt th{text-align:left;font-weight:600;color:var(--muted2);font-size:12px;letter-spacing:.3px;padding:0 0 8px;border-bottom:1px solid var(--line2)}
+.mt td{padding:7px 0;border-bottom:1px solid var(--line2);vertical-align:middle}
+.mt tr:last-child td{border-bottom:0}
+.mt-t{color:#333a49}
+.mt-s{font-variant-numeric:tabular-nums;font-weight:650;width:56px}
+.mt-n{color:var(--muted2);width:56px;text-align:right}
+.lv{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.lv-ok{color:var(--ok);background:var(--ok-soft)}
+.lv-mid{color:var(--warn);background:var(--warn-soft)}
+.lv-bad{color:var(--bad);background:var(--bad-soft)}
+
+/* transfer */
+#transfer{padding:14px 16px;margin-bottom:14px}
+#x-code{width:100%;min-height:86px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;resize:vertical;background:#fafbfd;color:#333a49}
+#x-info{font-size:12.5px;color:var(--muted2);margin-top:8px;min-height:18px}
+.x-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* misc */
+.empty{padding:34px 8px;text-align:center}
+.empty-t{font-size:15.5px;font-weight:600}
+.empty-s{color:var(--muted2);font-size:13.5px;margin:6px 0 0}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:#1e2330;color:#fff;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:99
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:18px;line-height:1.8}
+
+@media (max-width:640px){
+  .wrap{padding:14px 12px 64px}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .top h1{font-size:18.5px}
+  .q-stem{font-size:16px}
+  .opt{font-size:14.5px}
+  input[type=search]{min-width:100%}
+}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">计算机导论 · 第四单元 数据结构与算法</h1>
+      <div class="sub"><span id="bank-name"></span> · <span id="bank-desc"></span></div>
+    </div>
+    <div class="spacer"></div>
+    <a class="home" id="home" href="../../index.html">返回题库集</a>
+  </div>
+
+  <div class="panel" id="stats"></div>
+
+  <div class="panel block">
+    <div class="ctl">
+      <div class="seg" id="modes">
+        <button data-mode="seq" class="on">顺序</button>
+        <button data-mode="random">随机</button>
+        <button data-mode="wrong">错题</button>
+        <button data-mode="fav">收藏</button>
+        <button data-mode="undone">未做</button>
+      </div>
+      <select id="f-type"><option value="">全部题型</option></select>
+      <select id="f-diff"><option value="">全部难度</option><option>易</option><option>中</option><option>难</option></select>
+    </div>
+    <div class="ctl">
+      <input type="search" id="f-kw" placeholder="搜索题干 / 知识点">
+      <span class="hint">键盘 ← → 翻题，数字键选项；手机在题目上左右滑动翻题</span>
+    </div>
+  </div>
+
+  <div class="panel" id="card"></div>
+  <div id="nav"></div>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">掌握度（按知识点）</summary>
+    <div id="mastery" style="padding-top:10px"></div>
+  </details>
+
+  <details class="panel block" id="cloud-wrap" style="display:none">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">云同步（手动上传 / 下载）</summary>
+    <div style="padding-top:10px">
+      <div class="x-row">
+        <input type="text" id="s-code" class="in" style="flex:1;min-width:180px;margin-top:0"
+               placeholder="同步码（≥10 位，与旧页面共用）">
+        <button class="btn" id="s-save">保存</button>
+        <button class="btn primary" id="s-up">上传</button>
+        <button class="btn" id="s-down">下载</button>
+      </div>
+      <div id="s-info" class="hint" style="margin-top:8px;min-height:18px"></div>
+    </div>
+  </details>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">导出 / 导入进度码</summary>
+    <div id="transfer" style="padding-top:10px">
+      <div class="x-row">
+        <select id="x-scope"></select>
+        <button class="btn" id="x-do">生成</button>
+        <button class="btn" id="x-copy">复制</button>
+        <button class="btn" id="x-import">导入</button>
+        <button class="btn" id="x-undo">撤销导入</button>
+        <button class="btn ghost" id="reset" style="margin-left:auto">清空本机记录</button>
+      </div>
+      <textarea id="x-code" placeholder="在此粘贴他人分享的进度码，或点「生成」得到自己的"></textarea>
+      <div id="x-info"></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    独立题库 · 计算机导论 · 第四单元 数据结构与算法 · 126 题<br>
+    进度保存在本机浏览器，不上传；换设备请用进度码迁移。
+  </div>
+</div>
+<div id="mjx-cache" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></div>
+<div id="toast"></div>
+<script>window.QB_META={"home":"../../index.html","title":"计算机导论 · 第四单元 数据结构与算法"};</script>
+<script>window.QB_SITE={"title":"计算机导论 · 第四单元 数据结构与算法","subjectKey":"cs","subjectName":"计算机导论","types":{"single":{"key":"single","label":"单选题","answerShape":"choice","judge":"exact","replay":"mask","maxOptions":4,"fault":"builtin:fact-recall","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，恰好 1 项"}},"multi":{"key":"multi","label":"多选题","answerShape":"choice","judge":"set","replay":"mask","maxOptions":4,"fault":"builtin:concept-boundary","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，≥ 2 项"}},"fill":{"key":"fill","label":"填空题","answerShape":"tokenList","judge":"fuzzy","replay":"text","fault":"builtin:unit-memory","countsInMastery":true,"fields":{"answers":"可接受答案数组，含等价写法"}},"term":{"key":"term","label":"名词解释","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"short":{"key":"short","label":"简答题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"comp":{"key":"comp","label":"综合应用题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:chain-break","countsInMastery":true,"fields":{"ref":"参考答案文本"}}},"units":[{"key":"u4","label":"第四单元","title":"数据结构与算法","desc":"第 4 章 · 数组与链表、栈与队列、树与图、排序查找与递归","questions":[{"qid":"cs.u4-001","type":"single","topic":"4.1 数据结构与数组","diff":"易","stem":"数据结构（data structure）指的是（　）。","exp":"数据结构是计算机中存储、组织和管理数据的方式，它使我们可以高效地访问和修改数据。一个数据结构代表了有特殊关系的数据的集合，这些数据能够单独或作为一个整体被访问。","options":["一种程序设计语言","计算机中存储、组织和管理数据的方式","计算机的物理内存条","一种排序算法"],"answer":[1],"meta":{"origin":{"id":"d-01","no":271,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-002","type":"single","topic":"4.1 数据结构与数组","diff":"易","stem":"数组是（　）。","exp":"数组是元素的顺序集合，通常元素具有相同的数据类型。数组整体有一个名字（如 scores），每个元素用“数组名[索引]”单独标识，索引（下标）表示元素在数组中的编号。","options":["元素的顺序集合，通常这些元素具有相同的数据类型","一组无序存放、类型可以随意不同的数据","只能存放整数的变量","一种通过指针连接的动态结构"],"answer":[0],"meta":{"origin":{"id":"d-02","no":272,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-003","type":"single","topic":"4.1 数据结构与数组","diff":"易","stem":"数组索引（下标）的作用是（　）。","exp":"中括号里的索引（index，也叫下标）表示元素在数组中的编号，从数组开始处计数。有了索引，元素便有了独立且形式一致的标识，可配合循环批量处理。","options":["表示数组占用的字节数","表示元素在数组中的编号，使每个元素有独立的标识","表示元素的取值大小","表示数组的类型"],"answer":[1],"meta":{"origin":{"id":"d-03","no":273,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-004","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"使用数组后，程序员需要编写的语句数量大幅减少，计算机需要执行的语句总数也同步大幅减少。","exp":"错误。使用数组减少的是“程序员的工作量”（程序可重用性提高、代码不必重复编写）；计算机实际执行的语句总数并没有减少，反而因循环的初始化、增量、判断而略有增加。我们关心的是程序员效率与程序可维护性。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"d-04","no":274,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-005","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"二维数组只是逻辑上的结构，它在内存中的物理视图仍然是一维连续存放的。","exp":"正确。二维数组按行（或列）优先顺序把元素依次排入一维内存：若第一行首地址为 x，则第二行为 x+1……每一行内部元素地址连续。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-05","no":275,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-006","type":"comp","topic":"4.1 数据结构与数组","diff":"中","stem":"内存中有一个二维数组 students，大小为 100 行 × 4 列，每个元素占 1 个存储单元。已知 students[2][3] 的地址为 1000，求 students[5][3] 的地址（下标从 1 开始）。","exp":"不用先求首地址，只比较相对位置更快：\n行差 5−2 = 3 行，每行 4 个元素 → 12 个单元；列相同，不再偏移；\n1000 + 12 = 1012。\n若用通式：y₀ = 1000 − [4×(2−1)+(3−1)] = 994，则 y(5,3) = 994 + 4×4 + 2 = 1012，结果一致。","ref":"1012。\n快速解：两元素相距 4×(5−2) + (3−3) = 12 个单元，故地址为 1000 + 12 = 1012。\n通式：y(i,j) = y₀ + m×(i−1) + (j−1)，m 为列数。","meta":{"origin":{"id":"d-06","no":276,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-007","type":"comp","topic":"4.1 数据结构与数组","diff":"难","stem":"二维数组 a[1..6][1..5] 按行优先连续存放，每个元素占 2 个字节。已知 a[1][1] 的地址为 2000，求 a[4][3] 的地址。","exp":"按行优先：a[4][3] 前面有 3 整行（每行 5 个元素）共 15 个元素，本行内前面还有 2 个元素，合计偏移 17 个元素。每个元素 2 字节，故偏移 34 字节，地址为 2034。\n易错点：忘记乘“每个元素的字节数”。","ref":"2034。\n偏移元素数 = 5×(4−1) + (3−1) = 17 个；\n偏移字节数 = 17×2 = 34；\n地址 = 2000 + 34 = 2034。","meta":{"origin":{"id":"d-07","no":277,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-008","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"在数组的中间位置插入一个元素，主要的时间开销来自（　）。","exp":"数组元素在物理上依次排列，中间插入必须把插入位置到末尾的所有元素向后挪一位，腾出空间，元素越多开销越大。尾部插入则只需扩大长度并放到最后，开销很小。","options":["重新申请整块内存","把插入位置之后的元素依次向后移动","把插入位置之前的元素依次向前移动","重新计算数组索引"],"answer":[1],"meta":{"origin":{"id":"d-08","no":278,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-009","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"在数组的尾部删除一个元素，正确的操作是（　）。","exp":"尾部删除只需把数组长度减 1（逻辑上舍弃最后一个元素），无需移动元素；而删除开头或中间元素则需要把其后的所有元素依次前移，开销较大。","options":["把第一个元素移到末尾","把数组长度减 1 即可","把被删元素之后的所有元素前移","必须重新创建整个数组"],"answer":[1],"meta":{"origin":{"id":"d-09","no":279,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-010","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"数组的插入和删除效率较低，因此数组更适合大量查找和检索的场合。","exp":"正确。数组靠索引支持随机访问，查找/检索很快；但中间插入、删除需要成批移动元素，效率低。所以数组适合“查多改少”的场景。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-10","no":280,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-011","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"数组遍历指的是（　）。","exp":"遍历（traversal）是按某种顺序访问每个元素且每个只访问一次，通常用循环实现。例：求平均值时用循环累加 sum，最后 sum/n。","options":["随机抽取数组中的一个元素","按某种顺序访问数组中的每一个元素，且每个元素只访问一次","把数组元素重新排序","删除数组中的重复元素"],"answer":[1],"meta":{"origin":{"id":"d-11","no":281,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-012","type":"single","topic":"4.2 链表","diff":"易","stem":"链表的每个节点（元素）通常包含两部分，它们是（　）。","exp":"链表节点 = 数据部分 + 链。数据部分存放实际信息；链（指针）存放后继节点的地址。链表在物理存储上不连续、不按顺序，元素之间的逻辑顺序由指针链接次序实现。","options":["索引和数据","数据和链（指针）","地址和长度","操作码和地址码"],"answer":[1],"meta":{"origin":{"id":"d-12","no":282,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-013","type":"single","topic":"4.2 链表","diff":"易","stem":"链表中“头指针”的作用是（　）。","exp":"头指针是一个特殊的指针变量，指向第一个节点，链表的名字就是该指针变量的名字；最后一个节点的链为空指针（null），用来标记链表结束。","options":["记录链表的长度","存放最后一个元素的数据","标识链表的第一个元素，链表的名字就是该指针变量的名字","标识链表的结束"],"answer":[2],"meta":{"origin":{"id":"d-13","no":283,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-014","type":"fill","topic":"4.2 链表","diff":"易","stem":"链表中最后一个节点的链不指向任何节点，通常用 ____ 来标记链表的结束。","exp":"空指针（null pointer）表示“不指向任何位置”，放在最后一个节点的链域中，标志链表到此结束。","answers":["空指针","null","NULL","空"],"meta":{"origin":{"id":"d-14","no":284,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-015","type":"single","topic":"4.2 链表","diff":"中","stem":"链表支持随机访问，可以直接由下标计算出任意节点的地址。","exp":"错误。链表节点物理位置不连续，第 i 个节点的地址只保存在第 i−1 个节点的链中，因此只能从头指针开始顺序查找（用 walker 游标逐步移动），不支持随机访问。数组才支持随机访问。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"d-15","no":285,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-016","type":"single","topic":"4.2 链表","diff":"易","stem":"在链表中查找某个元素时，通常（　）。","exp":"一个元素的位置只有它的前驱知道（前驱的链保存后继地址），所以链表查找只能顺序进行：用游标指针 walker 从头节点开始，沿链逐个移动、取值比较，直到找到或到达空指针。","options":["用公式直接算出其地址","从中间节点开始向两端查找","从头指针开始，沿链逐个比较","先对链表排序再折半查找"],"answer":[2],"meta":{"origin":{"id":"d-16","no":286,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-017","type":"multi","topic":"4.2 链表","diff":"中","stem":"在链表中插入一个新节点（插在某个前驱之后），需要完成的操作有（　）。","exp":"四步都必需：定位 → 建节点 → 新节点链后继 → 前驱链新节点。整个过程只修改指针，不需要移动其他元素，因此效率高。\n注意顺序：必须先让新节点指向后继，再让前驱指向新节点，否则会丢失后继链。","options":["先查找确定插入位置","创建包含数据和链的新节点","让新节点的链指向原后继节点","让前驱节点的链指向新节点"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-17","no":287,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-018","type":"single","topic":"4.2 链表","diff":"中","stem":"在链表中删除某个节点，最关键的指针操作是（　）。","exp":"删除只需“绕过”被删节点：前驱的链改为指向被删节点的后继，然后释放该节点。无需移动任何数据元素，这是链表删除效率高的原因。","options":["让被删节点指向头指针","让被删节点的前驱直接指向被删节点的后继","把被删节点之后的所有节点前移一位","把链表长度减 1 即可"],"answer":[1],"meta":{"origin":{"id":"d-18","no":288,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-019","type":"multi","topic":"4.2 链表","diff":"中","stem":"关于数组与链表的比较，下列说法正确的有（　）。","exp":"四项均正确。数组：随机访问快、空间固定、插删慢，适合大量查找检索；链表：空间动态、插删快、只能顺序访问，适合频繁插删的场合。二者唯一区别在于数据项“连接在一起的方式”：数组靠索引，链表靠指针。","options":["数组利用索引支持随机访问，链表只能顺序访问","数组的内存空间较为固定，链表可动态增长或删除节点","数组中间插入删除需移动大量元素，链表只需修改指针","链表查找和遍历通常比数组慢"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-19","no":289,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-020","type":"fill","topic":"4.2 链表","diff":"难","stem":"内存中存放了一个链表，头指针的值为 44，每个元素用 2 个连续存储单元分别表示数据和链。各单元的“地址,内容”如下：\n(40,N) (41,46) (42,I) (43,40) (44,J) (45,50)\n(46,E) (47,00) (48,M) (49,42) (50,A) (51,40)\n则该链表表示的字符串（名字）是 ____。","exp":"从 44 开始：44 的数据 J，链 50 → 50 的数据 A，链 40 → 40 的数据 N，链 46 → 46 的数据 E，链 00（空指针）结束。\n依次读出 J→A→N→E，即 JANE。\n其余地址（41/42/43、47/48/49、51）是未被该链引用的“游离”数据，是干扰项。","answers":["JANE","jane"],"meta":{"origin":{"id":"d-20","no":290,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-021","type":"single","topic":"4.3 抽象数据类型","diff":"中","stem":"抽象数据类型（ADT）是指（　）。","exp":"ADT 是更高抽象层次的数据类型，代表逻辑结构概念：把数据和对数据的操作封装在一起，对用户隐藏内部实现。数组和链表是物理结构，栈、队列、树、图是典型的 ADT。","options":["数据在内存中的真实物理存储结构","一种只能用数组实现的数据结构","将对某数据类型有意义的操作封装在一起、并隐藏实现细节的数据类型","一种具体的编程语言"],"answer":[2],"meta":{"origin":{"id":"d-21","no":291,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-022","type":"multi","topic":"4.3 抽象数据类型","diff":"中","stem":"一个抽象数据类型通常包括（　）。","exp":"ADT 包括三方面：数据的定义、操作的定义、封装数据与操作并对用户隐藏。具体的内存地址分配属于物理实现细节，由实现者决定，不属于 ADT 的对外定义。","options":["具体的内存地址分配","操作的定义","对数据和操作的封装","数据的定义"],"answer":[1,2,3],"meta":{"origin":{"id":"d-22","no":292,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-023","type":"multi","topic":"4.3 抽象数据类型","diff":"易","stem":"下列属于抽象数据类型的有（　）。","exp":"栈、队列、树、图都是典型的 ADT：它们定义了数据的逻辑组织方式与一组操作（如入栈/出栈、入队/出队），而具体可用数组或链表实现。","options":["栈","队列","树","图"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-23","no":293,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-024","type":"single","topic":"4.4 栈与队列","diff":"易","stem":"栈的特点是（　）。","exp":"栈（stack）是一种受限线性表，插入和删除只能在“栈顶”一端进行，因此最后入栈的元素最先出栈，即后进先出（Last In First Out，LIFO）。","options":["先进先出（FIFO）","后进先出（LIFO）","随机存取","按优先级取出"],"answer":[1],"meta":{"origin":{"id":"d-24","no":294,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-025","type":"single","topic":"4.4 栈与队列","diff":"易","stem":"栈的基本操作中，push 和 pop 分别指（　）。","exp":"push（入栈、压栈）：在栈顶添加新元素；pop（出栈、弹栈）：把栈顶元素移走。建栈、入栈、出栈是栈的三个基本操作。","options":["在栈顶添加元素、在栈底添加元素","在栈底添加元素、从栈底移走元素","在栈顶添加元素、从栈顶移走元素","读出栈顶元素但不删除、删除整个栈"],"answer":[2],"meta":{"origin":{"id":"d-25","no":295,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-026","type":"single","topic":"4.4 栈与队列","diff":"难","stem":"一个栈的输入序列为 1 2 3 4 5，允许在入栈过程中随时出栈，则下列序列中不可能是栈的输出序列的是（　）。","exp":"逐项验证：\nA：1入→2入→2出→3入→3出→4入→4出→1出→5入→5出，可行；\nC：1入→2入→2出→3入→3出→1出→4入→4出→5入→5出，可行；\nD：1入→1出→2、3、4、5依次入→5、4、3、2依次出，可行；\nB：要 5 先出，必须 1～5 全部入栈；此时 5、4 出栈后栈内为 1、2、3（栈顶 3），下一个只能出 3，不可能出 1。故 B 不可能。","options":["2 3 4 1 5","5 4 1 3 2","2 3 1 4 5","1 5 4 3 2"],"answer":[1],"meta":{"origin":{"id":"d-26","no":296,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-027","type":"single","topic":"4.4 栈与队列","diff":"易","stem":"栈既可以用数组实现，也可以用链表实现。","exp":"正确。用数组实现时，用一个“栈顶下标”指向栈顶元素；用链表实现时，用一个指针指向栈顶节点。两种实现都只需在栈顶一端操作。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-27","no":297,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-028","type":"single","topic":"4.4 栈与队列","diff":"易","stem":"队列的特点是（　）。","exp":"队列（queue）也是受限线性表：只能在尾部（rear）插入、在头部（front）删除，因此最先入队的元素最先出队，即先进先出（First In First Out，FIFO）。","options":["后进先出（LIFO）","只能在中间插入删除","先进先出（FIFO）","元素按大小排列"],"answer":[2],"meta":{"origin":{"id":"d-28","no":298,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-029","type":"single","topic":"4.4 栈与队列","diff":"中","stem":"队列的入队（enqueue）和出队（dequeue）操作分别发生在（　）。","exp":"enqueue 在队尾（rear）添加新元素；dequeue 删除队头（front）的元素。这一“尾进头出”的规则保证了先进先出。","options":["头部插入、尾部删除","尾部插入、头部删除","都在头部进行","都在尾部进行"],"answer":[1],"meta":{"origin":{"id":"d-29","no":299,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-030","type":"single","topic":"4.4 栈与队列","diff":"中","stem":"队列可以在头部插入元素、在尾部删除元素。","exp":"错误。队列是“尾部插入、头部删除”；若反过来（头部插入、尾部删除）就变成后进先出，不再是队列。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"d-30","no":300,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-031","type":"short","topic":"4.4 栈与队列","diff":"中","stem":"简述栈与队列的区别，并各举一个生活中的例子。","exp":"对比要点：操作端（栈：同一端；队列：两端）、规则（LIFO / FIFO）、典型应用。","ref":"栈只允许在同一端（栈顶）插入和删除，特点是后进先出（LIFO），如叠放的一摞盘子、浏览器的后退、编辑器的撤销；\n队列只允许在尾部插入、头部删除，特点是先进先出（FIFO），如排队买票、打印任务队列、消息队列。","meta":{"origin":{"id":"d-31","no":301,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-032","type":"single","topic":"4.5 树与二叉树","diff":"易","stem":"树中“根节点”指的是（　）。","exp":"树由节点（顶点）和有向弧组成。若非空，其中有一个节点没有进入的弧，称为根（root）；没有指向子节点的节点称为叶子节点；从一个节点可以直接到达的节点称为其子节点。","options":["出度最大的节点","没有子节点的节点","入度为 1 的节点","没有进入的弧的节点"],"answer":[3],"meta":{"origin":{"id":"d-32","no":302,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-033","type":"single","topic":"4.5 树与二叉树","diff":"易","stem":"树中没有指向子节点的节点称为（　）。","exp":"叶子节点的出度为 0，位于树的末端；根节点入度为 0；中间节点入度为 1、出度 ≥ 1。","options":["叶子节点","中间节点","根节点","子树"],"answer":[0],"meta":{"origin":{"id":"d-33","no":303,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-034","type":"fill","topic":"4.5 树与二叉树","diff":"中","stem":"树的每个节点都可能有子树。其中根节点的入度为 ____，叶子节点的出度为 ____。（两空用空格分隔）","exp":"节点类型与度：\n根节点——入度 0，出度 0 或更多；\n中间节点——入度只能为 1，出度 1 或更多；\n叶子节点——入度只能为 1，出度 0。\n“度”指与节点连接的分支数目，指向节点的称入度，离开节点的称出度。","answers":["0 0","00","0,0","0和0"],"meta":{"origin":{"id":"d-34","no":304,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-035","type":"single","topic":"4.5 树与二叉树","diff":"中","stem":"树中除根节点外，每个中间节点的入度只能为 1。","exp":"正确。树中每个节点（除根）只有一个前驱（父节点），故入度为 1；根节点没有前驱，入度为 0。若某节点入度大于 1，就不再是树而是一般的有向图。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-35","no":305,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-036","type":"single","topic":"4.5 树与二叉树","diff":"易","stem":"二叉树是（　）。","exp":"二叉树中任一节点的子树个数不超过 2，分别称为左子树和右子树，且左右有序。递归定义：二叉树是空树，或由一个根节点和两棵互不相交的、分别称为左子树和右子树的二叉树组成。","options":["每个节点只有一个子节点的树","每个节点必须有两棵子树的树","所有叶子在同一层的树","每个节点至多有两棵子树的树"],"answer":[3],"meta":{"origin":{"id":"d-36","no":306,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-037","type":"single","topic":"4.5 树与二叉树","diff":"中","stem":"二叉树的左右子树有次序之分，交换左右子树会得到另一棵不同的二叉树。","exp":"正确。二叉树是有序树，左子树与右子树不能随意互换；即使只有一个子节点，也要区分它是左孩子还是右孩子。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-37","no":307,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-038","type":"single","topic":"4.5 树与二叉树","diff":"中","stem":"二叉树可以使用数组或链表实现。对于经常插入和删除的情况，更流行的是（　）。","exp":"数组实现适合完全二叉树（可用下标定位父子），但插入删除需移动元素、空间固定；链表实现通过指针连接子节点，插入删除只需改指针，效率更高，因此更常用。","options":["数组实现，因为下标计算方便","顺序表实现，因为空间连续","链表实现，因为插入删除效率更高","邻接矩阵实现"],"answer":[2],"meta":{"origin":{"id":"d-38","no":308,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-039","type":"short","topic":"4.5 树与二叉树","diff":"中","stem":"请说明树中“度、入度、出度”的含义，并列出根节点、中间节点、叶子节点三者的入度与出度特征。","exp":"记忆线索：入度看“有几个父亲”，出度看“有几个孩子”；根无父、叶无子。","ref":"度：与节点连接的分支数目；其中指向该节点的分支数称入度，离开该节点的分支数称出度。\n根节点：入度 0，出度 0 或更多；\n中间节点：入度只能为 1，出度 1 或更多；\n叶子节点：入度只能为 1，出度 0。","meta":{"origin":{"id":"d-39","no":309,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-040","type":"single","topic":"4.6 图","diff":"易","stem":"图（graph）由（　）构成。","exp":"图由顶点（vertex，图中的数据元素）和边（edge，顶点之间的逻辑关系）构成。边可以带权重，表示距离、成本等。","options":["一组节点和指向子节点的指针","一组数据和一组索引","一组顶点和顶点之间的连线（边）","一组记录和一组字段"],"answer":[2],"meta":{"origin":{"id":"d-40","no":310,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-041","type":"single","topic":"4.6 图","diff":"易","stem":"若图中任意两个顶点之间的边都没有方向，则称为无向图；若都有方向，则称为有向图。","exp":"正确。无向边不区分方向，如“两地之间有公路”；有向边区分方向，如“A 关注 B”并不等于“B 关注 A”。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-41","no":311,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-042","type":"single","topic":"4.6 图","diff":"中","stem":"用邻接矩阵存储含 N 个顶点的图时，矩阵的大小为（　）。","exp":"邻接矩阵是 N×N 的二维数组，行、列分别对应 N 个顶点；矩阵元素表示对应两顶点之间是否邻接。带权图把权重存入矩阵元素，用 0 表示不邻接。","options":["N×2","N×N","2×N","N²×N"],"answer":[1],"meta":{"origin":{"id":"d-42","no":312,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-043","type":"fill","topic":"4.6 图","diff":"中","stem":"用邻接矩阵存储一个有 6 个顶点的图，该矩阵共有 ____ 个元素。","exp":"邻接矩阵大小为 N×N = 6×6 = 36 个元素。即使很多位置表示“不邻接”（0），这些位置仍占用存储空间，这是邻接矩阵适合稠密图、不适合稀疏图的原因。","answers":["36"],"meta":{"origin":{"id":"d-43","no":313,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-044","type":"short","topic":"4.6 图","diff":"中","stem":"什么是邻接矩阵？它如何表示顶点之间是否相邻以及边的权重？","exp":"要点：N×N 二维数组；行/列对应顶点；非零（或权重）表示邻接，0 表示不邻接。","ref":"邻接矩阵是用二维数组存储图的方法：矩阵大小为 N×N，行和列分别对应图的 N 个顶点；矩阵元素表示对应顶点之间的邻接信息。若两顶点之间有边，元素置为非零值（带权图存入该边的权重）；若没有边，元素置为 0。","meta":{"origin":{"id":"d-44","no":314,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-045","type":"single","topic":"4.6 图","diff":"中","stem":"图的邻接矩阵中，0 表示两个顶点之间不邻接。","exp":"正确。课件约定：将边的权重存储在矩阵元素中，0 表示不邻接（无权图中通常用 1 表示邻接、0 表示不邻接）。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-45","no":315,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-046","type":"single","topic":"4.2 链表","diff":"中","stem":"链表在插入和删除节点时不需要移动其他元素，只需修改相关指针，因此效率比数组高。","exp":"正确。但要注意前提：链表“先要找到位置”，而查找只能顺序进行，所以链表是“插删快、查找慢”；数组则“查找快、插删慢”。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-46","no":316,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-047","type":"short","topic":"4.3 抽象数据类型","diff":"中","stem":"什么是逻辑结构与物理结构？请结合二维数组加以说明。","exp":"要点：逻辑结构=抽象关系（表格）；物理结构=内存实际布局（一维连续）；二维是逻辑视图，物理仍是一维。","ref":"逻辑结构是数据元素之间的抽象关系，与具体存储无关；物理结构（存储结构）是数据在内存中的实际存放方式。二维数组在逻辑上是“行×列”的表格，可以按行、列定位元素；但在内存中它仍按行优先排成一维连续序列，第 1 行之后紧接第 2 行，元素地址可用公式计算。可见同一逻辑结构可以有不同物理实现。","meta":{"origin":{"id":"d-47","no":317,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-048","type":"single","topic":"4.7 算法概念与表示","diff":"易","stem":"算法（algorithm）的准确定义是（　）。","exp":"算法是“明确的、可执行的、有限步骤的问题求解过程”。它独立于计算机系统，任何领域解决问题的方法都可称为算法；程序则是算法在某一种语言中的具体实现。","options":["一个明确的、可执行的、有限步骤的问题求解过程","一种编程语言的语法规则","一段用 C 语言写成的程序","计算机硬件的操作说明书"],"answer":[0],"meta":{"origin":{"id":"a-01","no":318,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-049","type":"multi","topic":"4.7 算法概念与表示","diff":"中","stem":"算法应具备的五个特性包括（　）。","exp":"五特性：有穷性（有限步后终止）、确定性（每步定义明确、无歧义）、可行性（每步都能执行）、输入（零个或多个）、输出（一个或多个）。","options":["有穷性","确定性","可行性","输入和输出"],"answer":[0,1,2,3],"meta":{"origin":{"id":"a-02","no":319,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-050","type":"single","topic":"4.7 算法概念与表示","diff":"中","stem":"一个算法至少要有一个输入，否则不合法。","exp":"错误。算法允许有零个或多个输入（例如“输出 1～100 内所有 7 的倍数”不需要输入），但必须有至少一个输出，否则算法没有意义。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"a-03","no":320,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-051","type":"single","topic":"4.7 算法概念与表示","diff":"中","stem":"算法可以有零个或多个输入，但至少应有一个输出。","exp":"正确。这是“输入/输出”特性的准确表述：输入 0～n 个，输出 ≥1 个。若没有任何输出，就无法得到求解结果。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-04","no":321,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-052","type":"single","topic":"4.7 算法概念与表示","diff":"中","stem":"“算法必须在有限步骤后终止”描述的是算法的（　）。","exp":"有穷性（finiteness）要求算法执行有限步后必须结束，不能无限循环。确定性要求每步无歧义；可行性要求每步可实现。","options":["有穷性","确定性","可行性","输出性"],"answer":[0],"meta":{"origin":{"id":"a-05","no":322,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-053","type":"multi","topic":"4.7 算法概念与表示","diff":"易","stem":"一般算法实现所定义的三种基本结构是（　）。","exp":"三种基本控制结构：顺序（Sequence）、选择/判断（Decision）、循环（Repetition）。任何复杂算法都可由这三种结构组合而成；递归是一种实现技巧，不属于三种基本结构。","options":["顺序结构","递归结构","循环结构","选择（判断）结构"],"answer":[0,2,3],"meta":{"origin":{"id":"a-06","no":323,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-054","type":"single","topic":"4.7 算法概念与表示","diff":"易","stem":"流程图中，菱形框通常表示（　）。","exp":"常用流程图符号：椭圆——开始/结束；矩形——处理/操作；菱形——判断/分支；平行四边形——输入/输出；带箭头的线——流程方向。","options":["开始或结束","判断或分支","处理或操作","输入或输出"],"answer":[1],"meta":{"origin":{"id":"a-07","no":324,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-055","type":"single","topic":"4.7 算法概念与表示","diff":"易","stem":"流程图中，平行四边形框通常表示（　）。","exp":"平行四边形表示输入/输出（如“输入 n”“输出 sum”）；矩形表示处理（如“sum ← sum + a[i]”）；菱形表示条件判断。","options":["开始或结束","输入或输出","判断或分支","处理或操作"],"answer":[1],"meta":{"origin":{"id":"a-08","no":325,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-056","type":"multi","topic":"4.7 算法概念与表示","diff":"中","stem":"关于伪代码，下列说法正确的有（　）。","exp":"伪代码用类似编程语言的结构表达算法逻辑，但不拘泥语法：不声明变量类型、不做语法检查，用清晰关键字描述控制流程，目的是让人看懂算法思路，不能直接编译运行。","options":["忽略变量声明、数据类型等细节","使用 if、then、else、while、for 等清晰的关键字","就是某一种编程语言的可编译代码","注重逻辑结构，不关注具体语法"],"answer":[0,1,3],"meta":{"origin":{"id":"a-09","no":326,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-057","type":"short","topic":"4.7 算法概念与表示","diff":"中","stem":"用自然语言或伪代码描述“求 n 个整数中最大值”的算法，并指出其中用到了哪种基本结构。","exp":"要点：先把第一个数作为当前最大值，再依次与其余各数比较，遇到更大者就更新；遍历用循环，比较更新用分支。该算法对 n 个数只需一轮扫描。","ref":"算法：MaxValue(A, n)\n输入：数组 A 和元素个数 n\nmax ← A[1]\ni ← 2\nwhile (i ≤ n)\n    if (A[i] > max) then max ← A[i]\n    i ← i + 1\nreturn max\n\n用到了顺序结构（初始化、返回）、选择结构（if 比较）和循环结构（while 遍历）。","meta":{"origin":{"id":"a-10","no":327,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-058","type":"single","topic":"4.8 排序","diff":"易","stem":"排序（sort）是指（　）。","exp":"排序是根据数据的值对它们进行排列，是计算机科学中最普遍的应用之一。课件介绍的三种基本排序：选择排序、冒泡排序、插入排序。","options":["删除重复的数据","把数据随机打乱","根据数据的值对它们进行排列","在数据中查找指定值"],"answer":[2],"meta":{"origin":{"id":"a-11","no":328,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-059","type":"single","topic":"4.8 排序","diff":"中","stem":"选择排序的基本思想是（　）。","exp":"选择排序：每一轮在待排序区间中“选择”最小（或最大）的元素，与区间起始位置交换，然后缩小待排序区间，直到全部排完。外层循环控制轮次，内层循环负责找最小值。","options":["每次比较相邻两个元素，逆序则交换","把序列一分为二分别排序再合并","把每个元素插入到前面已排好序的部分","每一轮从待排序元素中选出最小（或最大）的一个，放到序列的起始位置"],"answer":[3],"meta":{"origin":{"id":"a-12","no":329,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-060","type":"comp","topic":"4.8 排序","diff":"中","stem":"对序列 6, 3, 9, 1, 8 进行选择排序（每轮选最小值放到前面），请写出第一轮结束后的序列。","exp":"第一轮：扫描 6、3、9、1、8，最小值为 1（位于第 4 位），与第 1 位的 6 交换 → 1, 3, 9, 6, 8。\n第二轮在 3、9、6、8 中选最小 3，已在起始位置，不交换；第三轮在 9、6、8 中选 6，与 9 交换 → 1, 3, 6, 9, 8；第四轮 9 与 8 交换 → 1, 3, 6, 8, 9。","ref":"1, 3, 9, 6, 8。\n第一轮在全部 5 个元素中选出最小值 1，与第一个元素 6 交换，得到 1, 3, 9, 6, 8。","meta":{"origin":{"id":"a-13","no":330,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-061","type":"single","topic":"4.8 排序","diff":"中","stem":"冒泡排序的基本思想是（　）。","exp":"冒泡排序按顺序重复遍历数列，一次比较两个相邻元素，若顺序错误就交换。每轮结束，最大（或最小）的元素会像气泡一样“浮”到数列一端，故名“冒泡”。","options":["把元素逐个插入已排序部分","每轮直接选出最小值放到最前面","重复遍历数列，比较相邻两个元素，顺序错误就交换，直到没有需要交换为止","随机交换元素直到有序"],"answer":[2],"meta":{"origin":{"id":"a-14","no":331,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-062","type":"comp","topic":"4.8 排序","diff":"中","stem":"对序列 5, 1, 4, 2, 8 进行冒泡排序（从右到左依次比较相邻两数，小数放左边），请写出第一轮结束后的序列。","exp":"从右往左两两比较，小的往左“冒”：\n(2,8) 不换 → (4,2) 交换 → (1,2) 不换 → (5,1) 交换；\n第一轮把最小值 1 送到最左端，结果为 1, 5, 2, 4, 8。","ref":"1, 5, 2, 4, 8。\n过程：比较 2 与 8 不换；比较 4 与 2 交换 → 5,1,2,4,8；比较 1 与 2 不换；比较 5 与 1 交换 → 1,5,2,4,8。","meta":{"origin":{"id":"a-15","no":332,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-063","type":"single","topic":"4.8 排序","diff":"中","stem":"插入排序的基本操作是（　）。","exp":"插入排序把数组分为“已排序部分”和“待插入元素”：每次取出一个元素，在已排序部分中找到合适位置插入，使有序部分长度加 1，直到全部插入完成。类似整理扑克牌。","options":["把一个数据插入到已经排好序的有序数据中，得到一个新的、个数加一的有序序列","把最小的元素选出来放到最前面","反复比较相邻元素并交换","把序列分成两半分别排序"],"answer":[0],"meta":{"origin":{"id":"a-16","no":333,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-064","type":"comp","topic":"4.8 排序","diff":"中","stem":"对序列 7, 2, 9, 4 进行插入排序，请写出每一轮插入后的序列，以及最终结果。","exp":"插入排序过程：\n① 第一个元素 7 视为已排序；\n② 取 2，比 7 小，插到 7 前 → 2, 7；\n③ 取 9，比 7 大，插到末尾 → 2, 7, 9；\n④ 取 4，在 2、7、9 中找到位置（7 之前）→ 2, 4, 7, 9。","ref":"初始：[7]\n插入 2 → [2, 7]\n插入 9 → [2, 7, 9]\n插入 4 → [2, 4, 7, 9]\n最终结果：2, 4, 7, 9。","meta":{"origin":{"id":"a-17","no":334,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-065","type":"single","topic":"4.8 排序","diff":"中","stem":"选择排序每一轮最多只交换一次元素，而冒泡排序每一轮可能交换多次。","exp":"正确。选择排序每轮先“找”最小值，最后与区间首元素交换一次；冒泡排序每轮在相邻比较中可能反复交换。两者的外层循环都控制“轮次”，内层循环分别负责“找最小值”和“两两比较”。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-18","no":335,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-066","type":"single","topic":"4.9 查找","diff":"易","stem":"顺序查找的基本过程是（　）。","exp":"顺序查找（Sequential search）从起始位置开始依次比较，找到目标即成功；扫到末尾仍未找到，则确信目标不存在。它对数据是否有序没有要求，但平均比较次数多。","options":["直接由公式算出目标位置","先排序再折半比较","从数据元素的起始位置开始逐个比较，找到目标或确信目标不存在时结束","随机抽取元素比较"],"answer":[2],"meta":{"origin":{"id":"a-19","no":336,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-067","type":"single","topic":"4.9 查找","diff":"中","stem":"折半查找（二分查找）要求待查找的数据必须有序。","exp":"正确。折半查找每次都拿中间元素与目标比较，根据大小关系排除一半区间；若数据无序，“目标在前半/后半”的判断就不成立，算法失效。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-20","no":337,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-068","type":"fill","topic":"4.9 查找","diff":"难","stem":"在已排序的列表中查找 46，数据依次为：\n5、7、20、33、44、46、78、98、101、102、105（下标 0～10）\n顺序查找需要 ____ 次比较，折半查找需要 ____ 次比较。（两空用空格分隔）","exp":"顺序查找：依次比较 5、7、20、33、44、46，共 6 次。\n折半查找：区间 [0,10]，中间下标 (0+10)/2 = 5，对应元素正好是 46，第 1 次比较即命中。\n注意：折半查找并非一定更快，但通常能大幅减少比较次数。","answers":["6 1","61","6,1","6次1次"],"meta":{"origin":{"id":"a-21","no":338,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-069","type":"comp","topic":"4.9 查找","diff":"难","stem":"对有序表 12, 20, 25, 34, 41, 56, 63, 74, 82, 90 进行折半查找，查找目标 25 需要多少次比较？请写出每次比较的中间元素。","exp":"折半过程（下标从 0 开始）：\n区间 [0,9] → mid=4，元素 41，25<41 → 区间 [0,3]；\nmid=(0+3)/2=1，元素 20，25>20 → 区间 [2,3]；\nmid=(2+3)/2=2，元素 25，命中。共 3 次比较。","ref":"3 次。\n第 1 次：中间元素 41（下标 4），25 < 41，查左半区；\n第 2 次：左半区中间元素 20（下标 1），25 > 20，查右半区；\n第 3 次：中间元素 25（下标 2），命中。","meta":{"origin":{"id":"a-22","no":339,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-070","type":"single","topic":"4.9 查找","diff":"中","stem":"折半查找每比较一次后，下一步会（　）。","exp":"折半查找将目标与中间元素比较：若相等则成功；若目标较小，只在左半部分继续；若较大，只在右半部分继续。每次排除一半元素，因此效率高（时间复杂度 O(log n)）。","options":["随机选择一个新的区间","从头开始重新查找","把区间扩大一倍","只在前半部分或后半部分继续查找，范围缩小约一半"],"answer":[3],"meta":{"origin":{"id":"a-23","no":340,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-071","type":"single","topic":"4.10 迭代与递归","diff":"易","stem":"迭代（Iteration）指的是（　）。","exp":"迭代用循环（while/for）重复执行同一段代码，靠循环变量的推进逐步逼近结果；递归则是算法直接或间接调用自身，把复杂问题分解为相似的子问题。","options":["通过循环结构重复执行一段代码，每次循环都更接近最终结果","算法直接或间接调用自身","把问题分解为互不相关的子问题","只执行一次的语句序列"],"answer":[0],"meta":{"origin":{"id":"a-24","no":341,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-072","type":"single","topic":"4.10 迭代与递归","diff":"易","stem":"递归（Recursion）的核心特征是（　）。","exp":"递归在定义中调用自身，把大问题化为同类的更小问题，因此必须包含：① 递归关系（递推式）；② 终止条件（基准情形），否则会无限递归。","options":["只能处理数值问题","必须使用数组","必须使用两层以上循环","算法直接或间接调用自身"],"answer":[3],"meta":{"origin":{"id":"a-25","no":342,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-073","type":"single","topic":"4.10 迭代与递归","diff":"中","stem":"递归算法必须有终止条件，否则会无限调用自身导致栈溢出。","exp":"正确。以阶乘为例，递归定义为 n! = n × (n−1)!，同时规定 0! = 1 作为终止条件。缺少终止条件时调用不会停止，最终耗尽调用栈空间。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-26","no":343,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-074","type":"fill","topic":"4.10 迭代与递归","diff":"中","stem":"阶乘的递归定义中，当 n 等于 0 时返回 ____，作为递归的终止条件。","exp":"0! = 1 是递归的基准情形（base case）。递归式：n! = n × (n−1)!（n ≥ 1）；终止条件：0! = 1。","answers":["1","1.0"],"meta":{"origin":{"id":"a-27","no":344,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-075","type":"comp","topic":"4.10 迭代与递归","diff":"中","stem":"用递归方式计算 Factorial(4)，请写出结果，并说明一共调用了多少次 Factorial 函数。","exp":"调用链：F(4) → F(3) → F(2) → F(1) → F(0)。\nF(0)=1 返回后：F(1)=1×1=1，F(2)=2×1=2，F(3)=3×2=6，F(4)=4×6=24。\n共 5 次函数调用（含 F(0)），体现了“递推下去、回归上来”的过程。","ref":"结果 24；共调用 5 次。\nFactorial(4) → 4×Factorial(3) → 3×Factorial(2) → 2×Factorial(1) → 1×Factorial(0) = 1，逐层返回得 24。","meta":{"origin":{"id":"a-28","no":345,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-076","type":"single","topic":"4.10 迭代与递归","diff":"中","stem":"关于迭代与递归的比较，下列说法正确的是（　）。","exp":"迭代用循环变量推进，空间开销小、效率高；递归把问题分解为同类子问题，代码简洁、贴近数学定义，但每层调用都要占用栈空间，层数过深可能栈溢出。二者可互相转换。","options":["两者完全等价，任何情况下都只能选递归","迭代一定比递归慢","递归不需要终止条件","迭代靠循环推进，递归靠函数自我调用；递归代码通常更简洁，但占用调用栈空间"],"answer":[3],"meta":{"origin":{"id":"a-29","no":346,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-077","type":"single","topic":"4.10 迭代与递归","diff":"中","stem":"1974 年图灵奖获得者、著有《计算机程序设计的艺术》系列、开创数据结构课程体系的科学家是（　）。","exp":"高德纳（Donald Ervin Knuth）于 1974 年获图灵奖，其《计算机程序设计的艺术》系列（《基本算法》《半数值算法》《排序与搜索》《组合算法》）开创了数据结构课程体系。","options":["艾伦·图灵","唐纳德·克努特（Donald E. Knuth）","冯·诺依曼","克劳德·香农"],"answer":[1],"meta":{"origin":{"id":"a-30","no":347,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-078","type":"short","topic":"4.10 迭代与递归","diff":"中","stem":"算法与数据结构有什么关系？请结合一个例子说明。","exp":"要点：① 数据结构提供“原料与组织方式”，算法提供“处理步骤”；② 结构决定算法能否实施及效率；③ 举例（数组折半查找 vs 链表顺序查找）。","ref":"二者密不可分：数据结构是数据的组织与存储方式，算法是解决问题的步骤；算法必须作用于某种数据结构之上，数据结构的选择又直接决定算法的效率。例如在一个有序数组中查找某数，可用顺序查找（逐个比较，O(n)），也可用折半查找（每次排除一半，O(log n)）；若把数据组织成链表，则无法随机访问，折半查找难以实施，只能顺序查找。因此“程序 = 数据结构 + 算法”。","meta":{"origin":{"id":"a-31","no":348,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-079","type":"single","topic":"4.7 算法概念与表示","diff":"易","stem":"流程图中，椭圆（圆角矩形）框通常表示（　）。","exp":"椭圆表示算法的起点和终点（开始/结束），一个完整流程图通常只有一个开始和一个结束。","options":["判断或分支","处理或操作","开始或结束","输入或输出"],"answer":[2],"meta":{"origin":{"id":"a-32","no":349,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-080","type":"single","topic":"4.7 算法概念与表示","diff":"中","stem":"算法可以没有输出，只要过程能够结束就是合法算法。","exp":"错误。算法必须有至少一个输出，否则无法体现求解结果，失去意义。可以有零个输入，但不能没有输出。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"a-33","no":350,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-081","type":"single","topic":"4.8 排序","diff":"中","stem":"选择排序、冒泡排序和插入排序都包含外层循环与内层循环，属于典型的双重循环算法。","exp":"正确。三者都用外层循环控制“轮次”，内层循环完成具体工作：选择排序内层找最小值、冒泡排序内层两两比较交换、插入排序内层寻找插入位置。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-34","no":351,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-082","type":"single","topic":"4.9 查找","diff":"易","stem":"顺序查找既可用于有序数据，也可用于无序数据。","exp":"正确。顺序查找逐个比较，不依赖数据有序；折半查找则必须以有序为前提。这也是顺序查找虽然慢但适用面更广的原因。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-35","no":352,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-083","type":"short","topic":"4.10 迭代与递归","diff":"难","stem":"分别用迭代和递归两种思路描述求 n! 的算法（可用伪代码），并比较二者的特点。","exp":"要点：① 迭代用循环与累乘变量；② 递归用 n! = n×(n−1)! 加终止条件 0!=1；③ 比较空间开销、代码简洁度、溢出风险。","ref":"迭代：\nFact ← 1；i ← 1\nwhile (i ≤ n) { Fact ← Fact × i；i ← i + 1 }\nreturn Fact\n\n递归：\nif (n = 0) then return 1\nelse return n × Factorial(n − 1)\n\n比较：迭代用循环推进，只需常数级额外空间，效率高、不易栈溢出；递归代码简洁、贴合 n! = n×(n−1)! 的数学定义，但每层调用占用栈空间，n 很大时可能溢出，且函数调用有额外开销。","meta":{"origin":{"id":"a-36","no":353,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-084","type":"multi","topic":"4.1 数据结构与数组","diff":"易","stem":"数组的常用操作包括（　）。","exp":"课件的表述是“查找、插入、删除、检索和遍历”。插入分尾部插入与中间插入，删除分尾部删除与中间删除；遍历是按某种顺序访问每个元素且只访问一次。","options":["查找","插入","删除","遍历"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-48","no":354,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-085","type":"fill","topic":"4.1 数据结构与数组","diff":"中","stem":"二维数组 a[1..5][1..4] 按行优先连续存放，每个元素占 1 个存储单元，a[1][1] 的地址为 1000，则 a[4][2] 的地址为 ____。","exp":"按行优先，地址公式 y(i,j) = y₀ + m×(i−1) + (j−1)，m 为列数 4。\n代入：1000 + 4×(4−1) + (2−1) = 1000 + 12 + 1 = 1013。\n快速验算：从第 1 行第 1 列走到第 4 行第 2 列，需跨 3 整行（12 个元素）再右移 1 格，共 13 个单元。","answers":["1013"],"meta":{"origin":{"id":"d-49","no":355,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-086","type":"short","topic":"4.1 数据结构与数组","diff":"中","stem":"为什么数组适合大量查找检索、却不适合频繁插入删除？请结合其存储方式说明。","exp":"要点：① 连续存放 + 等长 → 下标可直接计算地址 → 随机访问快；② 连续紧邻 → 中间插删要成批移动元素 → 效率低；③ 结论：查多改少用数组，频繁插删用链表。","ref":"数组元素类型相同、长度相等、在内存中依次连续存放，因此只要知道首地址和下标，就能用公式直接算出任一元素的地址，实现随机访问，查找/检索很快。\n但也正因为元素连续紧邻，在中间插入时必须把插入位置之后的元素全部向后移动一位腾出空位；删除时必须把其后的元素全部向前移动一位填补空位，移动量随元素个数线性增长，开销很大。所以数组适合“查多改少”的场合。","meta":{"origin":{"id":"d-50","no":356,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-087","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"用循环处理数组元素，最主要的好处是（　）。","exp":"引入数组与循环后，100 个分数只需少数几条语句（读入、处理、打印各一个循环），而不必写 300 条。但计算机实际执行的语句总数并未减少，反而因循环的初始化、增量、判断略有增加——我们关心的是程序员工作量与程序可维护性。","options":["程序员编写的语句数量大幅减少，程序的可重用性提高","计算机需要执行的语句总数也大幅减少","数组占用的内存空间更少","数组元素会自动排序"],"answer":[0],"meta":{"origin":{"id":"d-51","no":357,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-088","type":"single","topic":"4.1 数据结构与数组","diff":"中","stem":"数组元素在内存中依次连续存放且长度相等，因此可以由首地址和下标直接算出任一元素的地址。","exp":"正确。这正是数组支持随机访问（random access）的物理基础：地址 = 首地址 + 下标 × 元素长度。二维数组按行优先存放时，公式为 y₀ + m×(i−1) + (j−1)。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-52","no":358,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-089","type":"comp","topic":"4.2 链表","diff":"中","stem":"一个长度为 n 的链表，用顺序方式查找某个元素。若各元素被查找的概率相同，平均需要比较多少个节点？请写出推导过程。","exp":"链表只能从头指针沿链顺序查找，找不到时还要扫到空指针。\n等概率假设下：平均比较次数 = (1+2+…+n)/n = (n+1)/2，即约一半节点。\nn = 1000 时平均约 500 次，这就是链表“查找慢”的定量体现。","ref":"平均 (n+1)/2 个。\n第 1 个元素比较 1 次，第 2 个比较 2 次……第 n 个比较 n 次；\n总次数 = 1+2+…+n = n(n+1)/2；\n平均 = [n(n+1)/2] ÷ n = (n+1)/2。","meta":{"origin":{"id":"d-53","no":359,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-090","type":"short","topic":"4.2 链表","diff":"中","stem":"从存储方式、访问方式、插入删除效率三方面比较数组与链表。","exp":"一句话概括：数组“查快改慢、空间固定”，链表“查慢改快、空间灵活”。二者唯一区别在于数据项连接在一起的方式——索引 vs 指针。","ref":"存储方式：数组元素在内存中连续存放、长度固定，靠索引联系；链表节点物理上非连续、非顺序，靠指针（链）联系，空间可动态增减。\n访问方式：数组可由下标直接算出地址，支持随机访问；链表只能从头指针沿链顺序访问。\n插入删除：数组需成批移动元素，效率低；链表只需修改相关指针，效率高。\n结论：数组适合大量查找检索，链表适合频繁插入删除。","meta":{"origin":{"id":"d-54","no":360,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-091","type":"single","topic":"4.2 链表","diff":"易","stem":"链表节点在内存中的物理位置必须连续，否则无法通过指针访问。","exp":"错误。链表的存储特点恰恰是物理上非连续、非顺序：节点可以分散在内存各处，靠每个节点中保存的后继地址（指针）串起来。若物理上必须连续，那就是数组了。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"d-55","no":361,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-092","type":"single","topic":"4.2 链表","diff":"中","stem":"在链表中插入新节点时，必须先让新节点的链指向原后继节点，再让前驱节点的链指向新节点。这样规定顺序的原因是（　）。","exp":"若先把前驱的链改成指向新节点，前驱中原来的后继地址就被覆盖了，新节点便无从知道该指向谁，链表从插入点断开。\n正确顺序：新节点链后继 → 前驱链新节点。","options":["顺序无关，两种做法完全等价","否则新节点会被系统自动删除","否则头指针会失效","否则前驱中保存的原后继地址会被覆盖，导致链表断裂、后半段丢失"],"answer":[3],"meta":{"origin":{"id":"d-56","no":362,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-093","type":"single","topic":"4.3 抽象数据类型","diff":"中","stem":"抽象数据类型把数据和操作封装在一起并对用户隐藏实现细节，使用者只需了解操作的含义即可使用。","exp":"正确。ADT 处于比数组、链表更高的抽象层，只规定“能做什么”（操作语义），不规定“怎么实现”。例如栈只说明有 push/pop 及后进先出规则，至于用数组还是链表实现，使用者无需关心。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-57","no":363,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-094","type":"fill","topic":"4.3 抽象数据类型","diff":"中","stem":"抽象数据类型包括数据的定义、操作的定义和 ____ 三个方面。","exp":"ADT 三方面：① 数据（data structure）的定义；② 操作（operation）的定义；③ 封装数据与操作并对用户隐藏实现。典型 ADT：栈、队列、树、图。","answers":["封装","对数据和操作的封装","封装数据和操作","封装性"],"meta":{"origin":{"id":"d-58","no":364,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-095","type":"comp","topic":"4.3 抽象数据类型","diff":"中","stem":"一个 4 行 3 列的二维表格按行优先存入下标从 0 开始的一维数组，表格中第 2 行第 2 列（行、列均从 1 开始计）的元素，在一维数组中的下标是多少？","exp":"这是“逻辑结构 → 物理结构”的映射：逻辑上是二维表格，物理上是一维数组。\n通用公式（下标从 0 开始）：index = 列数×(i−1) + (j−1) = 3×1 + 1 = 4。\n核对：第 1 行占下标 0、1、2；第 2 行第 1 列是 3，第 2 列是 4。","ref":"4。\n前面有 1 整行（3 个元素），本行内前面有 1 个元素，故下标 = 3×(2−1) + (2−1) = 3 + 1 = 4。","meta":{"origin":{"id":"d-59","no":365,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-096","type":"single","topic":"4.3 抽象数据类型","diff":"中","stem":"关于逻辑结构与物理结构，下列说法正确的是（　）。","exp":"逻辑结构描述元素之间的抽象关系（如二维表格的行列关系），与具体存储无关；物理结构（存储结构）描述数据在内存中如何摆放（如按行优先的一维连续序列）。同一种逻辑结构可有多种物理实现——栈既可用数组也可用链表实现。","options":["逻辑结构和物理结构是同一个概念","逻辑结构是数据元素之间的抽象关系，物理结构是数据在内存中的实际存放方式","逻辑结构由内存地址的分配方式决定","同一种逻辑结构只能有一种物理实现"],"answer":[1],"meta":{"origin":{"id":"d-60","no":366,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-097","type":"multi","topic":"4.4 栈与队列","diff":"中","stem":"关于栈，下列说法正确的有（　）。","exp":"四项均正确。栈是受限线性表，只允许在同一端（栈顶）插入和删除，故后进先出；基本操作有建栈、入栈（push/压栈）、出栈（pop/弹栈）；数组实现用栈顶下标，链表实现用指向栈顶的指针。","options":["插入和删除只能在栈顶一端进行","特点是后进先出（LIFO）","既可以用数组实现，也可以用链表实现","入栈称 push，出栈称 pop"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-61","no":367,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-098","type":"fill","topic":"4.4 栈与队列","diff":"易","stem":"队列只能在 ____ 插入元素，在 ____ 删除元素。（两空用空格分隔）","exp":"队列（queue）在尾部（rear）插入（enqueue），在头部（front）删除（dequeue），即“尾进头出”，因此先进先出（FIFO）。","answers":["尾部 头部","队尾 队头","尾 头","rear front"],"meta":{"origin":{"id":"d-62","no":368,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-099","type":"comp","topic":"4.4 栈与队列","diff":"中","stem":"初始为空的栈 S，依次执行 push(1)、push(2)、pop、push(3)、pop、pop。请写出每次出栈的元素，并说明最终栈的状态。","exp":"按“后进先出”逐步模拟：\n① push 1：栈底→顶 = 1\n② push 2：1, 2\n③ pop：弹出 2，剩 1\n④ push 3：1, 3\n⑤ pop：弹出 3，剩 1\n⑥ pop：弹出 1，栈空\n故出栈序列为 2, 3, 1。","ref":"出栈顺序为 2、3、1；最终栈为空。\n过程：push(1) → 栈 [1]；push(2) → [1,2]；pop → 弹出 2，栈 [1]；push(3) → [1,3]；pop → 弹出 3，栈 [1]；pop → 弹出 1，栈空。","meta":{"origin":{"id":"d-63","no":369,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-100","type":"single","topic":"4.4 栈与队列","diff":"易","stem":"队列既可以用数组实现，也可以用链表实现。","exp":"正确。数组实现时用“首位元素下标”记录队头位置；链表实现时用指针指向队头与队尾节点。两种实现都保持“尾进头出”的规则。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-64","no":370,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-101","type":"single","topic":"4.4 栈与队列","diff":"易","stem":"栈的插入和删除操作都只能在（　）进行。","exp":"栈是“限制线性表”，只允许在栈顶一端插入（push）和删除（pop）。正因为只开一个口，才形成后进先出（LIFO）的特性。","options":["栈底","中间位置","任意位置","栈顶"],"answer":[3],"meta":{"origin":{"id":"d-65","no":371,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-102","type":"multi","topic":"4.5 树与二叉树","diff":"中","stem":"关于树的基本概念，下列说法正确的有（　）。","exp":"四项均正确。树包含有限个节点（顶点）和有限条有向弧；根入度 0、出度 0 或更多；中间节点入度 1、出度 1 或更多；叶子节点入度 1、出度 0。","options":["树由一组节点和一组连接节点的有向弧组成","根节点没有进入的弧，入度为 0","叶子节点没有指向子节点的弧，出度为 0","除根节点外，中间节点的入度只能为 1"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-66","no":372,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-103","type":"comp","topic":"4.5 树与二叉树","diff":"难","stem":"在二叉树中，叶子节点数 n₀ 与度为 2 的节点数 n₂ 满足 n₀ = n₂ + 1。若一棵二叉树有 4 个叶子节点，则度为 2 的节点有多少个？","exp":"推导思路：设节点总数 n = n₀ + n₁ + n₂。除根外每个节点都恰有一条弧指向它，故弧数 = n − 1；又弧数 = 0×n₀ + 1×n₁ + 2×n₂。\n于是 n₀+n₁+n₂−1 = n₁+2n₂ → n₀ = n₂ + 1。\n本题 n₂ = 4 − 1 = 3。","ref":"3 个。\n由 n₀ = n₂ + 1 得 n₂ = n₀ − 1 = 4 − 1 = 3。\n验证：3 个度为 2 的节点共发出 6 条弧，其中 2 条指向度为 2 的节点、4 条指向叶子，弧数与节点数关系自洽。","meta":{"origin":{"id":"d-67","no":373,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-104","type":"fill","topic":"4.5 树与二叉树","diff":"易","stem":"二叉树中任一节点所含子树的个数不超过 ____ 个，分别称为左子树和右子树。","exp":"二叉树的定义：每个节点至多有两棵子树，且左右子树有次序之分，不能随意互换。递归定义：二叉树是空树，或由一个根节点和两棵互不相交的、分别称为左子树和右子树的二叉树组成。","answers":["2","两","二","2个"],"meta":{"origin":{"id":"d-68","no":374,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-105","type":"single","topic":"4.5 树与二叉树","diff":"难","stem":"只有一个节点的树，其根节点的出度为 0。","exp":"正确。根节点的出度是“0 或更多”：通常根有子树，出度 ≥1；但当树只有一个节点时，它既是根又是叶子，出度为 0、入度为 0。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"d-69","no":375,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-106","type":"multi","topic":"4.6 图","diff":"中","stem":"关于图，下列说法正确的有（　）。","exp":"四项均正确。顶点是图中的数据元素，边表示顶点之间的逻辑关系；带权的边可表示距离、成本；邻接矩阵为 N×N，把边的权重存入元素，0 表示不邻接。","options":["图由一组顶点和顶点之间的边构成","边可以带权重，表示距离、成本等","任意两个顶点之间的边都没有方向的图称为无向图","用邻接矩阵存储 N 个顶点的图时，0 表示两个顶点不邻接"],"answer":[0,1,2,3],"meta":{"origin":{"id":"d-70","no":376,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-107","type":"comp","topic":"4.6 图","diff":"中","stem":"用邻接矩阵存储一个有 100 个顶点的图，每个矩阵元素占 1 个字节。该矩阵共占多少字节？约合多少 KB？","exp":"邻接矩阵大小恒为 N×N，与边数多少无关：\n100 × 100 = 10000 个元素 → 10000 B ≈ 9.77KB。\n这解释了邻接矩阵“空间开销固定”的特点：图很稀疏（边很少）时仍要占满 N² 个位置，浪费严重；因此稀疏图更适合用邻接表。","ref":"10000 字节，约 9.77KB。\n矩阵元素个数 = 100×100 = 10000；每个元素 1 字节 → 10000 B；\n10000 ÷ 1024 ≈ 9.77KB。","meta":{"origin":{"id":"d-71","no":377,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-108","type":"single","topic":"4.6 图","diff":"易","stem":"图中的边所带的权重，通常用来表示（　）。","exp":"边可以带权重（weight），用来表示两点之间的距离、运输成本、时间等实际含义；无权图只关心“是否相邻”，带权图则进一步刻画“相邻的代价”。","options":["顶点之间的距离、成本等代价","顶点的编号","图中顶点的个数","邻接矩阵的行数"],"answer":[0],"meta":{"origin":{"id":"d-72","no":378,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-109","type":"fill","topic":"4.7 算法概念与表示","diff":"易","stem":"算法的五个特性是有穷性、确定性、可行性、输入和 ____。","exp":"五特性：有穷性（有限步骤后终止）、确定性（每步定义明确无歧义）、可行性（每步都能执行）、输入（零个或多个）、输出（一个或多个）。","answers":["输出"],"meta":{"origin":{"id":"a-37","no":379,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-110","type":"comp","topic":"4.7 算法概念与表示","diff":"中","stem":"用流程图表示“输出 1～100 内所有 7 的倍数”的算法。请写出这些数共有多少个，并指出最后一个数。","exp":"算法思路：i ← 1，当 i ≤ 100 时，若 i 能被 7 整除则输出 i，然后 i ← i+1。\n计数：⌊100/7⌋ = 14 个，即 7 到 98。\n该算法没有输入，但有一个（多个）输出，正好说明“输入可以为零个”。","ref":"共 14 个，最后一个是 98。\n7 的倍数依次为 7、14、21、…、98；\n个数 = ⌊100 ÷ 7⌋ = 14，最大者 = 7 × 14 = 98。","meta":{"origin":{"id":"a-38","no":380,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-111","type":"single","topic":"4.7 算法概念与表示","diff":"中","stem":"关于算法与程序的关系，下列说法正确的是（　）。","exp":"算法是“明确的、可执行的、有限步骤的问题求解过程”，可以脱离计算机存在（如菜谱、手工计算步骤）；程序是算法在某种程序设计语言中的具体实现，受语法、数据类型等约束。同一个算法可以有多种程序实现。","options":["算法必须用某一种高级语言书写","算法就是程序，二者完全等同","程序一定比算法更简洁","算法独立于计算机系统，程序是算法在某种语言中的具体实现"],"answer":[3],"meta":{"origin":{"id":"a-39","no":381,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-112","type":"single","topic":"4.7 算法概念与表示","diff":"易","stem":"同一个算法可以用自然语言、流程图、伪代码等不同方式描述。","exp":"正确。自然语言通俗但易生歧义；流程图用图形符号直观展示控制流程；伪代码介于两者之间，用 if/then/else/while 等关键字突出逻辑结构。三者描述的是同一个算法的不同“表示”。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-40","no":382,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-113","type":"short","topic":"4.7 算法概念与表示","diff":"中","stem":"用伪代码写出求数组 A 中 n 个元素之和的算法，并指出其中用到了哪些基本结构。","exp":"要点：累加器初值为 0（求积则初值为 1）；用循环变量 i 从 1 走到 n；循环体做“累加 + 推进”。这是数组遍历的典型写法，与求平均值只差最后一步除法。","ref":"Sum(A, n)\n输入：数组 A 和元素个数 n\n输出：所有元素之和\n{\n    sum ← 0\n    i ← 1\n    while (i ≤ n)\n    {\n        sum ← sum + A[i]\n        i ← i + 1\n    }\n    return sum\n}\n用到了顺序结构（初始化、返回）、循环结构（while 遍历）；若加入“n 是否为 0”的判断，还会用到选择结构。","meta":{"origin":{"id":"a-41","no":383,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-114","type":"multi","topic":"4.8 排序","diff":"中","stem":"关于三种基本排序算法，下列说法正确的有（　）。","exp":"四项均正确。三者都是双重循环：选择排序内层“找最小值”、冒泡排序内层“两两比较交换”、插入排序内层“寻找插入位置”；外层循环都控制“轮次”。","options":["选择排序每轮选出最小（或最大）元素，放到待排序区间的起始位置","冒泡排序每次比较相邻两个元素，顺序错误就交换","插入排序把待插入元素放入已排序部分的合适位置","三者都用外层循环控制轮次、内层循环完成一轮的具体工作"],"answer":[0,1,2,3],"meta":{"origin":{"id":"a-42","no":384,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-115","type":"fill","topic":"4.8 排序","diff":"中","stem":"对 6 个元素进行选择排序，共需要进行 ____ 轮选择。","exp":"选择排序每轮确定一个元素的最终位置，n 个元素只需 n−1 轮（最后一轮剩下的元素自然就位）。\n6 个元素 → 5 轮。","answers":["5","5轮"],"meta":{"origin":{"id":"a-43","no":385,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-116","type":"short","topic":"4.8 排序","diff":"中","stem":"分别说明选择排序、冒泡排序、插入排序的基本思想，并指出三者共同的双重循环结构。","exp":"要点：三种排序都靠“比较 + 移动（交换）”完成，都是双重循环，时间复杂度均为 O(n²)；差别在于“每轮做什么”。","ref":"选择排序：每一轮从待排序元素中选出最小（或最大）的一个，与区间起始位置交换，然后缩小待排序区间，直到全部排完。\n冒泡排序：重复遍历数列，一次比较两个相邻元素，顺序错误就交换；每轮结束会有一个元素“浮”到它最终的位置，直到某轮没有发生交换为止。\n插入排序：把数组分为已排序部分与待插入元素，每次取出一个元素插入到有序部分的合适位置，使有序部分长度加 1。\n共同结构：外层循环控制轮次，内层循环完成一轮的具体工作（找最小值 / 两两比较 / 找插入位置）。","meta":{"origin":{"id":"a-44","no":386,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-117","type":"single","topic":"4.8 排序","diff":"中","stem":"冒泡排序每完成一轮，就会有一个元素“浮”到它最终应在的位置上。","exp":"正确。每轮遍历结束时，当前区间内最大（或最小）的元素被推到区间一端，位置即已确定，下一轮无需再比较它。因此 n 个元素最多 n−1 轮即可完成；若某轮没有发生交换，说明已有序，可提前结束。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-45","no":387,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-118","type":"fill","topic":"4.8 排序","diff":"中","stem":"对 5 个元素进行插入排序，共需要把 ____ 个元素插入到已排序部分。","exp":"插入排序把第一个元素视为已排序，其余元素逐个插入，因此 n 个元素需插入 n−1 个。\n5 个元素 → 4 次插入（第一次插入第 2 个元素）。","answers":["4"],"meta":{"origin":{"id":"a-46","no":388,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-119","type":"multi","topic":"4.9 查找","diff":"中","stem":"关于顺序查找与折半查找，下列说法正确的有（　）。","exp":"四项均正确。顺序查找逐个比较，找到目标或确信不存在时结束，适用面广但平均比较次数多（约 n/2）；折半查找必须先有序，每次用中间元素比较并排除一半区间，效率高但依赖有序性。","options":["顺序查找对数据是否有序没有要求","折半查找要求数据必须有序","折半查找每比较一次就排除约一半元素","数据无序时不能直接使用折半查找"],"answer":[0,1,2,3],"meta":{"origin":{"id":"a-47","no":389,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-120","type":"short","topic":"4.9 查找","diff":"中","stem":"说明折半查找的过程与适用条件，并解释它为什么比顺序查找快。","exp":"要点：① 中间元素比较、三选一缩半；② 前提是“有序”；③ 效率对比 n/2 与 log₂n。","ref":"过程：在有序数组中，先取中间元素与目标比较；若相等则查找成功；若目标较小，则只在前半部分继续；若目标较大，则只在后半部分继续；重复上述过程，直到找到或区间为空。\n适用条件：数据必须有序（且通常是顺序存储的数组，能按下标随机访问）。\n更快的原因：每比较一次就把待查区间缩小约一半，比较次数约为 log₂n 量级；而顺序查找逐个比较，平均需 n/2 次。n 越大差距越明显。","meta":{"origin":{"id":"a-48","no":390,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-121","type":"comp","topic":"4.9 查找","diff":"难","stem":"在 1000 个有序元素中用折半查找，最多需要比较多少次？","exp":"每次比较把区间缩小一半，k 次比较最多可覆盖 2ᵏ 个元素。\n要求 2ᵏ ≥ 1000：2⁹ = 512 不够，2¹⁰ = 1024 够，故最多 10 次。\n对比：顺序查找最坏要 1000 次。","ref":"10 次。\n折半查找最多比较次数 = ⌈log₂n⌉；2⁹ = 512 < 1000 ≤ 1024 = 2¹⁰，故为 10 次。","meta":{"origin":{"id":"a-49","no":391,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-122","type":"fill","topic":"4.9 查找","diff":"中","stem":"折半查找每比较一次，待查区间就缩小约 ____。","exp":"折半查找把目标与中间元素比较后，只保留左半区或右半区，区间长度约减半，因此 k 次比较后可覆盖 2ᵏ 个元素，效率为 O(log n)。","answers":["一半","1/2","二分之一","50%"],"meta":{"origin":{"id":"a-50","no":392,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-123","type":"multi","topic":"4.10 迭代与递归","diff":"中","stem":"关于迭代与递归，下列说法正确的有（　）。","exp":"四项均正确。迭代靠循环变量推进，额外空间为常数级；递归把问题分解为同类的更小问题，必须同时具备“递归关系”和“终止条件”，每层调用占用栈空间，过深会溢出。","options":["迭代通过循环结构重复执行一段代码，每次循环都更接近结果","递归是算法直接或间接调用自身","递归必须有终止条件","递归层数过深可能造成栈溢出"],"answer":[0,1,2,3],"meta":{"origin":{"id":"a-51","no":393,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-124","type":"single","topic":"4.10 迭代与递归","diff":"中","stem":"同一个问题既可以用迭代解决，也可以用递归解决，二者可以相互转换。","exp":"正确。以阶乘为例：迭代用 while 循环累乘，递归用 n! = n×(n−1)! 加终止条件 0!=1。理论上递归都可用“显式栈 + 循环”改写为迭代，反之亦然；实际选择取决于可读性、效率与栈深度的权衡。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"a-52","no":394,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-125","type":"comp","topic":"4.10 迭代与递归","diff":"中","stem":"用迭代方式计算 5!，请写出累乘过程中 Fact 的变化，并说明循环执行了多少次。","exp":"逐轮计算：\n初始 Fact = 1，i = 1；\n① i=1：Fact = 1×1 = 1\n② i=2：Fact = 1×2 = 2\n③ i=3：Fact = 2×3 = 6\n④ i=4：Fact = 6×4 = 24\n⑤ i=5：Fact = 24×5 = 120\n循环共 5 次，结果为 120。注意累乘的初值必须是 1，若为 0 则结果永远为 0。","ref":"Fact 变化：1 → 1 → 2 → 6 → 24 → 120；循环执行 5 次。\n伪代码：Fact ← 1；i ← 1；while (i ≤ 5) { Fact ← Fact × i；i ← i + 1 }","meta":{"origin":{"id":"a-53","no":395,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"},{"qid":"cs.u4-126","type":"single","topic":"4.10 迭代与递归","diff":"中","stem":"递归调用过程中，系统通常用（　）保存每一层的返回地址和局部变量。","exp":"递归调用遵循“后进先出”：最后进入的那一层最先返回，因此系统用栈（调用栈）保存每层的返回地址、参数与局部变量。这也解释了“递归层数过深会栈溢出”的原因——栈空间被耗尽。","options":["队列","栈","数组","链表"],"answer":[1],"meta":{"origin":{"id":"a-54","no":396,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"u4"}]}],"wrong":{"exitStreak":1},"mastery":{"wAll":0.4,"wRecent":0.6,"recentN":5,"weakBelow":60,"solidAt":85,"solidStreak":4,"passMinQ":4,"passRate":0.9,"dueDays":[1,3,7]},"codec":{"version":10,"gidBits":32,"budgetBytes":6000},"order":["g7b36b9f9","geb76ff8a","g5604cb4e","gbbf40dfe","g53d3c631","gc8006e41","gdde89a21","gffcece9c","gbf4af0af","gf58d538b","g986a45cb","g16fafab6","g390c53cf","gd341e104","g5caa97bb","g63505a11","g262242e2","g53357d53","g15895c5a","gb37205e6","ga8ff66f5","gf78a1598","g2312f909","gd84ac421","g531e9c29","g11a301b7","g9182d1cb","g5ac960f1","g879fc5c7","g7d406c09","ge31b0414","ga0a1269f","gd6d7ba22","g96ce59ac","g1d239cea","g40f44857","g039b0e40","g2f3b78a4","g01c4cc52","g8a075482","g60a43282","gc2a5be02","g429eefc9","g9336931d","g1ca6d6e6","g3929ecd5","g6973d129","g3abb4969","ge0a933a7","gb120c052","g7d8fc4da","g1b380426","g97d834a5","g741c176d","gf4dc7861","g1235df51","g4f107c97","g8fdb65e0","g698ac205","ge61b55d3","g667cadf8","gabc70a0d","g77e9b112","g445ffe28","g16cd76e7","gb3fdad90","gcb5ba655","gd0d46845","g54bc7b55","gf6075fe1","g25a2682d","g057bd0db","g3b63256f","gbfab8367","g03aab32a","gb636e3f9","g3dcab7a9","g614ccd92","g884fb846","ge937909f","g11f716f7","g8ec3308b","g1a5f3cef","g96f701f5","g242e98e4","ge2157664","gf18eec25","g8e96cd21","gf0386650","g09d71ed5","g92ff9098","g064ea04e","gc83c3a94","g4af76b06","g3da490b9","g0808d4bc","ge3203fc6","g6fa225e2","g7c9f9f44","g4a2157b0","g25025c87","g104b192e","ge7adff58","ga387e22f","gfa59440f","g08e3bcf7","ge01cfa65","g6dea2267","g13218d7e","g65e9e0ef","g79d528ac","g599a0546","g2517f440","ga595f820","gcf460211","g9f71e789","gb01e3f0c","g1eb06575","gb8113912","g807c5984","gdcf4f1fb","gd2696c88","gfa8310ce","gf2f53cbe","g7b98981e","g076213f8","g7e6a6487","g6b2e2652","g87551d5d","g19b18cab","gfcdcdb65","g6ddcc1a3","g94b7ac42","g5ac2baaf","gb7b5b440","g2b0e7157","g0bab589f","g7ad36dda","gb6546538","g81b30939","g9f373780","g48a39971","gc1a4a843","g480becd5","gf72b0129","g9d028d5b","g2916ada0","g04845edf","gab29a6c0","g40a8aff0","g8b4113dc","g1c55697c","g9ea354eb","geb042c04","ga75a360b","gb9126faa","g30861bf5","g07275d63","g53b65631","g271e0878","g29dcf4e5","g25945d4b","gc163bcf5","g6be7fbfc","gfed7562f","ge830a02d","gd76932b5","g02c72447","ge3ee2ce1","gcb43c1d8","gaff8d526","g6777446a","g6b0f5484","g7b16fc75","gb9384f7a","g65b101b4","ge86d921c","g0502c34c","g5552c324","g1fcbdb63","g4d9794e4","g0709c199","gc65f1f04","ge46f101d","g047c30f7","g3548609e","g3abb81aa","g5cb03c59","g755a072d","g0b5ee65f","gafff9c1a","g30fefd34","gdc0ad1a0","gb554f7ff","g9cb28e54","g58ce5356","g11ffb230","g64ca99d0","gd01d8957","ga192474e","gbad3e88e","g1eac9fdd","g45a1cb22","ge489ee95","g28737307","g99d841f4","g3ae29aa4","gee5a9af5","ga463db95","g2d14a96b","g19c5b86c","gfc497e47","g860dfe6f","gd52b6854","g5f2b382f","g81ed9139","g784b3f52","g0942dc38","g1cd7a593","g6d667048","g5d049ec5","g4da8a56b","gcb81d309","gd36e2b50","ga15b5260","gf00b39f7","ge0efc098","g27daa553","g521ec2c4","g87982a59","g36df1844","gc6ed8228","ge5d73644","g45556f93","g53e5df5a","g9131eaab","g18182317","gdf2d5991","gaac5c5a6","ge8c98d9d","g1b90f280","ge5d10cc9","gc2f7c458","g21672a80","ge829ef5e","g61883d92","gd88b8337","g86c30186","g723d03a0","gd124800f","gdc5a8de4","g0ce2855c","gf7183600","g7d8225db","g0bca8c14","gf2788df2","gd7ec85c4","gaf39f94d","gd9c02349","ge6b8955b","gd7ebc6e3","g9735b846","gd67600a0","g6b12c7a9","g7856223d","g91477aa8","g72c273ea","g39fcc785","g1d0267b8","g9e1ccec7","g4698a807","g606e7360","gefda3600","gcdb48269","g4fd7aefd","g06618860","g3484ce2c","g9013f833","gcc6c9698","g31f473ec","ga3c2551e","ga1c46d58","g9af476c8","gbb32c34f","g82231fdb","gb5f99f65","g751c3602","gd62ba5b7","gf870b686","g6e0ace30","g1a11f037","g377569ba","g005091ce","gf69b61b9","gdb7f9796","g0a829bba","g34e2ec81","g046909de","g392c3158","gb7b9c6a2","g1c82c70d","g0b383d9f","g8bccef7d","g20dd6ab5","g0754abd4","g9b86128e","g4bccab8d","g648df109","gcdf615a9","gf1d07828","g063bb02f","g90e5d869","g4803ead2","gca51813d","g9b90dd7c","g211dd90c","ga27b8728","gcf26d826","g97305b12","gc8c0be9f","gd18a7cc5","gf5f8c466","gbba38e34","g21a306a6","g0bb1ca08","g4fce4e00","g70c0d310","g16b5af71","g141d2034","g66273e63","gec1951de","gbf9c9d24","g0295fbc8","g0b510d14","g79e288b6","gd6b25d8b","g232fbc3b","g1a5c00e3","g34d0fc7d","g0ce7771b","gba7db737","g4bf631a0","g182e9cf3","ge8028d8f","gba8a3f81","g85a7aaca","g9834532e","gb3578cce","ged935acf","g4d3521a3","g65393667","ge7a49d7a","g62d2d2ad","gca252dd3","g34809955","g199ca519","gb44e9b2c","gffe1f78d","g256838a9","ga30571f5","gb1a66859","g859b1a44","g83f7c550","g47a3938d","gcfbc632d","ge5c0fd78","gb166ee1b","g3fe03929","g5944ee4a","g87a21103","g29dea8c8","gab893cb0","g9084d7af","g72f2d960","g05585003","gd6b12c60","gd3a885f5","gb06aad8a","g3ac4e044","ge26a99c7","g69fbd3f3","gd1e91b9a","gbad355af","g6156937f","gc4976239","g6cf9a331","g88bba261","g1683ddfe","g91329588","g4ce1266f","ge1a1df3b","g2a422c82","g8966d5ad","g575d9b24","g8f652ab8","g1ef33c40","gf6e5088a","g17cbd5c5","gb5b3c1d7","g9dfc35fa","g0d3e065f","gd6016c4c","g610c5d97","gac20c821","gb614020b","g320fd4bc","g922fe37c","g91bcb19a","g71eff3b9","g7861653f","g9167561f","g72c6c698","g87f7bc15","g1d18be7d","g682de451","ge5ee3a97","g0ee384cf","g425fe1ac","g47481aa2","g6de15ca0","g61f7ca7a","g6ce6ac6a","g61ee0c2d","gf7590d49","g5b7f5f97","gdea56c0e","g0301f0ad","g5c15e249","g7d85ae14","gbc551597","g68a3ca15","ge380db07","g9b358884","g1d769e69","gbb06b2bf","gf2fe26f3","g68496199","g78a0064e","g5545c120","gc17fc744","g367dd129","ga58c3d48","gdf702ad2","gf124bf86","g8c49adb8","g7c4f8a73","gec43edc2","g0c7afa3a","g4c41a4c4","gd1182805","ge5f204d3","g813692ab","g4b988942","g88ca27ce","g96c798b4","g48496d3f","gd5192563","g663b0242","g853ea0c6","g83cf961a","gf7bf2063","g84d05d74","gaeb1b19a","g618382e1","g6a223f53","g9544d813","gcb820abe","g386fe161","g9a0c591e","g98ee8bf6","gb4cc71ae","gd3780423","g11f35851","g2787f399","g039071a6","g12ae5152","g3683f7d2","g7f88c332","gf7220fe0","gc88218a7","g4bbd0c01","g72f27294","g5c933d6a","gbd02801c","geda4707a","gd3b39057","gb80adaa9","ge992ed26","ged75ac2f","gfe4e26d0","g590d6513","gee4ff3c3","g91990fcb","gad3d4a4e","ge1b977c3","g50dfd45b","g5e39de6b","g395d0208","g44055549","g5893523c","gc75d4eb6","g7ec741bb","g56a85716","g63d28a27","g69b42f55","gb78a12eb","gd22cf7e4","gea2300ee","g47bded58","gb61ea4d7","g38673333","g0546a8ed","gdec61e9c","gfad58297","gd46cd534","g59e9d96e","g7635907b","g331361d7","g565098d8","gd46bab12","gab8da80f","gcc1b5ae7","g061e9883","g7a4b0770","g83364f6e","g8971840e","g1567916c","g31627dbf","gebe9d47b","ga84b35e2","g4ace2010","g7a9276ff","ga98d73a6","g9058b4d2","ge4cf7f1b","g8ce1b9bd","g0eadbcd8","g0a4c6e4d","g7218c103","g271b3f51","g34f73ddb","g2e377cef","geafd4f2b","gd896823e","g21c0302f","gd3e275db","g115a119f","gb3a96c08","g60f07933","g809f9206","gdb5839ff","gfe559cf4","gf154bb7f","g53934aac","gb8fff518","ge3c25455","gf81fa9a3","ge0068075","g0578cdda","gb5683b44","gc131dea2","gef1b0c64","g18d9e9ac","gf4d44e88","g5597978e","gf9fd7b35","g468fad2e","g95a519cb","ge273ff95","g31926fe3","gecb9ed7d","g97804432","gd0ba4569","g119700fd","ga1b92ff5","g253daff3","gef50ec08","g37edb496","g666f81e6","gc2487d42","gf77d8646","g9ac47b75","gde0c2b8f","gb7f9fe74","gc4bde062","g4fa4a961","g859c9d87","gf4f2fd83","g63731ddf","g9ebb67b5","gb3799d0d","g8daadc69","gf61ada50","g157013bf","ga92ffb5c","gca2eb295","g55ba2786","gc9388a84","gff687187","g345f6ec4","g09ba9df6","gda1bcea7","ga5288acc","g40d7a7e6","g667b7738","g810ed989","g9cad1b0c","g5b8c4bca","g7e705d22","gaf000e88","gf726c363","g03ee1191","g97c6c2cd","gf7100c45","g1aa6cc18","g41a671eb","gc1278ec9","gf0edb25f","g2de9a636","g5ffebba2","gde102447","ge16a73ee","g62c67c2c","gea01ed10","gf943baaf","gaa58ef17","g01bf8f33","g27702a7c","g480e99d4","g0685d4ef","g2a39826e","gdeb8196f","g1708883f","gbe49de8d","gae294cc6","ga147005e","gc2323627","g0be918fc","g03b1e6fe","g1e857075","gf6da754b","g1d6d2b9b","g487db1a7","g02ce2119","g42166d92","g64fbd179","g31f6f2a0","gfadc502a","g50314a2a","g08577df1","g9df202bc","g9d70ba13","g11cd48d6","gb969e0f0","g58fbdc00","ge4c4be34","g45b68f72","g65a648fc","g788136cc","gfefc29f0","g197938cc","g53234bd1","gf4d9ab5a","gf935d0a1","g52b8e1a1","geea6ca11","g8c425be2","g23383ddf","g58d50319","ge4deaeff","g548548b3","gf3fbd0f0","g0f6d9de5","g9983d61e","gef65b67f","g7aac1ab7","gbf747999","g908ff632","g00c800bb","g29aefcc5","g66b3406f","gfc333988","gd4fe666a","g17b22100","g1fc34e26","g28f088b3","g25a358f4","gb71bd484","gec30ec1f","g1def4d3d","gc3f6842f","g0e31eea2","g4726273a","g9fffd27c","ga5c118b0","g46bd69b0","g239dfa7f","gd98a97d7","g27e1906f","ga5c863a2","gd254d10f","gdd560391","gd2d4f461","ge3206fb6","g90fa4f82","gea5051a6","gb883dd01","g6d226542","g94e4e3ea","gd2d3f445","g77b6a846","g5bd50165","g383aab82","g834ef7a5","g7985dce3","gb58d4317","g81f96778","g22ecf364","g86000d91","g259c170c","gfc38f49a","g71c4455a","g4f37e387","g70dfd539","gc5c5b7f5","gc89a0730","g10b41190","g9ded027e","g75627128","gb58b3a9b","gaff06362","g2de7ff2e","gcacaa77c","gf8f10dc3","g8c7e1dce","g1487e553","g1ee0767d","gf96a456f","g6e3a40c6","g34b48f9b","ge63963a7","ge36ecefb","g92008e36","geb7eb57d","g751645c8","ge94124da","gfdda41ff","g79f1b19b","gcf32fa8b","g3428db12","g8858e799","g20a855ce","gf022522b","g031a2ba4","ge589a257","g2bac2dd7","gbc4fdd29","gbfe5f248","gbb0df6c3","gba3d7699","g7c32036b","gf085df40","g7ff78144","g364e2ca0","g5574fc0b","g5760a939","gdd4a294d","g8644b80e","g2f65df33","g20dfb8f3","g9c68309f","gbccde705","gd42dd1aa","g67a08e97","g4b143706","gb7f41124","ga9c3b933","gc3dec284","gbec66549","gae5c6134","g97f0a83b","ga859d4a4","gb2dc3884","ga3396296","g1c686085","g6c33c990","g39b8679f","g81bf95b7","g0d271157","g62c630ab","g79cb7262","g0ed945bf","gbb19f36f","gd3669d3f","gb5b3e688","g7d7ee56c","g87a782d9","g4ea93f7a","g751066a5","gb0b2e9b3","ga49524ae","g548def89","g6fe23e8e","gb1f8d702","g9ddbcbd0","g30957a2a","g2783978a","gf6a70765","gd20e8494","gd9363d46","g6f746810","g8ac98223","g13cd915e","g8b693cc6","g0ff5718b","g2e1ab98f","gd527f5a6","g53d11445","g3f1f9125","g26fb92fe","gc1949df6","g705f29cf","ge02c998d","ged3739cb","g49a2d102","g1eb56166","g4603aec4","g68488780","g6977fc4c","ga8f8ebea","g23995cac","ge6d96aaf","g0b0785de","g93b5b5ae","g1371ca57","g8a20a636","g12fa5864","g06ed68df","g3150b1ac","g90615c4d","gc00c98f3","g2de65d70","g619c85be","g35b47564","g27fc97d6","g65c056aa","gf13f193d","g34be7961","g9c403606","g2f40610e","gcb106dd6","g3c312936","g97a49c34","gf6bc08d9","g4acf98f1","ge2182c54","g906ad220","g82b8cf07","g5f5afb99","g7754f051","gd48c18fa","gc9ed4e07","ga76c2311","g84621cc2","gd33c46fb","gbbf4d994","g2fba926b","g6f0a8339","g2359dc90","g5d8142bb","gcda68b56","g32168d2c","g21f3ac55","gdc8e9bd7","g498a01d0","g342bb6d8","gc653f918","gdac677a6","gdf5de807","gbc1099d6","gd9f7b8a5","gebd271a2","g86fc77ff","gab894684","gb0379923","g788208f2","g1dbf987a","gd1aa6ef1","g812e0e95","g8f75a681","g6f15a1dc","g188d142a","g27ccced1","gd8f6a68e","g8ae75243","ga3c5872e","gbf14c24b","gee7d07b2","gc96cf649","g8b0655b2","g8259ad78","g55cb6e19","g3a01b923","gaa925f5c","g3278fcf5","g893f98e3","gad878cc0","gdb3694a6","gf8f066d5","g646b82d3","g9834ecca","g6c2a0844","gbaccfdfa","g273ad52b","ge8255e15","gf01923b1","g7df72076","g3ea73e5c","gbe3879ae","g8dde7b4e","g519cf2ec","g2ea96766","g190c2b31","gc561cc40","g842eccc7","g6d334def","gcc706093","g5b548e79","g38181fb9","g613c072b","g7b70cc45","gc5f9a766","gfbf3967e","g4951c619","gda0c60c0","g907b1f18","gd389f7bd","g092ec92d","gaa144d51","g13940466","gb2051f4f","g748ecd8d","gf98e4df5","g2c274ab3","g92b45a8b","ge4ef4c7e","g8f2bdfed","gb83464b4","gb4330433","g4812c6d2","g0942a45c","g8a4c6875","g6122d77b","gfecc02ca","ge8006d3c","g8a19b658","gcd1845a2","g89f8561a","ge978d438","gc5af59fa","gfce0fb3e","ge17475e6","g86df50a7","gf1edce77","g3baa6712","g3b8d965c","gf0e85e95","g2dcd9a1f","ga276eac1","gbecb215f","ged38f116","gc450fdfe","g77d8bf47","g4c2d8806","gb0a06d05","g088cf6d0","g57570373","gb342a65d","gd10ddac7","g527fd5c8","g2a9498ee","gf25d89ef","g59c979ca","g9566b46e","ge0cf6c69","ga393cec7","gb524b4a6","gee959d2d","gf0a6bfbf","g8fb5b14f","g697fb618","gb1456986","g7e911e16","g3c038ad5","gaec103b0","g2c674b55","gf02ef848","g33711178","gacf4f246","gb1a8bd74","g8c0f6047","ga534b835","g1ee23efd","g04ab999d","gb5b68065","g02b93582","g55dad198","g5db31cd8","g32dfc0b2","g9718d3b9","gefd62de0","g918f61ed","g158aa06f","g00d24d83","gcedbd423","g77da6a73","g2b6417f9","gc5c3da30","g9fc69d95","ge4c1d368","g628df15f","gddb99436","g6333df1d","gbcb8ebf2","gdb9a18ab","g4fa68a60","g69f8caf1","g040e28d2","gad4a45d4","ge325afd7","gf24fa186","ga815aeca","g3d1bd527","ged81e4b4","g3b764cbc","g6178ece0","gff8841d4","g1502082d","g2753bfa1","g2f074350","g4b93b055","g3574828a","gd3c8c48b","gb36d64d1","gb54cc99e","g4935a29f","g3a580416","geb8ca501","g164f1fdf","g2544f8e6","g693767b0","g47d5cf31","gc25b1cd4","gd9d1e859","gd48f8c4d","ge19aaffb","gbe7de046","ga9fccf00","ga00ec99a","g7a7b9722","gb0db6651","g10029c4e","g42aabd56","gb8f9fe94","g6edc58c3","g04a2993a","g685d41ac","g2895dab7","g4067065c","g5c8a42ff","g376ffc5e","g82e522ee","gf7b2eceb","ge985415d","gb7339ce0","gb27f2665","g2e7d316a","g10dd14c2","g281a53d3","ga5689648","ga7637fdc","ge4a893fd","gcd18f7d6","g299ffd90","gd184034e","gd696b160","g4e152e55","g8a99e241","gcff8d920","g5e73b170","g97522da6","g43193b46","gc1e12c9e","gc5be3f08","g73c18a45","g2c367137","gdbb1fe6d","g83d71aaf","gdf973479","gd26be9fe","gb43758a8","g5d91321d","g807ecb9a","g1e9c8109","g0c72c143","gff36502d","geaa873fa","ge2cc0861","g175b04f1","g94923f81","g45ea723b","g160fd7f6","gaeaac5fa","g76d20b37","g38010e58","g0f5cb299","gc34a0014","gbafb48de","g76e069ce","g677da40a","gc644d6b2","g994cb161","g5c53c415","g98b8dc39","g59504006","g30ffb51d","gf914e4b8","g273a413c","g56cb2d18","gd57573dc","g93120e2d","gafc23d42","gd7794306","ge64b5513","g101259e8","gdda65693","g307a433d","g121443c7","g1c770280","gef83dfc1","g1449e75e","g9ef37883","g3258bb75","gc9ff951a","g3c1e2d4e","gc394723f","gb4c85102","ge0e82f2c","g9b9efa1f","gdd3e7164","gd57d25df","ge08d13f7","gfc939473","g33dbbc0c","gc257631e","g6061e833","g0659988f","gab6142a6","g6e0a2de3","gbc9019f3","gf2865e72","g0f3667a6","g4733567b","g4756de4b","g9038541f","g33b09a4c","g4cec8c5b","ga4df5768","g7e8d736d","g562de47b","g69db51e9","g008c79c1","gc7c536e9","gd31ec5c1","gaa4d6e86","ge3ec0196","g2c37b1ab","gba2848cd","g47950c2d","gc119ce97","gb17411e5","g1a8b2fd6","g57edd025","g8eaa856b","gc2dd9d7b","gb5b63262","g3dd95916","g63190b8d","g118c8226","g957c6da8","g7b2d0be3","geb433cff","g04e4005a","g8b9c0ebd","g44b32dd2","g18db568f","g8b77fbc7","gd8384ee9","g7007532c","ga9345400","ge3c0f644","gcd9d07c0","gd1ef7aed","g9cf809c3","g16ee5adc","g4bf0888a","g18446003","gd5f823c1","gc84e3c86","gb905f92a","g25fd5d89","g89c0b3dc","gc2baf00f","ge8ba4a9c","g2a2ab0d3","gf1c9a9e1","ge3c1fb9f","g15a5bd1e","g3e78065d","g3c112db8","gbc4ef69e","gfc0e63b5","g3c0849a3","ga5233d36","gbe7d8c08","g572106e5","g8477937b","g1aafa51d","g68c5554b","g2cf2263f","g79917188","g2806c93f","gc36acde4"],"retired":[],"storePrefix":"qb.site"};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>window.QB_SYNC_CFG={"env":"__ENV_ID__","key":"__PUBLISHABLE_KEY__","rpc":"","quiz":"global","codeKey":"csquiz_sync_code_v1"};</script>
+<script>/* qb-sync.js — 云端同步（手动上传 / 下载，不做任何自动网络请求）
+ *
+ * 与线上原方案C 完全同一套契约，保证老页面与新页面读写同一行、同一份数据：
+ *   环境      window.QB_SYNC.env
+ *   RPC       POST <env>.api.tcloudbasegateway.com/v1/rdb/rest/rpc/quiz_pull | quiz_push
+ *   鉴权      Authorization: Bearer <publishable key>
+ *   行键      (同步码, 'global')，全站一行
+ *   payload   {v:1, quiz:'global', at, ans:{gid:{picked,text,done,ok,self,upd}}, del:{gid:t}, fav:{gid:{on,t}}}
+ *   同步码    localStorage['csquiz_sync_code_v1']（与旧页面共用，用户不用重填）
+ *
+ * 内核内部记录用规范 3.2 的短键（ok/at/p/x/self），payload 用旧站的长键。
+ * 转换集中在本文件的 toRemote / fromRemote，两端格式谁都不改，所以新旧页面可以并存。
+ */
+(function (root) {
+  'use strict';
+
+  var QB = root.QB;
+  if (!QB) return;
+
+  function Sync(site, cfg) {
+    this.site = site;
+    this.cfg = cfg || {};
+    this.env = this.cfg.env || '';
+    this.key = this.cfg.key || '';
+    this.code = this.cfg.code || '';
+    this.quiz = this.cfg.quiz || 'global';
+    this.base = this.cfg.rpc || ('https://' + this.env + '.api.tcloudbasegateway.com/v1/rdb/rest/rpc/');
+    this.busy = false;
+    this.lastMsg = '';
+    this.lastAt = 0;
+    this.codeKey = this.cfg.codeKey || 'csquiz_sync_code_v1';
+    this.stateKey = 'qb.site.sync.v1';
+    var st = this._load();
+    if (!this.code && st.code) this.code = st.code;
+  }
+
+  Sync.prototype._load = function () {
+    try {
+      var raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.stateKey) : null;
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  };
+
+  Sync.prototype._save = function (patch) {
+    var st = this._load();
+    for (var k in patch) st[k] = patch[k];
+    st.at = Date.now();
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.stateKey, JSON.stringify(st)); } catch (e) {}
+  };
+
+  Sync.prototype.configured = function () {
+    return !!this.env && this.key.length > 20 && this.key.indexOf('__') !== 0;
+  };
+
+  Sync.prototype.enabled = function () { return this.configured() && !!this.code; };
+
+  Sync.prototype.setCode = function (v) {
+    this.code = QB.cleanText(v).trim().toUpperCase();
+    this._save({ code: this.code });
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.codeKey, this.code); } catch (e) {}
+  };
+
+  Sync.prototype.readSharedCode = function () {
+    try {
+      var v = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.codeKey) : '';
+      if (v && !this.code) { this.code = v; }
+      return this.code || '';
+    } catch (e) { return this.code || ''; }
+  };
+
+  /* ---------- 记录形态转换 ---------- */
+
+  function toRemote(rec) {
+    if (!rec) return null;
+    var picked = Array.isArray(rec.p) ? rec.p.slice(0, 16) : [];
+    var text = rec.x == null ? '' : String(rec.x).slice(0, 2000);
+    return {
+      picked: picked,
+      text: text,
+      done: rec.ok !== null || picked.length > 0 || text.length > 0,
+      ok: rec.ok === true ? true : (rec.ok === false ? false : null),
+      self: rec.self === true ? true : null,
+      upd: typeof rec.at === 'number' ? rec.at : 0
+    };
+  }
+
+  function fromRemote(r) {
+    if (!r || typeof r !== 'object') return null;
+    var rec = { ok: r.ok === true ? true : (r.ok === false ? false : null), at: typeof r.upd === 'number' ? r.upd : Date.now() };
+    if (Array.isArray(r.picked) && r.picked.length) {
+      rec.p = r.picked.filter(function (k) { return typeof k === 'number' && k >= 0 && k < 16; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (typeof r.text === 'string' && r.text) rec.x = QB.cleanText(r.text);
+    if (r.self === true) rec.self = true;
+    return rec;
+  }
+
+  Sync.prototype._localSnap = function () {
+    var site = this.site;
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var known = {};
+    site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    Object.keys(ans).forEach(function (g) {
+      if (!known[g]) return;
+      var r = toRemote(ans[g]);
+      if (r) snap.ans[g] = r;
+    });
+    Object.keys(fav).forEach(function (g) { if (known[g]) snap.fav[g] = { on: true, t: fav[g] || 0 }; });
+    return snap;
+  };
+
+  Sync.prototype._remoteSnap = function (payload) {
+    var known = {};
+    this.site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    var a = (payload && payload.ans) || {};
+    var d = (payload && payload.del) || {};
+    var f = (payload && payload.fav) || {};
+    Object.keys(a).forEach(function (g) {
+      if (!known[g]) return;
+      var r = fromRemote(a[g]);
+      if (r) snap.ans[g] = toRemote(r);
+    });
+    Object.keys(d).forEach(function (g) { if (known[g] && typeof d[g] === 'number') snap.del[g] = d[g]; });
+    Object.keys(f).forEach(function (g) {
+      if (known[g] && f[g] && typeof f[g] === 'object') snap.fav[g] = { on: f[g].on === true, t: typeof f[g].t === 'number' ? f[g].t : 0 };
+    });
+    return snap;
+  };
+
+  /* 合并：并集，同一条取 upd 较新者；墓碑优先 */
+  function combine(a, b) {
+    var out = { ans: {}, del: {}, fav: {} };
+    [b, a].forEach(function (src) {
+      Object.keys(src.ans).forEach(function (g) {
+        var cur = out.ans[g];
+        if (!cur || (src.ans[g].upd || 0) >= (cur.upd || 0)) out.ans[g] = src.ans[g];
+      });
+    });
+    var dels = {};
+    [a, b].forEach(function (src) {
+      Object.keys(src.del).forEach(function (g) { dels[g] = Math.max(dels[g] || 0, src.del[g]); });
+    });
+    Object.keys(dels).forEach(function (g) {
+      var rec = out.ans[g];
+      if (!rec || dels[g] >= (rec.upd || 0)) { delete out.ans[g]; out.del[g] = dels[g]; }
+    });
+    var keys = {};
+    Object.keys(a.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(b.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(keys).forEach(function (k) {
+      var x = a.fav[k], y = b.fav[k];
+      out.fav[k] = (x && y) ? ((x.t || 0) >= (y.t || 0) ? x : y) : (x || y);
+    });
+    return out;
+  }
+
+  Sync.prototype._apply = function (snap) {
+    var site = this.site;
+    var ans = site.allAns(), fav = site.allFav();
+    Object.keys(snap.ans).forEach(function (g) {
+      var incoming = fromRemote(snap.ans[g]);
+      if (incoming) ans[g] = QB.mergeRecord(ans[g] || null, incoming);
+    });
+    Object.keys(snap.del).forEach(function (g) { delete ans[g]; });
+    Object.keys(snap.fav).forEach(function (g) { if (snap.fav[g].on) fav[g] = snap.fav[g].t || Date.now(); else delete fav[g]; });
+    site.store.set('ans', ans);
+    site.store.set('fav', fav);
+  };
+
+  Sync.prototype._payload = function (snap) {
+    var ans = {};
+    Object.keys(snap.ans).forEach(function (g) {
+      var r = snap.ans[g];
+      ans[g] = { picked: r.picked, text: r.text, done: r.done, ok: r.ok, self: r.self, upd: r.upd };
+    });
+    return { v: 1, quiz: this.quiz, at: Date.now(), ans: ans, del: snap.del, fav: snap.fav };
+  };
+
+  /* ---------- 网络 ---------- */
+
+  Sync.prototype._rpc = function (fn, body) {
+    var self = this;
+    return fetch(this.base + fn, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.key
+      },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function (text) {
+      // 统一按 UTF-8 文本解析，避免响应头缺 charset 时按 latin-1 解出乱码
+      var json;
+      try { json = JSON.parse(text); } catch (e) { throw new Error('云端返回非 JSON'); }
+      if (json && json.ok === false && json.error === 'conflict') return json;
+      if (!json || json.ok === false) throw new Error((json && json.error) || '云端返回异常');
+      return json;
+    });
+  };
+
+  Sync.prototype._guard = function () {
+    if (!this.configured()) return '同步未配置（缺少环境或 Key）';
+    if (!this.code) return '请先填写并保存同步码';
+    if (this.busy) return '正在同步中';
+    return null;
+  };
+
+  Sync.prototype.upload = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+
+    function once() {
+      return self._rpc('quiz_pull', { p_code: self.code, p_quiz: self.quiz }).then(function (r) {
+        var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+        return self._rpc('quiz_push', {
+          p_code: self.code, p_quiz: self.quiz,
+          p_base_rev: r.rev || 0, p_payload: self._payload(merged)
+        }).then(function (res) { return { res: res, merged: merged }; });
+      });
+    }
+
+    return once().then(function (x) {
+      if (x.res && x.res.ok === false && x.res.error === 'conflict') return once();   // 被别的设备抢先，重来一次
+      self._apply(x.merged);
+      self._save({ rev: x.res.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(x.merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.download = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+    return this._rpc('quiz_pull', { p_code: this.code, p_quiz: this.quiz }).then(function (r) {
+      var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+      self._apply(merged);
+      self._save({ rev: r.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.pending = function () {
+    var st = this._load();
+    var since = st.at || 0;
+    var n = 0;
+    var ans = this.site.allAns();
+    Object.keys(ans).forEach(function (g) { if ((ans[g].at || 0) > since) n++; });
+    return n;
+  };
+
+  root.QBSync = { create: function (site, cfg) { return new Sync(site, cfg); }, toRemote: toRemote, fromRemote: fromRemote };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-page.js — 练习页渲染层
+ * 只读 window.QB_SITE（站点定义 + 本题组题目），所有状态变更走 QB 内核（规范 6.4）。
+ */
+(function () {
+  'use strict';
+
+  var def = window.QB_SITE;
+  var meta = window.QB_META || {};
+  if (!def) return;
+
+  var site = QB.create(def);
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var S = {
+    mode: 'seq',
+    type: '',
+    diff: '',
+    kw: '',
+    list: [],
+    idx: 0,
+    shown: {},       // qid -> true，已揭晓答案
+    redo: {},        // qid -> true，本题正在重做，忽略旧记录
+    draft: {}        // qid -> 当前输入
+  };
+
+  var DIFF_ORDER = { '易': 0, '中': 1, '难': 2 };
+  var TYPE_ORDER = Object.keys(def.types || {});
+
+  /* ------------------------------------------------------------ 路由 */
+
+  function readRoute() {
+    var h = location.hash.replace(/^#/, '');
+    var p = new URLSearchParams(h);
+    S.mode = p.get('mode') || 'seq';
+    S.type = p.get('t') || '';
+    S.diff = p.get('d') || '';
+    S.kw = p.get('kw') || '';
+    var qid = p.get('q');
+    if (qid) S.pendingQid = qid;
+  }
+
+  function writeRoute() {
+    var p = new URLSearchParams();
+    if (S.mode !== 'seq') p.set('mode', S.mode);
+    if (S.type) p.set('t', S.type);
+    if (S.diff) p.set('d', S.diff);
+    if (S.kw) p.set('kw', S.kw);
+    var q = S.list[S.idx];
+    if (q) p.set('q', q.qid);
+    var url = location.pathname + '#' + p.toString();
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// 下可能被拒，忽略 */ }
+  }
+
+  /* ------------------------------------------------------------ 组卷 */
+
+  function buildList() {
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var all = site.questions.slice();
+
+    if (S.type) all = all.filter(function (q) { return q.type === S.type; });
+    if (S.diff) all = all.filter(function (q) { return q.diff === S.diff; });
+    if (S.kw) {
+      var kw = S.kw.toLowerCase();
+      all = all.filter(function (q) {
+        return (q.stem + ' ' + q.topic + ' ' + (q.exp || '')).toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+
+    if (S.mode === 'wrong') all = all.filter(function (q) { return wrong[q._gid]; });
+    else if (S.mode === 'fav') all = all.filter(function (q) { return fav[q._gid]; });
+    else if (S.mode === 'undone') all = all.filter(function (q) { return !ans[q._gid]; });
+
+    if (S.mode === 'random') {
+      for (var i = all.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+    }
+    S.list = all;
+    if (S.pendingQid) {
+      var k = all.findIndex(function (q) { return q.qid === S.pendingQid; });
+      if (k >= 0) S.idx = k;
+      S.pendingQid = null;
+    }
+    if (S.idx >= all.length) S.idx = Math.max(0, all.length - 1);
+  }
+
+  /* ------------------------------------------------------------ 渲染 */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // 显示优先用构建期排好版的视图（公式是内联 SVG），没有就转义纯文本
+  function view(q, field, fallback) {
+    if (q.views && q.views[field] != null) return q.views[field];
+    var raw = fallback !== undefined ? fallback : q[field];
+    return esc(raw).replace(/\n/g, '<br>');
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function renderStats() {
+    var st = site.stats(def.units.length === 1 ? def.units[0].key : null);
+    var box = $('#stats');
+    box.innerHTML = '';
+    var items = [
+      ['进度', st.answered + ' / ' + st.total, st.total ? Math.round(100 * st.answered / st.total) : 0],
+      ['正确率', st.rate == null ? '—' : st.rate + '%', st.rate || 0],
+      ['错题', String(st.wrong), 0],
+      ['收藏', String(st.fav), 0]
+    ];
+    items.forEach(function (it) {
+      var c = el('div', 'stat');
+      c.appendChild(el('div', 'stat-k', it[0]));
+      c.appendChild(el('div', 'stat-v', it[1]));
+      if (it[2]) {
+        var bar = el('div', 'stat-bar');
+        var fill = el('i');
+        fill.style.width = it[2] + '%';
+        bar.appendChild(fill);
+        c.appendChild(bar);
+      }
+      box.appendChild(c);
+    });
+    var label = def.units.length === 1 ? '题组口径' : '题库集口径（gid 去重）';
+    $('#stats').setAttribute('data-scope', label);
+  }
+
+  function renderFilters() {
+    var tsel = $('#f-type');
+    if (tsel.options.length <= 1) {
+      TYPE_ORDER.forEach(function (t) {
+        var o = el('option', null, def.types[t].label || t);
+        o.value = t;
+        tsel.appendChild(o);
+      });
+    }
+    tsel.value = S.type;
+    $('#f-diff').value = S.diff;
+    $('#f-kw').value = S.kw;
+    $$('#modes button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.mode === S.mode);
+    });
+  }
+
+  function optionMark(q, i) {
+    return String.fromCharCode(65 + i);
+  }
+
+  function renderCard() {
+    var card = $('#card');
+    card.innerHTML = '';
+    var q = S.list[S.idx];
+
+    if (!q) {
+      var empty = el('div', 'empty');
+      empty.appendChild(el('div', 'empty-t', S.mode === 'wrong' ? '错题本是空的' : (S.mode === 'fav' ? '还没有收藏' : '没有符合条件的题目')));
+      empty.appendChild(el('p', 'empty-s', S.mode === 'wrong'
+        ? '答错的题会自动进入这里；在错题本里做对一次才会移出。'
+        : '换个筛选条件，或者切回顺序练习。'));
+      card.appendChild(empty);
+      $('#nav').innerHTML = '';
+      return;
+    }
+
+    var decl = def.types[q.type] || {};
+    var rec = site.get(q._gid);
+    // 错题本里默认让人重做：不预置上次的选项、也不提前摊开答案。
+    // 点「重做」的题同理；其余模式仍按「做过就显示结果」的老规矩。
+    var redoing = !!S.redo[q.qid] || (S.mode === 'wrong' && !S.shown[q.qid]);
+    var revealed = !redoing && (!!S.shown[q.qid] || (rec && rec.ok !== null));
+    var fav = site.allFav()[q._gid];
+
+    var head = el('div', 'q-head');
+    var tag = el('span', 'tag tag-type', decl.label || q.type);
+    head.appendChild(tag);
+    head.appendChild(el('span', 'tag tag-diff d-' + (DIFF_ORDER[q.diff] != null ? DIFF_ORDER[q.diff] : 1), q.diff));
+    head.appendChild(el('span', 'q-topic', q.topic));
+    var no = el('span', 'q-no', (S.idx + 1) + ' / ' + S.list.length);
+    head.appendChild(no);
+    card.appendChild(head);
+
+    var stem = el('div', 'q-stem');
+    stem.innerHTML = view(q, 'stem');
+    card.appendChild(stem);
+
+    if (q.media && q.media.img) {
+      var im = el('img', 'q-img');
+      im.src = q.media.img;
+      im.alt = '题图';
+      card.appendChild(im);
+    }
+
+    var area = el('div', 'q-area');
+
+    if (decl.answerShape === 'choice') {
+      var opts = el('div', 'opts');
+      var picked = redoing ? (S.draft[q.qid] || [])
+        : ((rec && rec.p) ? rec.p.slice() : (S.draft[q.qid] || []));
+      q.options.forEach(function (text, i) {
+        var b = el('button', 'opt');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        if (picked.indexOf(i) >= 0) b.classList.add('picked');
+        if (revealed) {
+          b.disabled = true;
+          if ((q.answer || []).indexOf(i) >= 0) b.classList.add('right');
+          else if (picked.indexOf(i) >= 0) b.classList.add('wrong');
+        }
+        var k = el('span', 'opt-k', optionMark(q, i));
+        b.appendChild(k);
+        var ot = el('span', 'opt-t');
+        ot.innerHTML = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(text);
+        b.appendChild(ot);
+        b.addEventListener('click', function () { pick(q, decl, i); });
+        opts.appendChild(b);
+      });
+      area.appendChild(opts);
+      if (decl.judge === 'set' && !revealed) {
+        var tip = el('p', 'hint', '多选题：选好后点「提交」');
+        area.appendChild(tip);
+      }
+    } else if (decl.answerShape === 'tokenList') {
+      var inp = el('input', 'in');
+      inp.type = 'text';
+      inp.placeholder = '在此填写答案';
+      inp.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      inp.disabled = revealed;
+      inp.addEventListener('input', function () { S.draft[q.qid] = inp.value; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(q, decl); });
+      area.appendChild(inp);
+    } else {
+      var ta = el('textarea', 'ta');
+      ta.placeholder = '写出你的答案或关键步骤，提交后与参考答案对照自评';
+      ta.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      ta.disabled = revealed;
+      ta.rows = 5;
+      ta.addEventListener('input', function () { S.draft[q.qid] = ta.value; });
+      area.appendChild(ta);
+    }
+    card.appendChild(area);
+
+    var bar = el('div', 'q-bar');
+    if (!revealed) {
+      var sub = el('button', 'btn primary', '提交');
+      sub.addEventListener('click', function () { submit(q, decl); });
+      bar.appendChild(sub);
+      if (decl.judge === 'rubric') {
+        bar.appendChild(el('span', 'hint', '主观题：提交后对照参考答案自评'));
+      }
+      var peek = el('button', 'btn ghost', '看答案');
+      peek.addEventListener('click', function () { S.shown[q.qid] = true; render(); });
+      bar.appendChild(peek);
+    } else {
+      // 只点过「看答案」还没作答时 rec 为空，别显示成「待自评」
+      var vClass = !rec ? 'mid' : (rec.ok === true ? 'ok' : (rec.ok === false ? 'bad' : 'mid'));
+      var vText = !rec ? '未作答 · 仅看答案' : (rec.ok === true ? '✓ 答对' : (rec.ok === false ? '✗ 答错' : '待自评'));
+      var verdict = el('div', 'verdict ' + vClass);
+      verdict.textContent = vText;
+      bar.appendChild(verdict);
+      if (rec && rec.c != null && rec.ok === false) bar.appendChild(el('span', 'hint', '得分率 ' + Math.round(rec.c * 100) + '%'));
+      var again = el('button', 'btn', '重做本题');
+      again.addEventListener('click', function () { redoOne(q); });
+      bar.appendChild(again);
+    }
+    var favBtn = el('button', 'btn ghost' + (fav ? ' on' : ''), fav ? '★ 已收藏' : '☆ 收藏');
+    favBtn.addEventListener('click', function () {
+      site.toggleFav(q._gid);
+      render();
+    });
+    bar.appendChild(favBtn);
+    if (rec && site.allWrong()[q._gid]) {
+      var sup = el('button', 'btn ghost', '移出错题本');
+      sup.addEventListener('click', function () { site.suppress(q._gid); render(); });
+      bar.appendChild(sup);
+    }
+    card.appendChild(bar);
+
+    if (revealed) {
+      var exp = el('div', 'exp');
+      exp.appendChild(el('div', 'exp-h', '答案与解析'));
+      var ansText = answerText(q, decl);
+      if (ansText) {
+        var a = el('p', 'exp-a');
+        a.innerHTML = '<b>答案：</b>' + ansText;
+        exp.appendChild(a);
+      }
+      if (q.exp) {
+        var p = el('p', 'exp-p');
+        p.innerHTML = view(q, 'exp');
+        exp.appendChild(p);
+      }
+      if (q.meta && q.meta.source) {
+        exp.appendChild(el('p', 'exp-src', '来源：' + q.meta.source + (q.meta.paperNo ? ' 第 ' + q.meta.paperNo + ' 题' : '')));
+      }
+      if (decl.judge === 'rubric' && rec && rec.ok === null) {
+        var self = el('div', 'self');
+        self.appendChild(el('span', 'hint', '自评：'));
+        [['达标', true, null], ['部分达标', false, 0.5], ['未达标', false, 0]].forEach(function (t) {
+          var b = el('button', 'btn small', t[0]);
+          b.addEventListener('click', function () { selfJudge(q, t[1], t[2]); });
+          self.appendChild(b);
+        });
+        exp.appendChild(self);
+      }
+      card.appendChild(exp);
+    }
+
+    var nav = $('#nav');
+    nav.innerHTML = '';
+    var prev = el('button', 'btn', '← 上一题');
+    prev.disabled = S.idx === 0;
+    prev.addEventListener('click', function () { go(S.idx - 1); });
+    var next = el('button', 'btn primary', '下一题 →');
+    next.disabled = S.idx >= S.list.length - 1;
+    next.addEventListener('click', function () { go(S.idx + 1); });
+    nav.appendChild(prev);
+    if (S.mode === 'wrong' && S.list.length) {
+      var all = el('button', 'btn small', '全部重做');
+      all.title = '清空本轮在错题本里的作答状态，从头再做一遍';
+      all.addEventListener('click', function () {
+        S.list.forEach(function (x) { delete S.shown[x.qid]; delete S.draft[x.qid]; S.redo[x.qid] = true; });
+        S.idx = 0;
+        render();
+        flash('已清空本轮作答，从头开始');
+      });
+      nav.appendChild(all);
+    }
+    nav.appendChild(el('span', 'nav-mid', (S.idx + 1) + ' / ' + S.list.length));
+    nav.appendChild(next);
+  }
+
+  function answerText(q, decl) {
+    if (decl.answerShape === 'choice') {
+      return (q.answer || []).map(function (i) {
+        var t = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(q.options[i]);
+        return optionMark(q, i) + '. ' + t;
+      }).join('；');
+    }
+    if (decl.answerShape === 'tokenList') {
+      var list = (q.views && q.views.answers && q.views.answers.length) ? q.views.answers : (q.answers || []).map(esc);
+      return list.join(' / ');
+    }
+    return (q.views && q.views.ref) ? q.views.ref : (q.ref ? esc(String(q.ref)) : '');
+  }
+
+  /* ------------------------------------------------------------ 交互 */
+
+  // 重新作答一道题：清掉本次会话的揭晓标记与草稿，回到未作答状态
+  function redoOne(q) {
+    S.redo[q.qid] = true;
+    delete S.shown[q.qid];
+    delete S.draft[q.qid];
+    render();
+    flash('已清空，可以重做了');
+  }
+
+  function pick(q, decl, i) {
+    var cur = (S.draft[q.qid] || []).slice();
+    if (decl.judge === 'set') {
+      var k = cur.indexOf(i);
+      if (k >= 0) cur.splice(k, 1); else cur.push(i);
+      S.draft[q.qid] = cur;
+      renderCard();
+    } else {
+      S.draft[q.qid] = [i];
+      submit(q, decl);
+    }
+  }
+
+  function submit(q, decl) {
+    var input = { picked: S.draft[q.qid] || [], text: S.draft[q.qid] || '' };
+    if (decl.answerShape === 'choice') input = { picked: S.draft[q.qid] || [] };
+    else input = { text: S.draft[q.qid] || '' };
+
+    if (decl.answerShape === 'choice' && (!input.picked || !input.picked.length)) {
+      flash('先选一个选项');
+      return;
+    }
+    if (decl.answerShape !== 'choice' && !String(input.text).trim()) {
+      flash('先写下答案');
+      return;
+    }
+
+    var res = QB.judge(q, decl, input);
+    var patch = { ok: res.ok, at: Date.now(), m: S.mode };
+    if (decl.replay === 'mask' && input.picked) patch.p = input.picked;
+    if (decl.replay === 'text' && input.text != null) patch.x = String(input.text);
+    if (res.credit != null) patch.c = res.credit;
+    if (res.ok === null) patch.self = false;
+
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && res.ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  function selfJudge(q, ok, credit) {
+    var patch = { ok: ok, at: Date.now(), m: S.mode, self: true };
+    if (credit != null) patch.c = credit;
+    var rec = site.get(q._gid);
+    if (rec && rec.x != null) patch.x = rec.x;
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  /* 翻题后不把页面拉回顶部。
+     只在题卡顶部已经滚出视野上方（rect.top < 8）时，把它瞬时拉回视野；
+     卡片顶部还在视野里就完全不动。用瞬时滚动、不用 smooth——
+     平滑滚动会和滑动翻题的滑出动画叠在一起，观感就是「回弹」。 */
+  function keepCardInView() {
+    var c = $('#card');
+    if (!c) return;
+    var top = c.getBoundingClientRect().top;
+    if (top >= 8) return;
+    var y = (window.scrollY || window.pageYOffset || 0) + top - 8;
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
+
+  function go(i) {
+    if (i < 0 || i >= S.list.length) return;
+    S.idx = i;
+    render();
+    keepCardInView();
+  }
+
+  var flashTimer = null;
+  function flash(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  /* ------------------------------------------------------------ 掌握度 */
+
+  function renderMastery() {
+    var rows = site.masteryAll().filter(function (r) { return r.n > 0; });
+    var box = $('#mastery');
+    box.innerHTML = '';
+    if (!rows.length) {
+      box.appendChild(el('p', 'hint', '还没有作答记录，掌握度会在作答后出现。'));
+      return;
+    }
+    var table = el('table', 'mt');
+    var thead = el('thead');
+    var tr = el('tr');
+    ['知识点', '得分', '状态', '作答数'].forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr2 = el('tr');
+      tr2.appendChild(el('td', 'mt-t', r.topic));
+      tr2.appendChild(el('td', 'mt-s', String(r.score)));
+      var lv = el('td');
+      lv.appendChild(el('span', 'lv ' + (r.level === '已掌握' ? 'lv-ok' : (r.level === '薄弱' ? 'lv-bad' : 'lv-mid')), r.level));
+      tr2.appendChild(lv);
+      tr2.appendChild(el('td', 'mt-n', String(r.n)));
+      tb.appendChild(tr2);
+    });
+    table.appendChild(tb);
+    box.appendChild(table);
+  }
+
+  /* ------------------------------------------------------------ 导出导入 */
+
+  function initTransfer() {
+    var sel = $('#x-scope');
+    if (def.units.length === 1) {
+      sel.innerHTML = '';
+      var o = el('option', null, '本题库');
+      o.value = 'unit:' + def.units[0].key;
+      sel.appendChild(o);
+    } else {
+      var s1 = el('option', null, '全站');
+      s1.value = 'site:';
+      sel.appendChild(s1);
+      def.units.forEach(function (u) {
+        var o2 = el('option', null, u.label + ' ' + u.title);
+        o2.value = 'unit:' + u.key;
+        sel.appendChild(o2);
+      });
+    }
+
+    $('#x-do').addEventListener('click', function () {
+      var v = sel.value.split(':');
+      try {
+        var code = site.encode(v[0], v[1]);
+        $('#x-code').value = code;
+        $('#x-info').textContent = '已生成 ' + code.length + ' 字符（预算 ' + site.budget + '）'
+          + (code.length > site.budget ? '，超出预算，建议改用题组作用域' : '');
+      } catch (e) {
+        $('#x-info').textContent = '生成失败：' + e.message;
+      }
+    });
+
+    $('#x-copy').addEventListener('click', function () {
+      var ta = $('#x-code');
+      if (!ta.value) return flash('先生成导出码');
+      ta.select();
+      try { document.execCommand('copy'); flash('已复制'); } catch (e) { flash('请手动复制'); }
+    });
+
+    $('#x-import').addEventListener('click', function () {
+      var code = $('#x-code').value.trim();
+      if (!code) return flash('请粘贴导出码');
+      try {
+        var r = site.importCode(code);
+        $('#x-info').textContent = '已导入 ' + r.count + ' 条（' + r.kind + ':' + (r.key || '全站') + '），作用域外记录未改动';
+        reload();
+      } catch (e) {
+        $('#x-info').textContent = '导入失败：' + e.message;
+      }
+    });
+
+    $('#x-undo').addEventListener('click', function () {
+      if (site.undoImport()) { $('#x-info').textContent = '已撤销上次导入'; reload(); }
+      else $('#x-info').textContent = '没有可撤销的导入';
+    });
+
+    $('#reset').addEventListener('click', function () {
+      if (!confirm('清空本题库在本机的作答、错题与收藏记录？此操作不可撤销。')) return;
+      site.resetScope(def.units.length === 1 ? 'unit' : 'site', def.units.length === 1 ? def.units[0].key : '');
+      S.shown = {}; S.redo = {}; S.draft = {};
+      reload();
+      flash('已清空');
+    });
+  }
+
+  /* ------------------------------------------------------------ 云同步 */
+
+  function initCloud() {
+    var wrap = $('#cloud-wrap');
+    if (!wrap) return;
+    var cfg = window.QB_SYNC_CFG;
+    if (!cfg || !window.QBSync) return;
+    wrap.style.display = '';
+
+    var sync = window.QBSync.create(site, cfg);
+    var codeInput = $('#s-code');
+    var info = $('#s-info');
+    var saved = sync.readSharedCode();
+    if (saved) codeInput.value = saved;
+
+    function say(msg) { info.textContent = msg; }
+
+    $('#s-save').addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (v.length < 10) return say('同步码至少 10 位（它是唯一凭证）');
+      sync.setCode(v);
+      codeInput.value = sync.code;
+      say('已保存，本机所有题库共用这个同步码');
+    });
+
+    function run(fn, label) {
+      var why = sync._guard();
+      if (why) return say(why);
+      say(label + '中…');
+      fn().then(function (r) {
+        say(label + '完成，云端共 ' + r.count + ' 条记录');
+        render();
+      }).catch(function (e) {
+        say(label + '失败：' + e.message);
+      });
+    }
+
+    $('#s-up').addEventListener('click', function () { run(function () { return sync.upload(); }, '上传'); });
+    $('#s-down').addEventListener('click', function () { run(function () { return sync.download(); }, '下载'); });
+
+    var pend = sync.pending();
+    say(pend ? ('有 ' + pend + ' 条本机改动尚未上传') : '同步码与云端一致时即可手动上传 / 下载');
+  }
+
+  /* ------------------------------------------------------------ 手势翻题 */
+
+  /* 左滑 → 下一题，右滑 → 上一题。所有题库共用这一份实现，页面不再各自绑定。
+     翻页走 go()，与「上一题 / 下一题」按钮同一条路径，不另起一套状态。
+     判定：水平位移 ≥ 56px、水平 ≥ 垂直 × 1.2、时长 ≤ 1.2s；
+     起手点在输入控件 / 控制区 / 折叠面板 / 可横向滚动的公式块内不触发；
+     纵向滑动超过阈值即判定为滚动并让位，全程 passive，不抢页面滚动。 */
+  function initSwipe() {
+    var MIN_X = 56;      // 触发所需最小水平位移
+    var LOCK_X = 12;     // 锁定为横向手势的位移
+    var LOCK_Y = 14;     // 纵向位移超过它且大于横向 → 判定为滚动
+    var SLOPE = 1.2;
+    var MAX_MS = 1200;
+    var EDGE = 24;       // 避开 iOS Safari 的边缘侧滑返回
+    var FOLLOW = 0.35;   // 拖动时卡片跟手系数
+    var ANIM_MS = 150;
+
+    var sx = 0, sy = 0, st = 0, tracking = false, locked = false, animating = false;
+    var muteUntil = 0;   // 滑动后短暂屏蔽 click，避免顺带点掉选项
+
+    function card() { return $('#card'); }
+
+    var SKIP = '.top, .ctl, details, .foot, #toast, input, textarea, select, [contenteditable="true"]';
+
+    // 起手点排除：交互控件、控制区，以及自身可横向滚动的容器（长公式、代码块）
+    function skip(el) {
+      if (!el || !el.closest) return true;
+      if (el.closest(SKIP)) return true;
+      var c = card();
+      for (var n = el; n && n !== c && n.nodeType === 1; n = n.parentNode) {
+        if (n.scrollWidth - n.clientWidth <= 2) continue;
+        var ox = window.getComputedStyle(n).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+      return false;
+    }
+
+    function reset() {
+      if (animating) return;          // 动画中不打断，否则会停在半路又被 go() 换题
+      var c = card();
+      if (!c) return;
+      c.style.transition = 'transform .18s ease, opacity .18s ease';
+      c.style.transform = '';
+      c.style.opacity = '';
+    }
+
+    function reduced() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // dir: 1 = 下一题，-1 = 上一题
+    function flip(dir) {
+      if (animating || !S.list.length) return;
+      var to = S.idx + dir;
+      if (to < 0 || to >= S.list.length) { reset(); return; }
+      var c = card();
+      if (!c) return;
+      muteUntil = Date.now() + 300;   // 吞掉滑动末尾那一次 click（选项点选即判分）
+      if (reduced()) { go(to); return; }
+      animating = true;
+      var out = dir > 0 ? -72 : 72;   // 下一题向左滑出，上一题向右滑出
+      c.style.transition = 'transform ' + ANIM_MS + 'ms ease, opacity ' + ANIM_MS + 'ms ease';
+      void c.offsetWidth;
+      c.style.transform = 'translateX(' + out + 'px)';
+      c.style.opacity = '0';
+      setTimeout(function () {
+        go(to);
+        c.style.transition = 'none';
+        c.style.transform = 'translateX(' + (-out) + 'px)';
+        c.style.opacity = '0';
+        requestAnimationFrame(function () {
+          c.style.transition = 'transform .2s ease, opacity .2s ease';
+          c.style.transform = '';
+          c.style.opacity = '';
+          animating = false;
+        });
+      }, ANIM_MS);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (Date.now() >= muteUntil) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('touchstart', function (e) {
+      if (animating || e.touches.length !== 1) return;
+      var t = e.touches[0];
+      if (t.clientX < EDGE || t.clientX > window.innerWidth - EDGE) return;
+      if (skip(e.target)) return;
+      sx = t.clientX; sy = t.clientY; st = Date.now();
+      tracking = true; locked = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      if (e.touches.length !== 1) { tracking = false; reset(); return; }
+      var t = e.touches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (!locked) {
+        if (Math.abs(dy) > LOCK_Y && Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+        if (Math.abs(dx) > LOCK_X) {
+          locked = true;
+          var c0 = card();
+          if (c0) c0.style.transition = 'none';
+        }
+      }
+      if (!locked) return;
+      var c = card();
+      if (!c) return;
+      c.style.transform = 'translateX(' + (dx * FOLLOW) + 'px)';
+      c.style.opacity = String(Math.max(0.55, 1 - Math.abs(dx) / 480));
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var was = locked; locked = false;
+      if (!was) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st;
+      if (Math.abs(dx) < MIN_X || Math.abs(dx) < Math.abs(dy) * SLOPE || dt > MAX_MS) { reset(); return; }
+      flip(dx < 0 ? 1 : -1);   // 左滑 → 下一题；右滑 → 上一题
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      tracking = false; locked = false;
+      reset();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------ 入口 */
+
+  // 只重画当前这一屏：题号、列表都保持不变。
+  // 在错题本里答对后题目会移出错题集合，若这里重组卷，卡片会当场跳到下一题，
+  // 用户看不到自己刚做对的结果。列表只在换模式 / 换筛选 / 导入时重建。
+  function render() {
+    renderStats();
+    renderFilters();
+    renderCard();
+    renderMastery();
+    writeRoute();
+  }
+
+  function reload() {
+    buildList();
+    render();
+  }
+
+  function init() {
+    readRoute();
+    // 旧版记录迁移：csg_* / csunitN_* 等命名空间并进全站三表，幂等，旧键不删
+    try {
+      var mig = site.migrateLegacy();
+      if (mig && !mig.skipped && (mig.ans || mig.wrong || mig.fav)) {
+        setTimeout(function () { flash('已迁移旧版记录：作答 ' + mig.ans + '、错题 ' + mig.wrong + '、收藏 ' + mig.fav); }, 400);
+      }
+    } catch (e) { /* 迁移失败不阻塞作答 */ }
+    $('#site-title').textContent = def.title || meta.title || '题库';
+    $('#bank-name').textContent = def.units.length === 1
+      ? (def.units[0].label + ' · ' + def.units[0].title)
+      : (def.subjectName || '');
+    if (def.units.length === 1 && def.units[0].desc) $('#bank-desc').textContent = def.units[0].desc;
+    if (meta.home) $('#home').href = meta.home;
+    else $('#home').style.display = 'none';
+
+    $$('#modes button').forEach(function (b) {
+      b.addEventListener('click', function () { S.mode = b.dataset.mode; S.idx = 0; reload(); });
+    });
+    $('#f-type').addEventListener('change', function (e) { S.type = e.target.value; S.idx = 0; reload(); });
+    $('#f-diff').addEventListener('change', function (e) { S.diff = e.target.value; S.idx = 0; reload(); });
+    var kwTimer = null;
+    $('#f-kw').addEventListener('input', function (e) {
+      clearTimeout(kwTimer);
+      var v = e.target.value;
+      kwTimer = setTimeout(function () { S.kw = v; S.idx = 0; reload(); }, 220);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(S.idx - 1);
+      if (e.key === 'ArrowRight') go(S.idx + 1);
+      if (/^[1-9]$/.test(e.key)) {
+        var q = S.list[S.idx];
+        if (q && def.types[q.type].answerShape === 'choice' && q.options[Number(e.key) - 1] != null) {
+          pick(q, def.types[q.type], Number(e.key) - 1);
+        }
+      }
+    });
+
+    initSwipe();
+    initTransfer();
+    initCloud();
+    reload();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

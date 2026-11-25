@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "id": "math.u3",
+  "key": "u3",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 3 章",
+  "title": "微分中值定理与导数的应用",
+  "desc": "中值定理、洛必达法则、单调性与极值、凹凸与拐点、渐近线、泰勒公式",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 12,
+  "types": [
+    "blank",
+    "calc",
+    "proof",
+    "single"
+  ],
+  "topics": [
+    "3.1 拉格朗日中值定理",
+    "3.2 单调性",
+    "3.4 极值与拐点",
+    "3.5 渐近线",
+    "3.6 泰勒公式"
+  ],
+  "sources": [
+    "2023-2024-1 高等数学（基础）期中自测题",
+    "高等数学（基础）期中测验题（2024）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 3
+}

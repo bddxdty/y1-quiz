@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "ethics",
+  "name": "思想道德与法治",
+  "typepack": "ethics",
+  "units": [
+    {
+      "key": "ch6",
+      "kind": "unit",
+      "label": "第六章",
+      "title": "学习法治思想 提升法治素养",
+      "desc": "法律的本质与运行 · 习近平法治思想 · 宪法 · 法治思维 · 权利义务",
+      "bank": "bank/ch6.json",
+      "order": 7
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

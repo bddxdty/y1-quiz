@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "exam",
+      "kind": "midterm",
+      "label": "期中冲刺",
+      "title": "往年真题与高频考点",
+      "desc": "第 1～2 章为主，覆盖期中考试题型与高频考点",
+      "bank": "bank/exam.json",
+      "order": 5
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

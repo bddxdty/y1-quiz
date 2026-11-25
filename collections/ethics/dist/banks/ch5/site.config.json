@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "site": {
+    "title": "思想道德与法治 · 第五章 遵守道德规范 锤炼道德品格",
+    "defaultSubject": "ethics"
+  },
+  "subjects": [
+    {
+      "key": "ethics",
+      "name": "思想道德与法治",
+      "accent": "#7c3aed",
+      "status": "active"
+    }
+  ],
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  }
+}

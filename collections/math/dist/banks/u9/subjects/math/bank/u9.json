@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "unit": "u9",
+  "questions": [
+    {
+      "qid": "math.u9-001",
+      "type": "blank",
+      "topic": "10.2 交换积分次序",
+      "diff": "中",
+      "stem": "交换积分次序：∫₀²dy ∫_{y²}^{2y} f(x,y)dx = ______。",
+      "exp": "积分区域由抛物线 x = y² 与直线 x = 2y 围成，交点为 (0,0) 与 (4,2)。改按 x 先定限：0 ≤ x ≤ 4 时 x/2 ≤ y ≤ √x。",
+      "answers": [
+        "∫₀⁴dx ∫_{x/2}^{√x} f(x,y)dy",
+        "∫_0^4 dx∫_(x/2)^(√x) f(x,y)dy"
+      ],
+      "meta": {
+        "source": "高等数学 A（下）测试卷（2023）",
+        "paper": "final2023b",
+        "paperNo": "一.6",
+        "tex": {
+          "stem": "交换积分次序：$\\displaystyle\\int_{0}^{2}\\mathrm{d}y\\int_{y^{2}}^{2y}f(x,y)\\,\\mathrm{d}x=$ ______。",
+          "exp": "积分区域由抛物线 $x=y^{2}$ 与直线 $x=2y$ 围成，交点为 $(0,0)$ 与 $(4,2)$。改按 $x$ 先定限：$0\\le x\\le 4$ 时 $\\dfrac{x}{2}\\le y\\le\\sqrt{x}$。"
+        }
+      },
+      "_unit": "u9"
+    },
+    {
+      "qid": "math.u9-002",
+      "type": "blank",
+      "topic": "10.1 二重积分的计算",
+      "diff": "难",
+      "stem": "设 D：0 ≤ x ≤ π/4，−1 ≤ y ≤ 1，则二重积分 ∬_D x·cos(2xy) dxdy = ______。",
+      "exp": "先对 y 积分可利用 cos(2xy) 关于 y 的偶性：∫₋₁¹cos(2xy)dy = 2∫₀¹cos(2xy)dy = sin(2x)/x，再乘 x 得 sin 2x，最后 ∫₀^{π/4} sin 2x dx = 1/2。",
+      "answers": [
+        "1/2",
+        "0.5"
+      ],
+      "meta": {
+        "source": "高等数学 A（下）测试卷（2023）",
+        "paper": "final2023b",
+        "paperNo": "一.7",
+        "tex": {
+          "stem": "设 $D$：$0\\le x\\le\\dfrac{\\pi}{4}$，$-1\\le y\\le 1$，则二重积分 $\\displaystyle\\iint_{D}x\\cos(2xy)\\,\\mathrm{d}x\\,\\mathrm{d}y=$ ______。",
+          "exp": "先对 $y$ 积分，利用 $\\cos(2xy)$ 关于 $y$ 的偶性：$\\displaystyle\\int_{-1}^{1}\\cos(2xy)\\,\\mathrm{d}y=2\\int_{0}^{1}\\cos(2xy)\\,\\mathrm{d}y=\\dfrac{\\sin 2x}{x}$，再乘 $x$ 得 $\\sin 2x$，最后 $\\displaystyle\\int_{0}^{\\pi/4}\\sin 2x\\,\\mathrm{d}x=\\dfrac{1}{2}$。"
+        }
+      },
+      "_unit": "u9"
+    },
+    {
+      "qid": "math.u9-003",
+      "type": "calc",
+      "topic": "10.1 二重积分的计算",
+      "diff": "中",
+      "stem": "计算 ∬_D cos(x+y) dxdy，其中 D 是由 x = 0、y = x、y = π 所围成的区域。",
+      "exp": "先画区域再定限：以 y 为外层，x 从 0 到 y，一次积分即可。",
+      "ref": "D 可表示为 0 ≤ y ≤ π，0 ≤ x ≤ y。原式 = ∫₀^π dy ∫₀^y cos(x+y)dx = ∫₀^π [sin(2y) − sin y]dy = [−cos(2y)/2 + cos y]₀^π = −2。",
+      "meta": {
+        "source": "高等数学 A（下）测试卷（2023）",
+        "paper": "final2023b",
+        "paperNo": "二.4",
+        "tex": {
+          "stem": "计算 $\\displaystyle\\iint_{D}\\cos(x+y)\\,\\mathrm{d}x\\,\\mathrm{d}y$，其中 $D$ 是由 $x=0$、$y=x$、$y=\\pi$ 所围成的区域。",
+          "ref": "$D$ 可表示为 $0\\le y\\le\\pi$，$0\\le x\\le y$。原式 $=\\displaystyle\\int_{0}^{\\pi}\\mathrm{d}y\\int_{0}^{y}\\cos(x+y)\\,\\mathrm{d}x=\\int_{0}^{\\pi}\\left[\\sin 2y-\\sin y\\right]\\mathrm{d}y=\\left[-\\dfrac{\\cos 2y}{2}+\\cos y\\right]_{0}^{\\pi}=-2$。",
+          "exp": "先画区域再定限：以 $y$ 为外层，$x$ 从 $0$ 到 $y$，一次积分即可。"
+        }
+      },
+      "_unit": "u9"
+    }
+  ]
+}

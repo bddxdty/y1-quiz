@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学",
+  "typepack": "math",
+  "units": [
+    {
+      "key": "u10",
+      "kind": "unit",
+      "label": "第 11 章",
+      "title": "曲线积分与曲面积分",
+      "desc": "两类曲线积分、两类曲面积分、格林公式、高斯公式、斯托克斯公式",
+      "bank": "bank/u10.json",
+      "order": 10
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

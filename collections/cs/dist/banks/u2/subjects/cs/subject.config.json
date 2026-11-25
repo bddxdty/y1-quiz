@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "u2",
+      "kind": "unit",
+      "label": "第二单元",
+      "title": "计算机中数的表示与存储",
+      "desc": "第 2 章 · 进制转换、整数与浮点编码、算术与逻辑运算",
+      "bank": "bank/u2.json",
+      "order": 2
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

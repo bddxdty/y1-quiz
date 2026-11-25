@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "id": "math.u10",
+  "key": "u10",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 11 章",
+  "title": "曲线积分与曲面积分",
+  "desc": "两类曲线积分、两类曲面积分、格林公式、高斯公式、斯托克斯公式",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 4,
+  "types": [
+    "blank",
+    "calc"
+  ],
+  "topics": [
+    "11.1 对弧长的曲线积分",
+    "11.2 格林公式",
+    "11.3 对面积的曲面积分",
+    "11.4 高斯公式"
+  ],
+  "sources": [
+    "高等数学 A（下）测试卷（2023）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 10
+}

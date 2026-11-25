@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "site": {
+    "title": "高等数学 · 期中考试 期中真题卷",
+    "defaultSubject": "math"
+  },
+  "subjects": [
+    {
+      "key": "math",
+      "name": "高等数学",
+      "accent": "#0f766e",
+      "status": "active"
+    }
+  ],
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "id": "math.u5",
+  "key": "u5",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 5 章",
+  "title": "定积分及其应用",
+  "desc": "定积分的性质与计算、反常积分、定积分的几何与物理应用",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 4,
+  "types": [
+    "blank",
+    "single"
+  ],
+  "topics": [
+    "5.3 定积分的性质",
+    "5.4 反常积分",
+    "5.5 定积分的应用"
+  ],
+  "sources": [
+    "2023-2024-1 高等数学（基础）期中自测题"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 5
+}

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "id": "cs.u6",
+  "key": "u6",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第六单元",
+  "title": "数据库技术",
+  "desc": "第 6 章 · 数据模型、关系数据库与基本术语、关系操作与 SQL、数据库设计",
+  "collection": {
+    "id": "cs",
+    "name": "计算机导论"
+  },
+  "subject": {
+    "key": "cs",
+    "name": "计算机导论",
+    "typepack": "cs"
+  },
+  "count": 100,
+  "types": [
+    "comp",
+    "fill",
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "6.1 数据库的定义与特点",
+    "6.2 数据模型",
+    "6.3 关系数据库基本术语",
+    "6.4 关系模型的性质与关键字",
+    "6.5 关系操作与 SQL",
+    "6.6 数据库设计",
+    "6.7 数据库技术发展趋势"
+  ],
+  "sources": [
+    "第 6 章课件（6-数据库技术.pptx / 陈6 数据库技术.pdf）",
+    "第 6 章课件（6-数据库技术.pptx）",
+    "第 6 章课件（6-数据库技术.pptx）· 例 6-1",
+    "第 6 章课件（6-数据库技术.pptx）· 课上真题",
+    "第 6 章课件（陈6 数据库技术.pdf）",
+    "第 6 章课件（陈6 数据库技术.pdf）· 例 6-2",
+    "第 6 章课件（陈6 数据库技术.pdf）· 例 6-3"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 9
+}

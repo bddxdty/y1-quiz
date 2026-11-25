@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "math",
+  "name": "高等数学",
+  "grade": "y1",
+  "subjectKey": "math",
+  "accent": "#0f766e",
+  "desc": "按章拆分的 10 个单元题库，加上期中、期末两份真题卷题库，共 12 个独立题库。",
+  "status": "active",
+  "order": 2,
+  "sources": {
+    "root": "../../../高等数学/高等数学（基础）/高数",
+    "note": "真题原文按试卷转写为 sources/papers/*.json；bank/*.json 由 tools/qb_math_bank.py 生成，不手工编辑。"
+  }
+}

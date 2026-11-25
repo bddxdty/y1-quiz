@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论题型包",
+  "types": {
+    "single": {
+      "key": "single",
+      "label": "单选题",
+      "answerShape": "choice",
+      "judge": "exact",
+      "replay": "mask",
+      "maxOptions": 4,
+      "fault": "builtin:fact-recall",
+      "countsInMastery": true,
+      "fields": { "options": "选项文本数组，2～4 项", "answer": "正确项下标数组，恰好 1 项" }
+    },
+    "multi": {
+      "key": "multi",
+      "label": "多选题",
+      "answerShape": "choice",
+      "judge": "set",
+      "replay": "mask",
+      "maxOptions": 4,
+      "fault": "builtin:concept-boundary",
+      "countsInMastery": true,
+      "fields": { "options": "选项文本数组，2～4 项", "answer": "正确项下标数组，≥ 2 项" }
+    },
+    "fill": {
+      "key": "fill",
+      "label": "填空题",
+      "answerShape": "tokenList",
+      "judge": "fuzzy",
+      "replay": "text",
+      "fault": "builtin:unit-memory",
+      "countsInMastery": true,
+      "fields": { "answers": "可接受答案数组，含等价写法" }
+    },
+    "term": {
+      "key": "term",
+      "label": "名词解释",
+      "answerShape": "text",
+      "judge": "rubric",
+      "replay": "text",
+      "fault": "builtin:coverage",
+      "countsInMastery": true,
+      "fields": { "ref": "参考答案文本" }
+    },
+    "short": {
+      "key": "short",
+      "label": "简答题",
+      "answerShape": "text",
+      "judge": "rubric",
+      "replay": "text",
+      "fault": "builtin:coverage",
+      "countsInMastery": true,
+      "fields": { "ref": "参考答案文本" }
+    },
+    "comp": {
+      "key": "comp",
+      "label": "综合应用题",
+      "answerShape": "text",
+      "judge": "rubric",
+      "replay": "text",
+      "fault": "builtin:chain-break",
+      "countsInMastery": true,
+      "fields": { "ref": "参考答案文本" }
+    }
+  }
+}

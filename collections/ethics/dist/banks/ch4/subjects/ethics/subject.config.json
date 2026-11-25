@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "ethics",
+  "name": "思想道德与法治",
+  "typepack": "ethics",
+  "units": [
+    {
+      "key": "ch4",
+      "kind": "unit",
+      "label": "第四章",
+      "title": "明确价值要求 践行价值准则",
+      "desc": "社会主义核心价值观 · 核心价值体系 · 显著特征 · 践行",
+      "bank": "bank/ch4.json",
+      "order": 5
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "unit": "u7",
+  "questions": [
+    {
+      "qid": "math.u7-001",
+      "type": "blank",
+      "topic": "8.1 向量的乘积",
+      "diff": "易",
+      "stem": "设向量 a = (1,2,3)，b = (4,5,6)，则 a×b = ______。",
+      "exp": "按行列式展开：a×b = (2·6 − 3·5, 3·4 − 1·6, 1·5 − 2·4) = (−3, 6, −3)。",
+      "answers": [
+        "(−3,6,−3)",
+        "(-3,6,-3)",
+        "−3i+6j−3k"
+      ],
+      "meta": {
+        "source": "高等数学 A（下）测试卷（2023）",
+        "paper": "final2023b",
+        "paperNo": "一.2",
+        "tex": {
+          "stem": "设向量 $\\boldsymbol{a}=(1,2,3)$，$\\boldsymbol{b}=(4,5,6)$，则 $\\boldsymbol{a}\\times\\boldsymbol{b}=$ ______。",
+          "exp": "按行列式展开：$\\boldsymbol{a}\\times\\boldsymbol{b}=(2\\cdot 6-3\\cdot 5,\\;3\\cdot 4-1\\cdot 6,\\;1\\cdot 5-2\\cdot 4)=(-3,\\,6,\\,-3)$。"
+        }
+      },
+      "_unit": "u7"
+    }
+  ]
+}

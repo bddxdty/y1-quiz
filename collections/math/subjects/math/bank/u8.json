@@ -1,0 +1,147 @@
+{
+ "version": 1,
+ "unit": "u8",
+ "questions": [
+  {
+   "qid": "math.u8-001",
+   "type": "blank",
+   "topic": "9.1 多元函数的概念",
+   "diff": "易",
+   "stem": "设 f(x−y, x+y) = x² − y²，则 f(x, y) = ______。",
+   "exp": "x² − y² = (x−y)(x+y)。令 u = x−y、v = x+y，则 f(u,v) = uv，即 f(x,y) = xy。",
+   "answers": [
+    "xy",
+    "x*y"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.1",
+    "tex": {
+     "stem": "设 $f(x-y,\\,x+y)=x^{2}-y^{2}$，则 $f(x,y)=$ ______。",
+     "exp": "$x^{2}-y^{2}=(x-y)(x+y)$。令 $u=x-y$、$v=x+y$，则 $f(u,v)=uv$，即 $f(x,y)=xy$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u8-002",
+   "type": "blank",
+   "topic": "9.1 多元函数的概念",
+   "diff": "易",
+   "stem": "函数 z = arcsin(x/y²) 的定义域为 ______。",
+   "exp": "反正弦要求 |x/y²| ≤ 1，即 |x| ≤ y²；同时分母 y² ≠ 0，即 y ≠ 0。",
+   "answers": [
+    "|x| ≤ y² 且 y ≠ 0",
+    "−y² ≤ x ≤ y² 且 y≠0",
+    "-y^2<=x<=y^2 且 y≠0"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.3",
+    "tex": {
+     "stem": "函数 $z=\\arcsin\\dfrac{x}{y^{2}}$ 的定义域为 ______。",
+     "exp": "反正弦要求 $\\left|\\dfrac{x}{y^{2}}\\right|\\le 1$，即 $|x|\\le y^{2}$；同时分母 $y^{2}\\ne 0$，即 $y\\ne 0$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u8-003",
+   "type": "blank",
+   "topic": "9.2 二元函数的极限",
+   "diff": "中",
+   "stem": "lim(x→0, y→0) xy/(√(xy+9) − 3) = ______。",
+   "exp": "分子有理化：xy(√(xy+9) + 3)/((xy+9) − 9) = √(xy+9) + 3 → 6。",
+   "answers": [
+    "6"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.4",
+    "tex": {
+     "stem": "$\\lim\\limits_{\\substack{x\\to 0\\\\ y\\to 0}}\\dfrac{xy}{\\sqrt{xy+9}-3}=$ ______。",
+     "exp": "分子有理化：$\\dfrac{xy\\left(\\sqrt{xy+9}+3\\right)}{(xy+9)-9}=\\sqrt{xy+9}+3\\to 6$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u8-004",
+   "type": "blank",
+   "topic": "9.3 全微分",
+   "diff": "中",
+   "stem": "设 z = x²y + x/y，则 dz = ______。",
+   "exp": "∂z/∂x = 2xy + 1/y，∂z/∂y = x² − x/y²，故 dz = (2xy + 1/y)dx + (x² − x/y²)dy。",
+   "answers": [
+    "(2xy + 1/y)dx + (x² − x/y²)dy",
+    "(2xy+1/y)dx+(x^2-x/y^2)dy"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.5",
+    "tex": {
+     "stem": "设 $z=x^{2}y+\\dfrac{x}{y}$，则 $\\mathrm{d}z=$ ______。",
+     "exp": "$\\dfrac{\\partial z}{\\partial x}=2xy+\\dfrac{1}{y}$，$\\dfrac{\\partial z}{\\partial y}=x^{2}-\\dfrac{x}{y^{2}}$，故 $\\mathrm{d}z=\\left(2xy+\\dfrac{1}{y}\\right)\\mathrm{d}x+\\left(x^{2}-\\dfrac{x}{y^{2}}\\right)\\mathrm{d}y$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u8-005",
+   "type": "calc",
+   "topic": "9.4 隐函数求偏导",
+   "diff": "中",
+   "stem": "设方程 z³ − 3xyz = 1 确定了隐函数 z = z(x, y)，求 ∂z/∂x。",
+   "exp": "三元隐函数用 Fₓ/F_z 的公式最快，注意对 x 求偏导时把 y、z 都看作独立变量。",
+   "ref": "设 F(x,y,z) = z³ − 3xyz − 1，则 Fₓ = −3yz，F_z = 3z² − 3xy。由隐函数求导公式 ∂z/∂x = −Fₓ/F_z = yz/(z² − xy)。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.1",
+    "tex": {
+     "stem": "设方程 $z^{3}-3xyz=1$ 确定了隐函数 $z=z(x,y)$，求 $\\dfrac{\\partial z}{\\partial x}$。",
+     "ref": "设 $F(x,y,z)=z^{3}-3xyz-1$，则 $F_{x}=-3yz$，$F_{z}=3z^{2}-3xy$。由隐函数求导公式 $\\dfrac{\\partial z}{\\partial x}=-\\dfrac{F_{x}}{F_{z}}=\\dfrac{yz}{z^{2}-xy}$。",
+     "exp": "三元隐函数用 $-\\dfrac{F_{x}}{F_{z}}$ 的公式最快，注意对 $x$ 求偏导时把 $y$、$z$ 都看作独立变量。"
+    }
+   }
+  },
+  {
+   "qid": "math.u8-006",
+   "type": "calc",
+   "topic": "9.5 曲面的切平面与法线",
+   "diff": "中",
+   "stem": "求曲面 xy + yz + zx = 1 上点 (1, −2, −3) 处的切平面及法线方程。",
+   "exp": "曲面 F = 0 在点 P 处的法向量就是 ∇F(P)，切平面写成 n·(r − r₀) = 0。",
+   "ref": "设 F = xy + yz + zx − 1，则 Fₓ = y + z，F_y = x + z，F_z = x + y，在 (1,−2,−3) 处法向量 n = (−5, −2, −1)。切平面：−5(x−1) − 2(y+2) − (z+3) = 0；法线：(x−1)/(−5) = (y+2)/(−2) = (z+3)/(−1)。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.2",
+    "tex": {
+     "stem": "求曲面 $xy+yz+zx=1$ 上点 $(1,-2,-3)$ 处的切平面及法线方程。",
+     "ref": "设 $F=xy+yz+zx-1$，则 $F_{x}=y+z$，$F_{y}=x+z$，$F_{z}=x+y$，在 $(1,-2,-3)$ 处法向量 $\\boldsymbol{n}=(-5,\\,-2,\\,-1)$。切平面：$-5(x-1)-2(y+2)-(z+3)=0$；法线：$\\dfrac{x-1}{-5}=\\dfrac{y+2}{-2}=\\dfrac{z+3}{-1}$。",
+     "exp": "曲面 $F=0$ 在点 $P$ 处的法向量就是 $\\nabla F(P)$，切平面写成 $\\boldsymbol{n}\\cdot(\\boldsymbol{r}-\\boldsymbol{r}_{0})=0$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u8-007",
+   "type": "calc",
+   "topic": "9.6 复合函数求偏导",
+   "diff": "难",
+   "stem": "设 z = f(u, x, y)，u = x²y，其中 f 具有二阶连续偏导数，求 ∂²z/∂x∂y。",
+   "exp": "注意 u 同时依赖 x 与 y，对 y 求导时 u 的中间变量项要再乘 ∂u/∂y = x²；二阶混合偏导连续时 f₁₃ = f₃₁。",
+   "ref": "∂z/∂x = 2xy·f₁ + f₂。再对 y 求偏导：∂²z/∂x∂y = 2x·f₁ + 2xy(x²·f₁₁ + f₁₃) + (x²·f₂₁ + f₂₃) = 2x f₁ + 2x³y f₁₁ + 2xy f₁₃ + x² f₂₁ + f₂₃。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.3",
+    "tex": {
+     "stem": "设 $z=f(u,x,y)$，$u=x^{2}y$，其中 $f$ 具有二阶连续偏导数，求 $\\dfrac{\\partial^{2}z}{\\partial x\\partial y}$。",
+     "ref": "$\\dfrac{\\partial z}{\\partial x}=2xy\\,f_{1}+f_{2}$。再对 $y$ 求偏导：$\\dfrac{\\partial^{2}z}{\\partial x\\partial y}=2xf_{1}+2xy\\left(x^{2}f_{11}+f_{13}\\right)+\\left(x^{2}f_{21}+f_{23}\\right)=2xf_{1}+2x^{3}y\\,f_{11}+2xy\\,f_{13}+x^{2}f_{21}+f_{23}$。",
+     "exp": "注意 $u$ 同时依赖 $x$ 与 $y$，对 $y$ 求导时 $u$ 的中间变量项要再乘 $\\dfrac{\\partial u}{\\partial y}=x^{2}$；二阶混合偏导连续时 $f_{13}=f_{31}$。"
+    }
+   }
+  }
+ ]
+}

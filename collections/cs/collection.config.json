@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "cs",
+  "name": "计算机导论",
+  "grade": "y1",
+  "subjectKey": "cs",
+  "accent": "#2557c7",
+  "desc": "八个单元 + 期中冲刺 + 期末冲刺（2019 真题 27 题 + 分章 113 题）+ 名词解释与计算专题，共 13 个独立题库。",
+  "status": "active",
+  "order": 1,
+  "upstream": {
+    "source": "../../../计算机导论/计算机导论_题库合集.html",
+    "note": "原单文件题库站点。题目数据由 tools/migrate_cs.py 抽取，不改变题干与答案；原站点保留不动，可回退。"
+  }
+}

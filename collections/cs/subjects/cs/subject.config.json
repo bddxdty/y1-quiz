@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "u1",
+      "kind": "unit",
+      "label": "第一单元",
+      "title": "初识计算机",
+      "desc": "第 1 章 · 计算机发展史、分类与应用、信息与数据表示基础",
+      "bank": "bank/u1.json",
+      "order": 1
+    },
+    {
+      "key": "u2",
+      "kind": "unit",
+      "label": "第二单元",
+      "title": "计算机中数的表示与存储",
+      "desc": "第 2 章 · 进制转换、整数与浮点编码、算术与逻辑运算",
+      "bank": "bank/u2.json",
+      "order": 2
+    },
+    {
+      "key": "u3",
+      "kind": "unit",
+      "label": "第三单元",
+      "title": "计算机组成原理",
+      "desc": "第 3 章 · CPU 与存储体系、总线与外设、指令周期、冯·诺依曼结构",
+      "bank": "bank/u3.json",
+      "order": 3
+    },
+    {
+      "key": "u4",
+      "kind": "unit",
+      "label": "第四单元",
+      "title": "数据结构与算法",
+      "desc": "第 4 章 · 数组与链表、栈与队列、树与图、排序查找与递归",
+      "bank": "bank/u4.json",
+      "order": 4
+    },
+    {
+      "key": "exam",
+      "kind": "midterm",
+      "label": "期中冲刺",
+      "title": "往年真题与高频考点",
+      "desc": "第 1～2 章为主，覆盖期中考试题型与高频考点",
+      "bank": "bank/exam.json",
+      "order": 5
+    },
+    {
+      "key": "terms",
+      "kind": "topic",
+      "label": "名词解释专题",
+      "title": "第 1～4 章术语过关",
+      "desc": "按章归集的名词解释（第 1～4 章），主观题自评",
+      "bank": "bank/terms.json",
+      "order": 6
+    },
+    {
+      "key": "calc",
+      "kind": "topic",
+      "label": "计算专题",
+      "title": "第 1～4 章计算题",
+      "desc": "进制转换、编码运算、存储容量与传输速率计算",
+      "bank": "bank/calc.json",
+      "order": 7
+    },
+    {
+      "key": "u5",
+      "kind": "unit",
+      "label": "第五单元",
+      "title": "操作系统",
+      "desc": "第 5 章 · 操作系统概念与启动、发展与分类、四大管理功能、主流与国产系统",
+      "bank": "bank/u5.json",
+      "order": 8
+    },
+    {
+      "key": "u6",
+      "kind": "unit",
+      "label": "第六单元",
+      "title": "数据库技术",
+      "desc": "第 6 章 · 数据模型、关系数据库与基本术语、关系操作与 SQL、数据库设计",
+      "bank": "bank/u6.json",
+      "order": 9
+    },
+    {
+      "key": "u7",
+      "kind": "unit",
+      "label": "第七单元",
+      "title": "软件开发基础与软件工程",
+      "desc": "第 7 章 · 程序设计语言、编译与解释、编程范式、软件生命周期与过程模型",
+      "bank": "bank/u7.json",
+      "order": 10
+    },
+    {
+      "key": "u8",
+      "kind": "unit",
+      "label": "第八单元",
+      "title": "计算机网络",
+      "desc": "第 8 章 · 网络分类与拓扑、OSI 与 TCP/IP、IP 地址与域名、Internet 应用",
+      "bank": "bank/u8.json",
+      "order": 11
+    },
+    {
+      "key": "terms58",
+      "kind": "topic",
+      "label": "名词解释专题（第 5～8 章）",
+      "title": "第 5～8 章术语过关",
+      "desc": "按章归集的名词解释（第 5～8 章），主观题自评",
+      "bank": "bank/terms58.json",
+      "order": 12
+    },
+    {
+      "key": "final",
+      "kind": "final",
+      "label": "期末冲刺",
+      "title": "2019 真题全录与八章核心考点",
+      "desc": "2019 真题 27 题 + 分章冲刺 113 题，共 140 题；第 1～4 章与第 5～8 章各 70 题，附参考答案与解析",
+      "bank": "bank/final.json",
+      "order": 13
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

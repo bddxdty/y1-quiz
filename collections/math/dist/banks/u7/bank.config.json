@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "id": "math.u7",
+  "key": "u7",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 8 章",
+  "title": "向量代数与空间解析几何",
+  "desc": "向量的运算、平面与直线、曲面与空间曲线",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 1,
+  "types": [
+    "blank"
+  ],
+  "topics": [
+    "8.1 向量的乘积"
+  ],
+  "sources": [
+    "高等数学 A（下）测试卷（2023）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 7
+}

@@ -1,0 +1,89 @@
+{
+ "version": 1,
+ "key": "ethics",
+ "name": "思想道德与法治",
+ "typepack": "ethics",
+ "units": [
+  {
+   "key": "ch0",
+   "kind": "unit",
+   "label": "绪论",
+   "title": "担当复兴大任 成就时代新人",
+   "desc": "新时代与时代新人 · 思想道德素质与法治素养",
+   "bank": "bank/ch0.json",
+   "order": 1
+  },
+  {
+   "key": "ch1",
+   "kind": "unit",
+   "label": "第一章",
+   "title": "领悟人生真谛 把握人生方向",
+   "desc": "人生观 · 人生价值 · 个人与社会 · 创造有意义的人生",
+   "bank": "bank/ch1.json",
+   "order": 2
+  },
+  {
+   "key": "ch2",
+   "kind": "unit",
+   "label": "第二章",
+   "title": "追求远大理想 坚定崇高信念",
+   "desc": "理想与信念 · 信仰马克思主义 · 共同理想与远大理想",
+   "bank": "bank/ch2.json",
+   "order": 3
+  },
+  {
+   "key": "ch3",
+   "kind": "unit",
+   "label": "第三章",
+   "title": "继承优良传统 弘扬中国精神",
+   "desc": "中国精神 · 爱国主义 · 总体国家安全观 · 改革创新",
+   "bank": "bank/ch3.json",
+   "order": 4
+  },
+  {
+   "key": "ch4",
+   "kind": "unit",
+   "label": "第四章",
+   "title": "明确价值要求 践行价值准则",
+   "desc": "社会主义核心价值观 · 核心价值体系 · 显著特征 · 践行",
+   "bank": "bank/ch4.json",
+   "order": 5
+  },
+  {
+   "key": "ch5",
+   "kind": "unit",
+   "label": "第五章",
+   "title": "遵守道德规范 锤炼道德品格",
+   "desc": "道德的起源与本质 · 中华传统美德 · 社会公德与职业道德 · 个人品德",
+   "bank": "bank/ch5.json",
+   "order": 6
+  },
+  {
+   "key": "ch6",
+   "kind": "unit",
+   "label": "第六章",
+   "title": "学习法治思想 提升法治素养",
+   "desc": "法律的本质与运行 · 习近平法治思想 · 宪法 · 法治思维 · 权利义务",
+   "bank": "bank/ch6.json",
+   "order": 7
+  }
+ ],
+ "wrong": {
+  "exitStreak": 1
+ },
+ "mastery": {
+  "wAll": 0.4,
+  "wRecent": 0.6,
+  "recentN": 5,
+  "weakBelow": 60,
+  "solidAt": 85,
+  "solidStreak": 4,
+  "passMinQ": 4,
+  "passRate": 0.9,
+  "dueDays": [
+   1,
+   3,
+   7
+  ]
+ }
+}

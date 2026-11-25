@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学题型包",
+  "types": {
+    "single": {
+      "key": "single",
+      "label": "单选题",
+      "answerShape": "choice",
+      "judge": "exact",
+      "replay": "mask",
+      "maxOptions": 8,
+      "fault": "builtin:fact-recall",
+      "countsInMastery": true,
+      "fields": {
+        "options": "选项文本数组，2～8 项",
+        "answer": "正确项下标数组，恰好 1 项"
+      }
+    },
+    "blank": {
+      "key": "blank",
+      "label": "填空题",
+      "answerShape": "tokenList",
+      "judge": "fuzzy",
+      "replay": "text",
+      "fault": "builtin:unit-memory",
+      "countsInMastery": true,
+      "fields": {
+        "answers": "可接受答案数组，含等价写法"
+      }
+    },
+    "calc": {
+      "key": "calc",
+      "label": "计算题",
+      "answerShape": "text",
+      "judge": "rubric",
+      "replay": "text",
+      "fault": "builtin:chain-break",
+      "countsInMastery": true,
+      "fields": {
+        "ref": "参考解答文本"
+      }
+    },
+    "proof": {
+      "key": "proof",
+      "label": "证明题",
+      "answerShape": "text",
+      "judge": "rubric",
+      "replay": "text",
+      "fault": "builtin:chain-break",
+      "countsInMastery": true,
+      "fields": {
+        "ref": "参考证明文本"
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "id": "math.u4",
+  "key": "u4",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 4 章",
+  "title": "不定积分",
+  "desc": "原函数与不定积分、换元积分法、分部积分法、有理函数积分",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 4,
+  "types": [
+    "blank",
+    "calc",
+    "single"
+  ],
+  "topics": [
+    "4.1 原函数与不定积分",
+    "4.2 换元积分法",
+    "4.3 分部积分"
+  ],
+  "sources": [
+    "2023-2024-1 高等数学（基础）期中自测题"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 4
+}

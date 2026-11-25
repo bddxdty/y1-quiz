@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "id": "cs.u3",
+  "key": "u3",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第三单元",
+  "title": "计算机组成原理",
+  "desc": "第 3 章 · CPU 与存储体系、总线与外设、指令周期、冯·诺依曼结构",
+  "collection": {
+    "id": "cs",
+    "name": "计算机导论"
+  },
+  "subject": {
+    "key": "cs",
+    "name": "计算机导论",
+    "typepack": "cs"
+  },
+  "count": 86,
+  "types": [
+    "comp",
+    "fill",
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "3.1 CPU 与基本部件",
+    "3.2 存储器与地址空间",
+    "3.3 存储类型与层次结构",
+    "3.4 总线",
+    "3.5 外设与外部存储",
+    "3.6 指令与指令周期",
+    "3.7 冯·诺依曼体系结构"
+  ],
+  "sources": [
+    "计算机导论 题库合集（原站）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 3
+}

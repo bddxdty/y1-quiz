@@ -1,0 +1,1241 @@
+{
+  "version": 1,
+  "unit": "midterm",
+  "questions": [
+    {
+      "qid": "math.midterm-001",
+      "type": "single",
+      "topic": "1.6 极限的计算",
+      "diff": "易",
+      "stem": "下列极限正确的是（　）",
+      "exp": "A 是无穷小乘有界量，极限为 0；B 令 t = 1/x，化为 lim(t→0) sin t / t = 1；C、D 分子有界、分母趋于无穷，极限均为 0。",
+      "options": [
+        "lim(x→0) x·sin(1/x) = 1",
+        "lim(x→∞) x·sin(1/x) = 1",
+        "lim(x→∞) sin x / x = 1",
+        "lim(x→∞) sin 2x / x = 1"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.1",
+        "tex": {
+          "stem": "下列极限正确的是（　）",
+          "options": [
+            "$\\lim\\limits_{x\\to 0}x\\sin\\dfrac{1}{x}=1$",
+            "$\\lim\\limits_{x\\to\\infty}x\\sin\\dfrac{1}{x}=1$",
+            "$\\lim\\limits_{x\\to\\infty}\\dfrac{\\sin x}{x}=1$",
+            "$\\lim\\limits_{x\\to\\infty}\\dfrac{\\sin 2x}{x}=1$"
+          ],
+          "exp": "A 是无穷小乘有界量，极限为 $0$；B 令 $t=1/x$，化为 $\\lim\\limits_{t\\to 0}\\dfrac{\\sin t}{t}=1$；C、D 分子有界、分母趋于无穷，极限均为 $0$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-002",
+      "type": "single",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "极限 lim(x→0) (∛(1−x²) − 1) / (cos x − 1) = （　）",
+      "exp": "用等价无穷小：∛(1−x²) − 1 ~ −x²/3，cos x − 1 ~ −x²/2，比值为 (−1/3)/(−1/2) = 2/3。",
+      "options": [
+        "0",
+        "∞",
+        "2/3",
+        "−2/3"
+      ],
+      "answer": [
+        2
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.2",
+        "tex": {
+          "stem": "极限 $\\lim\\limits_{x\\to 0}\\dfrac{\\sqrt[3]{1-x^{2}}-1}{\\cos x-1}=$（　）",
+          "options": [
+            "$0$",
+            "$\\infty$",
+            "$\\dfrac{2}{3}$",
+            "$-\\dfrac{2}{3}$"
+          ],
+          "exp": "用等价无穷小：$\\sqrt[3]{1-x^{2}}-1\\sim-\\dfrac{x^{2}}{3}$，$\\cos x-1\\sim-\\dfrac{x^{2}}{2}$，比值为 $\\dfrac{-1/3}{-1/2}=\\dfrac{2}{3}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-003",
+      "type": "single",
+      "topic": "2.1 导数的概念",
+      "diff": "易",
+      "stem": "「函数 f(x) 在 x₀ 处可导」是「函数 f(x) 在 x₀ 处连续」的（　）",
+      "exp": "可导必连续，连续未必可导（如 y = |x| 在 x = 0 处），故为充分非必要条件。",
+      "options": [
+        "充分必要条件",
+        "必要非充分条件",
+        "充分非必要条件",
+        "既非充分也非必要条件"
+      ],
+      "answer": [
+        2
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.3",
+        "tex": {
+          "stem": "「函数 $f(x)$ 在 $x_{0}$ 处可导」是「函数 $f(x)$ 在 $x_{0}$ 处连续」的（　）",
+          "exp": "可导必连续，连续未必可导（如 $y=|x|$ 在 $x=0$ 处），故为充分非必要条件。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-004",
+      "type": "single",
+      "topic": "2.2 微分",
+      "diff": "中",
+      "stem": "设 y = e^(cos(1/x))，则微分 dy = （　）",
+      "exp": "dy = e^(cos(1/x))·d(cos(1/x)) = e^(cos(1/x))·(−sin(1/x))·d(1/x) = −e^(cos(1/x))·sin(1/x) d(1/x)。注意 d(1/x) = −dx/x²，故 D 的符号正好相反。",
+      "options": [
+        "−e^(cos(1/x))·sin(1/x) dx",
+        "−e^(cos(1/x))·sin(1/x) d(sin(1/x))",
+        "−e^(cos(1/x))·sin(1/x) d(1/x)",
+        "−(1/x²)·e^(cos(1/x))·sin(1/x) dx"
+      ],
+      "answer": [
+        2
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.4",
+        "tex": {
+          "stem": "设 $y=\\mathrm{e}^{\\cos\\frac{1}{x}}$，则微分 $\\mathrm{d}y=$（　）",
+          "options": [
+            "$-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}x$",
+            "$-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}\\left(\\sin\\dfrac{1}{x}\\right)$",
+            "$-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}\\left(\\dfrac{1}{x}\\right)$",
+            "$-\\dfrac{1}{x^{2}}\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}x$"
+          ],
+          "exp": "$\\mathrm{d}y=\\mathrm{e}^{\\cos\\frac{1}{x}}\\,\\mathrm{d}\\left(\\cos\\dfrac{1}{x}\\right)=\\mathrm{e}^{\\cos\\frac{1}{x}}\\left(-\\sin\\dfrac{1}{x}\\right)\\mathrm{d}\\left(\\dfrac{1}{x}\\right)=-\\mathrm{e}^{\\cos\\frac{1}{x}}\\sin\\dfrac{1}{x}\\,\\mathrm{d}\\left(\\dfrac{1}{x}\\right)$。注意 $\\mathrm{d}\\left(\\dfrac{1}{x}\\right)=-\\dfrac{\\mathrm{d}x}{x^{2}}$，故 D 的符号正好相反。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-005",
+      "type": "single",
+      "topic": "2.1 导数的概念",
+      "diff": "难",
+      "stem": "设 f(x) = { (2/3)x³，x ≤ 1 ； x²，x > 1 }，则 f(x) 在 x = 1 处（　）",
+      "exp": "左导数：lim(h→0⁻)[(2/3)(1+h)³ − 2/3]/h = 2，存在；右导数：lim(h→0⁺)[(1+h)² − 2/3]/h = lim[(1/3)/h + 2] = ∞，不存在。函数在 x = 1 处本身不连续，右导数因此发散。",
+      "options": [
+        "左、右导数都存在",
+        "左导数存在，右导数不存在",
+        "左导数不存在，右导数存在",
+        "左、右导数都不存在"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.5",
+        "tex": {
+          "stem": "设 $f(x)=\\begin{cases}\\dfrac{2}{3}x^{3}, & x\\le 1\\\\[2pt] x^{2}, & x>1\\end{cases}$，则 $f(x)$ 在 $x=1$ 处（　）",
+          "exp": "左导数：$\\lim\\limits_{h\\to 0^{-}}\\dfrac{\\frac{2}{3}(1+h)^{3}-\\frac{2}{3}}{h}=2$，存在；右导数：$\\lim\\limits_{h\\to 0^{+}}\\dfrac{(1+h)^{2}-\\frac{2}{3}}{h}=\\lim\\limits_{h\\to 0^{+}}\\left(\\dfrac{1/3}{h}+2\\right)=\\infty$，不存在。函数在 $x=1$ 处本身不连续，右导数因此发散。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-006",
+      "type": "single",
+      "topic": "3.1 拉格朗日中值定理",
+      "diff": "中",
+      "stem": "设函数 f(x) 在 [0,1] 上二阶导数大于 0，则下列关系式成立的是（　）",
+      "exp": "f″ > 0 说明 f′ 严格单调递增。由拉格朗日中值定理，f(1) − f(0) = f′(ξ)，ξ ∈ (0,1)，于是 f′(0) < f′(ξ) < f′(1)。",
+      "options": [
+        "f′(1) > f′(0) > f(1) − f(0)",
+        "f′(1) > f(1) − f(0) > f′(0)",
+        "f(1) − f(0) > f′(1) > f′(0)",
+        "f′(1) > f(0) − f(1) > f′(0)"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.6",
+        "tex": {
+          "stem": "设函数 $f(x)$ 在 $[0,1]$ 上二阶导数大于 $0$，则下列关系式成立的是（　）",
+          "options": [
+            "$f'(1)>f'(0)>f(1)-f(0)$",
+            "$f'(1)>f(1)-f(0)>f'(0)$",
+            "$f(1)-f(0)>f'(1)>f'(0)$",
+            "$f'(1)>f(0)-f(1)>f'(0)$"
+          ],
+          "exp": "$f''>0$ 说明 $f'$ 严格单调递增。由拉格朗日中值定理，$f(1)-f(0)=f'(\\xi)$，$\\xi\\in(0,1)$，于是 $f'(0)<f'(\\xi)<f'(1)$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-007",
+      "type": "single",
+      "topic": "3.4 极值与拐点",
+      "diff": "难",
+      "stem": "已知 f(x) 满足 x·f″(x) + 3x·[f′(x)]² = 1 − e⁻ˣ，若 f′(x₀) = 0（x₀ ≠ 0），则（　）",
+      "exp": "代入 f′(x₀) = 0 得 x₀·f″(x₀) = 1 − e^(−x₀)。函数 1 − e^(−x) 与 x 恒同号（x > 0 时为正，x < 0 时为负），故 x₀·f″(x₀) > 0，即 f″(x₀) > 0，f(x₀) 为极小值。",
+      "options": [
+        "f(x₀) 为 f(x) 的极大值",
+        "f(x₀) 为 f(x) 的极小值",
+        "(x₀, f(x₀)) 为拐点",
+        "f(x₀) 不是极值点，(x₀, f(x₀)) 也不是拐点"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "一.7",
+        "tex": {
+          "stem": "已知 $f(x)$ 满足 $xf''(x)+3x[f'(x)]^{2}=1-\\mathrm{e}^{-x}$，若 $f'(x_{0})=0$（$x_{0}\\ne 0$），则（　）",
+          "options": [
+            "$f(x_{0})$ 为 $f(x)$ 的极大值",
+            "$f(x_{0})$ 为 $f(x)$ 的极小值",
+            "$(x_{0},f(x_{0}))$ 为拐点",
+            "$f(x_{0})$ 不是极值点，$(x_{0},f(x_{0}))$ 也不是拐点"
+          ],
+          "exp": "代入 $f'(x_{0})=0$ 得 $x_{0}f''(x_{0})=1-\\mathrm{e}^{-x_{0}}$。函数 $1-\\mathrm{e}^{-x}$ 与 $x$ 恒同号（$x>0$ 时为正，$x<0$ 时为负），故 $x_{0}f''(x_{0})>0$，即 $f''(x_{0})>0$，$f(x_{0})$ 为极小值。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-008",
+      "type": "blank",
+      "topic": "1.5 函数的连续性",
+      "diff": "中",
+      "stem": "x = 0 是函数 f(x) = (2^(1/x) − 1)/(2^(1/x) + 1) 的 ______ 型间断点。",
+      "exp": "左极限 lim(x→0⁻) 2^(1/x) = 0，f → −1；右极限 2^(1/x) → +∞，f → 1。左右极限都存在但不相等，为跳跃间断点。",
+      "answers": [
+        "跳跃",
+        "跳跃间断点",
+        "第一类"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.1",
+        "tex": {
+          "stem": "$x=0$ 是函数 $f(x)=\\dfrac{2^{1/x}-1}{2^{1/x}+1}$ 的 ______ 型间断点。",
+          "exp": "左极限 $\\lim\\limits_{x\\to 0^{-}}2^{1/x}=0$，$f\\to-1$；右极限 $2^{1/x}\\to+\\infty$，$f\\to 1$。左右极限都存在但不相等，为跳跃间断点。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-009",
+      "type": "blank",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "lim(x→∞) ((x−1)/(x+1))^x = ______。",
+      "exp": "化为 (1 − 2/(x+1))^x，用 1^∞ 型结论：极限 = e^(lim x·(−2/(x+1))) = e⁻²。",
+      "answers": [
+        "e⁻²",
+        "e^(-2)",
+        "1/e²",
+        "e−2"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.2",
+        "tex": {
+          "stem": "$\\lim\\limits_{x\\to\\infty}\\left(\\dfrac{x-1}{x+1}\\right)^{x}=$ ______。",
+          "exp": "化为 $\\left(1-\\dfrac{2}{x+1}\\right)^{x}$，用 $1^{\\infty}$ 型结论：极限 $=\\mathrm{e}^{\\lim\\limits_{x\\to\\infty}x\\cdot\\left(-\\frac{2}{x+1}\\right)}=\\mathrm{e}^{-2}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-010",
+      "type": "blank",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "lim(x→+∞) (√(4x²+3x) − 2x) = ______。",
+      "exp": "分子有理化：(4x²+3x − 4x²)/(√(4x²+3x) + 2x) = 3x/(√(4x²+3x) + 2x) → 3/4。",
+      "answers": [
+        "3/4",
+        "0.75"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.3",
+        "tex": {
+          "stem": "$\\lim\\limits_{x\\to+\\infty}\\left(\\sqrt{4x^{2}+3x}-2x\\right)=$ ______。",
+          "exp": "分子有理化：$\\dfrac{4x^{2}+3x-4x^{2}}{\\sqrt{4x^{2}+3x}+2x}=\\dfrac{3x}{\\sqrt{4x^{2}+3x}+2x}\\to\\dfrac{3}{4}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-011",
+      "type": "blank",
+      "topic": "2.3 求导法则",
+      "diff": "中",
+      "stem": "已知 y = x^(sin x)（x > 0），则 y′ = ______。",
+      "exp": "取对数 ln y = sin x·ln x，两边求导得 y′/y = cos x·ln x + sin x/x，故 y′ = x^(sin x)(cos x·ln x + sin x/x)。",
+      "answers": [
+        "x^(sin x)·(cos x·ln x + sin x/x)",
+        "x^sinx(cosxlnx+sinx/x)",
+        "x^(sinx)*(cosx*lnx+sinx/x)"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.4",
+        "tex": {
+          "stem": "已知 $y=x^{\\sin x}$（$x>0$），则 $y'=$ ______。",
+          "answers": [
+            "$x^{\\sin x}\\left(\\cos x\\ln x+\\dfrac{\\sin x}{x}\\right)$",
+            "$x^{\\sin x}(\\cos x\\ln x+\\sin x/x)$",
+            "$x^{\\sin x}\\cdot\\left(\\cos x\\ln x+\\dfrac{\\sin x}{x}\\right)$"
+          ],
+          "exp": "取对数 $\\ln y=\\sin x\\ln x$，两边求导得 $\\dfrac{y'}{y}=\\cos x\\ln x+\\dfrac{\\sin x}{x}$，故 $y'=x^{\\sin x}\\left(\\cos x\\ln x+\\dfrac{\\sin x}{x}\\right)$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-012",
+      "type": "blank",
+      "topic": "2.3 求导法则",
+      "diff": "难",
+      "stem": "设 f(x) = x(x−1)(x−2)⋯(x−2024)，则 f′(2024) = ______。",
+      "exp": "f(x) = (x−2024)·g(x)，其中 g(x) = x(x−1)⋯(x−2023)。f′(2024) = g(2024) = 2024·2023⋯1 = 2024!。",
+      "answers": [
+        "2024!",
+        "2024 的阶乘"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.5",
+        "tex": {
+          "stem": "设 $f(x)=x(x-1)(x-2)\\cdots(x-2024)$，则 $f'(2024)=$ ______。",
+          "exp": "$f(x)=(x-2024)g(x)$，其中 $g(x)=x(x-1)\\cdots(x-2023)$。$f'(2024)=g(2024)=2024\\cdot 2023\\cdots 1=2024!$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-013",
+      "type": "blank",
+      "topic": "2.4 参数方程求导",
+      "diff": "中",
+      "stem": "已知 { x = ln(1+t) ； y = t² + 2t }，则 dy/dx = ______。",
+      "exp": "dy/dx = (dy/dt)/(dx/dt) = (2t+2)/(1/(1+t)) = 2(t+1)²。",
+      "answers": [
+        "2(t+1)²",
+        "2(t+1)^2",
+        "2(t+1)*(t+1)"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.6a",
+        "tex": {
+          "stem": "已知 $\\begin{cases}x=\\ln(1+t)\\\\ y=t^{2}+2t\\end{cases}$，则 $\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=$ ______。",
+          "exp": "$\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=\\dfrac{\\mathrm{d}y/\\mathrm{d}t}{\\mathrm{d}x/\\mathrm{d}t}=\\dfrac{2t+2}{1/(1+t)}=2(t+1)^{2}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-014",
+      "type": "blank",
+      "topic": "2.4 参数方程求导",
+      "diff": "难",
+      "stem": "已知 { x = ln(1+t) ； y = t² + 2t }，则 d²y/dx² = ______。",
+      "exp": "d²y/dx² = [d/dt(dy/dx)]/(dx/dt) = 4(t+1)·(1+t) = 4(t+1)²。",
+      "answers": [
+        "4(t+1)²",
+        "4(t+1)^2",
+        "4(t+1)*(t+1)"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.6b",
+        "tex": {
+          "stem": "已知 $\\begin{cases}x=\\ln(1+t)\\\\ y=t^{2}+2t\\end{cases}$，则 $\\dfrac{\\mathrm{d}^{2}y}{\\mathrm{d}x^{2}}=$ ______。",
+          "exp": "$\\dfrac{\\mathrm{d}^{2}y}{\\mathrm{d}x^{2}}=\\dfrac{\\frac{\\mathrm{d}}{\\mathrm{d}t}\\left(\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\right)}{\\mathrm{d}x/\\mathrm{d}t}=4(t+1)\\cdot(1+t)=4(t+1)^{2}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-015",
+      "type": "blank",
+      "topic": "2.5 隐函数求导",
+      "diff": "中",
+      "stem": "曲线 y − 1 + x·e^y = 0 在点 (0,1) 处的切线方程为 ______。",
+      "exp": "两边对 x 求导：y′ + e^y + x·e^y·y′ = 0，在 (0,1) 处得 y′(1 + 0) = −e，即 y′ = −e。切线为 y − 1 = −e(x − 0)。",
+      "answers": [
+        "y = −ex + 1",
+        "y=−ex+1",
+        "y = 1 − ex",
+        "y=1-ex"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.7",
+        "tex": {
+          "stem": "曲线 $y-1+x\\mathrm{e}^{y}=0$ 在点 $(0,1)$ 处的切线方程为 ______。",
+          "exp": "两边对 $x$ 求导：$y'+\\mathrm{e}^{y}+x\\mathrm{e}^{y}y'=0$，在 $(0,1)$ 处得 $y'(1+0)=-\\mathrm{e}$，即 $y'=-\\mathrm{e}$。切线为 $y-1=-\\mathrm{e}(x-0)$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-016",
+      "type": "blank",
+      "topic": "1.7 无穷小的比较",
+      "diff": "中",
+      "stem": "当 x→0 时，x² − a·sin x 与 x 是等价无穷小，则 a = ______。",
+      "exp": "(x² − a sin x)/x = x − a·sin x/x → −a，等价要求 −a = 1，故 a = −1。",
+      "answers": [
+        "−1",
+        "-1",
+        "负1"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.8",
+        "tex": {
+          "stem": "当 $x\\to 0$ 时，$x^{2}-a\\sin x$ 与 $x$ 是等价无穷小，则 $a=$ ______。",
+          "exp": "$\\dfrac{x^{2}-a\\sin x}{x}=x-a\\dfrac{\\sin x}{x}\\to -a$，等价要求 $-a=1$，故 $a=-1$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-017",
+      "type": "blank",
+      "topic": "3.5 渐近线",
+      "diff": "中",
+      "stem": "曲线 y = 2(x+3)sin x / (x(x−1)) 的铅直渐近线方程为 ______。",
+      "exp": "x→0 时函数趋于 2·3·1/(0−1)·(sin x/x) → −6，极限有限；x→1 时分母趋于 0 而分子趋于 8 sin 1 ≠ 0，函数发散，故 x = 1 是铅直渐近线。",
+      "answers": [
+        "x = 1",
+        "x=1"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.9",
+        "tex": {
+          "stem": "曲线 $y=\\dfrac{2(x+3)\\sin x}{x(x-1)}$ 的铅直渐近线方程为 ______。",
+          "exp": "$x\\to 0$ 时，$y=\\dfrac{2(x+3)}{x-1}\\cdot\\dfrac{\\sin x}{x}\\to\\dfrac{6}{-1}\\cdot 1=-6$，极限有限；$x\\to 1$ 时分母趋于 $0$ 而分子趋于 $8\\sin 1\\ne 0$，函数发散，故 $x=1$ 是铅直渐近线。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-018",
+      "type": "blank",
+      "topic": "3.4 极值与拐点",
+      "diff": "中",
+      "stem": "函数 y = x·e⁻ˣ 的极值点为 ______。",
+      "exp": "y′ = e⁻ˣ(1 − x)，x < 1 时 y′ > 0，x > 1 时 y′ < 0，故 x = 1 为极大值点。",
+      "answers": [
+        "x = 1",
+        "x=1",
+        "1"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.10a",
+        "tex": {
+          "stem": "函数 $y=x\\mathrm{e}^{-x}$ 的极值点为 ______。",
+          "exp": "$y'=\\mathrm{e}^{-x}(1-x)$，$x<1$ 时 $y'>0$，$x>1$ 时 $y'<0$，故 $x=1$ 为极大值点。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-019",
+      "type": "blank",
+      "topic": "3.4 极值与拐点",
+      "diff": "中",
+      "stem": "函数 y = x·e⁻ˣ 的凸区间为 ______。",
+      "exp": "y″ = e⁻ˣ(x − 2)，x < 2 时 y″ < 0，按同济教材「y″ < 0 为凸」的约定，凸区间为 (−∞, 2)。",
+      "answers": [
+        "(−∞, 2)",
+        "(-∞,2)",
+        "(-∞, 2]",
+        "(−∞,2]"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.10b",
+        "tex": {
+          "stem": "函数 $y=x\\mathrm{e}^{-x}$ 的凸区间为 ______。",
+          "exp": "$y''=\\mathrm{e}^{-x}(x-2)$，$x<2$ 时 $y''<0$，按同济教材「$y''<0$ 为凸」的约定，凸区间为 $(-\\infty,2)$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-020",
+      "type": "blank",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "lim(x→0) (1/x² − 1/(x·tan x)) = ______。",
+      "exp": "通分得 (tan x − x)/(x² tan x)。tan x − x ~ x³/3，分母 ~ x³，极限 1/3。",
+      "answers": [
+        "1/3"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.11",
+        "tex": {
+          "stem": "$\\lim\\limits_{x\\to 0}\\left(\\dfrac{1}{x^{2}}-\\dfrac{1}{x\\tan x}\\right)=$ ______。",
+          "exp": "通分得 $\\dfrac{\\tan x-x}{x^{2}\\tan x}$。$\\tan x-x\\sim\\dfrac{x^{3}}{3}$，分母 $\\sim x^{3}$，极限为 $\\dfrac{1}{3}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-021",
+      "type": "blank",
+      "topic": "3.2 单调性",
+      "diff": "难",
+      "stem": "若函数 f(x) 二阶导数存在，且 f″(x) > 0，f(0) = 0，则 F(x) = f(x)/x 在 0 < x < +∞ 上是单调 ______。",
+      "exp": "F′(x) = (x f′(x) − f(x))/x²。由拉格朗日中值定理 f(x) − f(0) = x f′(ξ)，ξ ∈ (0,x)，而 f′ 严格递增，故 f′(x) > f′(ξ)，x f′(x) − f(x) > 0，F 单调增加。",
+      "answers": [
+        "增加",
+        "递增",
+        "单调增加",
+        "单调递增"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.12",
+        "tex": {
+          "stem": "若函数 $f(x)$ 二阶导数存在，且 $f''(x)>0$，$f(0)=0$，则 $F(x)=\\dfrac{f(x)}{x}$ 在 $0<x<+\\infty$ 上是单调 ______。",
+          "exp": "$F'(x)=\\dfrac{xf'(x)-f(x)}{x^{2}}$。由拉格朗日中值定理 $f(x)-f(0)=xf'(\\xi)$，$\\xi\\in(0,x)$，而 $f'$ 严格递增，故 $f'(x)>f'(\\xi)$，$xf'(x)-f(x)>0$，$F$ 单调增加。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-022",
+      "type": "blank",
+      "topic": "3.6 泰勒公式",
+      "diff": "中",
+      "stem": "f(x) = x³ 在 x₀ = −1 处的三阶泰勒公式为 ______。",
+      "exp": "令 t = x + 1，则 x = t − 1，x³ = (t−1)³ = t³ − 3t² + 3t − 1，回代即得。三次多项式与其三阶泰勒多项式恒等，余项为 0。",
+      "answers": [
+        "x³ = −1 + 3(x+1) − 3(x+1)² + (x+1)³",
+        "x^3=-1+3(x+1)-3(x+1)^2+(x+1)^3"
+      ],
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "二.13",
+        "tex": {
+          "stem": "$f(x)=x^{3}$ 在 $x_{0}=-1$ 处的三阶泰勒公式为 ______。",
+          "answers": [
+            "$x^{3}=-1+3(x+1)-3(x+1)^{2}+(x+1)^{3}$",
+            "$x^3=-1+3(x+1)-3(x+1)^2+(x+1)^3$"
+          ],
+          "exp": "令 $t=x+1$，则 $x=t-1$，$x^{3}=(t-1)^{3}=t^{3}-3t^{2}+3t-1$，回代即得。三次多项式与其三阶泰勒多项式恒等，余项为 $0$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-023",
+      "type": "calc",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "求极限 lim(x→0) (ln(1+x) − x) / (cos x·(1 − cos x))。",
+      "exp": "先拆出极限非零的因子 1/cos x，再对剩余部分用等价无穷小 ln(1+x) − x ~ −x²/2、1 − cos x ~ x²/2，避免直接对整式用洛必达导致计算膨胀。",
+      "ref": "原式 = lim(x→0) [1/cos x]·lim(x→0) (ln(1+x) − x)/(1 − cos x)。因 1 − cos x ~ x²/2，而 ln(1+x) − x ~ −x²/2，故第二个极限为 −1；又 lim 1/cos x = 1。所以原式 = −1。",
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "三.1",
+        "tex": {
+          "stem": "求极限 $\\lim\\limits_{x\\to 0}\\dfrac{\\ln(1+x)-x}{\\cos x\\,(1-\\cos x)}$。",
+          "ref": "原式 $=\\lim\\limits_{x\\to 0}\\dfrac{1}{\\cos x}\\cdot\\lim\\limits_{x\\to 0}\\dfrac{\\ln(1+x)-x}{1-\\cos x}$。因 $1-\\cos x\\sim\\dfrac{x^{2}}{2}$，而 $\\ln(1+x)-x\\sim-\\dfrac{x^{2}}{2}$，故第二个极限为 $-1$；又 $\\lim\\limits_{x\\to 0}\\dfrac{1}{\\cos x}=1$。所以原式 $=-1$。",
+          "exp": "先拆出极限非零的因子 $\\dfrac{1}{\\cos x}$，再对剩余部分用等价无穷小 $\\ln(1+x)-x\\sim-\\dfrac{x^{2}}{2}$、$1-\\cos x\\sim\\dfrac{x^{2}}{2}$，避免直接对整式用洛必达导致计算膨胀。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-024",
+      "type": "proof",
+      "topic": "3.2 单调性",
+      "diff": "中",
+      "stem": "证明：当 x > 0 时，x − (1/2)x² < ln(1+x)。",
+      "exp": "作差构造辅助函数，用一阶导数定号证明不等式，是这类题的标准套路。关键是化简 f′ 后能直接看出符号。",
+      "ref": "令 f(x) = ln(1+x) − x + (1/2)x²，则 f(0) = 0，f′(x) = 1/(1+x) − 1 + x = x²/(1+x)。当 x > 0 时 f′(x) > 0，f 在 [0,+∞) 上单调递增，故 f(x) > f(0) = 0，即 ln(1+x) > x − x²/2。",
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "三.2",
+        "tex": {
+          "stem": "证明：当 $x>0$ 时，$x-\\dfrac{1}{2}x^{2}<\\ln(1+x)$。",
+          "ref": "令 $f(x)=\\ln(1+x)-x+\\dfrac{1}{2}x^{2}$，则 $f(0)=0$，$f'(x)=\\dfrac{1}{1+x}-1+x=\\dfrac{x^{2}}{1+x}$。当 $x>0$ 时 $f'(x)>0$，$f$ 在 $[0,+\\infty)$ 上单调递增，故 $f(x)>f(0)=0$，即 $\\ln(1+x)>x-\\dfrac{x^{2}}{2}$。",
+          "exp": "作差构造辅助函数，用一阶导数定号证明不等式，是这类题的标准套路。关键是化简 $f'$ 后能直接看出符号。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-025",
+      "type": "proof",
+      "topic": "3.1 拉格朗日中值定理",
+      "diff": "难",
+      "stem": "设函数 f(x) 在 [0,1] 上连续，在 (0,1) 内二阶可导，过两点 A(0, f(0))、B(1, f(1)) 的直线与曲线 y = f(x) 相交于点 C(c, f(c))，其中 0 < c < 1。证明：存在 ξ ∈ (0,1)，使 f″(ξ) = 0。",
+      "exp": "三个零点 → 两次罗尔。辅助函数取「曲线减弦线」，使三个已知点都成为零点。",
+      "ref": "直线 AB 的方程为 y = [f(1) − f(0)]x + f(0)。令 F(x) = f(x) − [f(1) − f(0)]x − f(0)。因 C 在直线与曲线上，F(0) = F(c) = F(1) = 0。在 [0,c] 与 [c,1] 上分别用罗尔定理，存在 ξ₁ ∈ (0,c)、ξ₂ ∈ (c,1) 使 F′(ξ₁) = F′(ξ₂) = 0。再对 F′ 在 [ξ₁, ξ₂] 上用罗尔定理，存在 ξ ∈ (ξ₁, ξ₂) ⊂ (0,1) 使 F″(ξ) = 0。而 F″ = f″，故 f″(ξ) = 0。",
+      "meta": {
+        "source": "高等数学（基础）期中测验题（2024）",
+        "paper": "mid2024",
+        "paperNo": "三.3",
+        "tex": {
+          "stem": "设函数 $f(x)$ 在 $[0,1]$ 上连续，在 $(0,1)$ 内二阶可导，过两点 $A(0,f(0))$、$B(1,f(1))$ 的直线与曲线 $y=f(x)$ 相交于点 $C(c,f(c))$，其中 $0<c<1$。证明：存在 $\\xi\\in(0,1)$，使 $f''(\\xi)=0$。",
+          "ref": "直线 $AB$ 的方程为 $y=[f(1)-f(0)]x+f(0)$。令 $F(x)=f(x)-[f(1)-f(0)]x-f(0)$。因 $C$ 既在直线上又在曲线上，$F(0)=F(c)=F(1)=0$。在 $[0,c]$ 与 $[c,1]$ 上分别用罗尔定理，存在 $\\xi_{1}\\in(0,c)$、$\\xi_{2}\\in(c,1)$ 使 $F'(\\xi_{1})=F'(\\xi_{2})=0$。再对 $F'$ 在 $[\\xi_{1},\\xi_{2}]$ 上用罗尔定理，存在 $\\xi\\in(\\xi_{1},\\xi_{2})\\subset(0,1)$ 使 $F''(\\xi)=0$。而 $F''=f''$，故 $f''(\\xi)=0$。",
+          "exp": "三个零点，两次罗尔。辅助函数取「曲线减弦线」，使三个已知点都成为零点。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-026",
+      "type": "single",
+      "topic": "1.7 无穷小的比较",
+      "diff": "易",
+      "stem": "已知 lim(x→0) f(x)/x² = 1，则当 x→0 时，f(x) 是 x 的（　）。",
+      "exp": "f(x) ~ x²，故 f(x)/x → 0，是比 x 高阶的无穷小。",
+      "options": [
+        "同阶无穷小",
+        "等价无穷小",
+        "高阶无穷小",
+        "低阶无穷小"
+      ],
+      "answer": [
+        2
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "一.1",
+        "tex": {
+          "stem": "已知 $\\lim\\limits_{x\\to 0}\\dfrac{f(x)}{x^{2}}=1$，则当 $x\\to 0$ 时，$f(x)$ 是 $x$ 的（　）。",
+          "exp": "$f(x)\\sim x^{2}$，故 $\\dfrac{f(x)}{x}\\to 0$，是比 $x$ 高阶的无穷小。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-027",
+      "type": "single",
+      "topic": "2.1 导数的概念",
+      "diff": "中",
+      "stem": "设 f(x) 为可导函数，且满足条件 lim(x→0) [f(1) − f(1−x)]/(2x) = −1，则曲线 y = f(x) 在 (1, f(1)) 处的切线斜率为（　）。",
+      "exp": "f(1) − f(1−x) ≈ f′(1)·x，故极限为 f′(1)/2 = −1，得 f′(1) = −2。",
+      "options": [
+        "−2",
+        "2",
+        "1",
+        "−1"
+      ],
+      "answer": [
+        0
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "一.2",
+        "tex": {
+          "stem": "设 $f(x)$ 为可导函数，且满足条件 $\\lim\\limits_{x\\to 0}\\dfrac{f(1)-f(1-x)}{2x}=-1$，则曲线 $y=f(x)$ 在 $(1,f(1))$ 处的切线斜率为（　）。",
+          "exp": "$f(1)-f(1-x)\\approx f'(1)\\,x$，故极限为 $\\dfrac{f'(1)}{2}=-1$，得 $f'(1)=-2$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-028",
+      "type": "single",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "在以下各式中，极限存在，但不能用洛必达法则计算的是（　）。",
+      "exp": "D 的极限为 1，但求导后 (1 + cos x)/1 当 x→∞ 时振荡无极限，洛必达法则的「导数之比有极限」这一前提不成立。A、C 可直接用洛必达；B 是 1^∞ 型，需先取对数。",
+      "options": [
+        "lim(x→0) x²/sin x",
+        "lim(x→0) (1/x)^(tan x)",
+        "lim(x→∞) xⁿ/eˣ",
+        "lim(x→∞) (x + sin x)/x"
+      ],
+      "answer": [
+        3
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "一.3",
+        "tex": {
+          "stem": "在以下各式中，极限存在，但不能用洛必达法则计算的是（　）。",
+          "options": [
+            "$\\lim\\limits_{x\\to 0}\\dfrac{x^{2}}{\\sin x}$",
+            "$\\lim\\limits_{x\\to 0}\\left(\\dfrac{1}{x}\\right)^{\\tan x}$",
+            "$\\lim\\limits_{x\\to\\infty}\\dfrac{x^{n}}{\\mathrm{e}^{x}}$",
+            "$\\lim\\limits_{x\\to\\infty}\\dfrac{x+\\sin x}{x}$"
+          ],
+          "exp": "D 的极限为 $1$，但求导后 $\\dfrac{1+\\cos x}{1}$ 当 $x\\to\\infty$ 时振荡无极限，洛必达法则「导数之比有极限」这一前提不成立。A、C 可直接用洛必达；B 是 $\\infty^{0}$ 型，需先取对数化为 $0\\cdot\\infty$ 型。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-029",
+      "type": "single",
+      "topic": "5.4 反常积分",
+      "diff": "中",
+      "stem": "下列反常积分收敛的是（　）。",
+      "exp": "p 积分 ∫₁^∞ dx/x^p 当 p > 1 时收敛，B 的 p = 3；A 的 p = 1/2 发散。C 在 x = 0 处 p = 3 > 1，发散；D 在 x = 0 处奇点，p = 1，发散。",
+      "options": [
+        "∫₁^(+∞) dx/√x",
+        "∫₁^(+∞) dx/x³",
+        "∫₀¹ dx/x³",
+        "∫₋₁¹ dx/x"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "一.4",
+        "tex": {
+          "stem": "下列反常积分收敛的是（　）。",
+          "options": [
+            "$\\displaystyle\\int_{1}^{+\\infty}\\dfrac{\\mathrm{d}x}{\\sqrt{x}}$",
+            "$\\displaystyle\\int_{1}^{+\\infty}\\dfrac{\\mathrm{d}x}{x^{3}}$",
+            "$\\displaystyle\\int_{0}^{1}\\dfrac{\\mathrm{d}x}{x^{3}}$",
+            "$\\displaystyle\\int_{-1}^{1}\\dfrac{\\mathrm{d}x}{x}$"
+          ],
+          "exp": "$p$ 积分 $\\displaystyle\\int_{1}^{+\\infty}\\dfrac{\\mathrm{d}x}{x^{p}}$ 当 $p>1$ 时收敛，B 的 $p=3$；A 的 $p=\\dfrac{1}{2}$ 发散。C 在 $x=0$ 处 $p=3>1$，发散；D 在 $x=0$ 处为奇点且 $p=1$，发散。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-030",
+      "type": "single",
+      "topic": "3.6 泰勒公式",
+      "diff": "难",
+      "stem": "函数 f(x) = x·eˣ 的带有佩亚诺型余项的 n 阶麦克劳林公式为（　）。",
+      "exp": "eˣ = 1 + x + x²/2! + ⋯ + xⁿ⁻¹/(n−1)! + o(xⁿ⁻¹)，两边乘 x 得 x·eˣ = x + x² + x³/2! + ⋯ + xⁿ/(n−1)! + o(xⁿ)。",
+      "options": [
+        "x + x²/2! + x³/3! + ⋯ + xⁿ/n! + o(xⁿ)",
+        "x + x²/1! + x³/2! + ⋯ + xⁿ/(n−2)! + o(xⁿ)",
+        "x + x²/1! + x³/2! + ⋯ + xⁿ/(n−1)! + o(xⁿ)",
+        "1 + x/1! + x²/2! + ⋯ + xⁿ/n! + o(xⁿ)"
+      ],
+      "answer": [
+        2
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "一.5",
+        "tex": {
+          "stem": "函数 $f(x)=x\\mathrm{e}^{x}$ 的带有佩亚诺型余项的 $n$ 阶麦克劳林公式为（　）。",
+          "options": [
+            "$x+\\dfrac{x^{2}}{2!}+\\dfrac{x^{3}}{3!}+\\cdots+\\dfrac{x^{n}}{n!}+o(x^{n})$",
+            "$x+\\dfrac{x^{2}}{1!}+\\dfrac{x^{3}}{2!}+\\cdots+\\dfrac{x^{n}}{(n-2)!}+o(x^{n})$",
+            "$x+\\dfrac{x^{2}}{1!}+\\dfrac{x^{3}}{2!}+\\cdots+\\dfrac{x^{n}}{(n-1)!}+o(x^{n})$",
+            "$1+\\dfrac{x}{1!}+\\dfrac{x^{2}}{2!}+\\cdots+\\dfrac{x^{n}}{n!}+o(x^{n})$"
+          ],
+          "exp": "$\\mathrm{e}^{x}=1+x+\\dfrac{x^{2}}{2!}+\\cdots+\\dfrac{x^{n-1}}{(n-1)!}+o(x^{n-1})$，两边乘 $x$ 得 $x\\mathrm{e}^{x}=x+x^{2}+\\dfrac{x^{3}}{2!}+\\cdots+\\dfrac{x^{n}}{(n-1)!}+o(x^{n})$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-031",
+      "type": "single",
+      "topic": "1.1 函数的概念",
+      "diff": "易",
+      "stem": "判断：f(x) = lg x² 与 g(x) = 2lg x 是同一函数。",
+      "exp": "f 的定义域是 x ≠ 0，g 的定义域是 x > 0，定义域不同，不是同一函数。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "二.1",
+        "tex": {
+          "stem": "判断：$f(x)=\\lg x^{2}$ 与 $g(x)=2\\lg x$ 是同一函数。",
+          "exp": "$f$ 的定义域是 $x\\ne 0$，$g$ 的定义域是 $x>0$，定义域不同，不是同一函数。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-032",
+      "type": "single",
+      "topic": "2.1 导数的概念",
+      "diff": "中",
+      "stem": "判断：若 f(x) 在点 x = x₀ 处可导，则 |f(x)| 在点 x = x₀ 处连续未必可导。",
+      "exp": "可导必连续，|f| 由连续函数复合绝对值仍连续；但如 f(x) = x 在 x₀ = 0 处，|x| 不可导。故「连续未必可导」成立。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": [
+        0
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "二.2",
+        "tex": {
+          "stem": "判断：若 $f(x)$ 在点 $x=x_{0}$ 处可导，则 $|f(x)|$ 在点 $x=x_{0}$ 处连续未必可导。",
+          "exp": "可导必连续，$|f|$ 由连续函数复合绝对值仍连续；但如 $f(x)=x$ 在 $x_{0}=0$ 处，$|x|$ 不可导。故「连续未必可导」成立。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-033",
+      "type": "single",
+      "topic": "1.2 数列的极限",
+      "diff": "易",
+      "stem": "判断：发散数列必定无界。",
+      "exp": "反例：{(−1)ⁿ} 有界但发散。收敛必有界，有界不一定收敛。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "二.3",
+        "tex": {
+          "stem": "判断：发散数列必定无界。",
+          "exp": "反例：$\\{(-1)^{n}\\}$ 有界但发散。收敛必有界，有界不一定收敛。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-034",
+      "type": "single",
+      "topic": "2.2 微分",
+      "diff": "中",
+      "stem": "判断：若 f(x) 可微，当 Δx→0 时，在点 x 处的 Δy − dy 是关于 Δx 的高阶无穷小。",
+      "exp": "这正是可微的定义：Δy = AΔx + o(Δx)，其中 AΔx 即 dy，余项 o(Δx) 是比 Δx 高阶的无穷小。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": [
+        0
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "二.4",
+        "tex": {
+          "stem": "判断：若 $f(x)$ 可微，当 $\\Delta x\\to 0$ 时，在点 $x$ 处的 $\\Delta y-\\mathrm{d}y$ 是关于 $\\Delta x$ 的高阶无穷小。",
+          "exp": "这正是可微的定义：$\\Delta y=A\\Delta x+o(\\Delta x)$，其中 $A\\Delta x$ 即 $\\mathrm{d}y$，余项 $o(\\Delta x)$ 是比 $\\Delta x$ 高阶的无穷小。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-035",
+      "type": "single",
+      "topic": "4.1 原函数与不定积分",
+      "diff": "中",
+      "stem": "判断：幂函数的原函数一定是幂函数。",
+      "exp": "反例：1/x = x⁻¹ 是幂函数，其原函数为 ln|x| + C，不是幂函数。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": [
+        1
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "二.5",
+        "tex": {
+          "stem": "判断：幂函数的原函数一定是幂函数。",
+          "exp": "反例：$\\dfrac{1}{x}=x^{-1}$ 是幂函数，其原函数为 $\\ln|x|+C$，不是幂函数。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-036",
+      "type": "blank",
+      "topic": "1.1 函数的概念",
+      "diff": "中",
+      "stem": "函数 y = (x−1)/ln x + √(16−x²) 的定义域为 ______。",
+      "exp": "需 x > 0（对数真数）、ln x ≠ 0 即 x ≠ 1、16 − x² ≥ 0 即 |x| ≤ 4，三者取交得 (0,1)∪(1,4]。",
+      "answers": [
+        "(0,1)∪(1,4]",
+        "(0,1)U(1,4]",
+        "0<x<1 或 1<x≤4"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.1",
+        "tex": {
+          "stem": "函数 $y=\\dfrac{x-1}{\\ln x}+\\sqrt{16-x^{2}}$ 的定义域为 ______。",
+          "exp": "需 $x>0$（对数真数）、$\\ln x\\ne 0$ 即 $x\\ne 1$、$16-x^{2}\\ge 0$ 即 $|x|\\le 4$，三者取交得 $(0,1)\\cup(1,4]$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-037",
+      "type": "blank",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "lim(x→0⁺) (1+x)^(ln x) = ______。",
+      "exp": "取对数：ln x·ln(1+x) ~ x·ln x → 0，故原式 = e⁰ = 1。",
+      "answers": [
+        "1"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.2",
+        "tex": {
+          "stem": "$\\lim\\limits_{x\\to 0^{+}}(1+x)^{\\ln x}=$ ______。",
+          "exp": "取对数：$\\ln x\\ln(1+x)\\sim x\\ln x\\to 0$，故原式 $=\\mathrm{e}^{0}=1$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-038",
+      "type": "blank",
+      "topic": "1.5 函数的连续性",
+      "diff": "易",
+      "stem": "x = 0 是函数 sin x / x 的 ______ 间断点。",
+      "exp": "lim(x→0) sin x / x = 1，极限存在但函数在 x = 0 无定义，属第一类可去间断点。",
+      "answers": [
+        "第一类可去",
+        "可去",
+        "可去间断点"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.3",
+        "tex": {
+          "stem": "$x=0$ 是函数 $\\dfrac{\\sin x}{x}$ 的 ______ 间断点。",
+          "exp": "$\\lim\\limits_{x\\to 0}\\dfrac{\\sin x}{x}=1$，极限存在但函数在 $x=0$ 无定义，属第一类可去间断点。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-039",
+      "type": "blank",
+      "topic": "5.3 定积分的性质",
+      "diff": "易",
+      "stem": "∫₋₁¹ x³·∛(4−x²) dx = ______。",
+      "exp": "被积函数为奇函数，积分区间对称于原点，积分值为 0。",
+      "answers": [
+        "0"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.4",
+        "tex": {
+          "stem": "$\\displaystyle\\int_{-1}^{1}x^{3}\\sqrt[3]{4-x^{2}}\\,\\mathrm{d}x=$ ______。",
+          "exp": "被积函数为奇函数，积分区间对称于原点，积分值为 $0$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-040",
+      "type": "blank",
+      "topic": "2.2 微分",
+      "diff": "中",
+      "stem": "函数 f(x) 可微，y = f(sin x) − sin f(x)，则 dy = ______。",
+      "exp": "dy = f′(sin x)·d(sin x) − cos f(x)·d f(x) = [f′(sin x)cos x − cos f(x)·f′(x)]dx。",
+      "answers": [
+        "[f′(sin x)cos x − cos f(x)·f′(x)]dx",
+        "[f'(sinx)cosx-cosf(x)*f'(x)]dx"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.5",
+        "tex": {
+          "stem": "函数 $f(x)$ 可微，$y=f(\\sin x)-\\sin f(x)$，则 $\\mathrm{d}y=$ ______。",
+          "answers": [
+            "$[f'(\\sin x)\\cos x-\\cos f(x)\\cdot f'(x)]\\,\\mathrm{d}x$"
+          ],
+          "exp": "$\\mathrm{d}y=f'(\\sin x)\\,\\mathrm{d}(\\sin x)-\\cos f(x)\\,\\mathrm{d}f(x)=[f'(\\sin x)\\cos x-\\cos f(x)f'(x)]\\,\\mathrm{d}x$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-041",
+      "type": "blank",
+      "topic": "3.5 渐近线",
+      "diff": "中",
+      "stem": "函数 y = 2x²/(x+1)² 的渐近线为 ______。",
+      "exp": "x→−1 时函数发散，x = −1 为铅直渐近线；x→∞ 时 y → 2，y = 2 为水平渐近线。",
+      "answers": [
+        "x = −1 和 y = 2",
+        "x=-1 和 y=2",
+        "x=−1,y=2",
+        "x=-1,y=2"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.6",
+        "tex": {
+          "stem": "函数 $y=\\dfrac{2x^{2}}{(x+1)^{2}}$ 的渐近线为 ______。",
+          "exp": "$x\\to-1$ 时函数发散，$x=-1$ 为铅直渐近线；$x\\to\\infty$ 时 $y\\to 2$，$y=2$ 为水平渐近线。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-042",
+      "type": "blank",
+      "topic": "4.3 分部积分",
+      "diff": "难",
+      "stem": "设 ∫x·f(x)dx = x·e^(x²) − ∫e^(x²)dx 成立，则 f(x) = ______。",
+      "exp": "两边求导：x·f(x) = e^(x²) + 2x²e^(x²) − e^(x²) = 2x²e^(x²)，故 f(x) = 2x·e^(x²)。",
+      "answers": [
+        "2x·e^(x²)",
+        "2xe^(x²)",
+        "2x*e^(x^2)"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.7",
+        "tex": {
+          "stem": "设 $\\displaystyle\\int xf(x)\\,\\mathrm{d}x=x\\mathrm{e}^{x^{2}}-\\int \\mathrm{e}^{x^{2}}\\,\\mathrm{d}x$ 成立，则 $f(x)=$ ______。",
+          "exp": "两边求导：$xf(x)=\\mathrm{e}^{x^{2}}+2x^{2}\\mathrm{e}^{x^{2}}-\\mathrm{e}^{x^{2}}=2x^{2}\\mathrm{e}^{x^{2}}$，故 $f(x)=2x\\mathrm{e}^{x^{2}}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-043",
+      "type": "blank",
+      "topic": "4.1 原函数与不定积分",
+      "diff": "难",
+      "stem": "已知函数 f(x) 连续，且 f(x) = x − ∫₀¹ f(x)dx，则函数 f(x) = ______。",
+      "exp": "设 A = ∫₀¹ f(x)dx（常数），则 f(x) = x − A，代回 A = ∫₀¹(x−A)dx = 1/2 − A，得 A = 1/4，故 f(x) = x − 1/4。",
+      "answers": [
+        "x − 1/4",
+        "x-1/4",
+        "x−0.25"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.8",
+        "tex": {
+          "stem": "已知函数 $f(x)$ 连续，且 $f(x)=x-\\displaystyle\\int_{0}^{1}f(x)\\,\\mathrm{d}x$，则函数 $f(x)=$ ______。",
+          "exp": "设 $A=\\displaystyle\\int_{0}^{1}f(x)\\,\\mathrm{d}x$（常数），则 $f(x)=x-A$，代回得 $A=\\displaystyle\\int_{0}^{1}(x-A)\\,\\mathrm{d}x=\\dfrac{1}{2}-A$，故 $A=\\dfrac{1}{4}$，$f(x)=x-\\dfrac{1}{4}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-044",
+      "type": "blank",
+      "topic": "5.5 定积分的应用",
+      "diff": "中",
+      "stem": "曲线 y = (2/3)x^(3/2) 上相应于 3 ≤ x ≤ 8 的一段弧的长度为 ______。",
+      "exp": "y′ = x^(1/2)，弧长 = ∫₃⁸√(1+x)dx = (2/3)(1+x)^(3/2)|₃⁸ = (2/3)(27 − 8) = 38/3。",
+      "answers": [
+        "38/3"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.9",
+        "tex": {
+          "stem": "曲线 $y=\\dfrac{2}{3}x^{3/2}$ 上相应于 $3\\le x\\le 8$ 的一段弧的长度为 ______。",
+          "exp": "$y'=x^{1/2}$，弧长 $=\\displaystyle\\int_{3}^{8}\\sqrt{1+x}\\,\\mathrm{d}x=\\dfrac{2}{3}(1+x)^{3/2}\\Big|_{3}^{8}=\\dfrac{2}{3}(27-8)=\\dfrac{38}{3}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-045",
+      "type": "blank",
+      "topic": "5.5 定积分的应用",
+      "diff": "易",
+      "stem": "函数 f(x) = 4 − x 在 [0,3] 上的平均值为 ______。",
+      "exp": "平均值 = (1/3)∫₀³(4−x)dx = (1/3)(12 − 9/2) = 5/2。",
+      "answers": [
+        "5/2",
+        "2.5"
+      ],
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "三.10",
+        "tex": {
+          "stem": "函数 $f(x)=4-x$ 在 $[0,3]$ 上的平均值为 ______。",
+          "exp": "平均值 $=\\dfrac{1}{3}\\displaystyle\\int_{0}^{3}(4-x)\\,\\mathrm{d}x=\\dfrac{1}{3}\\left(12-\\dfrac{9}{2}\\right)=\\dfrac{5}{2}$。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-046",
+      "type": "calc",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "若 lim(x→1) (x² + ax + b)/(1 − x) = 5，求 a、b。",
+      "exp": "「分母趋零、极限存在」推出分子必为零，是处理 0/0 型含参极限的第一步。",
+      "ref": "分母趋于 0 而极限有限，故分子在 x = 1 处必为 0：1 + a + b = 0，即 b = −1 − a。于是 x² + ax + b = x² + ax − 1 − a = (x−1)(x + 1 + a)，原式 = lim(x→1)[−(x + 1 + a)] = −(2 + a) = 5，得 a = −7，b = 6。",
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "四.1",
+        "tex": {
+          "stem": "若 $\\lim\\limits_{x\\to 1}\\dfrac{x^{2}+ax+b}{1-x}=5$，求 $a$、$b$。",
+          "ref": "分母趋于 $0$ 而极限有限，故分子在 $x=1$ 处必为 $0$：$1+a+b=0$，即 $b=-1-a$。于是 $x^{2}+ax+b=x^{2}+ax-1-a=(x-1)(x+1+a)$，原式 $=\\lim\\limits_{x\\to 1}[-(x+1+a)]=-(2+a)=5$，得 $a=-7$，$b=6$。",
+          "exp": "「分母趋零、极限存在」推出分子必为零，是处理 $\\dfrac{0}{0}$ 型含参极限的第一步。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-047",
+      "type": "calc",
+      "topic": "1.6 极限的计算",
+      "diff": "中",
+      "stem": "求 lim(x→0) (1/x² − 1/(x·sin x))。",
+      "exp": "先通分化为 0/0 型，再用等价无穷小替换，避免洛必达的高阶求导。",
+      "ref": "通分得 (sin x − x)/(x² sin x)。sin x − x ~ −x³/6，分母 x² sin x ~ x³，故极限为 −1/6。",
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "四.2",
+        "tex": {
+          "stem": "求 $\\lim\\limits_{x\\to 0}\\left(\\dfrac{1}{x^{2}}-\\dfrac{1}{x\\sin x}\\right)$。",
+          "ref": "通分得 $\\dfrac{\\sin x-x}{x^{2}\\sin x}$。$\\sin x-x\\sim-\\dfrac{x^{3}}{6}$，分母 $x^{2}\\sin x\\sim x^{3}$，故极限为 $-\\dfrac{1}{6}$。",
+          "exp": "先通分化为 $\\dfrac{0}{0}$ 型，再用等价无穷小替换，避免洛必达的高阶求导。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-048",
+      "type": "calc",
+      "topic": "2.5 隐函数求导",
+      "diff": "中",
+      "stem": "设函数 y = y(x) 由方程 ln(x² + y) = x³y + sin x 确定，求 dy/dx 在 x = 0 处的值。",
+      "exp": "隐函数求导先求函数值再代点，能省掉整理 y′ 表达式的步骤。",
+      "ref": "x = 0 时由原方程得 ln y = 0，故 y = 1。两边对 x 求导：(2x + y′)/(x² + y) = 3x²y + x³y′ + cos x。代入 x = 0、y = 1 得 y′/1 = 0 + 0 + 1，即 y′ = 1。",
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "四.3",
+        "tex": {
+          "stem": "设函数 $y=y(x)$ 由方程 $\\ln(x^{2}+y)=x^{3}y+\\sin x$ 确定，求 $\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}$ 在 $x=0$ 处的值。",
+          "ref": "$x=0$ 时由原方程得 $\\ln y=0$，故 $y=1$。两边对 $x$ 求导：$\\dfrac{2x+y'}{x^{2}+y}=3x^{2}y+x^{3}y'+\\cos x$。代入 $x=0$、$y=1$ 得 $\\dfrac{y'}{1}=0+0+1$，即 $y'=1$。",
+          "exp": "隐函数求导先求函数值再代点，能省掉整理 $y'$ 表达式的步骤。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-049",
+      "type": "calc",
+      "topic": "4.2 换元积分法",
+      "diff": "中",
+      "stem": "求 ∫ (2x + 1)/(x² + 2x + 5) dx。",
+      "exp": "有理函数积分标准两步：分子拆出分母的导数，余项配方后用反正切。",
+      "ref": "拆成 ∫(2x+2)/(x²+2x+5)dx − ∫1/(x²+2x+5)dx。前者凑微分得 ln(x²+2x+5)；后者配方为 (x+1)² + 2²，积分为 (1/2)arctan((x+1)/2)。故原式 = ln(x²+2x+5) − (1/2)arctan((x+1)/2) + C。",
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "四.4",
+        "tex": {
+          "stem": "求 $\\displaystyle\\int\\dfrac{2x+1}{x^{2}+2x+5}\\,\\mathrm{d}x$。",
+          "ref": "拆成 $\\displaystyle\\int\\dfrac{2x+2}{x^{2}+2x+5}\\,\\mathrm{d}x-\\int\\dfrac{\\mathrm{d}x}{x^{2}+2x+5}$。前者凑微分得 $\\ln(x^{2}+2x+5)$；后者配方为 $(x+1)^{2}+2^{2}$，积分为 $\\dfrac{1}{2}\\arctan\\dfrac{x+1}{2}$。故原式 $=\\ln(x^{2}+2x+5)-\\dfrac{1}{2}\\arctan\\dfrac{x+1}{2}+C$。",
+          "exp": "有理函数积分标准两步：分子拆出分母的导数，余项配方后用反正切。"
+        }
+      },
+      "_unit": "midterm"
+    },
+    {
+      "qid": "math.midterm-050",
+      "type": "calc",
+      "topic": "3.4 极值与拐点",
+      "diff": "难",
+      "stem": "已知函数 y = x³/(x−1)²，求（1）函数的单调区间及极值；（2）函数图形的凹凸区间及拐点。",
+      "exp": "先求 y′ 定单调与极值，再求 y″ 定凹凸与拐点。注意 x = 1 不在定义域内，区间要在 1 处断开。",
+      "ref": "定义域 (−∞,1)∪(1,+∞)。y′ = x²(x−3)/(x−1)³，故单调增区间 (−∞,1)、[3,+∞)，单调减区间 [1,3]，极小值 y(3) = 27/4（x = 0 处 y′ = 0 但两侧同号，非极值）。y″ = 6x/(x−1)⁴，x < 0 时 y″ < 0（凸），0 < x < 1 与 x > 1 时 y″ > 0（凹），拐点为 (0,0)。",
+      "meta": {
+        "source": "2023-2024-1 高等数学（基础）期中自测题",
+        "paper": "mid2023selftest",
+        "paperNo": "四.5",
+        "tex": {
+          "stem": "已知函数 $y=\\dfrac{x^{3}}{(x-1)^{2}}$，求（1）函数的单调区间及极值；（2）函数图形的凹凸区间及拐点。",
+          "ref": "定义域 $(-\\infty,1)\\cup(1,+\\infty)$。$y'=\\dfrac{x^{2}(x-3)}{(x-1)^{3}}$，故单调增区间 $(-\\infty,1)$、$[3,+\\infty)$，单调减区间 $[1,3]$，极小值 $y(3)=\\dfrac{27}{4}$（$x=0$ 处 $y'=0$ 但两侧同号，非极值）。$y''=\\dfrac{6x}{(x-1)^{4}}$，$x<0$ 时 $y''<0$（凸），$0<x<1$ 与 $x>1$ 时 $y''>0$（凹），拐点为 $(0,0)$。",
+          "exp": "先求 $y'$ 定单调与极值，再求 $y''$ 定凹凸与拐点。注意 $x=1$ 不在定义域内，区间要在 $1$ 处断开。"
+        }
+      },
+      "_unit": "midterm"
+    }
+  ]
+}

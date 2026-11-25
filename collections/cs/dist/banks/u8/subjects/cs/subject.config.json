@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "cs",
+  "name": "计算机导论",
+  "typepack": "cs",
+  "units": [
+    {
+      "key": "u8",
+      "kind": "unit",
+      "label": "第八单元",
+      "title": "计算机网络",
+      "desc": "第 8 章 · 网络分类与拓扑、OSI 与 TCP/IP、IP 地址与域名、Internet 应用",
+      "bank": "bank/u8.json",
+      "order": 11
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>计算机导论题库集</title>
+<style>/* qb-index.css — 入口页样式（与 qb-page.css 共用变量） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef;
+  --bad:#b42318; --bad-soft:#fdecea;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 18px 72px}
+
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:18px}
+.top h1{font-size:24px;margin:0;letter-spacing:.3px}
+.top .sub{color:var(--muted);font-size:13.5px;margin-top:4px}
+.top .spacer{flex:1}
+.back{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.back:hover{color:var(--accent);border-color:#c7dbff}
+
+#sum{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:#fff;border:1px solid var(--line);
+  border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px;margin-bottom:18px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:20px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+
+#groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
+.card{
+  display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:15px 16px 13px;transition:.16s;color:inherit
+}
+.card:hover{border-color:#c7dbff;box-shadow:0 2px 4px rgba(16,24,40,.05),0 12px 30px rgba(47,111,237,.10);transform:translateY(-1px)}
+.card-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card-kind{font-size:11.5px;padding:2px 8px;border-radius:999px;white-space:nowrap;border:1px solid var(--line);color:var(--muted);background:#fafbfd}
+.k-unit{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.k-midterm{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.k-final{color:var(--bad);border-color:#f6c9c4;background:var(--bad-soft)}
+.k-subject{color:var(--ok);border-color:#b7e6cf;background:var(--ok-soft)}
+.card-title{font-size:16px;font-weight:650}
+.card-sub{font-size:12.5px;color:var(--muted2);margin-top:4px}
+.card-desc{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.6}
+.card-nums{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted2);margin-top:11px;font-variant-numeric:tabular-nums}
+.card-nums .n-bad{color:var(--bad)}
+.card-nums .n-fav{color:var(--warn)}
+.card-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:9px;overflow:hidden}
+.card-bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:24px;line-height:1.9}
+
+@media (max-width:640px){
+  .wrap{padding:16px 12px 60px}
+  #sum{grid-template-columns:repeat(2,1fr)}
+  #groups{grid-template-columns:1fr}
+  .top h1{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">计算机导论题库集</h1>
+      <div class="sub" id="site-sub">八个单元 + 期中冲刺 + 期末冲刺（2019 真题 27 题 + 分章 113 题）+ 名词解释与计算专题，共 13 个独立题库。</div>
+    </div>
+    <div class="spacer"></div>
+    <a class="back" id="back" href="#">返回</a>
+  </div>
+  <div id="sum"></div>
+  <div id="groups"></div>
+  <div class="foot">题库集 cs · 13 个独立题库 · 去重后 1233 题 · 构建于 2026-11-25 23:29</div>
+</div>
+<script>window.QB_INDEX={"title":"计算机导论题库集","subtitle":"八个单元 + 期中冲刺 + 期末冲刺（2019 真题 27 题 + 分章 113 题）+ 名词解释与计算专题，共 13 个独立题库。","back":{"href":"../../../index.html","label":"返回大一题库"},"groups":[{"key":"u1","kind":"unit","kindLabel":"单元","label":"第一单元","title":"初识计算机","desc":"第 1 章 · 计算机发展史、分类与应用、信息与数据表示基础","order":1,"href":"banks/u1/index.html","gids":["g7b36b9f9","geb76ff8a","g5604cb4e","gbbf40dfe","g53d3c631","gc8006e41","gdde89a21","gffcece9c","gbf4af0af","gf58d538b","g986a45cb","g16fafab6","g390c53cf","gd341e104","g5caa97bb","g63505a11","g262242e2","g53357d53","g15895c5a","gb37205e6","ga8ff66f5","gf78a1598","g2312f909","gd84ac421","g531e9c29","g11a301b7","g9182d1cb","g5ac960f1","g879fc5c7","g7d406c09","ge31b0414","ga0a1269f","gd6d7ba22","g96ce59ac","g1d239cea","g40f44857","g039b0e40","g2f3b78a4","g01c4cc52","g8a075482","g60a43282","gc2a5be02","g429eefc9","g9336931d","g1ca6d6e6","g3929ecd5","g6973d129","g3abb4969","ge0a933a7","gb120c052","g7d8fc4da","g1b380426","g97d834a5","g741c176d","gf4dc7861","g1235df51","g4f107c97","g8fdb65e0","g698ac205","ge61b55d3","g667cadf8","gabc70a0d","g77e9b112","g445ffe28","g16cd76e7","gb3fdad90","gcb5ba655","gd0d46845","g54bc7b55"]},{"key":"u2","kind":"unit","kindLabel":"单元","label":"第二单元","title":"计算机中数的表示与存储","desc":"第 2 章 · 进制转换、整数与浮点编码、算术与逻辑运算","order":2,"href":"banks/u2/index.html","gids":["gf6075fe1","g25a2682d","g057bd0db","g3b63256f","gbfab8367","g03aab32a","gb636e3f9","g3dcab7a9","g614ccd92","g884fb846","ge937909f","g11f716f7","g8ec3308b","g1a5f3cef","g96f701f5","g242e98e4","ge2157664","gf18eec25","g8e96cd21","gf0386650","g09d71ed5","g92ff9098","g064ea04e","gc83c3a94","g4af76b06","g3da490b9","g0808d4bc","ge3203fc6","g6fa225e2","g7c9f9f44","g4a2157b0","g25025c87","g104b192e","ge7adff58","ga387e22f","gfa59440f","g08e3bcf7","ge01cfa65","g6dea2267","g13218d7e","g65e9e0ef","g79d528ac","g599a0546","g2517f440","ga595f820","gcf460211","g9f71e789","gb01e3f0c","g1eb06575","gb8113912","g807c5984","gdcf4f1fb","gd2696c88","gfa8310ce","gf2f53cbe","g7b98981e","g076213f8","g7e6a6487","g6b2e2652","g87551d5d","g19b18cab","gfcdcdb65","g6ddcc1a3","g94b7ac42","g5ac2baaf","gb7b5b440","g2b0e7157","g0bab589f","g7ad36dda","gb6546538","g81b30939","g9f373780","g48a39971","gc1a4a843","g480becd5","gf72b0129","g9d028d5b","g2916ada0","g04845edf","gab29a6c0","g40a8aff0","g8b4113dc","g1c55697c","g9ea354eb","geb042c04","ga75a360b","gb9126faa","g30861bf5","g07275d63","g53b65631","g271e0878","g29dcf4e5","g25945d4b","gc163bcf5","g6be7fbfc","gfed7562f","ge830a02d","gd76932b5","g02c72447","ge3ee2ce1","gcb43c1d8","gaff8d526","g6777446a","g6b0f5484","g7b16fc75","gb9384f7a","g65b101b4","ge86d921c","g0502c34c","g5552c324","g1fcbdb63","g4d9794e4","g0709c199","gc65f1f04","ge46f101d"]},{"key":"u3","kind":"unit","kindLabel":"单元","label":"第三单元","title":"计算机组成原理","desc":"第 3 章 · CPU 与存储体系、总线与外设、指令周期、冯·诺依曼结构","order":3,"href":"banks/u3/index.html","gids":["g047c30f7","g3548609e","g3abb81aa","g5cb03c59","g755a072d","g0b5ee65f","gafff9c1a","g30fefd34","gdc0ad1a0","gb554f7ff","g9cb28e54","g58ce5356","g11ffb230","g64ca99d0","gd01d8957","ga192474e","gbad3e88e","g1eac9fdd","g45a1cb22","ge489ee95","g28737307","g99d841f4","g3ae29aa4","gee5a9af5","ga463db95","g2d14a96b","g19c5b86c","gfc497e47","g860dfe6f","gd52b6854","g5f2b382f","g81ed9139","g784b3f52","g0942dc38","g1cd7a593","g6d667048","g5d049ec5","g4da8a56b","gcb81d309","gd36e2b50","ga15b5260","gf00b39f7","ge0efc098","g27daa553","g521ec2c4","g87982a59","g36df1844","gc6ed8228","ge5d73644","g45556f93","g53e5df5a","g9131eaab","g18182317","gdf2d5991","gaac5c5a6","ge8c98d9d","g1b90f280","ge5d10cc9","gc2f7c458","g21672a80","ge829ef5e","g61883d92","gd88b8337","g86c30186","g723d03a0","gd124800f","gdc5a8de4","g0ce2855c","gf7183600","g7d8225db","g0bca8c14","gf2788df2","gd7ec85c4","gaf39f94d","gd9c02349","ge6b8955b","gd7ebc6e3","g9735b846","gd67600a0","g6b12c7a9","g7856223d","g91477aa8","g72c273ea","g39fcc785","g1d0267b8","g9e1ccec7"]},{"key":"u4","kind":"unit","kindLabel":"单元","label":"第四单元","title":"数据结构与算法","desc":"第 4 章 · 数组与链表、栈与队列、树与图、排序查找与递归","order":4,"href":"banks/u4/index.html","gids":["g4698a807","g606e7360","gefda3600","gcdb48269","g4fd7aefd","g06618860","g3484ce2c","g9013f833","gcc6c9698","g31f473ec","ga3c2551e","ga1c46d58","g9af476c8","gbb32c34f","g82231fdb","gb5f99f65","g751c3602","gd62ba5b7","gf870b686","g6e0ace30","g1a11f037","g377569ba","g005091ce","gf69b61b9","gdb7f9796","g0a829bba","g34e2ec81","g046909de","g392c3158","gb7b9c6a2","g1c82c70d","g0b383d9f","g8bccef7d","g20dd6ab5","g0754abd4","g9b86128e","g4bccab8d","g648df109","gcdf615a9","gf1d07828","g063bb02f","g90e5d869","g4803ead2","gca51813d","g9b90dd7c","g211dd90c","ga27b8728","gcf26d826","g97305b12","gc8c0be9f","gd18a7cc5","gf5f8c466","gbba38e34","g21a306a6","g0bb1ca08","g4fce4e00","g70c0d310","g16b5af71","g141d2034","g66273e63","gec1951de","gbf9c9d24","g0295fbc8","g0b510d14","g79e288b6","gd6b25d8b","g232fbc3b","g1a5c00e3","g34d0fc7d","g0ce7771b","gba7db737","g4bf631a0","g182e9cf3","ge8028d8f","gba8a3f81","g85a7aaca","g9834532e","gb3578cce","ged935acf","g4d3521a3","g65393667","ge7a49d7a","g62d2d2ad","gca252dd3","g34809955","g199ca519","gb44e9b2c","gffe1f78d","g256838a9","ga30571f5","gb1a66859","g859b1a44","g83f7c550","g47a3938d","gcfbc632d","ge5c0fd78","gb166ee1b","g3fe03929","g5944ee4a","g87a21103","g29dea8c8","gab893cb0","g9084d7af","g72f2d960","g05585003","gd6b12c60","gd3a885f5","gb06aad8a","g3ac4e044","ge26a99c7","g69fbd3f3","gd1e91b9a","gbad355af","g6156937f","gc4976239","g6cf9a331","g88bba261","g1683ddfe","g91329588","g4ce1266f","ge1a1df3b","g2a422c82","g8966d5ad","g575d9b24","g8f652ab8","g1ef33c40"]},{"key":"u5","kind":"unit","kindLabel":"单元","label":"第五单元","title":"操作系统","desc":"第 5 章 · 操作系统概念与启动、发展与分类、四大管理功能、主流与国产系统","order":8,"href":"banks/u5/index.html","gids":["gf935d0a1","g52b8e1a1","geea6ca11","g8c425be2","g23383ddf","g58d50319","ge4deaeff","g548548b3","gf3fbd0f0","g0f6d9de5","g9983d61e","gef65b67f","g7aac1ab7","gbf747999","g908ff632","g00c800bb","g29aefcc5","g66b3406f","gfc333988","gd4fe666a","g17b22100","g1fc34e26","g28f088b3","g25a358f4","gb71bd484","gec30ec1f","g1def4d3d","gc3f6842f","g0e31eea2","g4726273a","g9fffd27c","ga5c118b0","g46bd69b0","g239dfa7f","gd98a97d7","g27e1906f","ga5c863a2","gd254d10f","gdd560391","gd2d4f461","ge3206fb6","g90fa4f82","gea5051a6","gb883dd01","g6d226542","g94e4e3ea","gd2d3f445","g77b6a846","g5bd50165","g383aab82","g834ef7a5","g7985dce3","gb58d4317","g81f96778","g22ecf364","g86000d91","g259c170c","gfc38f49a","g71c4455a","g4f37e387","g70dfd539","gc5c5b7f5","gc89a0730","g10b41190","g9ded027e","g75627128","gb58b3a9b","gaff06362","g2de7ff2e","gcacaa77c","gf8f10dc3","g8c7e1dce","g1487e553","g1ee0767d","gf96a456f","g6e3a40c6","g34b48f9b","ge63963a7","ge36ecefb","g92008e36","geb7eb57d","g751645c8","ge94124da","gfdda41ff","g79f1b19b","gcf32fa8b","g3428db12","g8858e799","g20a855ce","gf022522b","g031a2ba4","ge589a257","g2bac2dd7","gbc4fdd29","gbfe5f248","gbb0df6c3","gba3d7699","g7c32036b","gf085df40","g7ff78144"]},{"key":"u6","kind":"unit","kindLabel":"单元","label":"第六单元","title":"数据库技术","desc":"第 6 章 · 数据模型、关系数据库与基本术语、关系操作与 SQL、数据库设计","order":9,"href":"banks/u6/index.html","gids":["g364e2ca0","g5574fc0b","g5760a939","gdd4a294d","g8644b80e","g2f65df33","g20dfb8f3","g9c68309f","gbccde705","gd42dd1aa","g67a08e97","g4b143706","gb7f41124","ga9c3b933","gc3dec284","gbec66549","gae5c6134","g97f0a83b","ga859d4a4","gb2dc3884","ga3396296","g1c686085","g6c33c990","g39b8679f","g81bf95b7","g0d271157","g62c630ab","g79cb7262","g0ed945bf","gbb19f36f","gd3669d3f","gb5b3e688","g7d7ee56c","g87a782d9","g4ea93f7a","g751066a5","gb0b2e9b3","ga49524ae","g548def89","g6fe23e8e","gb1f8d702","g9ddbcbd0","g30957a2a","g2783978a","gf6a70765","gd20e8494","gd9363d46","g6f746810","g8ac98223","g13cd915e","g8b693cc6","g0ff5718b","g2e1ab98f","gd527f5a6","g53d11445","g3f1f9125","g26fb92fe","gc1949df6","g705f29cf","ge02c998d","ged3739cb","g49a2d102","g1eb56166","g4603aec4","g68488780","g6977fc4c","ga8f8ebea","g23995cac","ge6d96aaf","g0b0785de","g93b5b5ae","g1371ca57","g8a20a636","g12fa5864","g06ed68df","g3150b1ac","g90615c4d","gc00c98f3","g2de65d70","g619c85be","g35b47564","g27fc97d6","g65c056aa","gf13f193d","g34be7961","g9c403606","g2f40610e","gcb106dd6","g3c312936","g97a49c34","gf6bc08d9","g4acf98f1","ge2182c54","g906ad220","g82b8cf07","g5f5afb99","g7754f051","gd48c18fa","gc9ed4e07","ga76c2311"]},{"key":"u7","kind":"unit","kindLabel":"单元","label":"第七单元","title":"软件开发基础与软件工程","desc":"第 7 章 · 程序设计语言、编译与解释、编程范式、软件生命周期与过程模型","order":10,"href":"banks/u7/index.html","gids":["g84621cc2","gd33c46fb","gbbf4d994","g2fba926b","g6f0a8339","g2359dc90","g5d8142bb","gcda68b56","g32168d2c","g21f3ac55","gdc8e9bd7","g498a01d0","g342bb6d8","gc653f918","gdac677a6","gdf5de807","gbc1099d6","gd9f7b8a5","gebd271a2","g86fc77ff","gab894684","gb0379923","g788208f2","g1dbf987a","gd1aa6ef1","g812e0e95","g8f75a681","g6f15a1dc","g188d142a","g27ccced1","gd8f6a68e","g8ae75243","ga3c5872e","gbf14c24b","gee7d07b2","gc96cf649","g8b0655b2","g8259ad78","g55cb6e19","g3a01b923","gaa925f5c","g3278fcf5","g893f98e3","gad878cc0","gdb3694a6","gf8f066d5","g646b82d3","g9834ecca","g6c2a0844","gbaccfdfa","g273ad52b","ge8255e15","gf01923b1","g7df72076","g3ea73e5c","gbe3879ae","g8dde7b4e","g519cf2ec","g2ea96766","g190c2b31","gc561cc40","g842eccc7","g6d334def","gcc706093","g5b548e79","g38181fb9","g613c072b","g7b70cc45","gc5f9a766","gfbf3967e","g4951c619","gda0c60c0","g907b1f18","gd389f7bd","g092ec92d","gaa144d51","g13940466","gb2051f4f","g748ecd8d","gf98e4df5","g2c274ab3","g92b45a8b","ge4ef4c7e","g8f2bdfed","gb83464b4","gb4330433","g4812c6d2","g0942a45c","g8a4c6875","g6122d77b","gfecc02ca","ge8006d3c"]},{"key":"u8","kind":"unit","kindLabel":"单元","label":"第八单元","title":"计算机网络","desc":"第 8 章 · 网络分类与拓扑、OSI 与 TCP/IP、IP 地址与域名、Internet 应用","order":11,"href":"banks/u8/index.html","gids":["g8a19b658","gcd1845a2","g89f8561a","ge978d438","gc5af59fa","gfce0fb3e","ge17475e6","g86df50a7","gf1edce77","g3baa6712","g3b8d965c","gf0e85e95","g2dcd9a1f","ga276eac1","gbecb215f","ged38f116","gc450fdfe","g77d8bf47","g4c2d8806","gb0a06d05","g088cf6d0","g57570373","gb342a65d","gd10ddac7","g527fd5c8","g2a9498ee","gf25d89ef","g59c979ca","g9566b46e","ge0cf6c69","ga393cec7","gb524b4a6","gee959d2d","gf0a6bfbf","g8fb5b14f","g697fb618","gb1456986","g7e911e16","g3c038ad5","gaec103b0","g2c674b55","gf02ef848","g33711178","gacf4f246","gb1a8bd74","g8c0f6047","ga534b835","g1ee23efd","g04ab999d","gb5b68065","g02b93582","g55dad198","g5db31cd8","g32dfc0b2","g9718d3b9","gefd62de0","g918f61ed","g158aa06f","g00d24d83","gcedbd423","g77da6a73","g2b6417f9","gc5c3da30","g9fc69d95","ge4c1d368","g628df15f","gddb99436","g6333df1d","gbcb8ebf2","gdb9a18ab","g4fa68a60","g69f8caf1","g040e28d2","gad4a45d4","ge325afd7","gf24fa186","ga815aeca","g3d1bd527","ged81e4b4","g3b764cbc","g6178ece0","gff8841d4","g1502082d","g2753bfa1","g2f074350","g4b93b055","g3574828a","gd3c8c48b","gb36d64d1","gb54cc99e","g4935a29f","g3a580416","geb8ca501","g164f1fdf","g2544f8e6","g693767b0","g47d5cf31","gc25b1cd4","gd9d1e859","gd48f8c4d","ge19aaffb","gbe7de046","ga9fccf00","ga00ec99a","g7a7b9722","gb0db6651","g10029c4e","g42aabd56"]},{"key":"exam","kind":"midterm","kindLabel":"期中","label":"期中冲刺","title":"往年真题与高频考点","desc":"第 1～2 章为主，覆盖期中考试题型与高频考点","order":5,"href":"banks/exam/index.html","gids":["gf6e5088a","geb76ff8a","g17cbd5c5","gb5b3c1d7","gc8006e41","g9dfc35fa","g0d3e065f","gbbf40dfe","gd6016c4c","g610c5d97","gac20c821","gb614020b","g16fafab6","g320fd4bc","g922fe37c","g429eefc9","g91bcb19a","g71eff3b9","g7861653f","g9167561f","g72c6c698","g7d8fc4da","g87f7bc15","g1d18be7d","g682de451","ge5ee3a97","g0ee384cf","g425fe1ac","g47481aa2","g6de15ca0","g61f7ca7a","g6ce6ac6a","g61ee0c2d","gf7590d49","g5b7f5f97","gdea56c0e","g0301f0ad","g5c15e249","g7d85ae14","gbc551597","g68a3ca15","ge380db07","g9b358884","g1d769e69","gbb06b2bf","gf2fe26f3","g68496199","g78a0064e","g5545c120","gc17fc744","g367dd129","ga58c3d48","gdf702ad2","gf124bf86","g8c49adb8","g7c4f8a73","gec43edc2","g0c7afa3a","g4c41a4c4","gd1182805","ge5f204d3","g813692ab","g4b988942","g88ca27ce","g96c798b4","g48496d3f","gd5192563","g663b0242","g853ea0c6","g83cf961a","gf7bf2063","g84d05d74","gaeb1b19a","g618382e1","g6a223f53","g9544d813","gcb820abe","g386fe161","g9a0c591e","g98ee8bf6","gb4cc71ae","gd3780423","g11f35851","g2787f399","g039071a6","g12ae5152","g3683f7d2","g7f88c332","gf7220fe0","gc88218a7","g4bbd0c01","g72f27294","g5c933d6a","gbd02801c","geda4707a","gd3b39057","gb80adaa9","ge992ed26","ged75ac2f","gfe4e26d0","g590d6513","gee4ff3c3","g91990fcb","gad3d4a4e","ge1b977c3","g50dfd45b","g5e39de6b","g395d0208","g44055549","g5893523c","gc75d4eb6","g7ec741bb","g56a85716","g63d28a27","g69b42f55","gb78a12eb","gd22cf7e4","gea2300ee"]},{"key":"final","kind":"final","kindLabel":"期末","label":"期末冲刺","title":"2019 真题全录与八章核心考点","desc":"2019 真题 27 题 + 分章冲刺 113 题，共 140 题；第 1～4 章与第 5～8 章各 70 题，附参考答案与解析","order":13,"href":"banks/final/index.html","gids":["g83d71aaf","gdf973479","gd26be9fe","gb43758a8","g5d91321d","g807ecb9a","g1e9c8109","g0c72c143","gff36502d","geaa873fa","ge2cc0861","g175b04f1","g94923f81","g45ea723b","g160fd7f6","gaeaac5fa","g76d20b37","g38010e58","g0f5cb299","gc34a0014","gbafb48de","g76e069ce","g677da40a","gc644d6b2","g994cb161","g5c53c415","g98b8dc39","g59504006","g30ffb51d","gf914e4b8","g273a413c","g56cb2d18","gd57573dc","g93120e2d","gafc23d42","gd7794306","ge64b5513","g101259e8","g8c49adb8","gdda65693","g307a433d","g121443c7","g0301f0ad","g1c770280","gef83dfc1","g1449e75e","g9ef37883","g3258bb75","gc9ff951a","g3c1e2d4e","gc394723f","gb4c85102","ge0e82f2c","g9b9efa1f","gdd3e7164","gd57d25df","ge08d13f7","ge1b977c3","gfc939473","ged75ac2f","g33dbbc0c","gc257631e","g6061e833","g0659988f","gab6142a6","g6e0a2de3","gbc9019f3","gf2865e72","g0f3667a6","g4733567b","g4756de4b","g9038541f","g33b09a4c","g4cec8c5b","ga4df5768","g7e8d736d","g562de47b","g69db51e9","g008c79c1","gc7c536e9","gd31ec5c1","gaa4d6e86","ge3ec0196","g2c37b1ab","gba2848cd","g47950c2d","gc119ce97","gb17411e5","g1a8b2fd6","g57edd025","g8eaa856b","gc2dd9d7b","gb5b63262","g3dd95916","g63190b8d","g118c8226","g957c6da8","g7b2d0be3","geb433cff","g04e4005a","g8b9c0ebd","g44b32dd2","g18db568f","g8b77fbc7","gd8384ee9","g7007532c","ga9345400","ge3c0f644","gcd9d07c0","gd1ef7aed","g9cf809c3","g16ee5adc","g4bf0888a","g18446003","gd5f823c1","gc84e3c86","gb905f92a","g25fd5d89","g89c0b3dc","gc2baf00f","ge8ba4a9c","g2a2ab0d3","gf1c9a9e1","ge3c1fb9f","g15a5bd1e","g3e78065d","g3c112db8","gbc4ef69e","gfc0e63b5","g3c0849a3","ga5233d36","gbe7d8c08","g572106e5","g8477937b","g1aafa51d","g68c5554b","g2cf2263f","g79917188","g2806c93f","gc36acde4"]},{"key":"terms","kind":"topic","kindLabel":"专题","label":"名词解释专题","title":"第 1～4 章术语过关","desc":"按章归集的名词解释（第 1～4 章），主观题自评","order":6,"href":"banks/terms/index.html","gids":["g47bded58","gb61ea4d7","g38673333","g0546a8ed","gdec61e9c","gfad58297","gd46cd534","g59e9d96e","g7635907b","g331361d7","g565098d8","gd46bab12","gab8da80f","gcc1b5ae7","g061e9883","g7a4b0770","g83364f6e","g8971840e","g1567916c","g31627dbf","gebe9d47b","ga84b35e2","g4ace2010","g7a9276ff","ga98d73a6","g9058b4d2","ge4cf7f1b","g8ce1b9bd","g0eadbcd8","g0a4c6e4d","g7218c103","g271b3f51","g34f73ddb","g2e377cef","geafd4f2b","gd896823e","g21c0302f","gd3e275db","g115a119f","gb3a96c08","g60f07933","g809f9206","gdb5839ff","gfe559cf4","gf154bb7f","g53934aac","gb8fff518","ge3c25455","gf81fa9a3","ge0068075","g0578cdda","gb5683b44","gc131dea2","gef1b0c64","g18d9e9ac","gf4d44e88","g5597978e","gf9fd7b35","g468fad2e","g95a519cb","ge273ff95","g31926fe3","gecb9ed7d","g97804432","gd0ba4569","g119700fd","ga1b92ff5","g253daff3","gef50ec08","g37edb496","g666f81e6","gc2487d42","gf77d8646","g9ac47b75","gde0c2b8f","gb7f9fe74","gc4bde062","g4fa4a961","g859c9d87","gf4f2fd83","g63731ddf","g9ebb67b5","gb3799d0d","g8daadc69","gf61ada50","g157013bf","ga92ffb5c","gca2eb295","g55ba2786","gc9388a84","gff687187","g345f6ec4","g09ba9df6","gda1bcea7","ga5288acc","g40d7a7e6","g667b7738","g810ed989","g9cad1b0c","g5b8c4bca","g7e705d22","gaf000e88","gf726c363","g03ee1191","g97c6c2cd","gf7100c45","g1aa6cc18","g41a671eb","gc1278ec9","gf0edb25f","g2de9a636"]},{"key":"calc","kind":"topic","kindLabel":"专题","label":"计算专题","title":"第 1～4 章计算题","desc":"进制转换、编码运算、存储容量与传输速率计算","order":7,"href":"banks/calc/index.html","gids":["g5ffebba2","gde102447","ge16a73ee","g62c67c2c","gea01ed10","gf943baaf","gaa58ef17","g01bf8f33","g27702a7c","g480e99d4","g0685d4ef","g2a39826e","gdeb8196f","g1708883f","gbe49de8d","gae294cc6","ga147005e","gc2323627","g0be918fc","g03b1e6fe","g1e857075","gf6da754b","g1d6d2b9b","g487db1a7","g02ce2119","g42166d92","g64fbd179","g31f6f2a0","gfadc502a","g50314a2a","g08577df1","g9df202bc","g9d70ba13","g11cd48d6","gb969e0f0","g58fbdc00","ge4c4be34","g45b68f72","g65a648fc","g788136cc","gfefc29f0","g197938cc","g53234bd1","gf4d9ab5a"]},{"key":"terms58","kind":"topic","kindLabel":"专题","label":"名词解释专题（第 5～8 章）","title":"第 5～8 章术语过关","desc":"按章归集的名词解释（第 5～8 章），主观题自评","order":12,"href":"banks/terms58/index.html","gids":["gb8f9fe94","g6edc58c3","g04a2993a","g685d41ac","g2895dab7","g4067065c","g5c8a42ff","g376ffc5e","g82e522ee","gf7b2eceb","ge985415d","gb7339ce0","gb27f2665","g2e7d316a","g10dd14c2","g281a53d3","ga5689648","ga7637fdc","ge4a893fd","gcd18f7d6","g299ffd90","gd184034e","gd696b160","g4e152e55","g8a99e241","gcff8d920","g5e73b170","g97522da6","g43193b46","gc1e12c9e","gc5be3f08","g73c18a45","g2c367137","gdbb1fe6d"]}]};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-index.js — 入口页（题库集首页 / 大一题库首页共用）
+ * 只读 window.QB_INDEX，进度直接从状态层读，不依赖各练习页写入的汇总值（规范 6.6）。
+ */
+(function () {
+  'use strict';
+
+  var data = window.QB_INDEX;
+  if (!data) return;
+  var $ = function (s) { return document.querySelector(s); };
+
+  function readTable(name) {
+    try {
+      var raw = localStorage.getItem('qb.site.' + name + '.v1');
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function render() {
+    var ans = readTable('ans'), wrong = readTable('wrong'), fav = readTable('fav');
+    var host = $('#groups');
+    host.innerHTML = '';
+
+    var totalAll = 0, seen = {}, doneAll = 0, wrongAll = 0, correctAll = 0;
+
+    data.groups.forEach(function (g) {
+      var total = 0, done = 0, correct = 0, bad = 0, f = 0;
+      g.gids.forEach(function (gid) {
+        if (seen[gid]) return;          // 跨题组副本只算一次（规范 5.7 口径去重）
+        seen[gid] = 1;
+        total++;
+        var r = ans[gid];
+        if (r) { done++; if (r.ok === true) correct++; }
+        if (wrong[gid]) bad++;
+        if (fav[gid]) f++;
+      });
+      totalAll += total; doneAll += done; wrongAll += bad; correctAll += correct;
+
+      var card = el('a', 'card');
+      card.href = g.href;
+      var head = el('div', 'card-head');
+      head.appendChild(el('span', 'card-kind k-' + (g.kind || 'unit'), g.kindLabel || '题库'));
+      head.appendChild(el('span', 'card-title', g.label));
+      card.appendChild(head);
+      if (g.title) card.appendChild(el('div', 'card-sub', g.title));
+      if (g.desc) card.appendChild(el('p', 'card-desc', g.desc));
+
+      var row = el('div', 'card-nums');
+      row.appendChild(el('span', null, total + ' 题'));
+      row.appendChild(el('span', null, done ? Math.round(100 * done / total) + '% 已答' : '未开始'));
+      if (bad) row.appendChild(el('span', 'n-bad', bad + ' 错题'));
+      if (f) row.appendChild(el('span', 'n-fav', f + ' 收藏'));
+      card.appendChild(row);
+
+      var bar = el('div', 'card-bar');
+      var fill = el('i');
+      fill.style.width = (total ? Math.round(100 * done / total) : 0) + '%';
+      bar.appendChild(fill);
+      card.appendChild(bar);
+
+      host.appendChild(card);
+    });
+
+    var sum = $('#sum');
+    if (sum) {
+      sum.innerHTML = '';
+      [['题量', totalAll], ['已答', doneAll],
+       ['正确率', doneAll ? Math.round(100 * correctAll / doneAll) + '%' : '—'],
+       ['错题', wrongAll]].forEach(function (it) {
+        var c = el('div', 'stat');
+        c.appendChild(el('div', 'stat-k', it[0]));
+        c.appendChild(el('div', 'stat-v', String(it[1])));
+        sum.appendChild(c);
+      });
+    }
+  }
+
+  function init() {
+    $('#site-title').textContent = data.title || '题库';
+    if (data.subtitle) $('#site-sub').textContent = data.subtitle;
+    var back = $('#back');
+    if (data.back) { back.href = data.back.href; back.textContent = data.back.label; }
+    else back.style.display = 'none';
+    render();
+    window.addEventListener('storage', render);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) render(); });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

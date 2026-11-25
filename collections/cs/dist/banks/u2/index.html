@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>计算机导论 · 第二单元 计算机中数的表示与存储</title>
+<style>/* qb-page.css — 题库页面样式（内核共用，不含任何科目特有内容） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef; --ok-line:#b7e6cf;
+  --bad:#b42318; --bad-soft:#fdecea; --bad-line:#f6c9c4;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:20px 16px 72px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+.top h1{font-size:21px;margin:0;letter-spacing:.2px}
+.top .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.top .spacer{flex:1}
+.home{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.home:hover{color:var(--accent);border-color:#c7dbff;text-decoration:none}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.block{padding:14px 16px;margin-bottom:14px}
+
+/* stats */
+#stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px;margin-bottom:14px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:19px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:7px;overflow:hidden}
+.stat-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl+.ctl{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.seg{display:inline-flex;background:#f1f4fa;border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:13.5px;color:#48505f}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+select,input[type=search]{
+  font:inherit;font-size:13.5px;color:var(--text);border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:7px 10px;outline:none
+}
+select:focus,input[type=search]:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=search]{min-width:170px;flex:1}
+.btn{
+  border:1px solid var(--line);background:#fff;color:#3c4353;border-radius:9px;padding:7px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;transition:.15s
+}
+.btn:hover:not(:disabled){border-color:#c7dbff;color:var(--accent);background:var(--accent-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#2557c7;border-color:#2557c7;color:#fff}
+.btn.ghost{background:#fff}
+.btn.ghost.on{color:#b54708;border-color:#f5dcb4;background:var(--warn-soft)}
+.btn.small{padding:5px 11px;font-size:13px}
+
+/* card */
+#card{padding:18px 18px 16px;margin-bottom:14px}
+.q-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fafbfd;white-space:nowrap}
+.tag-type{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.tag-diff.d-0{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.tag-diff.d-1{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.tag-diff.d-2{color:var(--bad);border-color:var(--bad-line);background:var(--bad-soft)}
+.q-topic{font-size:12.5px;color:var(--muted2)}
+.q-no{margin-left:auto;font-size:12.5px;color:var(--muted2);font-variant-numeric:tabular-nums}
+.q-stem{font-size:16.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.q-img{max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line)}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;
+  font:inherit;font-size:15px;line-height:1.6;cursor:pointer;transition:.13s;color:var(--text)
+}
+.opt:hover:not(:disabled){border-color:#c7dbff;background:#fafcff}
+.opt:disabled{cursor:default}
+.opt-k{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#f1f4fa;color:#48505f;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600
+}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt.picked .opt-k{background:var(--accent);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .opt-k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .opt-k{background:var(--bad);color:#fff}
+
+/* inputs */
+.in,.ta{
+  width:100%;margin-top:14px;font:inherit;font-size:15px;color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:11px 13px;outline:none;background:#fff;resize:vertical
+}
+.in:focus,.ta:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+.in:disabled,.ta:disabled{background:#fafbfd;color:var(--muted)}
+
+/* action bar */
+.q-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12.5px;color:var(--muted2)}
+.verdict{font-size:14px;font-weight:650;padding:5px 12px;border-radius:999px}
+.verdict.ok{color:var(--ok);background:var(--ok-soft)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft)}
+.verdict.mid{color:var(--warn);background:var(--warn-soft)}
+
+/* explanation */
+.exp{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.exp-h{font-size:12.5px;color:var(--muted2);letter-spacing:.4px;margin-bottom:7px}
+.exp-a{font-size:14.5px;margin:0 0 8px;padding:10px 12px;background:#f7f9fd;border-radius:9px;border:1px solid var(--line2)}
+.exp-p{font-size:14.5px;color:#333a49;margin:0 0 6px;white-space:pre-wrap}
+.exp-src{font-size:12px;color:var(--muted2);margin:6px 0 0}
+.self{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* nav */
+#nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nav-mid{flex:1;text-align:center;font-size:13px;color:var(--muted2);font-variant-numeric:tabular-nums}
+
+/* mastery */
+#mastery{padding:14px 16px;margin-bottom:14px}
+.mt{width:100%;border-collapse:collapse;font-size:13.5px}
+.mt th{text-align:left;font-weight:600;color:var(--muted2);font-size:12px;letter-spacing:.3px;padding:0 0 8px;border-bottom:1px solid var(--line2)}
+.mt td{padding:7px 0;border-bottom:1px solid var(--line2);vertical-align:middle}
+.mt tr:last-child td{border-bottom:0}
+.mt-t{color:#333a49}
+.mt-s{font-variant-numeric:tabular-nums;font-weight:650;width:56px}
+.mt-n{color:var(--muted2);width:56px;text-align:right}
+.lv{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.lv-ok{color:var(--ok);background:var(--ok-soft)}
+.lv-mid{color:var(--warn);background:var(--warn-soft)}
+.lv-bad{color:var(--bad);background:var(--bad-soft)}
+
+/* transfer */
+#transfer{padding:14px 16px;margin-bottom:14px}
+#x-code{width:100%;min-height:86px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;resize:vertical;background:#fafbfd;color:#333a49}
+#x-info{font-size:12.5px;color:var(--muted2);margin-top:8px;min-height:18px}
+.x-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* misc */
+.empty{padding:34px 8px;text-align:center}
+.empty-t{font-size:15.5px;font-weight:600}
+.empty-s{color:var(--muted2);font-size:13.5px;margin:6px 0 0}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:#1e2330;color:#fff;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:99
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:18px;line-height:1.8}
+
+@media (max-width:640px){
+  .wrap{padding:14px 12px 64px}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .top h1{font-size:18.5px}
+  .q-stem{font-size:16px}
+  .opt{font-size:14.5px}
+  input[type=search]{min-width:100%}
+}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">计算机导论 · 第二单元 计算机中数的表示与存储</h1>
+      <div class="sub"><span id="bank-name"></span> · <span id="bank-desc"></span></div>
+    </div>
+    <div class="spacer"></div>
+    <a class="home" id="home" href="../../index.html">返回题库集</a>
+  </div>
+
+  <div class="panel" id="stats"></div>
+
+  <div class="panel block">
+    <div class="ctl">
+      <div class="seg" id="modes">
+        <button data-mode="seq" class="on">顺序</button>
+        <button data-mode="random">随机</button>
+        <button data-mode="wrong">错题</button>
+        <button data-mode="fav">收藏</button>
+        <button data-mode="undone">未做</button>
+      </div>
+      <select id="f-type"><option value="">全部题型</option></select>
+      <select id="f-diff"><option value="">全部难度</option><option>易</option><option>中</option><option>难</option></select>
+    </div>
+    <div class="ctl">
+      <input type="search" id="f-kw" placeholder="搜索题干 / 知识点">
+      <span class="hint">键盘 ← → 翻题，数字键选项；手机在题目上左右滑动翻题</span>
+    </div>
+  </div>
+
+  <div class="panel" id="card"></div>
+  <div id="nav"></div>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">掌握度（按知识点）</summary>
+    <div id="mastery" style="padding-top:10px"></div>
+  </details>
+
+  <details class="panel block" id="cloud-wrap" style="display:none">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">云同步（手动上传 / 下载）</summary>
+    <div style="padding-top:10px">
+      <div class="x-row">
+        <input type="text" id="s-code" class="in" style="flex:1;min-width:180px;margin-top:0"
+               placeholder="同步码（≥10 位，与旧页面共用）">
+        <button class="btn" id="s-save">保存</button>
+        <button class="btn primary" id="s-up">上传</button>
+        <button class="btn" id="s-down">下载</button>
+      </div>
+      <div id="s-info" class="hint" style="margin-top:8px;min-height:18px"></div>
+    </div>
+  </details>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">导出 / 导入进度码</summary>
+    <div id="transfer" style="padding-top:10px">
+      <div class="x-row">
+        <select id="x-scope"></select>
+        <button class="btn" id="x-do">生成</button>
+        <button class="btn" id="x-copy">复制</button>
+        <button class="btn" id="x-import">导入</button>
+        <button class="btn" id="x-undo">撤销导入</button>
+        <button class="btn ghost" id="reset" style="margin-left:auto">清空本机记录</button>
+      </div>
+      <textarea id="x-code" placeholder="在此粘贴他人分享的进度码，或点「生成」得到自己的"></textarea>
+      <div id="x-info"></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    独立题库 · 计算机导论 · 第二单元 计算机中数的表示与存储 · 115 题<br>
+    进度保存在本机浏览器，不上传；换设备请用进度码迁移。
+  </div>
+</div>
+<div id="mjx-cache" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></div>
+<div id="toast"></div>
+<script>window.QB_META={"home":"../../index.html","title":"计算机导论 · 第二单元 计算机中数的表示与存储"};</script>
+<script>window.QB_SITE={"title":"计算机导论 · 第二单元 计算机中数的表示与存储","subjectKey":"cs","subjectName":"计算机导论","types":{"single":{"key":"single","label":"单选题","answerShape":"choice","judge":"exact","replay":"mask","maxOptions":4,"fault":"builtin:fact-recall","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，恰好 1 项"}},"multi":{"key":"multi","label":"多选题","answerShape":"choice","judge":"set","replay":"mask","maxOptions":4,"fault":"builtin:concept-boundary","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，≥ 2 项"}},"fill":{"key":"fill","label":"填空题","answerShape":"tokenList","judge":"fuzzy","replay":"text","fault":"builtin:unit-memory","countsInMastery":true,"fields":{"answers":"可接受答案数组，含等价写法"}},"term":{"key":"term","label":"名词解释","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"short":{"key":"short","label":"简答题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"comp":{"key":"comp","label":"综合应用题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:chain-break","countsInMastery":true,"fields":{"ref":"参考答案文本"}}},"units":[{"key":"u2","label":"第二单元","title":"计算机中数的表示与存储","desc":"第 2 章 · 进制转换、整数与浮点编码、算术与逻辑运算","questions":[{"qid":"cs.u2-001","type":"single","topic":"2.1 进位计数制及其转换","diff":"易","stem":"计算机中所有信息的存储都采用二进制。","exp":"正确。计算机内部所有数据（数值、字符、图像、音频等）最终都以二进制形式存储和表示。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-01","no":70,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-002","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(117.25)10 = ( ____ )2","exp":"整数部分（除基取余）：117 ÷ 2 依次得余数 1、0、1、0、1、1、1，倒序读得 1110101；小数部分（乘基取整）：0.25×2 = 0.5 取 0，0.5×2 = 1.0 取 1，得 .01。故为 1110101.01。","answers":["1110101.01","(1110101.01)2","1110101.01B"],"meta":{"origin":{"id":"2-02","no":71,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-003","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(F3.5)16 = ( ____ )10","exp":"按权展开求和：(F3.5)16 = 15×16^1 + 3×16^0 + 5×16^-1 = 240 + 3 + 0.3125 = 243.3125。","answers":["243.3125","(243.3125)10","243.3125D"],"meta":{"origin":{"id":"2-03","no":72,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-004","type":"single","topic":"2.1 进位计数制及其转换","diff":"易","stem":"二进制数 (101.11)2 对应的十进制值是（　）。","exp":"(101.11)2 = 1×2^2 + 0×2^1 + 1×2^0 + 1×2^-1 + 1×2^-2 = 4 + 1 + 0.5 + 0.25 = 5.75。","options":["4.75","5.5","5.75","6.75"],"answer":[2],"meta":{"origin":{"id":"2-04","no":73,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-005","type":"single","topic":"2.1 进位计数制及其转换","diff":"中","stem":"十进制数 100 转换为十六进制数是 64H。","exp":"正确。100 ÷ 16 = 6 余 4，6 ÷ 16 = 0 余 6，故 100D = 64H。（顺带：100D = 1100100B = 144O）","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-05","no":74,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-006","type":"single","topic":"2.1 进位计数制及其转换","diff":"中","stem":"二进制数 11001101.01011 对应的十六进制表示是（　）。","exp":"以小数点为界四位并一位：1100→C，1101→D，0101→5，1000→8（末组不足四位右补 0），故为 CD.58H。","options":["CD.68H","CD.5BH","DC.58H","CD.58H"],"answer":[3],"meta":{"origin":{"id":"2-06","no":75,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-007","type":"single","topic":"2.1 进位计数制及其转换","diff":"中","stem":"下列各数中，数值最大的是（　）。","exp":"(1100)2 = 12；(15)8 = 1×8+5 = 13；(14)10 = 14；(F)16 = 15。故 (F)16 最大。","options":["(F)16","(15)8","(14)10","(1100)2"],"answer":[0],"meta":{"origin":{"id":"2-07","no":76,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-008","type":"single","topic":"2.1 进位计数制及其转换","diff":"中","stem":"十进制小数 0.6875 转换为二进制数是（　）。","exp":"乘基取整：0.6875×2=1.375 取 1；0.375×2=0.75 取 0；0.75×2=1.5 取 1；0.5×2=1.0 取 1。故为 0.1011B。","options":["0.0111","0.1101","0.1011","0.1010"],"answer":[2],"meta":{"origin":{"id":"2-08","no":77,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-009","type":"multi","topic":"2.1 进位计数制及其转换","diff":"易","stem":"下列各项中，最后一位字母表示数的进制，那么（　）是合法的数。","exp":"B 表示二进制（数码 0、1，合法）；O 表示八进制（数码 0～7，2851 合法）；D 表示十进制（2536 合法）；H 表示十六进制，但 G、Q 不是十六进制数码，故 D 项不合法。","options":["G0BQ1H","2851O","2536D","101010B"],"answer":[1,2,3],"meta":{"origin":{"id":"2-09","no":78,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-010","type":"multi","topic":"2.1 进位计数制及其转换","diff":"中","stem":"关于进位计数制，下列说法正确的有（　）。","exp":"四项均正确。进制中数码的个数叫“基数”，通用规则是“逢基数进一”。","options":["十进制基数为 10，有 10 个数码","二进制基数为 2，有 2 个数码","八进制基数为 8，有 8 个数码","十六进制基数为 16，有 16 个数码（0～9、A～F）"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-10","no":79,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-011","type":"single","topic":"2.1 进位计数制及其转换","diff":"易","stem":"进制的不同，只是数值的不同表示方法，其值不变。","exp":"正确。例如十进制 243 与二进制 11110011、十六进制 F3 表示的是同一个数值。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-11","no":80,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-012","type":"single","topic":"2.1 进位计数制及其转换","diff":"易","stem":"八进制数中不会出现数字 8。","exp":"正确。八进制的数码为 0～7，共 8 个，逢八进一，因此不会出现数字 8。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-12","no":81,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-013","type":"single","topic":"2.1 进位计数制及其转换","diff":"中","stem":"十进制小数 0.6 转换为二进制小数时，得到的是有限小数。","exp":"错误。(0.6)10 = (0.100110011001…)2，是循环小数。十进制小数转二进制时可能永远不为 0，此时乘 2 过程由所要求的转换精度确定。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"2-13","no":82,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-014","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(92.125)10 = ( ____ )2","exp":"整数部分：92 = 1011100B（除基取余）；小数部分：0.125×2 = 0.25 取 0，0.25×2 = 0.5 取 0，0.5×2 = 1.0 取 1，得 .001。故为 1011100.001。","answers":["1011100.001","(1011100.001)2","1011100.001B"],"meta":{"origin":{"id":"2-14","no":83,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-015","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(C54.6AB)16 = ( ____ )2","exp":"一位拉四位：C→1100，5→0101，4→0100；6→0110，A→1010，B→1011。得 110001010100.011010101011。","answers":["110001010100.011010101011","(110001010100.011010101011)2"],"meta":{"origin":{"id":"2-15","no":84,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-016","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(11001101.01011)2 = ( ____ )16","exp":"四位并一位：1100→C，1101→D；0101→5，1000→8（末组右补 0）。得 CD.58H。","answers":["CD.58","(CD.58)16","CD.58H"],"meta":{"origin":{"id":"2-16","no":85,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-017","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(123.4)8 = ( ____ )10","exp":"1×8^2 + 2×8^1 + 3×8^0 + 4×8^-1 = 64 + 16 + 3 + 0.5 = 83.5。","answers":["83.5","(83.5)10","83.5D"],"meta":{"origin":{"id":"2-17","no":86,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-018","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"(10101.101)2 = ( ____ )10","exp":"1×2^4 + 0 + 1×2^2 + 0 + 1×2^0 + 1×2^-1 + 0 + 1×2^-3 = 16 + 4 + 1 + 0.5 + 0.125 = 21.625。","answers":["21.625","(21.625)10","21.625D"],"meta":{"origin":{"id":"2-18","no":87,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-019","type":"fill","topic":"2.1 进位计数制及其转换","diff":"中","stem":"将十进制数 100 分别转换为二进制、八进制、十六进制：____ 、____ 、____","exp":"100 = 1100100B = 144O = 64H。（100÷2 取余得二进制 1100100；100÷8 = 12 余 4、12÷8 = 1 余 4、1÷8 = 0 余 1 → 144；100÷16 = 6 余 4、6÷16 = 0 余 6 → 64）","answers":["1100100 144 64","1100100,144,64","1100100 144 64H","1100100B 144O 64H"],"meta":{"origin":{"id":"2-19","no":88,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-020","type":"comp","topic":"2.1 进位计数制及其转换","diff":"中","stem":"将十进制数 (43.89)10 转换为二进制数（小数部分保留 4 位）。","exp":"整数部分（除基取余）：43÷2 = 21 余 1；21÷2 = 10 余 1；10÷2 = 5 余 0；5÷2 = 2 余 1；2÷2 = 1 余 0；1÷2 = 0 余 1 → 从后向前读得 101011。\n小数部分（乘基取整）：0.89×2 = 1.78 取 1；0.78×2 = 1.56 取 1；0.56×2 = 1.12 取 1；0.12×2 = 0.24 取 0 → 从前向后读得 .1110。\n故结果为 101011.1110。","ref":"(43.89)10 = (101011.1110)2","meta":{"origin":{"id":"2-20","no":89,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-021","type":"comp","topic":"2.1 进位计数制及其转换","diff":"中","stem":"将十进制数 243 分别转换为二进制数和十六进制数。","exp":"除基取余法：\n转二进制：243÷2 = 121 余 1；121÷2 = 60 余 1；60÷2 = 30 余 0；30÷2 = 15 余 0；15÷2 = 7 余 1；7÷2 = 3 余 1；3÷2 = 1 余 1；1÷2 = 0 余 1 → 11110011。\n转十六进制：243÷16 = 15 余 3；15÷16 = 0 余 15(F) → F3。\n验证：1111 0011 → F3，一致。","ref":"243D = 11110011B = F3H","meta":{"origin":{"id":"2-21","no":90,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-022","type":"comp","topic":"2.1 进位计数制及其转换","diff":"中","stem":"将十六进制数 (2D.4)16 转换为十进制数。","exp":"按权展开求和：(2D.4)16 = 2×16^1 + 13×16^0 + 4×16^-1 = 32 + 13 + 0.25 = 45.25。","ref":"(2D.4)16 = (45.25)10","meta":{"origin":{"id":"2-22","no":91,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-023","type":"short","topic":"2.1 进位计数制及其转换","diff":"中","stem":"简述“除基取余”与“乘基取整”的适用场景与操作步骤。","exp":"答题要点：①整数用除基取余、余数倒序；②小数用乘基取整、整数正序；③说明当乘 2 过程不终止时由转换精度决定结束。","ref":"两者都是把十进制数转换为 P 进制数的方法。整数部分用“除基取余”：对整数部分除以基数 P，记下余数，用所得的商继续除以 P，重复直至商为 0，最后把所得余数从后向前依次排列即为结果。小数部分用“乘基取整”：对小数部分乘以基数 P，拿出并记下积的整数部分，用余下的小数部分继续乘以 P，重复直至积为 0（或达到所要求的精度），最后把所得整数部分从前向后依次排列即为结果。","meta":{"origin":{"id":"2-23","no":92,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-024","type":"single","topic":"2.2 数据的存储与表示","diff":"易","stem":"1KB 等于（　）。","exp":"1KB = 2^10 B = 1024 B。同理 1MB = 1024KB，1GB = 1024MB，1TB = 1024GB。","options":["1000 B","1024 B","1024 bit","8 B"],"answer":[1],"meta":{"origin":{"id":"2-24","no":93,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-025","type":"single","topic":"2.2 数据的存储与表示","diff":"易","stem":"计算机中最小的信息存储单位是（　）。","exp":"位（bit，比特）是计算机中最小的信息存储单位，即二进制数的一位，值为 0 或 1；字节（Byte）是表示存储空间大小的基本容量单位，1B = 8bit。","options":["位","字节","字","KB"],"answer":[0],"meta":{"origin":{"id":"2-25","no":94,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-026","type":"single","topic":"2.2 数据的存储与表示","diff":"易","stem":"一个字节由（　）个二进制位组成。","exp":"把 8 个二进制位（bit）组合在一起称为一个字节（Byte），1Byte = 8bit。","options":["4","8","16","32"],"answer":[1],"meta":{"origin":{"id":"2-26","no":95,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-027","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"计算机内部是以（　）为单位进行处理、存储和传送数据或指令的。","exp":"字是指在计算机中作为一个整体被存取、传送、处理的一组二进制位；计算机内部是以“字”为单位进行处理、存储和传送数据或指令的。字长是 CPU 的主要技术指标之一。","options":["字","字节","位","块"],"answer":[0],"meta":{"origin":{"id":"2-27","no":96,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-028","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"假设用一个字节存储，整数 (-10)10 在计算机中的补码表示为（　）。","exp":"(-10)10 的真值为 -1010，8 位原码为 10001010，反码为 11110101（符号位不变、其余取反），补码为反码加 1 = 11110110。","options":["00001010","10001010","11110101","11110110"],"answer":[3],"meta":{"origin":{"id":"2-28","no":97,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-029","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"8 位有符号定点整数能表示的整数范围是（　）。","exp":"8 位有符号定点整数范围是 -128～127（即 -2^7～2^7-1），共 256 个数；其中正数补码 00000000～01111111（0～127），负数补码 10000000～11111111（-128～-1）。","options":["0～255","-127～127","-128～128","-128～127"],"answer":[3],"meta":{"origin":{"id":"2-29","no":98,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-030","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"8 位无符号定点整数能表示的整数范围是（　）。","exp":"8 位无符号定点整数没有符号位，全部 8 位都是数值位，范围为 00000000～11111111，即 0～255（0～2^8-1）。","options":["1～256","0～127","0～256","0～255"],"answer":[3],"meta":{"origin":{"id":"2-30","no":99,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-031","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"在计算机中，0 的补码表示有（　）种。","exp":"[+0]补 = 00000000，[-0]补 = 00000000，故 0 的补码只有一种表示形式；而 0 的原码（00000000、10000000）和反码（00000000、11111111）各有两种。","options":["4","2","3","1"],"answer":[3],"meta":{"origin":{"id":"2-31","no":100,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-032","type":"single","topic":"2.2 数据的存储与表示","diff":"易","stem":"在计算机系统中，数值通常采用（　）表示。","exp":"计算机系统中数值用补码表示：每个整数只有一个补码；可将符号位和数值位统一处理，加法与减法统一处理；补码与原码相互转换运算过程相同，无需额外电路。","options":["原码","反码","BCD 码","补码"],"answer":[3],"meta":{"origin":{"id":"2-32","no":101,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-033","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"(-26)10 的 8 位机器数（原码）是（　）。","exp":"(-26)10 的真值为 -11010，数值位 11010 只有 5 位，左补 0 凑足 7 位数值位得 0011010，符号位取 1，故 8 位机器数为 10011010。","options":["10011010","00011010","11100101","11100110"],"answer":[0],"meta":{"origin":{"id":"2-33","no":102,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-034","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"8421BCD 码中十进制数 28 表示为（　）。","exp":"BCD 码用 4 位二进制表示 1 位十进制数：2 → 0010，8 → 1000，故 28 → 00101000。","options":["00101010","00101000","0010100","00100010"],"answer":[1],"meta":{"origin":{"id":"2-34","no":103,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-035","type":"multi","topic":"2.2 数据的存储与表示","diff":"中","stem":"关于机器数，下列说法正确的有（　）。","exp":"机器数的位数受机器设备（字长）限制，可为 8 位、16 位、32 位、64 位等，不一定是 8 位，故最后一项错误。","options":["机器数的位数受机器字长的限制，是 8 的倍数","机器数一定是 8 位","小数点在机器数中采用约定的方法表示，不占位数","数的符号位于最高位，用 0 表示正号、1 表示负号"],"answer":[0,2,3],"meta":{"origin":{"id":"2-35","no":104,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-036","type":"multi","topic":"2.2 数据的存储与表示","diff":"中","stem":"关于补码，下列说法正确的有（　）。","exp":"四项均正确。正整数的原码、反码和补码均相同；负整数的补码为其反码加 1。","options":["0 的补码只有一种表示形式","使用补码可将符号位和数值位统一处理","使用补码可将减法运算转换为加法运算","正数的补码与原码相同"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-36","no":105,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-037","type":"multi","topic":"2.2 数据的存储与表示","diff":"中","stem":"关于浮点数，下列说法正确的有（　）。","exp":"四项均正确。浮点数规格化后，阶符阶码是整数可用定点整数表示，数符尾数是纯小数可用定点小数表示，因此浮点数事实上是定点整数和定点小数的组合。","options":["由阶符、阶码、数符、尾数四部分组成","尾数的位数决定了数的精度","阶码的位数决定了数的大小","浮点数用于表示数值型数据中的非纯小数"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-37","no":106,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-038","type":"single","topic":"2.2 数据的存储与表示","diff":"易","stem":"机器数中，符号位用 0 表示正号、1 表示负号。","exp":"正确。符号位位于最高位，0 表示正、1 表示负；若为正数符号位填 0，若为负数填 1。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-38","no":107,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-039","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"0 的原码和反码各有两种不同的表示形式，而 0 的补码只有一种表示形式。","exp":"正确。[+0]原 = 00000000、[-0]原 = 10000000；[+0]反 = 00000000、[-0]反 = 11111111；而 [+0]补 = [-0]补 = 00000000。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-39","no":108,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-040","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"BCD 码是一种用 4 位二进制数来表示 1 位十进制数的编码方式。","exp":"正确。BCD（Binary Coded Decimal）码利用 4 个二进制位储存十进制的一位数码，使二进制与十进制之间的转换得以快捷进行，常用的是 8421 码。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-40","no":109,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-041","type":"single","topic":"2.2 数据的存储与表示","diff":"中","stem":"浮点数规格化后，尾数应是绝对值大于等于 0.1 并且小于 1 的数。","exp":"正确。规格化就是把非纯小数形式的尾数转换为纯小数形式，规格化后尾数的绝对值应大于等于 0.1 且小于 1。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-41","no":110,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-042","type":"fill","topic":"2.2 数据的存储与表示","diff":"易","stem":"1KB = ____ B；1MB = ____ KB。","exp":"存储单位换算均以 2^10 = 1024 为进率：1KB = 1024B，1MB = 1024KB，1GB = 1024MB，1TB = 1024GB。","answers":["1024 1024","1024,1024","1024；1024"],"meta":{"origin":{"id":"2-42","no":111,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-043","type":"fill","topic":"2.2 数据的存储与表示","diff":"中","stem":"(-95)10 的 8 位原码是 ____，反码是 ____，补码是 ____。","exp":"(-95)10 的真值为 -1011111。原码：符号位 1 + 1011111 → 11011111；反码：符号位不变、其余按位取反 → 10100000；补码：反码加 1 → 10100001。","answers":["11011111 10100000 10100001","11011111,10100000,10100001"],"meta":{"origin":{"id":"2-43","no":112,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-044","type":"fill","topic":"2.2 数据的存储与表示","diff":"中","stem":"8 位补码能表示的整数范围是 ____。","exp":"8 位补码表示范围：-128～127（即 -2^7～2^7-1），共 256 个数。","answers":["-128~127","-128-127","-128到127","-128～127","-128至127","-128—127"],"meta":{"origin":{"id":"2-44","no":113,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-045","type":"fill","topic":"2.2 数据的存储与表示","diff":"中","stem":"十进制数 13 的 8 位补码是 ____；-19 的 8 位补码是 ____。","exp":"13 为正数，补码 = 原码 = 00001101。\n-19 的真值为 -10011，原码 10010011，反码 11101100，补码 = 反码 + 1 = 11101101。","answers":["00001101 11101101","00001101,11101101"],"meta":{"origin":{"id":"2-45","no":114,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-046","type":"comp","topic":"2.2 数据的存储与表示","diff":"中","stem":"求 (-95)10 的 8 位原码、反码和补码。","exp":"(-95)10 的真值为 (-1011111)2。\n原码：最高位（符号位）取 1，其余位为数值的绝对值 1011111，左补 0 凑足 7 位 → 11011111。\n反码：符号位保持 1，其余各位对原码按位取反 → 10100000。\n补码：反码末位加 1 → 10100001。","ref":"[x]原 = 11011111，[x]反 = 10100000，[x]补 = 10100001","meta":{"origin":{"id":"2-46","no":115,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-047","type":"comp","topic":"2.2 数据的存储与表示","diff":"中","stem":"求 (121)10 的 8 位机器数（定点整数形式，即原码）。","exp":"(121)10 的真值是 (+1111001)2，共 7 位，正好填满数值位。\n符号位：正数填 0；数值位：1111001。\n故 8 位机器数为 0 1111001 = 01111001。","ref":"(121)10 的 8 位机器数为 01111001","meta":{"origin":{"id":"2-47","no":116,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-048","type":"comp","topic":"2.2 数据的存储与表示","diff":"难","stem":"求 (-0.625)10 的 8 位定点小数机器数。","exp":"(-0.625)10 的真值是 (-0.101)2。\n定点小数隐含的小数点在符号位之后、数值位最左边。\n符号位取 1；数值位 101 右补 0 凑足 7 位 → 1010000。\n故机器数为 1 1010000。","ref":"1 1010000（符号位 1，小数点位于符号位之后，数值位 1010000）","meta":{"origin":{"id":"2-48","no":117,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-049","type":"comp","topic":"2.2 数据的存储与表示","diff":"难","stem":"求 (-6.375)10 的 16 位浮点机器数（假设阶符阶码、数符尾数各占 8 位）。","exp":"(-6.375)10 的真值为 (-110.011)2。\n规格化：-110.011 = -0.110011 × 2^+11（尾数化成纯小数，小数点左移 3 位，阶码为 +11）。\n阶符阶码（8 位）：阶符 0（正）+ 阶码 0000011（右对齐补足 7 位）= 00000011。\n数符尾数（8 位）：数符 1（负）+ 尾数 110011 后补 0 凑足 7 位 → 1100110 = 11100110。\n合起来即 00000011 11100110。","ref":"阶符阶码 = 00000011，数符尾数 = 11100110，即 00000011 11100110","meta":{"origin":{"id":"2-49","no":118,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-050","type":"short","topic":"2.2 数据的存储与表示","diff":"中","stem":"什么是机器数？什么是真值？两者有什么区别？","exp":"答题要点：①机器数的定义与三个特点；②真值的定义；③区别在于符号是否被数字化（0/1 与 +/-）。","ref":"机器数：将数值型数据的符号和数值本身进行数字化（编码，转化为二进制码）后在计算机内的表示形式。真值：数的符号还没有数值化的二进制数称为机器数的真值，即与机器数相应的数据的实际值，直接用正号（+）和负号（-）表示其正负。区别：真值用正负号表示符号，机器数则把符号也数字化，用最高位 0 表示正、1 表示负。例如 (+26)10 的真值为 +11010，其 8 位机器数为 00011010。","meta":{"origin":{"id":"2-50","no":119,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-051","type":"short","topic":"2.2 数据的存储与表示","diff":"中","stem":"计算机中为什么采用补码表示数值？请至少说明三条理由。","exp":"答题要点：唯一性、符号位与数值位统一处理、加减法统一、节省硬件（只需加法器）。","ref":"①每个整数只有一个补码，而 0 的原码、反码都有两个（如 0 的原码有 00000000 和 10000000），采用补码可消除这种二义性；②使用补码可以将符号位和数值位统一处理，加法和减法也可以统一处理；③补码与原码相互转换的运算过程相同，不需要额外的电路；④在补码技术基础上，减法运算可以转换为加法运算，从而取缔减法操作器，计算机只要有加法装置即可。","meta":{"origin":{"id":"2-51","no":120,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-052","type":"single","topic":"2.3 数据的运算","diff":"易","stem":"二进制数 10110B + 110B =（　）。","exp":"二进制加法“逢二进一”：10110 + 00110 = 11100。即 22 + 6 = 28 = 11100B。","options":["11000B","11100B","11110B","11010B"],"answer":[1],"meta":{"origin":{"id":"2-52","no":121,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-053","type":"single","topic":"2.3 数据的运算","diff":"易","stem":"二进制数 11010B - 1001B =（　）。","exp":"二进制减法“借一当二”：11010 - 01001 = 10001。即 26 - 9 = 17 = 10001B。","options":["10001B","11001B","10011B","10101B"],"answer":[0],"meta":{"origin":{"id":"2-53","no":122,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-054","type":"single","topic":"2.3 数据的运算","diff":"中","stem":"二进制数 1110B × 1001B =（　）。","exp":"1110 × 1001 = 1110 × (1000 + 1) = 1110000 + 1110 = 1111110。即 14 × 9 = 126 = 1111110B。","options":["1110110B","1111100B","10000000B","1111110B"],"answer":[3],"meta":{"origin":{"id":"2-54","no":123,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-055","type":"single","topic":"2.3 数据的运算","diff":"中","stem":"逻辑运算 111001 XOR 101001 的结果是（　）。","exp":"异或运算“相同为 0，不同为 1”：111001 ⊕ 101001 = 010000。","options":["010000","101001","111001","000110"],"answer":[0],"meta":{"origin":{"id":"2-55","no":124,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-056","type":"single","topic":"2.3 数据的运算","diff":"中","stem":"逻辑运算 111001 AND 101001 的结果是（　）。","exp":"与运算“全 1 才为 1”：111001 ∧ 101001 = 101001。","options":["101001","111001","010000","000110"],"answer":[0],"meta":{"origin":{"id":"2-56","no":125,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-057","type":"single","topic":"2.3 数据的运算","diff":"中","stem":"逻辑运算 111001 OR 101001 的结果是（　）。","exp":"或运算“有 1 即为 1”：111001 ∨ 101001 = 111001。","options":["101001","111001","010000","000110"],"answer":[1],"meta":{"origin":{"id":"2-57","no":126,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-058","type":"single","topic":"2.3 数据的运算","diff":"难","stem":"在 8 位字长下，用补码计算 7 - 9，结果（补码形式）是（　）。","exp":"[7]补 = 00000111，[-9]补 = 11110111（9 = 00001001 → 反码 11110110 → 补码 11110111）。\n00000111 + 11110111 = 11111110，其真值为 -0000010 = -2，正确。","options":["00000010","11111111","11111110","10000010"],"answer":[2],"meta":{"origin":{"id":"2-58","no":127,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-059","type":"multi","topic":"2.3 数据的运算","diff":"中","stem":"最基本的逻辑运算包括（　）。","exp":"四种基本逻辑运算：非、与、或、异或。运算符分别为 ￢（NOT）、∧、∨、⊕。","options":["非（NOT）","与（AND）","或（OR）","异或（XOR）"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-59","no":128,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-060","type":"multi","topic":"2.3 数据的运算","diff":"中","stem":"关于补码的运算规则，下列说法正确的有（　）。","exp":"补码技术正是把减法转换为加法：[X-Y]补 = [X+(-Y)]补 = [X]补 + [-Y]补，故“补码不能用于减法运算”错误。","options":["[X]补 + [Y]补 = [X+Y]补","[X-Y]补 = [X]补 + [-Y]补","补码不能用于减法运算","[[X]补]补 = X"],"answer":[0,1,3],"meta":{"origin":{"id":"2-60","no":129,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-061","type":"single","topic":"2.3 数据的运算","diff":"易","stem":"二进制加法遵循“逢二进一”，减法遵循“借一当二”。","exp":"正确。二进制加法各位相加结果“逢二进一”，减法中“借一当二”。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-61","no":130,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-062","type":"single","topic":"2.3 数据的运算","diff":"中","stem":"异或运算中，两个位相同结果为 1，不同结果为 0。","exp":"错误。异或运算的规则是“相同为 0，不同为 1”。例如 1⊕1 = 0，1⊕0 = 1。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"2-62","no":131,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-063","type":"single","topic":"2.3 数据的运算","diff":"中","stem":"采用补码技术后，计算机只需要加法装置即可完成加法和减法运算。","exp":"正确。补码技术将减法运算转换为加法运算，从而取缔减法操作器，计算机只要有加法装置即可。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-63","no":132,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-064","type":"fill","topic":"2.3 数据的运算","diff":"易","stem":"逻辑运算中：NOT(1) = ____，0 AND 1 = ____，0 OR 1 = ____，1 XOR 1 = ____。","exp":"非：NOT(1) = 0；与：0∧1 = 0；或：0∨1 = 1；异或：1⊕1 = 0。","answers":["0 0 1 0","0,0,1,0","0；0；1；0"],"meta":{"origin":{"id":"2-64","no":133,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-065","type":"fill","topic":"2.3 数据的运算","diff":"中","stem":"设字长为 8 位，用补码计算 2 - 1 = ____（结果写成补码形式）。","exp":"[2]补 = 00000010，[-1]补 = 11111111。\n00000010 + 11111111 = 00000001（最高位进位舍去）。\n结果 00000001 即十进制 1，正确。","answers":["00000001","00000001B"],"meta":{"origin":{"id":"2-65","no":134,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-066","type":"comp","topic":"2.3 数据的运算","diff":"中","stem":"设字长为 8 位，用补码计算 1001B + 0011B，并写出最终十进制结果。","exp":"[1001]补 = 00001001，[0011]补 = 00000011。\n补码相加：00001001 + 00000011 = 00001100。\n00001100 符号位为 0，是正数，其原码 = 补码 = 00001100，即十进制 12。","ref":"[00001100]补 = 00001100，即 (12)10","meta":{"origin":{"id":"2-66","no":135,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-067","type":"comp","topic":"2.3 数据的运算","diff":"难","stem":"十进制数 X = 5，Y = 11，在单个字节（8 位）上用补码求 X - Y，并还原为十进制。","exp":"[5]补 = 00000101；[11]补 = 00001011，[-11]补 = 11110101（11 = 00001011 → 取反 11110100 → 加 1 = 11110101）。\nX - Y = [00000101 + 11110101]补 = [11111010]补。\n由补码求原码：符号位保持 1，其余取反得 10000101，再加 1 得 10000110，即 -6。","ref":"[X-Y]补 = 11111010，其原码为 10000110，即 ( -6 )10","meta":{"origin":{"id":"2-67","no":136,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-068","type":"comp","topic":"2.3 数据的运算","diff":"难","stem":"字长为 8 位，采用补码计算 x1 - x2，其中 x1 = 1001001，x2 = 10110。请写出结果的补码形式。","exp":"x1 = 1001001B = 73，x2 = 10110B = 22，x1 - x2 = 51。\n[x1]补 = 01001001，[x2]补 = 00010110，[-x2]补 = 11101010（取反 11101001 再加 1）。\n01001001 + 11101010 = 00110011（最高位进位舍去）。\n00110011 符号位为 0，为正数，其值 = 32 + 16 + 2 + 1 = 51，正确。","ref":"[x1 - x2]补 = 00110011","meta":{"origin":{"id":"2-68","no":137,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-069","type":"short","topic":"2.3 数据的运算","diff":"中","stem":"简述计算机仅用加法器完成一次加减运算的完整过程。","exp":"答题要点：五个步骤的顺序；核心在于用补码把减法变成加法，从而只需一个加法装置。","ref":"①把用户输入的十进制数转换为二进制数；②把二进制数转换为补码；③实现补码加法；④把补码形式的运算结果转换为二进制数；⑤把二进制数转换为十进制数输出给用户。即“十进制 → 二进制 → 补码 → 加法 → 二进制 → 十进制”的过程。","meta":{"origin":{"id":"2-69","no":138,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-070","type":"single","topic":"2.4 字符型数据的编码","diff":"易","stem":"标准 ASCII 码用 7 位二进制编码，在计算机内占 1 个字节。","exp":"正确。标准 ASCII 码用 7 位二进制编码，范围 0000000～1111111；为便于存储，每个 ASCII 码前加一个 0 形成 8 位，正好用 1 个字节存储。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-70","no":139,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-071","type":"single","topic":"2.4 字符型数据的编码","diff":"易","stem":"标准 ASCII 码可表示的字符个数是 128 个。","exp":"正确。7 位二进制编码可表示 2^7 = 128 个字符，其中英文字母 52 个、数字字符 10 个、标点与特殊字符 32 个、特殊控制字符 34 个。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-71","no":140,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-072","type":"fill","topic":"2.4 字符型数据的编码","diff":"中","stem":"已知英文字母 m 的 ASCII 码值为 6DH，则 ASCII 码为 71H 的英文字母是 ____。","exp":"71H - 6DH = 4，即在 m 之后第 4 个字母：m→n→o→p→q，故为 q。（也可查表：小写字母 a 为 61H，71H - 61H = 10H = 16，a 后第 16 个字母为 q。）","answers":["q","Q","字母q","小写q"],"meta":{"origin":{"id":"2-72","no":141,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-073","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"下列叙述中，正确的是（　）。","exp":"A 错：大写 A 为 41H，小写 a 为 61H，大写小于小写。B 错：控制字符（如 NUL、BEL）不可显示。C 错：数字字符 0～9 为 30H～39H，小于字母。D 对：标准 ASCII 码最高位（第 8 位）为 0。","options":["大写英文字母的 ASCII 码大于小写英文字母的 ASCII 码","一个字符的标准 ASCII 码占一个字节，其最高位总为 0","英文数字字符的 ASCII 码大于英文字母的 ASCII 码","标准 ASCII 码表的每一个 ASCII 码都能在屏幕显示为一个相应的字符"],"answer":[1],"meta":{"origin":{"id":"2-73","no":142,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-074","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"GB2312-80 国标码下，一个汉字机内码的两个字节的最高二进制位的值均为 1。","exp":"正确。汉字机内码 = 国标码 + 8080H，国标码两个字节最高位均为 0，加 8080H 后两个字节最高位都变为 1。机内码解决了西文 ASCII 码与汉字国标码间的二义性问题。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-74","no":143,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-075","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"一个汉字字形采用 16×16 点阵表示，4 个汉字的字形码占存储器的字节数是（　）。","exp":"16×16 点阵的一个汉字需要 16×16 ÷ 8 = 32 字节；4 个汉字为 32 × 4 = 128 字节。","options":["256","128","72","64"],"answer":[1],"meta":{"origin":{"id":"2-75","no":144,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-076","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"在同一汉字系统中，用拼音、五笔等不同的汉字输入方式输入的同一汉字，则下列说法错误的是（　）。","exp":"输入码（外码）随输入方式不同而不同（拼音码、五笔字形码各异），但输入后都会被转换为统一的机内码，其国标码、机内码、字形码都是相同的。","options":["国标码相同","机内码相同","字形码相同","外码相同"],"answer":[3],"meta":{"origin":{"id":"2-76","no":145,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-077","type":"single","topic":"2.4 字符型数据的编码","diff":"易","stem":"以 JPG 为文件格式扩展名的文件通常是（　）。","exp":"常见图像文件格式有 JPG、JPEG、BMP、GIF 等；音频有 WAV、MP3、WMA 等；视频有 AVI、WMV、MPEG、MP4、MOV 等。","options":["音频文件","文本文件","视频文件","图像文件"],"answer":[3],"meta":{"origin":{"id":"2-77","no":146,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-078","type":"single","topic":"2.4 字符型数据的编码","diff":"易","stem":"对声音波形采样时，采样频率越高，声音文件的数据量越大。","exp":"正确。采样频率越大，描绘出的波形越精确，但数据量也越大。音频数据量 = 采样频率 × 量化位数 × 声道数 × 时长。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-78","no":147,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-079","type":"fill","topic":"2.4 字符型数据的编码","diff":"中","stem":"24×24 点阵的一个汉字字形码占用的字节数是 ____ 字节。","exp":"每个汉字字形码占用字节数 = 点阵列数 ÷ 8 × 行数 = 24 ÷ 8 × 24 = 3 × 24 = 72 字节。","answers":["72","72B","72字节"],"meta":{"origin":{"id":"2-79","no":148,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-080","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"彩色图像中每个像素的颜色用红、绿、蓝各 8 位二进制数表示，共可表示的颜色种数是（　）。","exp":"R、G、B 各 8 位，共 24 位，可表示 2^24 = 16 777 216 种颜色，每个像素占 3 个字节。","options":["2^8","2^24","2^16","2^32"],"answer":[1],"meta":{"origin":{"id":"2-80","no":149,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-081","type":"multi","topic":"2.4 字符型数据的编码","diff":"中","stem":"汉字编码体系包括（　）。","exp":"四项均属于汉字编码：输入码用于把汉字输入计算机；国标码用于不同汉字系统间交换信息；机内码用于计算机内部存储、处理和传输；字形码用于显示和打印输出。","options":["输入码（外码）","交换码（国标码）","机内码","字形码"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-81","no":150,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-082","type":"multi","topic":"2.4 字符型数据的编码","diff":"中","stem":"关于 ASCII 码，下列说法正确的有（　）。","exp":"四项均正确。字符 0～9 的编码为 30H～39H，大写 A～Z 为 41H～5AH，小写 a～z 为 61H～7AH。","options":["标准 ASCII 码最高位为 0","标准 ASCII 码值范围是 0～127","大写字母 A 的 ASCII 码是 41H","扩展 ASCII 码的最高位是 1，范围为 0～255"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-82","no":151,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-083","type":"multi","topic":"2.4 字符型数据的编码","diff":"中","stem":"下列属于汉字输入码（外码）的有（　）。","exp":"输入码主要有数字码（区位码）、拼音码、字形码（如五笔字型）、音形码（如自然码）、手写码等。","options":["区位码（数字码）","拼音码","五笔字型（字形码）","手写码"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-83","no":152,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-084","type":"multi","topic":"2.4 字符型数据的编码","diff":"中","stem":"关于图像信息，下列说法正确的有（　）。","exp":"四项均正确。图像由像素组成，分辨率通常用 PPI（像素/英寸）或水平像素数×垂直像素数表示。","options":["黑白图像每个像素用 1 个二进制位表示","灰度图像可用 8 位表示 256 种灰度","彩色图像每个像素可用 24 位表示","分辨率越高图像越清晰，但数据量越大"],"answer":[0,1,2,3],"meta":{"origin":{"id":"2-84","no":153,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-085","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"一个汉字只有一个国标码，也只有一个机内码。","exp":"正确。GB2312-80 中一个汉字只有一个国标码，也只有一个机内码；而输入码（外码）可以有多种。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-85","no":154,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-086","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"汉字机内码 = 国标码 + 8080H。","exp":"正确。在 GB2312-80 国标码下，机内码由国标码的两个字节最高位置 1 转换形成，即机内码 = 国标码 + 8080H；而国标码 = 区位码 + 2020H。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-86","no":155,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-087","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"汉字字形采用矢量表示方法时，放大或缩小时会失真。","exp":"错误。点阵汉字在放大时会失真；矢量表示方法存储的是汉字字形的轮廓特征，输出时再生成所需大小和形状，放大或缩小都不失真。","options":["正确","错误"],"answer":[1],"meta":{"origin":{"id":"2-87","no":156,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-088","type":"single","topic":"2.4 字符型数据的编码","diff":"易","stem":"采样频率越高、量化位数越多，音频的数据量越大。","exp":"正确。音频数据量 = 采样频率 × 量化位数 × 声道数 × 时长，采样频率越高、量化位数越多，数据量越大。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-88","no":157,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-089","type":"single","topic":"2.4 字符型数据的编码","diff":"中","stem":"扩展 ASCII 码的最高位是 1，其码值范围为 0～255。","exp":"正确。标准 ASCII 码最高位为 0、范围 0～127；扩展 ASCII 码最高位为 1，范围 0～255。","options":["正确","错误"],"answer":[0],"meta":{"origin":{"id":"2-89","no":158,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-090","type":"fill","topic":"2.4 字符型数据的编码","diff":"易","stem":"标准 ASCII 码用 7 位二进制编码，共可表示 ____ 个字符；在计算机内占 ____ 个字节。","exp":"2^7 = 128 个字符；为便于存储，每个 ASCII 码前加一个 0 形成 8 位，正好占 1 个字节。","answers":["128 1","128,1","128；1"],"meta":{"origin":{"id":"2-90","no":159,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-091","type":"fill","topic":"2.4 字符型数据的编码","diff":"中","stem":"大写字母 A 的 ASCII 码是 ____H，小写字母 a 的 ASCII 码是 ____H。","exp":"A 的 ASCII 码为 41H（= 65D），a 为 61H（= 97D）。大写 A～Z 从 41H 顺序递增，小写 a～z 从 61H 顺序递增。","answers":["41 61","41,61","41H 61H","41H,61H"],"meta":{"origin":{"id":"2-91","no":160,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-092","type":"fill","topic":"2.4 字符型数据的编码","diff":"中","stem":"国标码 = 区位码 + ____H；机内码 = 国标码 + ____H。","exp":"国标码 = 区位码 + 2020H；机内码 = 国标码 + 8080H = 区位码 + A0A0H。","answers":["2020 8080","2020,8080","2020H 8080H","2020H,8080H"],"meta":{"origin":{"id":"2-92","no":161,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-093","type":"fill","topic":"2.4 字符型数据的编码","diff":"中","stem":"已知“啊”字的区位码为 16 区 01 位，其国标码为 ____H，机内码为 ____H。","exp":"区位码 16 区 01 位 → 十六进制表示为 1001H（区号 16 = 10H，位号 01 = 01H）。\n国标码 = 区位码 + 2020H = 1001H + 2020H = 3021H。\n机内码 = 国标码 + 8080H = 3021H + 8080H = B0A1H。","answers":["3021 B0A1","3021,B0A1","3021H B0A1H","3021H,B0A1H"],"meta":{"origin":{"id":"2-93","no":162,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-094","type":"fill","topic":"2.4 字符型数据的编码","diff":"中","stem":"一个 16×16 点阵汉字的字形码占 ____ 字节。","exp":"16 × 16 ÷ 8 = 32 字节。（每个汉字字形码占用字节数 = 点阵列数 ÷ 8 × 行数）","answers":["32","32B","32字节"],"meta":{"origin":{"id":"2-94","no":163,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-095","type":"comp","topic":"2.4 字符型数据的编码","diff":"中","stem":"已知“啊”字的区位码为 1601（16 区 01 位），求其国标码与机内码（用十六进制表示）。","exp":"①区位码转十六进制：区号 16 → 10H，位号 01 → 01H，故区位码为 1001H。\n②国标码 = 区位码 + 2020H = 1001H + 2020H = 3021H。\n③机内码 = 国标码 + 8080H = 3021H + 8080H = B0A1H。\n验证：机内码两个字节 B0H、A1H 的最高位均为 1，符合汉字机内码特征。","ref":"国标码 = 3021H，机内码 = B0A1H","meta":{"origin":{"id":"2-95","no":164,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-096","type":"comp","topic":"2.4 字符型数据的编码","diff":"中","stem":"分别计算 16×16 点阵与 24×24 点阵下，一个汉字字形码所需的存储字节数。","exp":"公式：每个汉字字形码占用字节数 = 点阵列数 ÷ 8 × 行数。\n16×16：16 ÷ 8 × 16 = 2 × 16 = 32 字节。\n24×24：24 ÷ 8 × 24 = 3 × 24 = 72 字节。","ref":"16×16 点阵：32 字节；24×24 点阵：72 字节","meta":{"origin":{"id":"2-96","no":165,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-097","type":"comp","topic":"2.4 字符型数据的编码","diff":"难","stem":"计算 44.1kHz 采样率、16 位量化、双声道音频 1 分钟的数据量（结果用 MB 表示，1MB = 1024KB）。","exp":"数据量 = 采样频率 × 量化位数 × 声道数 × 时长 ÷ 8\n= 44100 × 16 × 2 × 60 ÷ 8\n= 84 672 000 ÷ 8 = 10 584 000 字节\n10 584 000 ÷ 1024 ÷ 1024 ≈ 10.09 MB。","ref":"约 10.09 MB","meta":{"origin":{"id":"2-97","no":166,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-098","type":"comp","topic":"2.4 字符型数据的编码","diff":"难","stem":"在内存中，若汉字以 GB2312 的内码表示，已知存储了 6 个字节的字符串，其十六进制内容依次为 6AH、B1H、D2H、53H、C8H、B4H，问这个字符串中有几个汉字？","exp":"汉字机内码占 2 个字节且每个字节的最高位均为 1。\n逐个判断最高位：6AH = 01101010（最高位 0，非汉字）；B1H = 10110001（最高位 1，汉字）；D2H = 11010010（最高位 1，汉字）；53H = 01010011（最高位 0）；C8H = 11001000（最高位 1）；B4H = 10110100（最高位 1）。\n最高位为 1 的字节共 4 个，4 ÷ 2 = 2，故有 2 个汉字。","ref":"2 个汉字","meta":{"origin":{"id":"2-98","no":167,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-099","type":"comp","topic":"2.4 字符型数据的编码","diff":"中","stem":"计算一幅分辨率为 1024×768 的 24 位真彩色图像未经压缩时的数据量（结果用 MB 表示，1MB = 1024KB）。","exp":"每个像素 24 位 = 3 字节。\n数据量 = 1024 × 768 × 3 = 2 359 296 字节。\n2 359 296 ÷ 1024 ÷ 1024 = 2.25 MB。","ref":"2.25 MB","meta":{"origin":{"id":"2-99","no":168,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-100","type":"short","topic":"2.4 字符型数据的编码","diff":"中","stem":"简述汉字的四种编码（输入码、国标码、机内码、字形码）及其作用。","exp":"答题要点：四种编码的名称、作用与相互转换关系（区位码 +2020H → 国标码 +8080H → 机内码）。","ref":"①输入码（外码）：用于给计算机输入汉字的编码，主要有数字码（区位码）、拼音码、字形码（如五笔字型）、音形码（如自然码）、手写码等；②交换码（国标码）：具有不同汉字处理功能的计算机系统间交换汉字信息时使用的代码标准，如 GB2312-80，一个汉字只有一个国标码；③机内码（内码）：计算机内部存储、处理和传输汉字时所用的编码，由国标码两个字节最高位置 1 形成（机内码 = 国标码 + 8080H），解决了西文 ASCII 码与汉字国标码的二义性问题；④字形码（字模）：用于汉字在显示屏或打印机输出，有点阵和矢量两种表示方式。","meta":{"origin":{"id":"2-100","no":169,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-101","type":"short","topic":"2.4 字符型数据的编码","diff":"中","stem":"简述音频信息数字化的过程，并写出音频数据量的计算公式。","exp":"答题要点：采样 → 量化 → 编码三步；采样频率与量化位数对精度和数据量的影响；数据量公式。","ref":"音频本身是模拟信号，是连续的，不适合在计算机中直接存储，需要对其数字化，即对声音进行采样、量化、编码：①采样：对音频模拟信号每隔一个时间点取一个点，每个点对应一个数值，用离散化的点代替连续的波形；单位时间内提取的采样个数称为采样频率，常用 44.1kHz；②量化：将每个采样点的值四舍五入到有限数量的离散值，量化时所采用的二进制位数叫量化位数；③编码：把量化后的结果用二进制编码表示并存储。数据量 = 采样频率 × 量化位数 × 声道数 × 时长（÷8 换算为字节）。","meta":{"origin":{"id":"2-101","no":170,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-102","type":"short","topic":"2.4 字符型数据的编码","diff":"中","stem":"什么是位模式？请说明计算机中数值、文本、图像、音频、视频等数据是如何统一存储的。","exp":"答题要点：位模式定义（0/1 序列、1Byte = 8bit）；不同数据类型都通过“编码 → 存储 → 解码”统一为位模式。","ref":"位模式是由一串 0 和 1 组成的二进制序列（若干个位 bit 组成的位的集合）来表示数据，一般以 8 个位构成一个字节（Byte），即 1Byte = 8bit。计算机中各种类型的数据（文本、数字、图像、音频、视频）都要先经过编码转换成统一的位模式后存入内存，需要使用时再经过译码（解码）还原为原来的信息形式。因此，无论数据的原始形式如何，在计算机内部都以二进制位模式统一存储和处理。","meta":{"origin":{"id":"2-102","no":171,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-103","type":"comp","topic":"2.2 数据的存储与表示","diff":"中","stem":"求 (-128)10 的 8 位补码。","exp":"8 位补码的表示范围是 -128～127，其中 10000000 专门用来表示 -128。\n验证：若按“原码 → 反码 → 补码”推，-128 的绝对值 128 需 8 位表示（10000000），已超出 7 位数值位，故不能用原码表示；补码中 10000000 的权值为 -2^7 = -128，正好对应。\n结论：(-128)10 的 8 位补码为 10000000。","ref":"[x]补 = 10000000","meta":{"origin":{"id":"2-103","no":172,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-104","type":"comp","topic":"2.2 数据的存储与表示","diff":"中","stem":"已知定点整数 x = -10110，求其 8 位原码、反码和补码。","exp":"x 的真值为 -10110，数值位 10110 只有 5 位，左补 0 凑足 7 位数值位得 0010110。\n原码：符号位取 1 + 数值位 0010110 → 10010110。\n反码：符号位保持 1，其余各位对原码按位取反 → 11101001。\n补码：反码末位加 1 → 11101010。\n（验证：11101010 的真值 = -128 + 64 + 32 + 8 + 2 = -22，而 10110B = 22，正确。）","ref":"[x]原 = 10010110，[x]反 = 11101001，[x]补 = 11101010","meta":{"origin":{"id":"2-104","no":173,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-105","type":"comp","topic":"2.3 数据的运算","diff":"难","stem":"设字长为 8 位，用补码计算 25 - 37，并还原为十进制数。","exp":"[25]补 = 00011001。\n[37]补 = 00100101，[-37]补 = 11011011（取反 11011010 再加 1）。\n25 - 37 = [00011001 + 11011011]补 = [11110100]补。\n由补码求原码：符号位保持 1，其余取反得 10001011，再加 1 得 10001100，即 -12。\n验证：25 - 37 = -12，正确。","ref":"[25-37]补 = 11110100，其真值为 -12","meta":{"origin":{"id":"2-105","no":174,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-106","type":"comp","topic":"2.4 字符型数据的编码","diff":"难","stem":"计算 44.1kHz 采样率、16 位量化、单声道音频 30 秒的数据量（结果用 MB 表示，1MB = 1024KB）。","exp":"数据量 = 采样频率 × 量化位数 × 声道数 × 时长 ÷ 8\n= 44100 × 16 × 1 × 30 ÷ 8\n= 21 168 000 ÷ 8 = 2 646 000 字节\n2 646 000 ÷ 1024 ÷ 1024 ≈ 2.52 MB。","ref":"约 2.52 MB","meta":{"origin":{"id":"2-106","no":175,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-107","type":"comp","topic":"2.4 字符型数据的编码","diff":"中","stem":"计算一幅分辨率为 800×600 的 256 级灰度图像未经压缩时的数据量（结果用 KB 表示，1KB = 1024B）。","exp":"256 级灰度需 8 位（1 字节）表示一个像素。\n像素总数 = 800 × 600 = 480 000 个。\n数据量 = 480 000 × 1 = 480 000 字节。\n480 000 ÷ 1024 = 468.75 KB。","ref":"468.75 KB","meta":{"origin":{"id":"2-107","no":176,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-108","type":"comp","topic":"2.1 进位计数制及其转换","diff":"中","stem":"将二进制数 (1101.101)2 分别转换为十进制数和八进制数。","exp":"①转十进制（按权展开求和）：1×2^3 + 1×2^2 + 0×2^1 + 1×2^0 + 1×2^-1 + 0×2^-2 + 1×2^-3 = 8 + 4 + 1 + 0.5 + 0.125 = 13.625。\n②转八进制（以小数点为界三位并一位，不足补 0）：001 101 . 101 → 1 5 . 5，即 15.5。","ref":"(1101.101)2 = (13.625)10 = (15.5)8","meta":{"origin":{"id":"2-108","no":177,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-109","type":"short","topic":"2.2 数据的存储与表示","diff":"中","stem":"什么是字？什么是字长？字长对计算机性能有什么影响？","exp":"答题要点：字的定义、字长的定义、字长由 CPU 决定、字长越长精度越高处理能力越强。","ref":"字是指在计算机中作为一个整体被存取、传送、处理的一组二进制位；计算机内部是以字为单位进行处理、存储和传送数据或指令的。字长是一个字所包含的二进制位数，通常是字节的整数倍，如 16 位、32 位、64 位等。字长由 CPU 的类型决定，是 CPU 的主要技术指标之一，指的是 CPU 一次能并行处理的二进制位数。字长越长，运算精度越高，处理能力越强。CPU 运算器中的加法器、累加器以及其他一些寄存器都选择与字长相同的位数，便于不同部件间的数据传送和处理效率。","meta":{"origin":{"id":"2-109","no":178,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-110","type":"short","topic":"2.2 数据的存储与表示","diff":"中","stem":"简述原码、反码、补码的定义及其相互关系。","exp":"答题要点：三码定义、正负数区别、补码 = 反码 + 1、0 的特殊性。","ref":"原码：如果真值是正数，则最高位为 0，其他位为数值的绝对值；如果真值是负数，则最高位为 1，其他位为数值的绝对值。反码：正数的反码与原码相同；负数的反码是最高位为 1，其他位对原码按位取反（1 变 0、0 变 1）。补码：正数的补码与原码相同；负数的补码是最高位为 1，其他位按位取反后加 1，即负整数的补码为其反码加 1。关系：正整数的原码、反码和补码均相同，符号位为 0、数值位为数的绝对值；负整数的原码、反码和补码均不相同，补码 = 反码 + 1。0 的原码和反码各有两种表示，而 0 的补码只有一种。","meta":{"origin":{"id":"2-110","no":179,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-111","type":"short","topic":"2.2 数据的存储与表示","diff":"中","stem":"简述定点数与浮点数的区别，并说明浮点数的组成与规格化。","exp":"答题要点：定点（小数点固定）vs 浮点（小数点浮动）；浮点数四要素（阶符、阶码、数符、尾数）；规格化的含义与目的。","ref":"定点数的小数点位置是隐含约定、固定不变的，分为定点整数（小数点约定隐含在数的最右边）和定点小数（小数点隐含在符号位之后、数值位最左边），仅适用于特定场景。浮点数用来表示数值型数据中的非纯小数，其小数点位置是浮动的。任何一个二进制非纯小数都可表示成 N = ±D × 2^±p 的指数形式，其中 D 为尾数、其前面的符号为数符，p 为阶码、其前面的符号为阶符。浮点数的规格化：如果一个浮点数的尾数不符合纯小数的形式，则需要将其转换为纯小数的形式，规格化后尾数是绝对值大于等于 0.1 且小于 1 的数。浮点数事实上是定点整数（阶符阶码）和定点小数（数符尾数）的组合；尾数的位数决定数的精度，阶码的位数决定数的大小。","meta":{"origin":{"id":"2-111","no":180,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-112","type":"short","topic":"2.4 字符型数据的编码","diff":"中","stem":"简述黑白图像、灰度图像和彩色图像在计算机中的表示方法。","exp":"答题要点：黑白 1 位、灰度 8 位（256 级）、彩色 RGB 各 8 位共 24 位；分辨率与数据量的关系。","ref":"图像由一个个点（像素）组成。①黑白图像：每个像素用 1 个二进制位表示，如 1 表示黑、0 表示白（或反之）；②灰度图像：每个像素用多个二进制位表示，如 8 个二进制位，从 00000000（纯黑）到 11111111（纯白），中间值为不同深浅的灰度，共可表示 256 种灰度；③彩色图像：每个像素的颜色用红、绿、蓝 3 种颜色混合表示，每种颜色用 8 位二进制数表示颜色层次，因此每个像素需要用 3 个字节（24 位）表示，共可表示 2^24 种颜色。衡量图像质量的指标是分辨率，通常用 PPI（像素/英寸）或水平像素数×垂直像素数表示；分辨率越高图像越清晰，但数据量越大。","meta":{"origin":{"id":"2-112","no":181,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-113","type":"short","topic":"2.4 字符型数据的编码","diff":"中","stem":"简述视频与动画的区别与联系，并说明为什么视频数据量很大。","exp":"答题要点：>24 帧/秒；动画（人工/计算机生成）vs 视频（实时摄取）；本质是图像在时间上的序列；因此数据量大需压缩。","ref":"连续的图像每秒超过 24 帧时，人眼无法辨别出单幅的静态图像画面，这种连续的画面就是视频。二者的区别在于每帧图像的来源：当组成连续动态图像中的每帧图像是人工或计算机加工形成的，则称动画；当每帧图像是通过实时摄取自然影像或活动对象而成的，则称视频。二者的联系在于：动画或视频都是由一系列的单幅图像（帧）在时间上组合而成的，即“视频是图像（帧）在时间上的表示”。正因为一秒钟就需要 24 帧以上的图像，一段视频的数据量非常大，在存储或传输时需要压缩。常见视频格式有 AVI、WMV、MPEG（MPG/DAT/VOB）、MP4、MOV 等。","meta":{"origin":{"id":"2-113","no":182,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-114","type":"short","topic":"2.2 数据的存储与表示","diff":"易","stem":"简述计算机中存储容量的单位及换算关系，并说明为什么采用 1024 而不是 1000。","exp":"答题要点：bit 与 Byte 的定义及 1B = 8bit；KB→YB 的换算链；1024 = 2^10 源于二进制。","ref":"位（bit）是计算机中最小的信息存储单位，即二进制数的一位，其值可为 0 和 1。字节（Byte，简写 B）是把 8 个二进制位组合在一起形成的，是计算机用来表示存储空间大小的基本容量单位，1Byte = 8bit。更大的单位及换算关系为：1KB = 2^10 B = 1024B，1MB = 1024KB，1GB = 1024MB，1TB = 1024GB，1PB = 1024TB，1EB = 1024PB，1ZB = 1024EB，1YB = 1024ZB。采用 1024（即 2^10）而非 1000，是因为计算机内部采用二进制，2 的整数次幂便于地址计算与硬件实现。","meta":{"origin":{"id":"2-114","no":183,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"},{"qid":"cs.u2-115","type":"short","topic":"2.4 字符型数据的编码","diff":"中","stem":"简述汉字国标码与机内码的关系，为什么要设置机内码？","exp":"答题要点：国标码定义（GB2312-80、6763 个汉字）；机内码定义；机内码 = 国标码 + 8080H；目的是解决与 ASCII 码的二义性。","ref":"国标码（交换码）是指具有不同汉字处理功能的计算机系统间在交换汉字信息时所使用的代码标准，如 1980 年制定的 GB2312-80，共包括 6763 个汉字（一级 3755 个按拼音排序、二级 3008 个按部首排序）及标点、字母、图形、数码等 682 个符号。机内码又称“汉字 ASCII 码”，是计算机内部存储、处理和传输汉字时所用的编码。在 GB2312-80 国标码下，机内码由该汉字国标码的两个字节最高位置“1”转换形成，即：机内码 = 国标码 + 8080H（而国标码 = 区位码 + 2020H）。设置机内码的原因是：国标码两个字节的最高位均为 0，与西文 ASCII 码（最高位为 0）无法区分，存在二义性；把两个字节的最高位都置为 1 后，就可以把汉字与西文字符区分开来。","meta":{"origin":{"id":"2-115","no":184,"mod":"第 2 章 数的表示与存储","ch":2},"source":"计算机导论 题库合集（原站）"},"_unit":"u2"}]}],"wrong":{"exitStreak":1},"mastery":{"wAll":0.4,"wRecent":0.6,"recentN":5,"weakBelow":60,"solidAt":85,"solidStreak":4,"passMinQ":4,"passRate":0.9,"dueDays":[1,3,7]},"codec":{"version":10,"gidBits":32,"budgetBytes":6000},"order":["g7b36b9f9","geb76ff8a","g5604cb4e","gbbf40dfe","g53d3c631","gc8006e41","gdde89a21","gffcece9c","gbf4af0af","gf58d538b","g986a45cb","g16fafab6","g390c53cf","gd341e104","g5caa97bb","g63505a11","g262242e2","g53357d53","g15895c5a","gb37205e6","ga8ff66f5","gf78a1598","g2312f909","gd84ac421","g531e9c29","g11a301b7","g9182d1cb","g5ac960f1","g879fc5c7","g7d406c09","ge31b0414","ga0a1269f","gd6d7ba22","g96ce59ac","g1d239cea","g40f44857","g039b0e40","g2f3b78a4","g01c4cc52","g8a075482","g60a43282","gc2a5be02","g429eefc9","g9336931d","g1ca6d6e6","g3929ecd5","g6973d129","g3abb4969","ge0a933a7","gb120c052","g7d8fc4da","g1b380426","g97d834a5","g741c176d","gf4dc7861","g1235df51","g4f107c97","g8fdb65e0","g698ac205","ge61b55d3","g667cadf8","gabc70a0d","g77e9b112","g445ffe28","g16cd76e7","gb3fdad90","gcb5ba655","gd0d46845","g54bc7b55","gf6075fe1","g25a2682d","g057bd0db","g3b63256f","gbfab8367","g03aab32a","gb636e3f9","g3dcab7a9","g614ccd92","g884fb846","ge937909f","g11f716f7","g8ec3308b","g1a5f3cef","g96f701f5","g242e98e4","ge2157664","gf18eec25","g8e96cd21","gf0386650","g09d71ed5","g92ff9098","g064ea04e","gc83c3a94","g4af76b06","g3da490b9","g0808d4bc","ge3203fc6","g6fa225e2","g7c9f9f44","g4a2157b0","g25025c87","g104b192e","ge7adff58","ga387e22f","gfa59440f","g08e3bcf7","ge01cfa65","g6dea2267","g13218d7e","g65e9e0ef","g79d528ac","g599a0546","g2517f440","ga595f820","gcf460211","g9f71e789","gb01e3f0c","g1eb06575","gb8113912","g807c5984","gdcf4f1fb","gd2696c88","gfa8310ce","gf2f53cbe","g7b98981e","g076213f8","g7e6a6487","g6b2e2652","g87551d5d","g19b18cab","gfcdcdb65","g6ddcc1a3","g94b7ac42","g5ac2baaf","gb7b5b440","g2b0e7157","g0bab589f","g7ad36dda","gb6546538","g81b30939","g9f373780","g48a39971","gc1a4a843","g480becd5","gf72b0129","g9d028d5b","g2916ada0","g04845edf","gab29a6c0","g40a8aff0","g8b4113dc","g1c55697c","g9ea354eb","geb042c04","ga75a360b","gb9126faa","g30861bf5","g07275d63","g53b65631","g271e0878","g29dcf4e5","g25945d4b","gc163bcf5","g6be7fbfc","gfed7562f","ge830a02d","gd76932b5","g02c72447","ge3ee2ce1","gcb43c1d8","gaff8d526","g6777446a","g6b0f5484","g7b16fc75","gb9384f7a","g65b101b4","ge86d921c","g0502c34c","g5552c324","g1fcbdb63","g4d9794e4","g0709c199","gc65f1f04","ge46f101d","g047c30f7","g3548609e","g3abb81aa","g5cb03c59","g755a072d","g0b5ee65f","gafff9c1a","g30fefd34","gdc0ad1a0","gb554f7ff","g9cb28e54","g58ce5356","g11ffb230","g64ca99d0","gd01d8957","ga192474e","gbad3e88e","g1eac9fdd","g45a1cb22","ge489ee95","g28737307","g99d841f4","g3ae29aa4","gee5a9af5","ga463db95","g2d14a96b","g19c5b86c","gfc497e47","g860dfe6f","gd52b6854","g5f2b382f","g81ed9139","g784b3f52","g0942dc38","g1cd7a593","g6d667048","g5d049ec5","g4da8a56b","gcb81d309","gd36e2b50","ga15b5260","gf00b39f7","ge0efc098","g27daa553","g521ec2c4","g87982a59","g36df1844","gc6ed8228","ge5d73644","g45556f93","g53e5df5a","g9131eaab","g18182317","gdf2d5991","gaac5c5a6","ge8c98d9d","g1b90f280","ge5d10cc9","gc2f7c458","g21672a80","ge829ef5e","g61883d92","gd88b8337","g86c30186","g723d03a0","gd124800f","gdc5a8de4","g0ce2855c","gf7183600","g7d8225db","g0bca8c14","gf2788df2","gd7ec85c4","gaf39f94d","gd9c02349","ge6b8955b","gd7ebc6e3","g9735b846","gd67600a0","g6b12c7a9","g7856223d","g91477aa8","g72c273ea","g39fcc785","g1d0267b8","g9e1ccec7","g4698a807","g606e7360","gefda3600","gcdb48269","g4fd7aefd","g06618860","g3484ce2c","g9013f833","gcc6c9698","g31f473ec","ga3c2551e","ga1c46d58","g9af476c8","gbb32c34f","g82231fdb","gb5f99f65","g751c3602","gd62ba5b7","gf870b686","g6e0ace30","g1a11f037","g377569ba","g005091ce","gf69b61b9","gdb7f9796","g0a829bba","g34e2ec81","g046909de","g392c3158","gb7b9c6a2","g1c82c70d","g0b383d9f","g8bccef7d","g20dd6ab5","g0754abd4","g9b86128e","g4bccab8d","g648df109","gcdf615a9","gf1d07828","g063bb02f","g90e5d869","g4803ead2","gca51813d","g9b90dd7c","g211dd90c","ga27b8728","gcf26d826","g97305b12","gc8c0be9f","gd18a7cc5","gf5f8c466","gbba38e34","g21a306a6","g0bb1ca08","g4fce4e00","g70c0d310","g16b5af71","g141d2034","g66273e63","gec1951de","gbf9c9d24","g0295fbc8","g0b510d14","g79e288b6","gd6b25d8b","g232fbc3b","g1a5c00e3","g34d0fc7d","g0ce7771b","gba7db737","g4bf631a0","g182e9cf3","ge8028d8f","gba8a3f81","g85a7aaca","g9834532e","gb3578cce","ged935acf","g4d3521a3","g65393667","ge7a49d7a","g62d2d2ad","gca252dd3","g34809955","g199ca519","gb44e9b2c","gffe1f78d","g256838a9","ga30571f5","gb1a66859","g859b1a44","g83f7c550","g47a3938d","gcfbc632d","ge5c0fd78","gb166ee1b","g3fe03929","g5944ee4a","g87a21103","g29dea8c8","gab893cb0","g9084d7af","g72f2d960","g05585003","gd6b12c60","gd3a885f5","gb06aad8a","g3ac4e044","ge26a99c7","g69fbd3f3","gd1e91b9a","gbad355af","g6156937f","gc4976239","g6cf9a331","g88bba261","g1683ddfe","g91329588","g4ce1266f","ge1a1df3b","g2a422c82","g8966d5ad","g575d9b24","g8f652ab8","g1ef33c40","gf6e5088a","g17cbd5c5","gb5b3c1d7","g9dfc35fa","g0d3e065f","gd6016c4c","g610c5d97","gac20c821","gb614020b","g320fd4bc","g922fe37c","g91bcb19a","g71eff3b9","g7861653f","g9167561f","g72c6c698","g87f7bc15","g1d18be7d","g682de451","ge5ee3a97","g0ee384cf","g425fe1ac","g47481aa2","g6de15ca0","g61f7ca7a","g6ce6ac6a","g61ee0c2d","gf7590d49","g5b7f5f97","gdea56c0e","g0301f0ad","g5c15e249","g7d85ae14","gbc551597","g68a3ca15","ge380db07","g9b358884","g1d769e69","gbb06b2bf","gf2fe26f3","g68496199","g78a0064e","g5545c120","gc17fc744","g367dd129","ga58c3d48","gdf702ad2","gf124bf86","g8c49adb8","g7c4f8a73","gec43edc2","g0c7afa3a","g4c41a4c4","gd1182805","ge5f204d3","g813692ab","g4b988942","g88ca27ce","g96c798b4","g48496d3f","gd5192563","g663b0242","g853ea0c6","g83cf961a","gf7bf2063","g84d05d74","gaeb1b19a","g618382e1","g6a223f53","g9544d813","gcb820abe","g386fe161","g9a0c591e","g98ee8bf6","gb4cc71ae","gd3780423","g11f35851","g2787f399","g039071a6","g12ae5152","g3683f7d2","g7f88c332","gf7220fe0","gc88218a7","g4bbd0c01","g72f27294","g5c933d6a","gbd02801c","geda4707a","gd3b39057","gb80adaa9","ge992ed26","ged75ac2f","gfe4e26d0","g590d6513","gee4ff3c3","g91990fcb","gad3d4a4e","ge1b977c3","g50dfd45b","g5e39de6b","g395d0208","g44055549","g5893523c","gc75d4eb6","g7ec741bb","g56a85716","g63d28a27","g69b42f55","gb78a12eb","gd22cf7e4","gea2300ee","g47bded58","gb61ea4d7","g38673333","g0546a8ed","gdec61e9c","gfad58297","gd46cd534","g59e9d96e","g7635907b","g331361d7","g565098d8","gd46bab12","gab8da80f","gcc1b5ae7","g061e9883","g7a4b0770","g83364f6e","g8971840e","g1567916c","g31627dbf","gebe9d47b","ga84b35e2","g4ace2010","g7a9276ff","ga98d73a6","g9058b4d2","ge4cf7f1b","g8ce1b9bd","g0eadbcd8","g0a4c6e4d","g7218c103","g271b3f51","g34f73ddb","g2e377cef","geafd4f2b","gd896823e","g21c0302f","gd3e275db","g115a119f","gb3a96c08","g60f07933","g809f9206","gdb5839ff","gfe559cf4","gf154bb7f","g53934aac","gb8fff518","ge3c25455","gf81fa9a3","ge0068075","g0578cdda","gb5683b44","gc131dea2","gef1b0c64","g18d9e9ac","gf4d44e88","g5597978e","gf9fd7b35","g468fad2e","g95a519cb","ge273ff95","g31926fe3","gecb9ed7d","g97804432","gd0ba4569","g119700fd","ga1b92ff5","g253daff3","gef50ec08","g37edb496","g666f81e6","gc2487d42","gf77d8646","g9ac47b75","gde0c2b8f","gb7f9fe74","gc4bde062","g4fa4a961","g859c9d87","gf4f2fd83","g63731ddf","g9ebb67b5","gb3799d0d","g8daadc69","gf61ada50","g157013bf","ga92ffb5c","gca2eb295","g55ba2786","gc9388a84","gff687187","g345f6ec4","g09ba9df6","gda1bcea7","ga5288acc","g40d7a7e6","g667b7738","g810ed989","g9cad1b0c","g5b8c4bca","g7e705d22","gaf000e88","gf726c363","g03ee1191","g97c6c2cd","gf7100c45","g1aa6cc18","g41a671eb","gc1278ec9","gf0edb25f","g2de9a636","g5ffebba2","gde102447","ge16a73ee","g62c67c2c","gea01ed10","gf943baaf","gaa58ef17","g01bf8f33","g27702a7c","g480e99d4","g0685d4ef","g2a39826e","gdeb8196f","g1708883f","gbe49de8d","gae294cc6","ga147005e","gc2323627","g0be918fc","g03b1e6fe","g1e857075","gf6da754b","g1d6d2b9b","g487db1a7","g02ce2119","g42166d92","g64fbd179","g31f6f2a0","gfadc502a","g50314a2a","g08577df1","g9df202bc","g9d70ba13","g11cd48d6","gb969e0f0","g58fbdc00","ge4c4be34","g45b68f72","g65a648fc","g788136cc","gfefc29f0","g197938cc","g53234bd1","gf4d9ab5a","gf935d0a1","g52b8e1a1","geea6ca11","g8c425be2","g23383ddf","g58d50319","ge4deaeff","g548548b3","gf3fbd0f0","g0f6d9de5","g9983d61e","gef65b67f","g7aac1ab7","gbf747999","g908ff632","g00c800bb","g29aefcc5","g66b3406f","gfc333988","gd4fe666a","g17b22100","g1fc34e26","g28f088b3","g25a358f4","gb71bd484","gec30ec1f","g1def4d3d","gc3f6842f","g0e31eea2","g4726273a","g9fffd27c","ga5c118b0","g46bd69b0","g239dfa7f","gd98a97d7","g27e1906f","ga5c863a2","gd254d10f","gdd560391","gd2d4f461","ge3206fb6","g90fa4f82","gea5051a6","gb883dd01","g6d226542","g94e4e3ea","gd2d3f445","g77b6a846","g5bd50165","g383aab82","g834ef7a5","g7985dce3","gb58d4317","g81f96778","g22ecf364","g86000d91","g259c170c","gfc38f49a","g71c4455a","g4f37e387","g70dfd539","gc5c5b7f5","gc89a0730","g10b41190","g9ded027e","g75627128","gb58b3a9b","gaff06362","g2de7ff2e","gcacaa77c","gf8f10dc3","g8c7e1dce","g1487e553","g1ee0767d","gf96a456f","g6e3a40c6","g34b48f9b","ge63963a7","ge36ecefb","g92008e36","geb7eb57d","g751645c8","ge94124da","gfdda41ff","g79f1b19b","gcf32fa8b","g3428db12","g8858e799","g20a855ce","gf022522b","g031a2ba4","ge589a257","g2bac2dd7","gbc4fdd29","gbfe5f248","gbb0df6c3","gba3d7699","g7c32036b","gf085df40","g7ff78144","g364e2ca0","g5574fc0b","g5760a939","gdd4a294d","g8644b80e","g2f65df33","g20dfb8f3","g9c68309f","gbccde705","gd42dd1aa","g67a08e97","g4b143706","gb7f41124","ga9c3b933","gc3dec284","gbec66549","gae5c6134","g97f0a83b","ga859d4a4","gb2dc3884","ga3396296","g1c686085","g6c33c990","g39b8679f","g81bf95b7","g0d271157","g62c630ab","g79cb7262","g0ed945bf","gbb19f36f","gd3669d3f","gb5b3e688","g7d7ee56c","g87a782d9","g4ea93f7a","g751066a5","gb0b2e9b3","ga49524ae","g548def89","g6fe23e8e","gb1f8d702","g9ddbcbd0","g30957a2a","g2783978a","gf6a70765","gd20e8494","gd9363d46","g6f746810","g8ac98223","g13cd915e","g8b693cc6","g0ff5718b","g2e1ab98f","gd527f5a6","g53d11445","g3f1f9125","g26fb92fe","gc1949df6","g705f29cf","ge02c998d","ged3739cb","g49a2d102","g1eb56166","g4603aec4","g68488780","g6977fc4c","ga8f8ebea","g23995cac","ge6d96aaf","g0b0785de","g93b5b5ae","g1371ca57","g8a20a636","g12fa5864","g06ed68df","g3150b1ac","g90615c4d","gc00c98f3","g2de65d70","g619c85be","g35b47564","g27fc97d6","g65c056aa","gf13f193d","g34be7961","g9c403606","g2f40610e","gcb106dd6","g3c312936","g97a49c34","gf6bc08d9","g4acf98f1","ge2182c54","g906ad220","g82b8cf07","g5f5afb99","g7754f051","gd48c18fa","gc9ed4e07","ga76c2311","g84621cc2","gd33c46fb","gbbf4d994","g2fba926b","g6f0a8339","g2359dc90","g5d8142bb","gcda68b56","g32168d2c","g21f3ac55","gdc8e9bd7","g498a01d0","g342bb6d8","gc653f918","gdac677a6","gdf5de807","gbc1099d6","gd9f7b8a5","gebd271a2","g86fc77ff","gab894684","gb0379923","g788208f2","g1dbf987a","gd1aa6ef1","g812e0e95","g8f75a681","g6f15a1dc","g188d142a","g27ccced1","gd8f6a68e","g8ae75243","ga3c5872e","gbf14c24b","gee7d07b2","gc96cf649","g8b0655b2","g8259ad78","g55cb6e19","g3a01b923","gaa925f5c","g3278fcf5","g893f98e3","gad878cc0","gdb3694a6","gf8f066d5","g646b82d3","g9834ecca","g6c2a0844","gbaccfdfa","g273ad52b","ge8255e15","gf01923b1","g7df72076","g3ea73e5c","gbe3879ae","g8dde7b4e","g519cf2ec","g2ea96766","g190c2b31","gc561cc40","g842eccc7","g6d334def","gcc706093","g5b548e79","g38181fb9","g613c072b","g7b70cc45","gc5f9a766","gfbf3967e","g4951c619","gda0c60c0","g907b1f18","gd389f7bd","g092ec92d","gaa144d51","g13940466","gb2051f4f","g748ecd8d","gf98e4df5","g2c274ab3","g92b45a8b","ge4ef4c7e","g8f2bdfed","gb83464b4","gb4330433","g4812c6d2","g0942a45c","g8a4c6875","g6122d77b","gfecc02ca","ge8006d3c","g8a19b658","gcd1845a2","g89f8561a","ge978d438","gc5af59fa","gfce0fb3e","ge17475e6","g86df50a7","gf1edce77","g3baa6712","g3b8d965c","gf0e85e95","g2dcd9a1f","ga276eac1","gbecb215f","ged38f116","gc450fdfe","g77d8bf47","g4c2d8806","gb0a06d05","g088cf6d0","g57570373","gb342a65d","gd10ddac7","g527fd5c8","g2a9498ee","gf25d89ef","g59c979ca","g9566b46e","ge0cf6c69","ga393cec7","gb524b4a6","gee959d2d","gf0a6bfbf","g8fb5b14f","g697fb618","gb1456986","g7e911e16","g3c038ad5","gaec103b0","g2c674b55","gf02ef848","g33711178","gacf4f246","gb1a8bd74","g8c0f6047","ga534b835","g1ee23efd","g04ab999d","gb5b68065","g02b93582","g55dad198","g5db31cd8","g32dfc0b2","g9718d3b9","gefd62de0","g918f61ed","g158aa06f","g00d24d83","gcedbd423","g77da6a73","g2b6417f9","gc5c3da30","g9fc69d95","ge4c1d368","g628df15f","gddb99436","g6333df1d","gbcb8ebf2","gdb9a18ab","g4fa68a60","g69f8caf1","g040e28d2","gad4a45d4","ge325afd7","gf24fa186","ga815aeca","g3d1bd527","ged81e4b4","g3b764cbc","g6178ece0","gff8841d4","g1502082d","g2753bfa1","g2f074350","g4b93b055","g3574828a","gd3c8c48b","gb36d64d1","gb54cc99e","g4935a29f","g3a580416","geb8ca501","g164f1fdf","g2544f8e6","g693767b0","g47d5cf31","gc25b1cd4","gd9d1e859","gd48f8c4d","ge19aaffb","gbe7de046","ga9fccf00","ga00ec99a","g7a7b9722","gb0db6651","g10029c4e","g42aabd56","gb8f9fe94","g6edc58c3","g04a2993a","g685d41ac","g2895dab7","g4067065c","g5c8a42ff","g376ffc5e","g82e522ee","gf7b2eceb","ge985415d","gb7339ce0","gb27f2665","g2e7d316a","g10dd14c2","g281a53d3","ga5689648","ga7637fdc","ge4a893fd","gcd18f7d6","g299ffd90","gd184034e","gd696b160","g4e152e55","g8a99e241","gcff8d920","g5e73b170","g97522da6","g43193b46","gc1e12c9e","gc5be3f08","g73c18a45","g2c367137","gdbb1fe6d","g83d71aaf","gdf973479","gd26be9fe","gb43758a8","g5d91321d","g807ecb9a","g1e9c8109","g0c72c143","gff36502d","geaa873fa","ge2cc0861","g175b04f1","g94923f81","g45ea723b","g160fd7f6","gaeaac5fa","g76d20b37","g38010e58","g0f5cb299","gc34a0014","gbafb48de","g76e069ce","g677da40a","gc644d6b2","g994cb161","g5c53c415","g98b8dc39","g59504006","g30ffb51d","gf914e4b8","g273a413c","g56cb2d18","gd57573dc","g93120e2d","gafc23d42","gd7794306","ge64b5513","g101259e8","gdda65693","g307a433d","g121443c7","g1c770280","gef83dfc1","g1449e75e","g9ef37883","g3258bb75","gc9ff951a","g3c1e2d4e","gc394723f","gb4c85102","ge0e82f2c","g9b9efa1f","gdd3e7164","gd57d25df","ge08d13f7","gfc939473","g33dbbc0c","gc257631e","g6061e833","g0659988f","gab6142a6","g6e0a2de3","gbc9019f3","gf2865e72","g0f3667a6","g4733567b","g4756de4b","g9038541f","g33b09a4c","g4cec8c5b","ga4df5768","g7e8d736d","g562de47b","g69db51e9","g008c79c1","gc7c536e9","gd31ec5c1","gaa4d6e86","ge3ec0196","g2c37b1ab","gba2848cd","g47950c2d","gc119ce97","gb17411e5","g1a8b2fd6","g57edd025","g8eaa856b","gc2dd9d7b","gb5b63262","g3dd95916","g63190b8d","g118c8226","g957c6da8","g7b2d0be3","geb433cff","g04e4005a","g8b9c0ebd","g44b32dd2","g18db568f","g8b77fbc7","gd8384ee9","g7007532c","ga9345400","ge3c0f644","gcd9d07c0","gd1ef7aed","g9cf809c3","g16ee5adc","g4bf0888a","g18446003","gd5f823c1","gc84e3c86","gb905f92a","g25fd5d89","g89c0b3dc","gc2baf00f","ge8ba4a9c","g2a2ab0d3","gf1c9a9e1","ge3c1fb9f","g15a5bd1e","g3e78065d","g3c112db8","gbc4ef69e","gfc0e63b5","g3c0849a3","ga5233d36","gbe7d8c08","g572106e5","g8477937b","g1aafa51d","g68c5554b","g2cf2263f","g79917188","g2806c93f","gc36acde4"],"retired":[],"storePrefix":"qb.site"};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>window.QB_SYNC_CFG={"env":"__ENV_ID__","key":"__PUBLISHABLE_KEY__","rpc":"","quiz":"global","codeKey":"csquiz_sync_code_v1"};</script>
+<script>/* qb-sync.js — 云端同步（手动上传 / 下载，不做任何自动网络请求）
+ *
+ * 与线上原方案C 完全同一套契约，保证老页面与新页面读写同一行、同一份数据：
+ *   环境      window.QB_SYNC.env
+ *   RPC       POST <env>.api.tcloudbasegateway.com/v1/rdb/rest/rpc/quiz_pull | quiz_push
+ *   鉴权      Authorization: Bearer <publishable key>
+ *   行键      (同步码, 'global')，全站一行
+ *   payload   {v:1, quiz:'global', at, ans:{gid:{picked,text,done,ok,self,upd}}, del:{gid:t}, fav:{gid:{on,t}}}
+ *   同步码    localStorage['csquiz_sync_code_v1']（与旧页面共用，用户不用重填）
+ *
+ * 内核内部记录用规范 3.2 的短键（ok/at/p/x/self），payload 用旧站的长键。
+ * 转换集中在本文件的 toRemote / fromRemote，两端格式谁都不改，所以新旧页面可以并存。
+ */
+(function (root) {
+  'use strict';
+
+  var QB = root.QB;
+  if (!QB) return;
+
+  function Sync(site, cfg) {
+    this.site = site;
+    this.cfg = cfg || {};
+    this.env = this.cfg.env || '';
+    this.key = this.cfg.key || '';
+    this.code = this.cfg.code || '';
+    this.quiz = this.cfg.quiz || 'global';
+    this.base = this.cfg.rpc || ('https://' + this.env + '.api.tcloudbasegateway.com/v1/rdb/rest/rpc/');
+    this.busy = false;
+    this.lastMsg = '';
+    this.lastAt = 0;
+    this.codeKey = this.cfg.codeKey || 'csquiz_sync_code_v1';
+    this.stateKey = 'qb.site.sync.v1';
+    var st = this._load();
+    if (!this.code && st.code) this.code = st.code;
+  }
+
+  Sync.prototype._load = function () {
+    try {
+      var raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.stateKey) : null;
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  };
+
+  Sync.prototype._save = function (patch) {
+    var st = this._load();
+    for (var k in patch) st[k] = patch[k];
+    st.at = Date.now();
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.stateKey, JSON.stringify(st)); } catch (e) {}
+  };
+
+  Sync.prototype.configured = function () {
+    return !!this.env && this.key.length > 20 && this.key.indexOf('__') !== 0;
+  };
+
+  Sync.prototype.enabled = function () { return this.configured() && !!this.code; };
+
+  Sync.prototype.setCode = function (v) {
+    this.code = QB.cleanText(v).trim().toUpperCase();
+    this._save({ code: this.code });
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.codeKey, this.code); } catch (e) {}
+  };
+
+  Sync.prototype.readSharedCode = function () {
+    try {
+      var v = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.codeKey) : '';
+      if (v && !this.code) { this.code = v; }
+      return this.code || '';
+    } catch (e) { return this.code || ''; }
+  };
+
+  /* ---------- 记录形态转换 ---------- */
+
+  function toRemote(rec) {
+    if (!rec) return null;
+    var picked = Array.isArray(rec.p) ? rec.p.slice(0, 16) : [];
+    var text = rec.x == null ? '' : String(rec.x).slice(0, 2000);
+    return {
+      picked: picked,
+      text: text,
+      done: rec.ok !== null || picked.length > 0 || text.length > 0,
+      ok: rec.ok === true ? true : (rec.ok === false ? false : null),
+      self: rec.self === true ? true : null,
+      upd: typeof rec.at === 'number' ? rec.at : 0
+    };
+  }
+
+  function fromRemote(r) {
+    if (!r || typeof r !== 'object') return null;
+    var rec = { ok: r.ok === true ? true : (r.ok === false ? false : null), at: typeof r.upd === 'number' ? r.upd : Date.now() };
+    if (Array.isArray(r.picked) && r.picked.length) {
+      rec.p = r.picked.filter(function (k) { return typeof k === 'number' && k >= 0 && k < 16; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (typeof r.text === 'string' && r.text) rec.x = QB.cleanText(r.text);
+    if (r.self === true) rec.self = true;
+    return rec;
+  }
+
+  Sync.prototype._localSnap = function () {
+    var site = this.site;
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var known = {};
+    site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    Object.keys(ans).forEach(function (g) {
+      if (!known[g]) return;
+      var r = toRemote(ans[g]);
+      if (r) snap.ans[g] = r;
+    });
+    Object.keys(fav).forEach(function (g) { if (known[g]) snap.fav[g] = { on: true, t: fav[g] || 0 }; });
+    return snap;
+  };
+
+  Sync.prototype._remoteSnap = function (payload) {
+    var known = {};
+    this.site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    var a = (payload && payload.ans) || {};
+    var d = (payload && payload.del) || {};
+    var f = (payload && payload.fav) || {};
+    Object.keys(a).forEach(function (g) {
+      if (!known[g]) return;
+      var r = fromRemote(a[g]);
+      if (r) snap.ans[g] = toRemote(r);
+    });
+    Object.keys(d).forEach(function (g) { if (known[g] && typeof d[g] === 'number') snap.del[g] = d[g]; });
+    Object.keys(f).forEach(function (g) {
+      if (known[g] && f[g] && typeof f[g] === 'object') snap.fav[g] = { on: f[g].on === true, t: typeof f[g].t === 'number' ? f[g].t : 0 };
+    });
+    return snap;
+  };
+
+  /* 合并：并集，同一条取 upd 较新者；墓碑优先 */
+  function combine(a, b) {
+    var out = { ans: {}, del: {}, fav: {} };
+    [b, a].forEach(function (src) {
+      Object.keys(src.ans).forEach(function (g) {
+        var cur = out.ans[g];
+        if (!cur || (src.ans[g].upd || 0) >= (cur.upd || 0)) out.ans[g] = src.ans[g];
+      });
+    });
+    var dels = {};
+    [a, b].forEach(function (src) {
+      Object.keys(src.del).forEach(function (g) { dels[g] = Math.max(dels[g] || 0, src.del[g]); });
+    });
+    Object.keys(dels).forEach(function (g) {
+      var rec = out.ans[g];
+      if (!rec || dels[g] >= (rec.upd || 0)) { delete out.ans[g]; out.del[g] = dels[g]; }
+    });
+    var keys = {};
+    Object.keys(a.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(b.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(keys).forEach(function (k) {
+      var x = a.fav[k], y = b.fav[k];
+      out.fav[k] = (x && y) ? ((x.t || 0) >= (y.t || 0) ? x : y) : (x || y);
+    });
+    return out;
+  }
+
+  Sync.prototype._apply = function (snap) {
+    var site = this.site;
+    var ans = site.allAns(), fav = site.allFav();
+    Object.keys(snap.ans).forEach(function (g) {
+      var incoming = fromRemote(snap.ans[g]);
+      if (incoming) ans[g] = QB.mergeRecord(ans[g] || null, incoming);
+    });
+    Object.keys(snap.del).forEach(function (g) { delete ans[g]; });
+    Object.keys(snap.fav).forEach(function (g) { if (snap.fav[g].on) fav[g] = snap.fav[g].t || Date.now(); else delete fav[g]; });
+    site.store.set('ans', ans);
+    site.store.set('fav', fav);
+  };
+
+  Sync.prototype._payload = function (snap) {
+    var ans = {};
+    Object.keys(snap.ans).forEach(function (g) {
+      var r = snap.ans[g];
+      ans[g] = { picked: r.picked, text: r.text, done: r.done, ok: r.ok, self: r.self, upd: r.upd };
+    });
+    return { v: 1, quiz: this.quiz, at: Date.now(), ans: ans, del: snap.del, fav: snap.fav };
+  };
+
+  /* ---------- 网络 ---------- */
+
+  Sync.prototype._rpc = function (fn, body) {
+    var self = this;
+    return fetch(this.base + fn, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.key
+      },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function (text) {
+      // 统一按 UTF-8 文本解析，避免响应头缺 charset 时按 latin-1 解出乱码
+      var json;
+      try { json = JSON.parse(text); } catch (e) { throw new Error('云端返回非 JSON'); }
+      if (json && json.ok === false && json.error === 'conflict') return json;
+      if (!json || json.ok === false) throw new Error((json && json.error) || '云端返回异常');
+      return json;
+    });
+  };
+
+  Sync.prototype._guard = function () {
+    if (!this.configured()) return '同步未配置（缺少环境或 Key）';
+    if (!this.code) return '请先填写并保存同步码';
+    if (this.busy) return '正在同步中';
+    return null;
+  };
+
+  Sync.prototype.upload = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+
+    function once() {
+      return self._rpc('quiz_pull', { p_code: self.code, p_quiz: self.quiz }).then(function (r) {
+        var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+        return self._rpc('quiz_push', {
+          p_code: self.code, p_quiz: self.quiz,
+          p_base_rev: r.rev || 0, p_payload: self._payload(merged)
+        }).then(function (res) { return { res: res, merged: merged }; });
+      });
+    }
+
+    return once().then(function (x) {
+      if (x.res && x.res.ok === false && x.res.error === 'conflict') return once();   // 被别的设备抢先，重来一次
+      self._apply(x.merged);
+      self._save({ rev: x.res.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(x.merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.download = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+    return this._rpc('quiz_pull', { p_code: this.code, p_quiz: this.quiz }).then(function (r) {
+      var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+      self._apply(merged);
+      self._save({ rev: r.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.pending = function () {
+    var st = this._load();
+    var since = st.at || 0;
+    var n = 0;
+    var ans = this.site.allAns();
+    Object.keys(ans).forEach(function (g) { if ((ans[g].at || 0) > since) n++; });
+    return n;
+  };
+
+  root.QBSync = { create: function (site, cfg) { return new Sync(site, cfg); }, toRemote: toRemote, fromRemote: fromRemote };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-page.js — 练习页渲染层
+ * 只读 window.QB_SITE（站点定义 + 本题组题目），所有状态变更走 QB 内核（规范 6.4）。
+ */
+(function () {
+  'use strict';
+
+  var def = window.QB_SITE;
+  var meta = window.QB_META || {};
+  if (!def) return;
+
+  var site = QB.create(def);
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var S = {
+    mode: 'seq',
+    type: '',
+    diff: '',
+    kw: '',
+    list: [],
+    idx: 0,
+    shown: {},       // qid -> true，已揭晓答案
+    redo: {},        // qid -> true，本题正在重做，忽略旧记录
+    draft: {}        // qid -> 当前输入
+  };
+
+  var DIFF_ORDER = { '易': 0, '中': 1, '难': 2 };
+  var TYPE_ORDER = Object.keys(def.types || {});
+
+  /* ------------------------------------------------------------ 路由 */
+
+  function readRoute() {
+    var h = location.hash.replace(/^#/, '');
+    var p = new URLSearchParams(h);
+    S.mode = p.get('mode') || 'seq';
+    S.type = p.get('t') || '';
+    S.diff = p.get('d') || '';
+    S.kw = p.get('kw') || '';
+    var qid = p.get('q');
+    if (qid) S.pendingQid = qid;
+  }
+
+  function writeRoute() {
+    var p = new URLSearchParams();
+    if (S.mode !== 'seq') p.set('mode', S.mode);
+    if (S.type) p.set('t', S.type);
+    if (S.diff) p.set('d', S.diff);
+    if (S.kw) p.set('kw', S.kw);
+    var q = S.list[S.idx];
+    if (q) p.set('q', q.qid);
+    var url = location.pathname + '#' + p.toString();
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// 下可能被拒，忽略 */ }
+  }
+
+  /* ------------------------------------------------------------ 组卷 */
+
+  function buildList() {
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var all = site.questions.slice();
+
+    if (S.type) all = all.filter(function (q) { return q.type === S.type; });
+    if (S.diff) all = all.filter(function (q) { return q.diff === S.diff; });
+    if (S.kw) {
+      var kw = S.kw.toLowerCase();
+      all = all.filter(function (q) {
+        return (q.stem + ' ' + q.topic + ' ' + (q.exp || '')).toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+
+    if (S.mode === 'wrong') all = all.filter(function (q) { return wrong[q._gid]; });
+    else if (S.mode === 'fav') all = all.filter(function (q) { return fav[q._gid]; });
+    else if (S.mode === 'undone') all = all.filter(function (q) { return !ans[q._gid]; });
+
+    if (S.mode === 'random') {
+      for (var i = all.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+    }
+    S.list = all;
+    if (S.pendingQid) {
+      var k = all.findIndex(function (q) { return q.qid === S.pendingQid; });
+      if (k >= 0) S.idx = k;
+      S.pendingQid = null;
+    }
+    if (S.idx >= all.length) S.idx = Math.max(0, all.length - 1);
+  }
+
+  /* ------------------------------------------------------------ 渲染 */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // 显示优先用构建期排好版的视图（公式是内联 SVG），没有就转义纯文本
+  function view(q, field, fallback) {
+    if (q.views && q.views[field] != null) return q.views[field];
+    var raw = fallback !== undefined ? fallback : q[field];
+    return esc(raw).replace(/\n/g, '<br>');
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function renderStats() {
+    var st = site.stats(def.units.length === 1 ? def.units[0].key : null);
+    var box = $('#stats');
+    box.innerHTML = '';
+    var items = [
+      ['进度', st.answered + ' / ' + st.total, st.total ? Math.round(100 * st.answered / st.total) : 0],
+      ['正确率', st.rate == null ? '—' : st.rate + '%', st.rate || 0],
+      ['错题', String(st.wrong), 0],
+      ['收藏', String(st.fav), 0]
+    ];
+    items.forEach(function (it) {
+      var c = el('div', 'stat');
+      c.appendChild(el('div', 'stat-k', it[0]));
+      c.appendChild(el('div', 'stat-v', it[1]));
+      if (it[2]) {
+        var bar = el('div', 'stat-bar');
+        var fill = el('i');
+        fill.style.width = it[2] + '%';
+        bar.appendChild(fill);
+        c.appendChild(bar);
+      }
+      box.appendChild(c);
+    });
+    var label = def.units.length === 1 ? '题组口径' : '题库集口径（gid 去重）';
+    $('#stats').setAttribute('data-scope', label);
+  }
+
+  function renderFilters() {
+    var tsel = $('#f-type');
+    if (tsel.options.length <= 1) {
+      TYPE_ORDER.forEach(function (t) {
+        var o = el('option', null, def.types[t].label || t);
+        o.value = t;
+        tsel.appendChild(o);
+      });
+    }
+    tsel.value = S.type;
+    $('#f-diff').value = S.diff;
+    $('#f-kw').value = S.kw;
+    $$('#modes button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.mode === S.mode);
+    });
+  }
+
+  function optionMark(q, i) {
+    return String.fromCharCode(65 + i);
+  }
+
+  function renderCard() {
+    var card = $('#card');
+    card.innerHTML = '';
+    var q = S.list[S.idx];
+
+    if (!q) {
+      var empty = el('div', 'empty');
+      empty.appendChild(el('div', 'empty-t', S.mode === 'wrong' ? '错题本是空的' : (S.mode === 'fav' ? '还没有收藏' : '没有符合条件的题目')));
+      empty.appendChild(el('p', 'empty-s', S.mode === 'wrong'
+        ? '答错的题会自动进入这里；在错题本里做对一次才会移出。'
+        : '换个筛选条件，或者切回顺序练习。'));
+      card.appendChild(empty);
+      $('#nav').innerHTML = '';
+      return;
+    }
+
+    var decl = def.types[q.type] || {};
+    var rec = site.get(q._gid);
+    // 错题本里默认让人重做：不预置上次的选项、也不提前摊开答案。
+    // 点「重做」的题同理；其余模式仍按「做过就显示结果」的老规矩。
+    var redoing = !!S.redo[q.qid] || (S.mode === 'wrong' && !S.shown[q.qid]);
+    var revealed = !redoing && (!!S.shown[q.qid] || (rec && rec.ok !== null));
+    var fav = site.allFav()[q._gid];
+
+    var head = el('div', 'q-head');
+    var tag = el('span', 'tag tag-type', decl.label || q.type);
+    head.appendChild(tag);
+    head.appendChild(el('span', 'tag tag-diff d-' + (DIFF_ORDER[q.diff] != null ? DIFF_ORDER[q.diff] : 1), q.diff));
+    head.appendChild(el('span', 'q-topic', q.topic));
+    var no = el('span', 'q-no', (S.idx + 1) + ' / ' + S.list.length);
+    head.appendChild(no);
+    card.appendChild(head);
+
+    var stem = el('div', 'q-stem');
+    stem.innerHTML = view(q, 'stem');
+    card.appendChild(stem);
+
+    if (q.media && q.media.img) {
+      var im = el('img', 'q-img');
+      im.src = q.media.img;
+      im.alt = '题图';
+      card.appendChild(im);
+    }
+
+    var area = el('div', 'q-area');
+
+    if (decl.answerShape === 'choice') {
+      var opts = el('div', 'opts');
+      var picked = redoing ? (S.draft[q.qid] || [])
+        : ((rec && rec.p) ? rec.p.slice() : (S.draft[q.qid] || []));
+      q.options.forEach(function (text, i) {
+        var b = el('button', 'opt');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        if (picked.indexOf(i) >= 0) b.classList.add('picked');
+        if (revealed) {
+          b.disabled = true;
+          if ((q.answer || []).indexOf(i) >= 0) b.classList.add('right');
+          else if (picked.indexOf(i) >= 0) b.classList.add('wrong');
+        }
+        var k = el('span', 'opt-k', optionMark(q, i));
+        b.appendChild(k);
+        var ot = el('span', 'opt-t');
+        ot.innerHTML = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(text);
+        b.appendChild(ot);
+        b.addEventListener('click', function () { pick(q, decl, i); });
+        opts.appendChild(b);
+      });
+      area.appendChild(opts);
+      if (decl.judge === 'set' && !revealed) {
+        var tip = el('p', 'hint', '多选题：选好后点「提交」');
+        area.appendChild(tip);
+      }
+    } else if (decl.answerShape === 'tokenList') {
+      var inp = el('input', 'in');
+      inp.type = 'text';
+      inp.placeholder = '在此填写答案';
+      inp.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      inp.disabled = revealed;
+      inp.addEventListener('input', function () { S.draft[q.qid] = inp.value; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(q, decl); });
+      area.appendChild(inp);
+    } else {
+      var ta = el('textarea', 'ta');
+      ta.placeholder = '写出你的答案或关键步骤，提交后与参考答案对照自评';
+      ta.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      ta.disabled = revealed;
+      ta.rows = 5;
+      ta.addEventListener('input', function () { S.draft[q.qid] = ta.value; });
+      area.appendChild(ta);
+    }
+    card.appendChild(area);
+
+    var bar = el('div', 'q-bar');
+    if (!revealed) {
+      var sub = el('button', 'btn primary', '提交');
+      sub.addEventListener('click', function () { submit(q, decl); });
+      bar.appendChild(sub);
+      if (decl.judge === 'rubric') {
+        bar.appendChild(el('span', 'hint', '主观题：提交后对照参考答案自评'));
+      }
+      var peek = el('button', 'btn ghost', '看答案');
+      peek.addEventListener('click', function () { S.shown[q.qid] = true; render(); });
+      bar.appendChild(peek);
+    } else {
+      // 只点过「看答案」还没作答时 rec 为空，别显示成「待自评」
+      var vClass = !rec ? 'mid' : (rec.ok === true ? 'ok' : (rec.ok === false ? 'bad' : 'mid'));
+      var vText = !rec ? '未作答 · 仅看答案' : (rec.ok === true ? '✓ 答对' : (rec.ok === false ? '✗ 答错' : '待自评'));
+      var verdict = el('div', 'verdict ' + vClass);
+      verdict.textContent = vText;
+      bar.appendChild(verdict);
+      if (rec && rec.c != null && rec.ok === false) bar.appendChild(el('span', 'hint', '得分率 ' + Math.round(rec.c * 100) + '%'));
+      var again = el('button', 'btn', '重做本题');
+      again.addEventListener('click', function () { redoOne(q); });
+      bar.appendChild(again);
+    }
+    var favBtn = el('button', 'btn ghost' + (fav ? ' on' : ''), fav ? '★ 已收藏' : '☆ 收藏');
+    favBtn.addEventListener('click', function () {
+      site.toggleFav(q._gid);
+      render();
+    });
+    bar.appendChild(favBtn);
+    if (rec && site.allWrong()[q._gid]) {
+      var sup = el('button', 'btn ghost', '移出错题本');
+      sup.addEventListener('click', function () { site.suppress(q._gid); render(); });
+      bar.appendChild(sup);
+    }
+    card.appendChild(bar);
+
+    if (revealed) {
+      var exp = el('div', 'exp');
+      exp.appendChild(el('div', 'exp-h', '答案与解析'));
+      var ansText = answerText(q, decl);
+      if (ansText) {
+        var a = el('p', 'exp-a');
+        a.innerHTML = '<b>答案：</b>' + ansText;
+        exp.appendChild(a);
+      }
+      if (q.exp) {
+        var p = el('p', 'exp-p');
+        p.innerHTML = view(q, 'exp');
+        exp.appendChild(p);
+      }
+      if (q.meta && q.meta.source) {
+        exp.appendChild(el('p', 'exp-src', '来源：' + q.meta.source + (q.meta.paperNo ? ' 第 ' + q.meta.paperNo + ' 题' : '')));
+      }
+      if (decl.judge === 'rubric' && rec && rec.ok === null) {
+        var self = el('div', 'self');
+        self.appendChild(el('span', 'hint', '自评：'));
+        [['达标', true, null], ['部分达标', false, 0.5], ['未达标', false, 0]].forEach(function (t) {
+          var b = el('button', 'btn small', t[0]);
+          b.addEventListener('click', function () { selfJudge(q, t[1], t[2]); });
+          self.appendChild(b);
+        });
+        exp.appendChild(self);
+      }
+      card.appendChild(exp);
+    }
+
+    var nav = $('#nav');
+    nav.innerHTML = '';
+    var prev = el('button', 'btn', '← 上一题');
+    prev.disabled = S.idx === 0;
+    prev.addEventListener('click', function () { go(S.idx - 1); });
+    var next = el('button', 'btn primary', '下一题 →');
+    next.disabled = S.idx >= S.list.length - 1;
+    next.addEventListener('click', function () { go(S.idx + 1); });
+    nav.appendChild(prev);
+    if (S.mode === 'wrong' && S.list.length) {
+      var all = el('button', 'btn small', '全部重做');
+      all.title = '清空本轮在错题本里的作答状态，从头再做一遍';
+      all.addEventListener('click', function () {
+        S.list.forEach(function (x) { delete S.shown[x.qid]; delete S.draft[x.qid]; S.redo[x.qid] = true; });
+        S.idx = 0;
+        render();
+        flash('已清空本轮作答，从头开始');
+      });
+      nav.appendChild(all);
+    }
+    nav.appendChild(el('span', 'nav-mid', (S.idx + 1) + ' / ' + S.list.length));
+    nav.appendChild(next);
+  }
+
+  function answerText(q, decl) {
+    if (decl.answerShape === 'choice') {
+      return (q.answer || []).map(function (i) {
+        var t = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(q.options[i]);
+        return optionMark(q, i) + '. ' + t;
+      }).join('；');
+    }
+    if (decl.answerShape === 'tokenList') {
+      var list = (q.views && q.views.answers && q.views.answers.length) ? q.views.answers : (q.answers || []).map(esc);
+      return list.join(' / ');
+    }
+    return (q.views && q.views.ref) ? q.views.ref : (q.ref ? esc(String(q.ref)) : '');
+  }
+
+  /* ------------------------------------------------------------ 交互 */
+
+  // 重新作答一道题：清掉本次会话的揭晓标记与草稿，回到未作答状态
+  function redoOne(q) {
+    S.redo[q.qid] = true;
+    delete S.shown[q.qid];
+    delete S.draft[q.qid];
+    render();
+    flash('已清空，可以重做了');
+  }
+
+  function pick(q, decl, i) {
+    var cur = (S.draft[q.qid] || []).slice();
+    if (decl.judge === 'set') {
+      var k = cur.indexOf(i);
+      if (k >= 0) cur.splice(k, 1); else cur.push(i);
+      S.draft[q.qid] = cur;
+      renderCard();
+    } else {
+      S.draft[q.qid] = [i];
+      submit(q, decl);
+    }
+  }
+
+  function submit(q, decl) {
+    var input = { picked: S.draft[q.qid] || [], text: S.draft[q.qid] || '' };
+    if (decl.answerShape === 'choice') input = { picked: S.draft[q.qid] || [] };
+    else input = { text: S.draft[q.qid] || '' };
+
+    if (decl.answerShape === 'choice' && (!input.picked || !input.picked.length)) {
+      flash('先选一个选项');
+      return;
+    }
+    if (decl.answerShape !== 'choice' && !String(input.text).trim()) {
+      flash('先写下答案');
+      return;
+    }
+
+    var res = QB.judge(q, decl, input);
+    var patch = { ok: res.ok, at: Date.now(), m: S.mode };
+    if (decl.replay === 'mask' && input.picked) patch.p = input.picked;
+    if (decl.replay === 'text' && input.text != null) patch.x = String(input.text);
+    if (res.credit != null) patch.c = res.credit;
+    if (res.ok === null) patch.self = false;
+
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && res.ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  function selfJudge(q, ok, credit) {
+    var patch = { ok: ok, at: Date.now(), m: S.mode, self: true };
+    if (credit != null) patch.c = credit;
+    var rec = site.get(q._gid);
+    if (rec && rec.x != null) patch.x = rec.x;
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  /* 翻题后不把页面拉回顶部。
+     只在题卡顶部已经滚出视野上方（rect.top < 8）时，把它瞬时拉回视野；
+     卡片顶部还在视野里就完全不动。用瞬时滚动、不用 smooth——
+     平滑滚动会和滑动翻题的滑出动画叠在一起，观感就是「回弹」。 */
+  function keepCardInView() {
+    var c = $('#card');
+    if (!c) return;
+    var top = c.getBoundingClientRect().top;
+    if (top >= 8) return;
+    var y = (window.scrollY || window.pageYOffset || 0) + top - 8;
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
+
+  function go(i) {
+    if (i < 0 || i >= S.list.length) return;
+    S.idx = i;
+    render();
+    keepCardInView();
+  }
+
+  var flashTimer = null;
+  function flash(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  /* ------------------------------------------------------------ 掌握度 */
+
+  function renderMastery() {
+    var rows = site.masteryAll().filter(function (r) { return r.n > 0; });
+    var box = $('#mastery');
+    box.innerHTML = '';
+    if (!rows.length) {
+      box.appendChild(el('p', 'hint', '还没有作答记录，掌握度会在作答后出现。'));
+      return;
+    }
+    var table = el('table', 'mt');
+    var thead = el('thead');
+    var tr = el('tr');
+    ['知识点', '得分', '状态', '作答数'].forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr2 = el('tr');
+      tr2.appendChild(el('td', 'mt-t', r.topic));
+      tr2.appendChild(el('td', 'mt-s', String(r.score)));
+      var lv = el('td');
+      lv.appendChild(el('span', 'lv ' + (r.level === '已掌握' ? 'lv-ok' : (r.level === '薄弱' ? 'lv-bad' : 'lv-mid')), r.level));
+      tr2.appendChild(lv);
+      tr2.appendChild(el('td', 'mt-n', String(r.n)));
+      tb.appendChild(tr2);
+    });
+    table.appendChild(tb);
+    box.appendChild(table);
+  }
+
+  /* ------------------------------------------------------------ 导出导入 */
+
+  function initTransfer() {
+    var sel = $('#x-scope');
+    if (def.units.length === 1) {
+      sel.innerHTML = '';
+      var o = el('option', null, '本题库');
+      o.value = 'unit:' + def.units[0].key;
+      sel.appendChild(o);
+    } else {
+      var s1 = el('option', null, '全站');
+      s1.value = 'site:';
+      sel.appendChild(s1);
+      def.units.forEach(function (u) {
+        var o2 = el('option', null, u.label + ' ' + u.title);
+        o2.value = 'unit:' + u.key;
+        sel.appendChild(o2);
+      });
+    }
+
+    $('#x-do').addEventListener('click', function () {
+      var v = sel.value.split(':');
+      try {
+        var code = site.encode(v[0], v[1]);
+        $('#x-code').value = code;
+        $('#x-info').textContent = '已生成 ' + code.length + ' 字符（预算 ' + site.budget + '）'
+          + (code.length > site.budget ? '，超出预算，建议改用题组作用域' : '');
+      } catch (e) {
+        $('#x-info').textContent = '生成失败：' + e.message;
+      }
+    });
+
+    $('#x-copy').addEventListener('click', function () {
+      var ta = $('#x-code');
+      if (!ta.value) return flash('先生成导出码');
+      ta.select();
+      try { document.execCommand('copy'); flash('已复制'); } catch (e) { flash('请手动复制'); }
+    });
+
+    $('#x-import').addEventListener('click', function () {
+      var code = $('#x-code').value.trim();
+      if (!code) return flash('请粘贴导出码');
+      try {
+        var r = site.importCode(code);
+        $('#x-info').textContent = '已导入 ' + r.count + ' 条（' + r.kind + ':' + (r.key || '全站') + '），作用域外记录未改动';
+        reload();
+      } catch (e) {
+        $('#x-info').textContent = '导入失败：' + e.message;
+      }
+    });
+
+    $('#x-undo').addEventListener('click', function () {
+      if (site.undoImport()) { $('#x-info').textContent = '已撤销上次导入'; reload(); }
+      else $('#x-info').textContent = '没有可撤销的导入';
+    });
+
+    $('#reset').addEventListener('click', function () {
+      if (!confirm('清空本题库在本机的作答、错题与收藏记录？此操作不可撤销。')) return;
+      site.resetScope(def.units.length === 1 ? 'unit' : 'site', def.units.length === 1 ? def.units[0].key : '');
+      S.shown = {}; S.redo = {}; S.draft = {};
+      reload();
+      flash('已清空');
+    });
+  }
+
+  /* ------------------------------------------------------------ 云同步 */
+
+  function initCloud() {
+    var wrap = $('#cloud-wrap');
+    if (!wrap) return;
+    var cfg = window.QB_SYNC_CFG;
+    if (!cfg || !window.QBSync) return;
+    wrap.style.display = '';
+
+    var sync = window.QBSync.create(site, cfg);
+    var codeInput = $('#s-code');
+    var info = $('#s-info');
+    var saved = sync.readSharedCode();
+    if (saved) codeInput.value = saved;
+
+    function say(msg) { info.textContent = msg; }
+
+    $('#s-save').addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (v.length < 10) return say('同步码至少 10 位（它是唯一凭证）');
+      sync.setCode(v);
+      codeInput.value = sync.code;
+      say('已保存，本机所有题库共用这个同步码');
+    });
+
+    function run(fn, label) {
+      var why = sync._guard();
+      if (why) return say(why);
+      say(label + '中…');
+      fn().then(function (r) {
+        say(label + '完成，云端共 ' + r.count + ' 条记录');
+        render();
+      }).catch(function (e) {
+        say(label + '失败：' + e.message);
+      });
+    }
+
+    $('#s-up').addEventListener('click', function () { run(function () { return sync.upload(); }, '上传'); });
+    $('#s-down').addEventListener('click', function () { run(function () { return sync.download(); }, '下载'); });
+
+    var pend = sync.pending();
+    say(pend ? ('有 ' + pend + ' 条本机改动尚未上传') : '同步码与云端一致时即可手动上传 / 下载');
+  }
+
+  /* ------------------------------------------------------------ 手势翻题 */
+
+  /* 左滑 → 下一题，右滑 → 上一题。所有题库共用这一份实现，页面不再各自绑定。
+     翻页走 go()，与「上一题 / 下一题」按钮同一条路径，不另起一套状态。
+     判定：水平位移 ≥ 56px、水平 ≥ 垂直 × 1.2、时长 ≤ 1.2s；
+     起手点在输入控件 / 控制区 / 折叠面板 / 可横向滚动的公式块内不触发；
+     纵向滑动超过阈值即判定为滚动并让位，全程 passive，不抢页面滚动。 */
+  function initSwipe() {
+    var MIN_X = 56;      // 触发所需最小水平位移
+    var LOCK_X = 12;     // 锁定为横向手势的位移
+    var LOCK_Y = 14;     // 纵向位移超过它且大于横向 → 判定为滚动
+    var SLOPE = 1.2;
+    var MAX_MS = 1200;
+    var EDGE = 24;       // 避开 iOS Safari 的边缘侧滑返回
+    var FOLLOW = 0.35;   // 拖动时卡片跟手系数
+    var ANIM_MS = 150;
+
+    var sx = 0, sy = 0, st = 0, tracking = false, locked = false, animating = false;
+    var muteUntil = 0;   // 滑动后短暂屏蔽 click，避免顺带点掉选项
+
+    function card() { return $('#card'); }
+
+    var SKIP = '.top, .ctl, details, .foot, #toast, input, textarea, select, [contenteditable="true"]';
+
+    // 起手点排除：交互控件、控制区，以及自身可横向滚动的容器（长公式、代码块）
+    function skip(el) {
+      if (!el || !el.closest) return true;
+      if (el.closest(SKIP)) return true;
+      var c = card();
+      for (var n = el; n && n !== c && n.nodeType === 1; n = n.parentNode) {
+        if (n.scrollWidth - n.clientWidth <= 2) continue;
+        var ox = window.getComputedStyle(n).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+      return false;
+    }
+
+    function reset() {
+      if (animating) return;          // 动画中不打断，否则会停在半路又被 go() 换题
+      var c = card();
+      if (!c) return;
+      c.style.transition = 'transform .18s ease, opacity .18s ease';
+      c.style.transform = '';
+      c.style.opacity = '';
+    }
+
+    function reduced() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // dir: 1 = 下一题，-1 = 上一题
+    function flip(dir) {
+      if (animating || !S.list.length) return;
+      var to = S.idx + dir;
+      if (to < 0 || to >= S.list.length) { reset(); return; }
+      var c = card();
+      if (!c) return;
+      muteUntil = Date.now() + 300;   // 吞掉滑动末尾那一次 click（选项点选即判分）
+      if (reduced()) { go(to); return; }
+      animating = true;
+      var out = dir > 0 ? -72 : 72;   // 下一题向左滑出，上一题向右滑出
+      c.style.transition = 'transform ' + ANIM_MS + 'ms ease, opacity ' + ANIM_MS + 'ms ease';
+      void c.offsetWidth;
+      c.style.transform = 'translateX(' + out + 'px)';
+      c.style.opacity = '0';
+      setTimeout(function () {
+        go(to);
+        c.style.transition = 'none';
+        c.style.transform = 'translateX(' + (-out) + 'px)';
+        c.style.opacity = '0';
+        requestAnimationFrame(function () {
+          c.style.transition = 'transform .2s ease, opacity .2s ease';
+          c.style.transform = '';
+          c.style.opacity = '';
+          animating = false;
+        });
+      }, ANIM_MS);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (Date.now() >= muteUntil) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('touchstart', function (e) {
+      if (animating || e.touches.length !== 1) return;
+      var t = e.touches[0];
+      if (t.clientX < EDGE || t.clientX > window.innerWidth - EDGE) return;
+      if (skip(e.target)) return;
+      sx = t.clientX; sy = t.clientY; st = Date.now();
+      tracking = true; locked = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      if (e.touches.length !== 1) { tracking = false; reset(); return; }
+      var t = e.touches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (!locked) {
+        if (Math.abs(dy) > LOCK_Y && Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+        if (Math.abs(dx) > LOCK_X) {
+          locked = true;
+          var c0 = card();
+          if (c0) c0.style.transition = 'none';
+        }
+      }
+      if (!locked) return;
+      var c = card();
+      if (!c) return;
+      c.style.transform = 'translateX(' + (dx * FOLLOW) + 'px)';
+      c.style.opacity = String(Math.max(0.55, 1 - Math.abs(dx) / 480));
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var was = locked; locked = false;
+      if (!was) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st;
+      if (Math.abs(dx) < MIN_X || Math.abs(dx) < Math.abs(dy) * SLOPE || dt > MAX_MS) { reset(); return; }
+      flip(dx < 0 ? 1 : -1);   // 左滑 → 下一题；右滑 → 上一题
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      tracking = false; locked = false;
+      reset();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------ 入口 */
+
+  // 只重画当前这一屏：题号、列表都保持不变。
+  // 在错题本里答对后题目会移出错题集合，若这里重组卷，卡片会当场跳到下一题，
+  // 用户看不到自己刚做对的结果。列表只在换模式 / 换筛选 / 导入时重建。
+  function render() {
+    renderStats();
+    renderFilters();
+    renderCard();
+    renderMastery();
+    writeRoute();
+  }
+
+  function reload() {
+    buildList();
+    render();
+  }
+
+  function init() {
+    readRoute();
+    // 旧版记录迁移：csg_* / csunitN_* 等命名空间并进全站三表，幂等，旧键不删
+    try {
+      var mig = site.migrateLegacy();
+      if (mig && !mig.skipped && (mig.ans || mig.wrong || mig.fav)) {
+        setTimeout(function () { flash('已迁移旧版记录：作答 ' + mig.ans + '、错题 ' + mig.wrong + '、收藏 ' + mig.fav); }, 400);
+      }
+    } catch (e) { /* 迁移失败不阻塞作答 */ }
+    $('#site-title').textContent = def.title || meta.title || '题库';
+    $('#bank-name').textContent = def.units.length === 1
+      ? (def.units[0].label + ' · ' + def.units[0].title)
+      : (def.subjectName || '');
+    if (def.units.length === 1 && def.units[0].desc) $('#bank-desc').textContent = def.units[0].desc;
+    if (meta.home) $('#home').href = meta.home;
+    else $('#home').style.display = 'none';
+
+    $$('#modes button').forEach(function (b) {
+      b.addEventListener('click', function () { S.mode = b.dataset.mode; S.idx = 0; reload(); });
+    });
+    $('#f-type').addEventListener('change', function (e) { S.type = e.target.value; S.idx = 0; reload(); });
+    $('#f-diff').addEventListener('change', function (e) { S.diff = e.target.value; S.idx = 0; reload(); });
+    var kwTimer = null;
+    $('#f-kw').addEventListener('input', function (e) {
+      clearTimeout(kwTimer);
+      var v = e.target.value;
+      kwTimer = setTimeout(function () { S.kw = v; S.idx = 0; reload(); }, 220);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(S.idx - 1);
+      if (e.key === 'ArrowRight') go(S.idx + 1);
+      if (/^[1-9]$/.test(e.key)) {
+        var q = S.list[S.idx];
+        if (q && def.types[q.type].answerShape === 'choice' && q.options[Number(e.key) - 1] != null) {
+          pick(q, def.types[q.type], Number(e.key) - 1);
+        }
+      }
+    });
+
+    initSwipe();
+    initTransfer();
+    initCloud();
+    reload();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

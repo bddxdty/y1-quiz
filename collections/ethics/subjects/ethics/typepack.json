@@ -1,0 +1,47 @@
+{
+ "version": 1,
+ "key": "ethics",
+ "name": "思想道德与法治题型包",
+ "types": {
+  "single": {
+   "key": "single",
+   "label": "单选题",
+   "answerShape": "choice",
+   "judge": "exact",
+   "replay": "mask",
+   "maxOptions": 4,
+   "fault": "builtin:fact-recall",
+   "countsInMastery": true,
+   "fields": {
+    "options": "选项文本数组，2～4 项",
+    "answer": "正确项下标数组，恰好 1 项"
+   }
+  },
+  "multi": {
+   "key": "multi",
+   "label": "多选题",
+   "answerShape": "choice",
+   "judge": "set",
+   "replay": "mask",
+   "maxOptions": 4,
+   "fault": "builtin:concept-boundary",
+   "countsInMastery": true,
+   "fields": {
+    "options": "选项文本数组，2～4 项",
+    "answer": "正确项下标数组，≥ 2 项"
+   }
+  },
+  "short": {
+   "key": "short",
+   "label": "简答题",
+   "answerShape": "text",
+   "judge": "rubric",
+   "replay": "text",
+   "fault": "builtin:coverage",
+   "countsInMastery": true,
+   "fields": {
+    "ref": "参考答案文本"
+   }
+  }
+ }
+}

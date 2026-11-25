@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "id": "math.u8",
+  "key": "u8",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 9 章",
+  "title": "多元函数微分法及其应用",
+  "desc": "二元函数的极限与连续、偏导数与全微分、复合与隐函数求导、切平面与极值",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 7,
+  "types": [
+    "blank",
+    "calc"
+  ],
+  "topics": [
+    "9.1 多元函数的概念",
+    "9.2 二元函数的极限",
+    "9.3 全微分",
+    "9.4 隐函数求偏导",
+    "9.5 曲面的切平面与法线",
+    "9.6 复合函数求偏导"
+  ],
+  "sources": [
+    "高等数学 A（下）测试卷（2023）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 8
+}

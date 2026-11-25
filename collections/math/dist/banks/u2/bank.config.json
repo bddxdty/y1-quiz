@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "id": "math.u2",
+  "key": "u2",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第 2 章",
+  "title": "导数与微分",
+  "desc": "导数定义、求导法则、高阶导数、隐函数与参数方程求导、微分",
+  "collection": {
+    "id": "math",
+    "name": "高等数学"
+  },
+  "subject": {
+    "key": "math",
+    "name": "高等数学",
+    "typepack": "math"
+  },
+  "count": 13,
+  "types": [
+    "blank",
+    "calc",
+    "single"
+  ],
+  "topics": [
+    "2.1 导数的概念",
+    "2.2 微分",
+    "2.3 求导法则",
+    "2.4 参数方程求导",
+    "2.5 隐函数求导"
+  ],
+  "sources": [
+    "2023-2024-1 高等数学（基础）期中自测题",
+    "高等数学（基础）期中测验题（2024）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 2
+}

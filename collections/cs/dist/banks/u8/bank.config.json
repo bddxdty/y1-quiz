@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "id": "cs.u8",
+  "key": "u8",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第八单元",
+  "title": "计算机网络",
+  "desc": "第 8 章 · 网络分类与拓扑、OSI 与 TCP/IP、IP 地址与域名、Internet 应用",
+  "collection": {
+    "id": "cs",
+    "name": "计算机导论"
+  },
+  "subject": {
+    "key": "cs",
+    "name": "计算机导论",
+    "typepack": "cs"
+  },
+  "count": 108,
+  "types": [
+    "comp",
+    "fill",
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "8.1 计算机网络的定义与功能",
+    "8.2 计算机网络的分类",
+    "8.3 网络拓扑结构",
+    "8.4 OSI 参考模型",
+    "8.5 TCP/IP 体系结构",
+    "8.6 IP 地址与域名",
+    "8.7 URL 与 Internet 应用",
+    "8.8 Internet 发展趋势"
+  ],
+  "sources": [
+    "第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）",
+    "第 8 章课件（8-计算机网络.pptx）",
+    "第 8 章课件（8-计算机网络.pptx）· 课上真题",
+    "第 8 章课件（陈8 计算机网络.pdf）",
+    "第 8 章课件（陈8 计算机网络.pdf）· 课上真题"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 11
+}

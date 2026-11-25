@@ -1,0 +1,25 @@
+# 忽略：本机与临时产物，都不进仓库
+
+# macOS
+.DS_Store
+
+# 部署包：由 `python3 tools/qb_build.py build` 从各题库集 dist 合并生成，13MB 重复副本
+deploy/
+
+# 目录快照：部署前/大改前的整目录备份，可由构建重建
+.backup-*/
+.pre-public-*/
+
+# 凭据：Publishable Key 虽然是设计上可公开的匿名钥匙，也不跟着代码走。
+# 仓库里只有模板，换 Key 只改本地文件。缺失时构建会注入 __PUBLISHABLE_KEY__ 占位符，
+# 页面照常可用，只是云端同步整体关闭。
+tools/publishable-key.txt
+
+# 命题与部署的内部分析记录
+collections/*/reports/
+
+# Python / Node
+__pycache__/
+*.pyc
+node_modules/
+*.log

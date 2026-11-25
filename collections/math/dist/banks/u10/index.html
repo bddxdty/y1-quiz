@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>高等数学 · 第 11 章 曲线积分与曲面积分</title>
+<style>/* qb-page.css — 题库页面样式（内核共用，不含任何科目特有内容） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef; --ok-line:#b7e6cf;
+  --bad:#b42318; --bad-soft:#fdecea; --bad-line:#f6c9c4;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:20px 16px 72px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+.top h1{font-size:21px;margin:0;letter-spacing:.2px}
+.top .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.top .spacer{flex:1}
+.home{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.home:hover{color:var(--accent);border-color:#c7dbff;text-decoration:none}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.block{padding:14px 16px;margin-bottom:14px}
+
+/* stats */
+#stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px;margin-bottom:14px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:19px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:7px;overflow:hidden}
+.stat-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl+.ctl{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.seg{display:inline-flex;background:#f1f4fa;border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:13.5px;color:#48505f}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+select,input[type=search]{
+  font:inherit;font-size:13.5px;color:var(--text);border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:7px 10px;outline:none
+}
+select:focus,input[type=search]:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=search]{min-width:170px;flex:1}
+.btn{
+  border:1px solid var(--line);background:#fff;color:#3c4353;border-radius:9px;padding:7px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;transition:.15s
+}
+.btn:hover:not(:disabled){border-color:#c7dbff;color:var(--accent);background:var(--accent-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#2557c7;border-color:#2557c7;color:#fff}
+.btn.ghost{background:#fff}
+.btn.ghost.on{color:#b54708;border-color:#f5dcb4;background:var(--warn-soft)}
+.btn.small{padding:5px 11px;font-size:13px}
+
+/* card */
+#card{padding:18px 18px 16px;margin-bottom:14px}
+.q-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fafbfd;white-space:nowrap}
+.tag-type{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.tag-diff.d-0{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.tag-diff.d-1{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.tag-diff.d-2{color:var(--bad);border-color:var(--bad-line);background:var(--bad-soft)}
+.q-topic{font-size:12.5px;color:var(--muted2)}
+.q-no{margin-left:auto;font-size:12.5px;color:var(--muted2);font-variant-numeric:tabular-nums}
+.q-stem{font-size:16.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.q-img{max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line)}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;
+  font:inherit;font-size:15px;line-height:1.6;cursor:pointer;transition:.13s;color:var(--text)
+}
+.opt:hover:not(:disabled){border-color:#c7dbff;background:#fafcff}
+.opt:disabled{cursor:default}
+.opt-k{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#f1f4fa;color:#48505f;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600
+}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt.picked .opt-k{background:var(--accent);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .opt-k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .opt-k{background:var(--bad);color:#fff}
+
+/* inputs */
+.in,.ta{
+  width:100%;margin-top:14px;font:inherit;font-size:15px;color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:11px 13px;outline:none;background:#fff;resize:vertical
+}
+.in:focus,.ta:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+.in:disabled,.ta:disabled{background:#fafbfd;color:var(--muted)}
+
+/* action bar */
+.q-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12.5px;color:var(--muted2)}
+.verdict{font-size:14px;font-weight:650;padding:5px 12px;border-radius:999px}
+.verdict.ok{color:var(--ok);background:var(--ok-soft)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft)}
+.verdict.mid{color:var(--warn);background:var(--warn-soft)}
+
+/* explanation */
+.exp{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.exp-h{font-size:12.5px;color:var(--muted2);letter-spacing:.4px;margin-bottom:7px}
+.exp-a{font-size:14.5px;margin:0 0 8px;padding:10px 12px;background:#f7f9fd;border-radius:9px;border:1px solid var(--line2)}
+.exp-p{font-size:14.5px;color:#333a49;margin:0 0 6px;white-space:pre-wrap}
+.exp-src{font-size:12px;color:var(--muted2);margin:6px 0 0}
+.self{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* nav */
+#nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nav-mid{flex:1;text-align:center;font-size:13px;color:var(--muted2);font-variant-numeric:tabular-nums}
+
+/* mastery */
+#mastery{padding:14px 16px;margin-bottom:14px}
+.mt{width:100%;border-collapse:collapse;font-size:13.5px}
+.mt th{text-align:left;font-weight:600;color:var(--muted2);font-size:12px;letter-spacing:.3px;padding:0 0 8px;border-bottom:1px solid var(--line2)}
+.mt td{padding:7px 0;border-bottom:1px solid var(--line2);vertical-align:middle}
+.mt tr:last-child td{border-bottom:0}
+.mt-t{color:#333a49}
+.mt-s{font-variant-numeric:tabular-nums;font-weight:650;width:56px}
+.mt-n{color:var(--muted2);width:56px;text-align:right}
+.lv{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.lv-ok{color:var(--ok);background:var(--ok-soft)}
+.lv-mid{color:var(--warn);background:var(--warn-soft)}
+.lv-bad{color:var(--bad);background:var(--bad-soft)}
+
+/* transfer */
+#transfer{padding:14px 16px;margin-bottom:14px}
+#x-code{width:100%;min-height:86px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;resize:vertical;background:#fafbfd;color:#333a49}
+#x-info{font-size:12.5px;color:var(--muted2);margin-top:8px;min-height:18px}
+.x-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* misc */
+.empty{padding:34px 8px;text-align:center}
+.empty-t{font-size:15.5px;font-weight:600}
+.empty-s{color:var(--muted2);font-size:13.5px;margin:6px 0 0}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:#1e2330;color:#fff;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:99
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:18px;line-height:1.8}
+
+@media (max-width:640px){
+  .wrap{padding:14px 12px 64px}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .top h1{font-size:18.5px}
+  .q-stem{font-size:16px}
+  .opt{font-size:14.5px}
+  input[type=search]{min-width:100%}
+}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">高等数学 · 第 11 章 曲线积分与曲面积分</h1>
+      <div class="sub"><span id="bank-name"></span> · <span id="bank-desc"></span></div>
+    </div>
+    <div class="spacer"></div>
+    <a class="home" id="home" href="../../index.html">返回题库集</a>
+  </div>
+
+  <div class="panel" id="stats"></div>
+
+  <div class="panel block">
+    <div class="ctl">
+      <div class="seg" id="modes">
+        <button data-mode="seq" class="on">顺序</button>
+        <button data-mode="random">随机</button>
+        <button data-mode="wrong">错题</button>
+        <button data-mode="fav">收藏</button>
+        <button data-mode="undone">未做</button>
+      </div>
+      <select id="f-type"><option value="">全部题型</option></select>
+      <select id="f-diff"><option value="">全部难度</option><option>易</option><option>中</option><option>难</option></select>
+    </div>
+    <div class="ctl">
+      <input type="search" id="f-kw" placeholder="搜索题干 / 知识点">
+      <span class="hint">键盘 ← → 翻题，数字键选项；手机在题目上左右滑动翻题</span>
+    </div>
+  </div>
+
+  <div class="panel" id="card"></div>
+  <div id="nav"></div>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">掌握度（按知识点）</summary>
+    <div id="mastery" style="padding-top:10px"></div>
+  </details>
+
+  <details class="panel block" id="cloud-wrap" style="display:none">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">云同步（手动上传 / 下载）</summary>
+    <div style="padding-top:10px">
+      <div class="x-row">
+        <input type="text" id="s-code" class="in" style="flex:1;min-width:180px;margin-top:0"
+               placeholder="同步码（≥10 位，与旧页面共用）">
+        <button class="btn" id="s-save">保存</button>
+        <button class="btn primary" id="s-up">上传</button>
+        <button class="btn" id="s-down">下载</button>
+      </div>
+      <div id="s-info" class="hint" style="margin-top:8px;min-height:18px"></div>
+    </div>
+  </details>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">导出 / 导入进度码</summary>
+    <div id="transfer" style="padding-top:10px">
+      <div class="x-row">
+        <select id="x-scope"></select>
+        <button class="btn" id="x-do">生成</button>
+        <button class="btn" id="x-copy">复制</button>
+        <button class="btn" id="x-import">导入</button>
+        <button class="btn" id="x-undo">撤销导入</button>
+        <button class="btn ghost" id="reset" style="margin-left:auto">清空本机记录</button>
+      </div>
+      <textarea id="x-code" placeholder="在此粘贴他人分享的进度码，或点「生成」得到自己的"></textarea>
+      <div id="x-info"></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    独立题库 · 高等数学 · 第 11 章 曲线积分与曲面积分 · 4 题<br>
+    进度保存在本机浏览器，不上传；换设备请用进度码迁移。
+  </div>
+</div>
+<div id="mjx-cache" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none" aria-hidden="true"><defs><path id="MJX-TEX-I-1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path><path id="MJX-TEX-I-1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-TEX-N-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path id="MJX-TEX-N-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-TEX-N-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path><path id="MJX-TEX-LO-222B" d="M114 -798Q132 -824 165 -824H167Q195 -824 223 -764T275 -600T320 -391T362 -164Q365 -143 367 -133Q439 292 523 655T645 1127Q651 1145 655 1157T672 1201T699 1257T733 1306T777 1346T828 1360Q884 1360 912 1325T944 1245Q944 1220 932 1205T909 1186T887 1183Q866 1183 849 1198T832 1239Q832 1287 885 1296L882 1300Q879 1303 874 1307T866 1313Q851 1323 833 1323Q819 1323 807 1311T775 1255T736 1139T689 936T633 628Q574 293 510 -5T410 -437T355 -629Q278 -862 165 -862Q125 -862 92 -831T55 -746Q55 -711 74 -698T112 -685Q133 -685 150 -700T167 -741Q167 -789 114 -798Z"></path><path id="MJX-TEX-N-64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z"></path><path id="MJX-TEX-I-1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path><path id="MJX-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-TEX-N-34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path id="MJX-TEX-SO-221A" d="M263 249Q264 249 315 130T417 -108T470 -228L725 302Q981 837 982 839Q989 850 1001 850Q1008 850 1013 844T1020 832V826L741 243Q645 43 540 -176Q479 -303 469 -324T453 -348Q449 -350 436 -350L424 -349L315 -96Q206 156 205 156L171 130Q138 104 137 104L111 130L263 249Z"></path><path id="MJX-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-TEX-N-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path id="MJX-TEX-N-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path id="MJX-TEX-S4-2223" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path><path id="MJX-TEX-N-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path id="MJX-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-TEX-N-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path id="MJX-TEX-N-65" d="M28 218Q28 273 48 318T98 391T163 433T229 448Q282 448 320 430T378 380T406 316T415 245Q415 238 408 231H126V216Q126 68 226 36Q246 30 270 30Q312 30 342 62Q359 79 369 104L379 128Q382 131 395 131H398Q415 131 415 121Q415 117 412 108Q393 53 349 21T250 -11Q155 -11 92 58T28 218ZM333 275Q322 403 238 411H236Q228 411 220 410T195 402T166 381T143 340T127 274V267H333V275Z"></path><path id="MJX-TEX-N-63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"></path><path id="MJX-TEX-N-6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z"></path><path id="MJX-TEX-N-73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"></path><path id="MJX-TEX-N-2061" d=""></path><path id="MJX-TEX-N-69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path><path id="MJX-TEX-N-6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path><path id="MJX-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path><path id="MJX-TEX-I-1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path><path id="MJX-TEX-N-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path id="MJX-TEX-I-1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path><path id="MJX-TEX-I-1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path><path id="MJX-TEX-I-1D444" d="M399 -80Q399 -47 400 -30T402 -11V-7L387 -11Q341 -22 303 -22Q208 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435Q740 255 592 107Q529 47 461 16L444 8V3Q444 2 449 -24T470 -66T516 -82Q551 -82 583 -60T625 -3Q631 11 638 11Q647 11 649 2Q649 -6 639 -34T611 -100T557 -165T481 -194Q399 -194 399 -87V-80ZM636 468Q636 523 621 564T580 625T530 655T477 665Q429 665 379 640Q277 591 215 464T153 216Q153 110 207 59Q231 38 236 38V46Q236 86 269 120T347 155Q372 155 390 144T417 114T429 82T435 55L448 64Q512 108 557 185T619 334T636 468ZM314 18Q362 18 404 39L403 49Q399 104 366 115Q354 117 347 117Q344 117 341 117T337 118Q317 118 296 98T274 52Q274 18 314 18Z"></path><path id="MJX-TEX-I-1D715" d="M202 508Q179 508 169 520T158 547Q158 557 164 577T185 624T230 675T301 710L333 715H345Q378 715 384 714Q447 703 489 661T549 568T566 457Q566 362 519 240T402 53Q321 -22 223 -22Q123 -22 73 56Q42 102 42 148V159Q42 276 129 370T322 465Q383 465 414 434T455 367L458 378Q478 461 478 515Q478 603 437 639T344 676Q266 676 223 612Q264 606 264 572Q264 547 246 528T202 508ZM430 306Q430 372 401 400T333 428Q270 428 222 382Q197 354 183 323T150 221Q132 149 132 116Q132 21 232 21Q244 21 250 22Q327 35 374 112Q389 137 409 196T430 306Z"></path><path id="MJX-TEX-I-1D711" d="M92 210Q92 176 106 149T142 108T185 85T220 72L235 70L237 71L250 112Q268 170 283 211T322 299T370 375T429 423T502 442Q547 442 582 410T618 302Q618 224 575 152T457 35T299 -10Q273 -10 273 -12L266 -48Q260 -83 252 -125T241 -179Q236 -203 215 -212Q204 -218 190 -218Q159 -215 159 -185Q159 -175 214 -2L209 0Q204 2 195 5T173 14T147 28T120 46T94 71T71 103T56 142T50 190Q50 238 76 311T149 431H162Q183 431 183 423Q183 417 175 409Q134 361 114 300T92 210ZM574 278Q574 320 550 344T486 369Q437 369 394 329T323 218Q309 184 295 109L286 64Q304 62 306 62Q423 62 498 131T574 278Z"></path><path id="MJX-TEX-LO-222C" d="M114 -798Q132 -824 165 -824H167Q195 -824 223 -764T275 -600T320 -391T362 -164Q365 -143 367 -133Q439 292 523 655T645 1127Q651 1145 655 1157T672 1201T699 1257T733 1306T777 1346T828 1360Q884 1360 912 1325T944 1245Q944 1220 932 1205T909 1186T887 1183Q866 1183 849 1198T832 1239Q832 1287 885 1296L882 1300Q879 1303 874 1307T866 1313Q851 1323 833 1323Q819 1323 807 1311T775 1255T736 1139T689 936T633 628Q574 293 510 -5T410 -437T355 -629Q278 -862 165 -862Q125 -862 92 -831T55 -746Q55 -711 74 -698T112 -685Q133 -685 150 -700T167 -741Q167 -789 114 -798ZM642 -798Q660 -824 693 -824H695Q723 -824 751 -764T803 -600T848 -391T890 -164Q893 -143 895 -133Q967 292 1051 655T1173 1127Q1179 1145 1183 1157T1200 1201T1227 1257T1261 1306T1305 1346T1356 1360Q1412 1360 1440 1325T1472 1245Q1472 1220 1460 1205T1437 1186T1415 1183Q1394 1183 1377 1198T1360 1239Q1360 1287 1413 1296L1410 1300Q1407 1303 1402 1307T1394 1313Q1379 1323 1361 1323Q1347 1323 1335 1311T1303 1255T1264 1139T1217 936T1161 628Q1102 293 1038 -5T938 -437T883 -629Q806 -862 693 -862Q653 -862 620 -831T583 -746Q583 -711 602 -698T640 -685Q661 -685 678 -700T695 -741Q695 -789 642 -798Z"></path><path id="MJX-TEX-N-3A3" d="M666 247Q664 244 652 126T638 4V0H351Q131 0 95 0T57 5V6Q54 12 57 17L73 36Q89 54 121 90T182 159L305 299L56 644L55 658Q55 677 60 681Q63 683 351 683H638V679Q640 674 652 564T666 447V443H626V447Q618 505 604 543T559 605Q529 626 478 631T333 637H294H189L293 494Q314 465 345 422Q400 346 400 340Q400 338 399 337L154 57Q407 57 428 58Q476 60 508 68T551 83T575 103Q595 125 608 162T624 225L626 251H666V247Z"></path><path id="MJX-TEX-I-1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path><path id="MJX-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path id="MJX-TEX-I-1D467" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z"></path><path id="MJX-TEX-LO-221A" d="M1001 1150Q1017 1150 1020 1132Q1020 1127 741 244L460 -643Q453 -650 436 -650H424Q423 -647 423 -645T421 -640T419 -631T415 -617T408 -594T399 -560T385 -512T367 -448T343 -364T312 -259L203 119L138 41L111 67L212 188L264 248L472 -474L983 1140Q988 1150 1001 1150Z"></path><path id="MJX-TEX-I-1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"></path><path id="MJX-TEX-N-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path><path id="MJX-TEX-N-2265" d="M83 616Q83 624 89 630T99 636Q107 636 253 568T543 431T687 361Q694 356 694 346T687 331Q685 329 395 192L107 56H101Q83 58 83 76Q83 77 83 79Q82 86 98 95Q117 105 248 167Q326 204 378 228L626 346L360 472Q291 505 200 548Q112 589 98 597T83 616ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-TEX-N-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path><path id="MJX-TEX-LO-222D" d="M114 -798Q132 -824 165 -824H167Q195 -824 223 -764T275 -600T320 -391T362 -164Q365 -143 367 -133Q439 292 523 655T645 1127Q651 1145 655 1157T672 1201T699 1257T733 1306T777 1346T828 1360Q884 1360 912 1325T944 1245Q944 1220 932 1205T909 1186T887 1183Q866 1183 849 1198T832 1239Q832 1287 885 1296L882 1300Q879 1303 874 1307T866 1313Q851 1323 833 1323Q819 1323 807 1311T775 1255T736 1139T689 936T633 628Q574 293 510 -5T410 -437T355 -629Q278 -862 165 -862Q125 -862 92 -831T55 -746Q55 -711 74 -698T112 -685Q133 -685 150 -700T167 -741Q167 -789 114 -798ZM642 -798Q660 -824 693 -824H695Q723 -824 751 -764T803 -600T848 -391T890 -164Q893 -143 895 -133Q967 292 1051 655T1173 1127Q1179 1145 1183 1157T1200 1201T1227 1257T1261 1306T1305 1346T1356 1360Q1412 1360 1440 1325T1472 1245Q1472 1220 1460 1205T1437 1186T1415 1183Q1394 1183 1377 1198T1360 1239Q1360 1287 1413 1296L1410 1300Q1407 1303 1402 1307T1394 1313Q1379 1323 1361 1323Q1347 1323 1335 1311T1303 1255T1264 1139T1217 936T1161 628Q1102 293 1038 -5T938 -437T883 -629Q806 -862 693 -862Q653 -862 620 -831T583 -746Q583 -711 602 -698T640 -685Q661 -685 678 -700T695 -741Q695 -789 642 -798ZM1150 -798Q1168 -824 1201 -824H1203Q1231 -824 1259 -764T1311 -600T1356 -391T1398 -164Q1401 -143 1403 -133Q1475 292 1559 655T1681 1127Q1687 1145 1691 1157T1708 1201T1735 1257T1769 1306T1813 1346T1864 1360Q1920 1360 1948 1325T1980 1245Q1980 1220 1968 1205T1945 1186T1923 1183Q1902 1183 1885 1198T1868 1239Q1868 1287 1921 1296L1918 1300Q1915 1303 1910 1307T1902 1313Q1887 1323 1869 1323Q1855 1323 1843 1311T1811 1255T1772 1139T1725 936T1669 628Q1610 293 1546 -5T1446 -437T1391 -629Q1314 -862 1201 -862Q1161 -862 1128 -831T1091 -746Q1091 -711 1110 -698T1148 -685Q1169 -685 1186 -700T1203 -741Q1203 -789 1150 -798Z"></path><path id="MJX-TEX-I-1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path></defs></svg></div>
+<div id="toast"></div>
+<script>window.QB_META={"home":"../../index.html","title":"高等数学 · 第 11 章 曲线积分与曲面积分"};</script>
+<script>window.QB_SITE={"title":"高等数学 · 第 11 章 曲线积分与曲面积分","subjectKey":"math","subjectName":"高等数学","types":{"single":{"key":"single","label":"单选题","answerShape":"choice","judge":"exact","replay":"mask","maxOptions":8,"fault":"builtin:fact-recall","countsInMastery":true,"fields":{"options":"选项文本数组，2～8 项","answer":"正确项下标数组，恰好 1 项"}},"blank":{"key":"blank","label":"填空题","answerShape":"tokenList","judge":"fuzzy","replay":"text","fault":"builtin:unit-memory","countsInMastery":true,"fields":{"answers":"可接受答案数组，含等价写法"}},"calc":{"key":"calc","label":"计算题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:chain-break","countsInMastery":true,"fields":{"ref":"参考解答文本"}},"proof":{"key":"proof","label":"证明题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:chain-break","countsInMastery":true,"fields":{"ref":"参考证明文本"}}},"units":[{"key":"u10","label":"第 11 章","title":"曲线积分与曲面积分","desc":"两类曲线积分、两类曲面积分、格林公式、高斯公式、斯托克斯公式","questions":[{"qid":"math.u10-001","type":"blank","topic":"11.1 对弧长的曲线积分","diff":"中","stem":"设曲线 L：y = x²（0 ≤ x ≤ √2），则 ∫_L x ds = ______。","exp":"ds = √(1 + 4x²)dx，故 ∫₀^{√2} x√(1+4x²)dx = (1/12)(1+4x²)^{3/2}|₀^{√2} = (27 − 1)/12 = 13/6。","answers":["13/6"],"meta":{"source":"高等数学 A（下）测试卷（2023）","paper":"final2023b","paperNo":"一.8","tex":{"stem":"设曲线 $L$：$y=x^{2}$（$0\\le x\\le\\sqrt{2}$），则 $\\displaystyle\\int_{L}x\\,\\mathrm{d}s=$ ______。","exp":"$\\mathrm{d}s=\\sqrt{1+4x^{2}}\\,\\mathrm{d}x$，故 $\\displaystyle\\int_{0}^{\\sqrt{2}}x\\sqrt{1+4x^{2}}\\,\\mathrm{d}x=\\dfrac{1}{12}(1+4x^{2})^{3/2}\\Big|_{0}^{\\sqrt{2}}=\\dfrac{27-1}{12}=\\dfrac{13}{6}$。"}},"_unit":"u10","views":{"stem":"设曲线 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.541ex\" height=\"1.545ex\" viewBox=\"0 -683 681 683\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D43F\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>：<mjx-container><svg style=\"vertical-align: -0.464ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"6.407ex\" height=\"2.351ex\" viewBox=\"0 -833.9 2832.1 1038.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(767.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(1823.6,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>（<mjx-container><svg style=\"vertical-align: -0.312ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"11.521ex\" height=\"2.485ex\" viewBox=\"0 -960.5 5092.1 1098.5\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><g transform=\"translate(777.8,0)\"><use xlink:href=\"#MJX-TEX-N-2264\"><\/use><\/g><g transform=\"translate(1833.6,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(2683.3,0)\"><use xlink:href=\"#MJX-TEX-N-2264\"><\/use><\/g><g transform=\"translate(3739.1,0)\"><g transform=\"translate(853,0)\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><g transform=\"translate(0,100.5)\"><use xlink:href=\"#MJX-TEX-N-221A\"><\/use><\/g><rect width=\"500\" height=\"60\" x=\"853\" y=\"840.5\"><\/rect><\/g><\/g><\/g><\/svg><\/mjx-container>），则 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"9.292ex\" height=\"5.107ex\" viewBox=\"0 -1361 4107 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222B\"><\/use><\/g><g transform=\"translate(589,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D43F\"><\/use><\/g><\/g><\/g><g transform=\"translate(1287.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(1859.2,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(2026.2,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(2582.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D460\"><\/use><\/g><g transform=\"translate(3329,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container> ______。","exp":"<mjx-container><svg style=\"vertical-align: -0.212ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17.506ex\" height=\"2.398ex\" viewBox=\"0 -966.5 7737.6 1060\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(556,0)\"><use xlink:href=\"#MJX-TEX-I-1D460\"><\/use><\/g><g transform=\"translate(1302.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(2358.6,0)\"><g transform=\"translate(853,0)\"><g><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(722.2,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(1722.4,0)\"><use xlink:href=\"#MJX-TEX-N-34\"><\/use><\/g><g transform=\"translate(2222.4,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><g transform=\"translate(0,106.5)\"><use xlink:href=\"#MJX-TEX-N-221A\"><\/use><\/g><rect width=\"3231\" height=\"60\" x=\"853\" y=\"846.5\"><\/rect><\/g><g transform=\"translate(6442.6,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(6609.6,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(7165.6,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>，故 <mjx-container><svg style=\"vertical-align: -2.063ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"56.349ex\" height=\"6.061ex\" viewBox=\"0 -1767.2 24906.3 2679.1\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222B\"><\/use><\/g><g transform=\"translate(1046.4,1088.1) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><g transform=\"translate(853,0)\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><g transform=\"translate(0,82.9)\"><use xlink:href=\"#MJX-TEX-N-221A\"><\/use><\/g><rect width=\"500\" height=\"42.4\" x=\"853\" y=\"840.5\"><\/rect><\/g><\/g><g transform=\"translate(589,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><\/g><\/g><g transform=\"translate(2219.8,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(2791.8,0)\"><g transform=\"translate(1020,0)\"><g><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(722.2,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(1722.4,0)\"><use xlink:href=\"#MJX-TEX-N-34\"><\/use><\/g><g transform=\"translate(2222.4,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><g transform=\"translate(0,204.2)\"><use xlink:href=\"#MJX-TEX-SO-221A\"><\/use><\/g><rect width=\"3231\" height=\"60\" x=\"1020\" y=\"994.2\"><\/rect><\/g><g transform=\"translate(7042.8,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(7209.8,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(7765.8,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(8615.6,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(9671.3,0)\"><g><g transform=\"translate(470,676)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(220,-686)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><use xlink:href=\"#MJX-TEX-N-32\" transform=\"translate(500,0)\"><\/use><\/g><rect width=\"1200\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><g transform=\"translate(11111.3,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(11500.3,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(12222.6,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(13222.8,0)\"><use xlink:href=\"#MJX-TEX-N-34\"><\/use><\/g><g transform=\"translate(13722.8,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(14731.3,0)\"><g><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(422,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(500,0)\"><g><use xlink:href=\"#MJX-TEX-N-2F\"><\/use><\/g><\/g><g transform=\"translate(1000,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(16264,0)\"><g data-mjx-texclass=\"ORD\"><g><svg width=\"278\" height=\"1623\" y=\"-561.5\" x=\"27.5\" viewBox=\"0 -201 278 1623\"><use xlink:href=\"#MJX-TEX-S4-2223\" transform=\"scale(1,2.437)\"><\/use><\/svg><\/g><\/g><g transform=\"translate(366,788.6) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><g transform=\"translate(853,0)\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><g transform=\"translate(0,82.9)\"><use xlink:href=\"#MJX-TEX-N-221A\"><\/use><\/g><rect width=\"500\" height=\"42.4\" x=\"853\" y=\"840.5\"><\/rect><\/g><\/g><g transform=\"translate(366,-596.9) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><\/g><\/g><g transform=\"translate(17914.5,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(18970.3,0)\"><g><g transform=\"translate(220,676)\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><use xlink:href=\"#MJX-TEX-N-37\" transform=\"translate(500,0)\"><\/use><\/g><g transform=\"translate(1222.2,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(2222.4,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><\/g><g transform=\"translate(1081.2,-686)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><use xlink:href=\"#MJX-TEX-N-32\" transform=\"translate(500,0)\"><\/use><\/g><rect width=\"2922.4\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><g transform=\"translate(22410.5,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(23466.3,0)\"><g><g transform=\"translate(220,676)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><use xlink:href=\"#MJX-TEX-N-33\" transform=\"translate(500,0)\"><\/use><\/g><g transform=\"translate(470,-686)\"><use xlink:href=\"#MJX-TEX-N-36\"><\/use><\/g><rect width=\"1200\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。"}},{"qid":"math.u10-002","type":"calc","topic":"11.2 格林公式","diff":"难","stem":"计算 ∫_L eˣ(1 − 2cos y)dx + 2eˣ sin y dy，其中 L 为曲线 y = sin x 上由点 A(π, 0) 到点 O(0, 0) 的一段弧。","exp":"P = eˣ(1−2cos y)，Q = 2eˣ sin y，恰好 ∂Q/∂x = ∂P/∂y，属「与路径无关」型；补线用格林公式最省力。","ref":"补上直线段 OA：y = 0（0 ≤ x ≤ π），与 L 围成闭区域 D。由格林公式，∮_{L+OA} = ∬_D (∂Q/∂x − ∂P/∂y)dxdy = ∬_D 0 dxdy = 0。故 ∫_L = −∫_{OA} = −∫₀^π eˣdx = e^π − 1（方向：OA 从 O 到 A，与闭合正向一致）。","meta":{"source":"高等数学 A（下）测试卷（2023）","paper":"final2023b","paperNo":"二.5","tex":{"stem":"计算 $\\displaystyle\\int_{L}\\mathrm{e}^{x}(1-2\\cos y)\\,\\mathrm{d}x+2\\mathrm{e}^{x}\\sin y\\,\\mathrm{d}y$，其中 $L$ 为曲线 $y=\\sin x$ 上由点 $A(\\pi,0)$ 到点 $O(0,0)$ 的一段弧。","ref":"记 $P=\\mathrm{e}^{x}(1-2\\cos y)$，$Q=2\\mathrm{e}^{x}\\sin y$，则 $\\dfrac{\\partial Q}{\\partial x}=2\\mathrm{e}^{x}\\sin y=\\dfrac{\\partial P}{\\partial y}$，积分与路径无关。取原函数 $\\varphi(x,y)=\\mathrm{e}^{x}(1-2\\cos y)$，则 $\\displaystyle\\int_{L}=\\varphi(O)-\\varphi(A)=\\mathrm{e}^{0}(1-2)-\\mathrm{e}^{\\pi}(1-2)=\\mathrm{e}^{\\pi}-1$。","exp":"$\\dfrac{\\partial Q}{\\partial x}=\\dfrac{\\partial P}{\\partial y}$ 是「与路径无关」的判据，此时找原函数比补线用格林公式更省力，也不容易在方向上出错。"}},"_unit":"u10","views":{"stem":"计算 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"33.017ex\" height=\"5.107ex\" viewBox=\"0 -1361 14593.7 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222B\"><\/use><\/g><g transform=\"translate(589,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D43F\"><\/use><\/g><\/g><\/g><g transform=\"translate(1287.2,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(2218.7,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(2607.7,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(3329.9,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(4330.1,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(4996.8,0)\"><use xlink:href=\"#MJX-TEX-N-63\"><\/use><use xlink:href=\"#MJX-TEX-N-6F\" transform=\"translate(444,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-73\" transform=\"translate(944,0)\"><\/use><\/g><g transform=\"translate(6334.8,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(6501.4,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(6991.4,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(7380.4,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(7547.4,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(8103.4,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(8897.7,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(9897.9,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(10397.9,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(11496,0)\"><use xlink:href=\"#MJX-TEX-N-73\"><\/use><use xlink:href=\"#MJX-TEX-N-69\" transform=\"translate(394,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-6E\" transform=\"translate(672,0)\"><\/use><\/g><g transform=\"translate(12724,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(12890.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(13380.7,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(13547.7,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(14103.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>，其中 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.541ex\" height=\"1.545ex\" viewBox=\"0 -683 681 683\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D43F\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 为曲线 <mjx-container><svg style=\"vertical-align: -0.464ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"8.575ex\" height=\"1.977ex\" viewBox=\"0 -669 3790.2 874\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(767.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(1823.6,0)\"><use xlink:href=\"#MJX-TEX-N-73\"><\/use><use xlink:href=\"#MJX-TEX-N-69\" transform=\"translate(394,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-6E\" transform=\"translate(672,0)\"><\/use><\/g><g transform=\"translate(3051.6,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(3218.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 上由点 <mjx-container><svg style=\"vertical-align: -0.566ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"6.884ex\" height=\"2.262ex\" viewBox=\"0 -750 3042.7 1000\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D434\"><\/use><\/g><g transform=\"translate(750,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(1139,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><g transform=\"translate(1709,0)\"><use xlink:href=\"#MJX-TEX-N-2C\"><\/use><\/g><g transform=\"translate(2153.7,0)\"><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><g transform=\"translate(2653.7,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 到点 <mjx-container><svg style=\"vertical-align: -0.566ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"6.755ex\" height=\"2.262ex\" viewBox=\"0 -750 2985.7 1000\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D442\"><\/use><\/g><g transform=\"translate(763,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(1152,0)\"><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><g transform=\"translate(1652,0)\"><use xlink:href=\"#MJX-TEX-N-2C\"><\/use><\/g><g transform=\"translate(2096.7,0)\"><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><g transform=\"translate(2596.7,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 的一段弧。","ref":"记 <mjx-container><svg style=\"vertical-align: -0.566ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"18.502ex\" height=\"2.262ex\" viewBox=\"0 -750 8177.8 1000\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D443\"><\/use><\/g><g transform=\"translate(1028.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(2084.6,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(3016,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(3405,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(4127.2,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(5127.5,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(5794.1,0)\"><use xlink:href=\"#MJX-TEX-N-63\"><\/use><use xlink:href=\"#MJX-TEX-N-6F\" transform=\"translate(444,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-73\" transform=\"translate(944,0)\"><\/use><\/g><g transform=\"translate(7132.1,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(7298.8,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(7788.8,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>，<mjx-container><svg style=\"vertical-align: -0.464ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12.686ex\" height=\"2.057ex\" viewBox=\"0 -704 5607.4 909\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D444\"><\/use><\/g><g transform=\"translate(1068.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(2124.6,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(2624.6,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(3722.7,0)\"><use xlink:href=\"#MJX-TEX-N-73\"><\/use><use xlink:href=\"#MJX-TEX-N-69\" transform=\"translate(394,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-6E\" transform=\"translate(672,0)\"><\/use><\/g><g transform=\"translate(4950.7,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(5117.4,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>，则 <mjx-container><svg style=\"vertical-align: -2.016ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"21.955ex\" height=\"5.163ex\" viewBox=\"0 -1391 9703.9 2282\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(220,676)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D444\"><\/use><\/g><\/g><g transform=\"translate(329.5,-686)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><rect width=\"1557\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><g transform=\"translate(2074.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(3130.6,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(3630.6,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(4728.7,0)\"><use xlink:href=\"#MJX-TEX-N-73\"><\/use><use xlink:href=\"#MJX-TEX-N-69\" transform=\"translate(394,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-6E\" transform=\"translate(672,0)\"><\/use><\/g><g transform=\"translate(5956.7,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(6123.4,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(6891.1,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(7946.9,0)\"><g><g transform=\"translate(220,676)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D443\"><\/use><\/g><\/g><g transform=\"translate(350.5,-686)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><rect width=\"1517\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>，积分与路径无关。取原函数 <mjx-container><svg style=\"vertical-align: -0.566ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"23.451ex\" height=\"2.262ex\" viewBox=\"0 -750 10365.5 1000\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D711\"><\/use><\/g><g transform=\"translate(654,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(1043,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(1615,0)\"><use xlink:href=\"#MJX-TEX-N-2C\"><\/use><\/g><g transform=\"translate(2059.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(2549.7,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(3216.4,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(4272.2,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(5203.7,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(5592.7,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(6314.9,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(7315.1,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(7981.8,0)\"><use xlink:href=\"#MJX-TEX-N-63\"><\/use><use xlink:href=\"#MJX-TEX-N-6F\" transform=\"translate(444,0)\"><\/use><use xlink:href=\"#MJX-TEX-N-73\" transform=\"translate(944,0)\"><\/use><\/g><g transform=\"translate(9319.8,0)\"><use xlink:href=\"#MJX-TEX-N-2061\"><\/use><\/g><g transform=\"translate(9486.5,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(9976.5,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>，则 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50.695ex\" height=\"5.107ex\" viewBox=\"0 -1361 22407.1 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222B\"><\/use><\/g><g transform=\"translate(589,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D43F\"><\/use><\/g><\/g><\/g><g transform=\"translate(1398.3,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(2454.1,0)\"><use xlink:href=\"#MJX-TEX-I-1D711\"><\/use><\/g><g transform=\"translate(3108.1,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(3497.1,0)\"><use xlink:href=\"#MJX-TEX-I-1D442\"><\/use><\/g><g transform=\"translate(4260.1,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(4871.3,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(5871.5,0)\"><use xlink:href=\"#MJX-TEX-I-1D711\"><\/use><\/g><g transform=\"translate(6525.5,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(6914.5,0)\"><use xlink:href=\"#MJX-TEX-I-1D434\"><\/use><\/g><g transform=\"translate(7664.5,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(8331.3,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(9387.1,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><\/g><\/g><g transform=\"translate(10267.6,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(10656.6,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(11378.9,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(12379.1,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(12879.1,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(13490.3,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(14490.5,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><\/g><\/g><g transform=\"translate(15420.6,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(15809.6,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(16531.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(17532,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(18032,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(18698.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(19754.6,0)\"><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-65\"><\/use><\/g><\/g><g transform=\"translate(477,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><\/g><\/g><g transform=\"translate(20906.9,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(21907.1,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。","exp":"<mjx-container><svg style=\"vertical-align: -2.016ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"11.058ex\" height=\"5.163ex\" viewBox=\"0 -1391 4887.6 2282\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(220,676)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D444\"><\/use><\/g><\/g><g transform=\"translate(329.5,-686)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><rect width=\"1557\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><g transform=\"translate(2074.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(3130.6,0)\"><g><g transform=\"translate(220,676)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D443\"><\/use><\/g><\/g><g transform=\"translate(350.5,-686)\"><g><use xlink:href=\"#MJX-TEX-I-1D715\"><\/use><\/g><g transform=\"translate(566,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><rect width=\"1517\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><\/g><\/g><\/svg><\/mjx-container> 是「与路径无关」的判据，此时找原函数比补线用格林公式更省力，也不容易在方向上出错。"}},{"qid":"math.u10-003","type":"calc","topic":"11.3 对面积的曲面积分","diff":"中","stem":"计算 ∬_Σ √(R² − x² − y²) dS，其中 Σ 为上半球面 z = √(R² − x² − y²)。","exp":"被积函数与 dS 中的分母相消，是球面面积分的典型化简。","ref":"dS = √(1 + zₓ² + z_y²)dxdy = R/√(R² − x² − y²) dxdy，投影区域 D 为 x² + y² ≤ R²。故原式 = ∬_D R dxdy = R·πR² = πR³。","meta":{"source":"高等数学 A（下）测试卷（2023）","paper":"final2023b","paperNo":"二.6","tex":{"stem":"计算 $\\displaystyle\\iint_{\\Sigma}\\sqrt{R^{2}-x^{2}-y^{2}}\\,\\mathrm{d}S$，其中 $\\Sigma$ 为上半球面 $z=\\sqrt{R^{2}-x^{2}-y^{2}}$。","ref":"$\\mathrm{d}S=\\sqrt{1+z_{x}^{2}+z_{y}^{2}}\\,\\mathrm{d}x\\,\\mathrm{d}y=\\dfrac{R}{\\sqrt{R^{2}-x^{2}-y^{2}}}\\,\\mathrm{d}x\\,\\mathrm{d}y$，投影区域 $D$ 为 $x^{2}+y^{2}\\le R^{2}$。故原式 $=\\displaystyle\\iint_{D}R\\,\\mathrm{d}x\\,\\mathrm{d}y=R\\cdot\\pi R^{2}=\\pi R^{3}$。","exp":"被积函数与 $\\mathrm{d}S$ 中的分母相消，是球面面积分的典型化简。"}},"_unit":"u10","views":{"stem":"计算 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"22.189ex\" height=\"5.107ex\" viewBox=\"0 -1361 9807.7 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222C\"><\/use><\/g><g transform=\"translate(1117,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><\/g><\/g><g transform=\"translate(1844.2,0)\"><g transform=\"translate(1020,0)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(792,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(1417.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(2418,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(3648.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(4649,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><g transform=\"translate(0,142.7)\"><use xlink:href=\"#MJX-TEX-SO-221A\"><\/use><\/g><rect width=\"5575.5\" height=\"60\" x=\"1020\" y=\"932.7\"><\/rect><\/g><g transform=\"translate(8439.7,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(8606.7,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(9162.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D446\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>，其中 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.633ex\" height=\"1.545ex\" viewBox=\"0 -683 722 683\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 为上半球面 <mjx-container><svg style=\"vertical-align: -0.577ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"18.991ex\" height=\"2.851ex\" viewBox=\"0 -1005 8394.1 1260\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(742.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(1798.6,0)\"><g transform=\"translate(1020,0)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(792,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(1417.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(2418,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(3648.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(4649,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><g transform=\"translate(0,95)\"><use xlink:href=\"#MJX-TEX-SO-221A\"><\/use><\/g><rect width=\"5575.5\" height=\"60\" x=\"1020\" y=\"885\"><\/rect><\/g><\/g><\/g><\/svg><\/mjx-container>。","ref":"<mjx-container><svg style=\"vertical-align: -2.76ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"49.182ex\" height=\"5.835ex\" viewBox=\"0 -1359 21738.6 2579\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(556,0)\"><use xlink:href=\"#MJX-TEX-I-1D446\"><\/use><\/g><g transform=\"translate(1478.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(2534.6,0)\"><g transform=\"translate(1020,0)\"><g><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(722.2,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(1722.4,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(498,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><g transform=\"translate(498,-247) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><\/g><\/g><g transform=\"translate(2897.1,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(3897.4,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(498,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><g transform=\"translate(498,-247) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><\/g><\/g><g transform=\"translate(0,1.5)\"><use xlink:href=\"#MJX-TEX-LO-221A\"><\/use><\/g><rect width=\"4798.9\" height=\"60\" x=\"1020\" y=\"1091.5\"><\/rect><\/g><g transform=\"translate(8353.5,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(8520.5,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(9076.5,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(9648.5,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(9815.5,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(10371.5,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(11139.2,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(12195,0)\"><g><g transform=\"translate(3138.3,676)\"><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(220,-965)\"><g transform=\"translate(1020,0)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(792,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(1417.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(2418,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(3648.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(4649,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,289) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><g transform=\"translate(0,95)\"><use xlink:href=\"#MJX-TEX-SO-221A\"><\/use><\/g><rect width=\"5575.5\" height=\"60\" x=\"1020\" y=\"885\"><\/rect><\/g><rect width=\"6795.5\" height=\"60\" x=\"120\" y=\"220\"><\/rect><\/g><\/g><g transform=\"translate(19230.6,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(19397.6,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(19953.6,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(20525.6,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(20692.6,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(21248.6,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>，投影区域 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.873ex\" height=\"1.545ex\" viewBox=\"0 -683 828 683\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D437\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 为 <mjx-container><svg style=\"vertical-align: -0.464ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"12.866ex\" height=\"2.351ex\" viewBox=\"0 -833.9 5686.7 1038.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(1230.8,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(2231,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(3435.3,0)\"><use xlink:href=\"#MJX-TEX-N-2264\"><\/use><\/g><g transform=\"translate(4491.1,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(792,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。故原式 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"31.497ex\" height=\"5.107ex\" viewBox=\"0 -1361 13921.6 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(1055.8,0)\"><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222C\"><\/use><\/g><g transform=\"translate(1117,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D437\"><\/use><\/g><\/g><\/g><g transform=\"translate(1919.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(2678.2,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(2845.2,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(3401.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(3973.2,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(4140.2,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(4696.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(5463.9,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(6519.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(7500.9,0)\"><use xlink:href=\"#MJX-TEX-N-22C5\"><\/use><\/g><g transform=\"translate(8001.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><g transform=\"translate(8571.2,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(792,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(10044.5,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(11100.3,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><g transform=\"translate(11670.3,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D445\"><\/use><\/g><g transform=\"translate(792,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。","exp":"被积函数与 <mjx-container><svg style=\"vertical-align: -0.05ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"2.717ex\" height=\"1.645ex\" viewBox=\"0 -705 1201 727\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(556,0)\"><use xlink:href=\"#MJX-TEX-I-1D446\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 中的分母相消，是球面面积分的典型化简。"}},{"qid":"math.u10-004","type":"calc","topic":"11.4 高斯公式","diff":"难","stem":"计算 ∬_Σ 2x³dydz + 2y³dzdx + 3(z² − 1)dxdy，其中 Σ 为曲面 z = 1 − x² − y²（z ≥ 0）部分的上侧。","exp":"第二类曲面积分补面用高斯公式时，注意补面的侧向决定正负号；散度 6(x²+y²+z) 用柱坐标最省事。","ref":"补平面 Σ₁：z = 0（x² + y² ≤ 1）取下侧，与 Σ 围成闭区域 Ω。由高斯公式，∬_Σ = ∬_{Σ+Σ₁} − ∬_{Σ₁} = ∭_Ω (6x² + 6y² + 6z)dv + 3∬_{D_xy}(0 − 1)dxdy。用柱坐标算得 ∭_Ω = 2π，后一项为 −3π，故结果为 −π。","meta":{"source":"高等数学 A（下）测试卷（2023）","paper":"final2023b","paperNo":"二.7","tex":{"stem":"计算 $\\displaystyle\\iint_{\\Sigma}2x^{3}\\,\\mathrm{d}y\\,\\mathrm{d}z+2y^{3}\\,\\mathrm{d}z\\,\\mathrm{d}x+3(z^{2}-1)\\,\\mathrm{d}x\\,\\mathrm{d}y$，其中 $\\Sigma$ 为曲面 $z=1-x^{2}-y^{2}$（$z\\ge 0$）部分的上侧。","ref":"补平面 $\\Sigma_{1}$：$z=0$（$x^{2}+y^{2}\\le 1$）取下侧，与 $\\Sigma$ 围成闭区域 $\\Omega$。散度为 $6(x^{2}+y^{2}+z)$，用柱坐标算得 $\\displaystyle\\iiint_{\\Omega}6(x^{2}+y^{2}+z)\\,\\mathrm{d}v=2\\pi$。$\\Sigma_{1}$ 取下侧，故 $\\displaystyle\\iint_{\\Sigma_{1}}3(z^{2}-1)\\,\\mathrm{d}x\\,\\mathrm{d}y=-\\iint_{D_{xy}}(-3)\\,\\mathrm{d}x\\,\\mathrm{d}y=3\\pi$。由高斯公式，$\\displaystyle\\iint_{\\Sigma}=2\\pi-3\\pi=-\\pi$。","exp":"补面用高斯公式时，补面的侧向决定正负号；散度 $6(x^{2}+y^{2}+z)$ 用柱坐标最省事。"}},"_unit":"u10","views":{"stem":"计算 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"41.896ex\" height=\"5.107ex\" viewBox=\"0 -1361 18518.2 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222C\"><\/use><\/g><g transform=\"translate(1117,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><\/g><\/g><g transform=\"translate(1844.2,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(2344.2,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><\/g><\/g><g transform=\"translate(3352.8,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(3519.8,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(4075.8,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(4565.8,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(4732.8,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(5288.8,0)\"><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(5976,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(6976.2,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(7476.2,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><\/g><\/g><g transform=\"translate(8402.7,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(8569.7,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(9125.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(9590.7,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(9757.7,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(10313.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(11108,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(12108.2,0)\"><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><g transform=\"translate(12608.2,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(12997.2,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(498,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(14121,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(15121.2,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(15621.2,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(16010.2,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(16177.2,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(16733.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(17305.2,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(17472.2,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(18028.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>，其中 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.633ex\" height=\"1.545ex\" viewBox=\"0 -683 722 683\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 为曲面 <mjx-container><svg style=\"vertical-align: -0.464ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"15.11ex\" height=\"2.351ex\" viewBox=\"0 -833.9 6678.6 1038.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(742.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(1798.6,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(2520.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(3521,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(4751.8,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(5752,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>（<mjx-container><svg style=\"vertical-align: -0.312ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"5.2ex\" height=\"1.819ex\" viewBox=\"0 -666 2298.6 804\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(742.8,0)\"><use xlink:href=\"#MJX-TEX-N-2265\"><\/use><\/g><g transform=\"translate(1798.6,0)\"><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>）部分的上侧。","ref":"补平面 <mjx-container><svg style=\"vertical-align: -0.339ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"2.621ex\" height=\"1.885ex\" viewBox=\"0 -683 1158.6 833\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><g transform=\"translate(755,-150) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>：<mjx-container><svg style=\"vertical-align: -0.186ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"5.2ex\" height=\"1.692ex\" viewBox=\"0 -666 2298.6 748\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(742.8,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(1798.6,0)\"><use xlink:href=\"#MJX-TEX-N-30\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>（<mjx-container><svg style=\"vertical-align: -0.464ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"11.292ex\" height=\"2.351ex\" viewBox=\"0 -833.9 4991.1 1038.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(1230.8,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(2231,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(3435.3,0)\"><use xlink:href=\"#MJX-TEX-N-2264\"><\/use><\/g><g transform=\"translate(4491.1,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>）取下侧，与 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.633ex\" height=\"1.545ex\" viewBox=\"0 -683 722 683\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 围成闭区域 <mjx-container><svg style=\"vertical-align: 0;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1.633ex\" height=\"1.593ex\" viewBox=\"0 -704 722 704\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-3A9\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>。散度为 <mjx-container><svg style=\"vertical-align: -0.566ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"13.853ex\" height=\"2.452ex\" viewBox=\"0 -833.9 6123 1083.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-36\"><\/use><\/g><g transform=\"translate(500,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(889,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(2119.8,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(3120,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(4268.8,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(5269,0)\"><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(5734,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container>，用柱坐标算得 <mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"27.346ex\" height=\"5.107ex\" viewBox=\"0 -1361 12086.7 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222D\"><\/use><\/g><g transform=\"translate(1625,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-3A9\"><\/use><\/g><\/g><\/g><g transform=\"translate(2352.2,0)\"><use xlink:href=\"#MJX-TEX-N-36\"><\/use><\/g><g transform=\"translate(2852.2,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(3241.2,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(4472,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(5472.2,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(6621,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(7621.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(8086.2,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(8475.2,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(8642.2,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(9198.2,0)\"><use xlink:href=\"#MJX-TEX-I-1D463\"><\/use><\/g><g transform=\"translate(9961,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(11016.7,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(11516.7,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。<mjx-container><svg style=\"vertical-align: -0.339ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"2.621ex\" height=\"1.885ex\" viewBox=\"0 -683 1158.6 833\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><g transform=\"translate(755,-150) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><\/g><\/g><\/g><\/g><\/svg><\/mjx-container> 取下侧，故 <mjx-container><svg style=\"vertical-align: -2.5ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"45.59ex\" height=\"5.579ex\" viewBox=\"0 -1361 20150.8 2465.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222C\"><\/use><\/g><g transform=\"translate(1117,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><g transform=\"translate(755,-150) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><\/g><\/g><\/g><\/g><g transform=\"translate(2152.9,0)\"><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><g transform=\"translate(2652.9,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(3041.9,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(498,413) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(4165.7,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(5165.9,0)\"><use xlink:href=\"#MJX-TEX-N-31\"><\/use><\/g><g transform=\"translate(5665.9,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(6054.9,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(6221.9,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(6777.9,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(7349.9,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(7516.9,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(8072.9,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(8840.7,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(9896.4,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(10841.1,0)\"><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222C\"><\/use><\/g><g transform=\"translate(1117,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><g><use xlink:href=\"#MJX-TEX-I-1D437\"><\/use><\/g><g transform=\"translate(861,-150) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(572,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><\/g><\/g><\/g><\/g><g transform=\"translate(13183.3,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(13572.3,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(14350.3,0)\"><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><g transform=\"translate(14850.3,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><g transform=\"translate(15239.3,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(15406.3,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(15962.3,0)\"><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(16534.3,0)\"><g><\/g><\/g><g data-mjx-texclass=\"ORD\" transform=\"translate(16701.3,0)\"><g><use xlink:href=\"#MJX-TEX-N-64\"><\/use><\/g><\/g><g transform=\"translate(17257.3,0)\"><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(18025.1,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(19080.8,0)\"><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><g transform=\"translate(19580.8,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。由高斯公式，<mjx-container><svg style=\"vertical-align: -2.028ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20.487ex\" height=\"5.107ex\" viewBox=\"0 -1361 9055.1 2257.4\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><g><g transform=\"translate(0 1)\"><use xlink:href=\"#MJX-TEX-LO-222C\"><\/use><\/g><g transform=\"translate(1117,-896.4) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-3A3\"><\/use><\/g><\/g><\/g><g transform=\"translate(1955.3,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(3011.1,0)\"><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><g transform=\"translate(3511.1,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><g transform=\"translate(4303.3,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(5303.5,0)\"><use xlink:href=\"#MJX-TEX-N-33\"><\/use><\/g><g transform=\"translate(5803.5,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><g transform=\"translate(6651.3,0)\"><use xlink:href=\"#MJX-TEX-N-3D\"><\/use><\/g><g transform=\"translate(7707.1,0)\"><use xlink:href=\"#MJX-TEX-N-2212\"><\/use><\/g><g transform=\"translate(8485.1,0)\"><use xlink:href=\"#MJX-TEX-I-1D70B\"><\/use><\/g><\/g><\/g><\/g><\/svg><\/mjx-container>。","exp":"补面用高斯公式时，补面的侧向决定正负号；散度 <mjx-container><svg style=\"vertical-align: -0.566ex;\" xmlns=\"http://www.w3.org/2000/svg\" width=\"13.853ex\" height=\"2.452ex\" viewBox=\"0 -833.9 6123 1083.9\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" transform=\"scale(1,-1)\"><g><g><use xlink:href=\"#MJX-TEX-N-36\"><\/use><\/g><g transform=\"translate(500,0)\"><use xlink:href=\"#MJX-TEX-N-28\"><\/use><\/g><g transform=\"translate(889,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D465\"><\/use><\/g><g transform=\"translate(605,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(2119.8,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(3120,0)\"><g><use xlink:href=\"#MJX-TEX-I-1D466\"><\/use><\/g><g transform=\"translate(523,363) scale(0.707)\" data-mjx-texclass=\"ORD\"><g><use xlink:href=\"#MJX-TEX-N-32\"><\/use><\/g><\/g><\/g><g transform=\"translate(4268.8,0)\"><use xlink:href=\"#MJX-TEX-N-2B\"><\/use><\/g><g transform=\"translate(5269,0)\"><use xlink:href=\"#MJX-TEX-I-1D467\"><\/use><\/g><g transform=\"translate(5734,0)\"><use xlink:href=\"#MJX-TEX-N-29\"><\/use><\/g><\/g><\/g><\/svg><\/mjx-container> 用柱坐标最省事。"}}]}],"wrong":{"exitStreak":1},"mastery":{"wAll":0.4,"wRecent":0.6,"recentN":5,"weakBelow":60,"solidAt":85,"solidStreak":4,"passMinQ":4,"passRate":0.9,"dueDays":[1,3,7]},"codec":{"version":10,"gidBits":32,"budgetBytes":6000},"order":["g387aa012","g9f20af61","gef03f29e","g27656192","g69cad0df","g0cc40506","g85ad2cee","g3100a7fd","ge65c6184","g97ddd21d","gd0c40da0","gc94b846f","ge5a3c5b8","g363efb2a","g1c42d76d","g06d0c083","g88249642","g44f9b91d","g5b0ed633","g4da85b62","ga7dd5441","g9df532cb","gd6a1c7b4","g7841df3a","g1029f4f4","ge5bc3740","ga30d1d6d","gbcbb15f1","ge00be4ec","g0e223721","gfad23050","gc5a17822","g366c7595","g417f94c4","ge41834f2","gfd77217a","gc790f783","gd37f058f","g6a38a64e","gf79e1e96","gef1ddb4b","gd31e2c82","g6b311626","gc87f36ec","gf28a73a3","gf2e98a91","g0f8f0041","g7b496f62","g2be28526","g831d3d99","gad6b3a79","g44ec770f","g5ad374b5","g57500db8","ga5fa1ea1","ge1dc07be","g4da06649","g76afc9d2","gce27975d","g41fdc335","gddeb7a69","gf6187955","gef6d2dae","g8e739da0","g1131c830","g106087b1","gcad26b86","gcd4dca74","g9f32e56b"],"retired":[],"storePrefix":"qb.site"};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-page.js — 练习页渲染层
+ * 只读 window.QB_SITE（站点定义 + 本题组题目），所有状态变更走 QB 内核（规范 6.4）。
+ */
+(function () {
+  'use strict';
+
+  var def = window.QB_SITE;
+  var meta = window.QB_META || {};
+  if (!def) return;
+
+  var site = QB.create(def);
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var S = {
+    mode: 'seq',
+    type: '',
+    diff: '',
+    kw: '',
+    list: [],
+    idx: 0,
+    shown: {},       // qid -> true，已揭晓答案
+    redo: {},        // qid -> true，本题正在重做，忽略旧记录
+    draft: {}        // qid -> 当前输入
+  };
+
+  var DIFF_ORDER = { '易': 0, '中': 1, '难': 2 };
+  var TYPE_ORDER = Object.keys(def.types || {});
+
+  /* ------------------------------------------------------------ 路由 */
+
+  function readRoute() {
+    var h = location.hash.replace(/^#/, '');
+    var p = new URLSearchParams(h);
+    S.mode = p.get('mode') || 'seq';
+    S.type = p.get('t') || '';
+    S.diff = p.get('d') || '';
+    S.kw = p.get('kw') || '';
+    var qid = p.get('q');
+    if (qid) S.pendingQid = qid;
+  }
+
+  function writeRoute() {
+    var p = new URLSearchParams();
+    if (S.mode !== 'seq') p.set('mode', S.mode);
+    if (S.type) p.set('t', S.type);
+    if (S.diff) p.set('d', S.diff);
+    if (S.kw) p.set('kw', S.kw);
+    var q = S.list[S.idx];
+    if (q) p.set('q', q.qid);
+    var url = location.pathname + '#' + p.toString();
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// 下可能被拒，忽略 */ }
+  }
+
+  /* ------------------------------------------------------------ 组卷 */
+
+  function buildList() {
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var all = site.questions.slice();
+
+    if (S.type) all = all.filter(function (q) { return q.type === S.type; });
+    if (S.diff) all = all.filter(function (q) { return q.diff === S.diff; });
+    if (S.kw) {
+      var kw = S.kw.toLowerCase();
+      all = all.filter(function (q) {
+        return (q.stem + ' ' + q.topic + ' ' + (q.exp || '')).toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+
+    if (S.mode === 'wrong') all = all.filter(function (q) { return wrong[q._gid]; });
+    else if (S.mode === 'fav') all = all.filter(function (q) { return fav[q._gid]; });
+    else if (S.mode === 'undone') all = all.filter(function (q) { return !ans[q._gid]; });
+
+    if (S.mode === 'random') {
+      for (var i = all.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+    }
+    S.list = all;
+    if (S.pendingQid) {
+      var k = all.findIndex(function (q) { return q.qid === S.pendingQid; });
+      if (k >= 0) S.idx = k;
+      S.pendingQid = null;
+    }
+    if (S.idx >= all.length) S.idx = Math.max(0, all.length - 1);
+  }
+
+  /* ------------------------------------------------------------ 渲染 */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // 显示优先用构建期排好版的视图（公式是内联 SVG），没有就转义纯文本
+  function view(q, field, fallback) {
+    if (q.views && q.views[field] != null) return q.views[field];
+    var raw = fallback !== undefined ? fallback : q[field];
+    return esc(raw).replace(/\n/g, '<br>');
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function renderStats() {
+    var st = site.stats(def.units.length === 1 ? def.units[0].key : null);
+    var box = $('#stats');
+    box.innerHTML = '';
+    var items = [
+      ['进度', st.answered + ' / ' + st.total, st.total ? Math.round(100 * st.answered / st.total) : 0],
+      ['正确率', st.rate == null ? '—' : st.rate + '%', st.rate || 0],
+      ['错题', String(st.wrong), 0],
+      ['收藏', String(st.fav), 0]
+    ];
+    items.forEach(function (it) {
+      var c = el('div', 'stat');
+      c.appendChild(el('div', 'stat-k', it[0]));
+      c.appendChild(el('div', 'stat-v', it[1]));
+      if (it[2]) {
+        var bar = el('div', 'stat-bar');
+        var fill = el('i');
+        fill.style.width = it[2] + '%';
+        bar.appendChild(fill);
+        c.appendChild(bar);
+      }
+      box.appendChild(c);
+    });
+    var label = def.units.length === 1 ? '题组口径' : '题库集口径（gid 去重）';
+    $('#stats').setAttribute('data-scope', label);
+  }
+
+  function renderFilters() {
+    var tsel = $('#f-type');
+    if (tsel.options.length <= 1) {
+      TYPE_ORDER.forEach(function (t) {
+        var o = el('option', null, def.types[t].label || t);
+        o.value = t;
+        tsel.appendChild(o);
+      });
+    }
+    tsel.value = S.type;
+    $('#f-diff').value = S.diff;
+    $('#f-kw').value = S.kw;
+    $$('#modes button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.mode === S.mode);
+    });
+  }
+
+  function optionMark(q, i) {
+    return String.fromCharCode(65 + i);
+  }
+
+  function renderCard() {
+    var card = $('#card');
+    card.innerHTML = '';
+    var q = S.list[S.idx];
+
+    if (!q) {
+      var empty = el('div', 'empty');
+      empty.appendChild(el('div', 'empty-t', S.mode === 'wrong' ? '错题本是空的' : (S.mode === 'fav' ? '还没有收藏' : '没有符合条件的题目')));
+      empty.appendChild(el('p', 'empty-s', S.mode === 'wrong'
+        ? '答错的题会自动进入这里；在错题本里做对一次才会移出。'
+        : '换个筛选条件，或者切回顺序练习。'));
+      card.appendChild(empty);
+      $('#nav').innerHTML = '';
+      return;
+    }
+
+    var decl = def.types[q.type] || {};
+    var rec = site.get(q._gid);
+    // 错题本里默认让人重做：不预置上次的选项、也不提前摊开答案。
+    // 点「重做」的题同理；其余模式仍按「做过就显示结果」的老规矩。
+    var redoing = !!S.redo[q.qid] || (S.mode === 'wrong' && !S.shown[q.qid]);
+    var revealed = !redoing && (!!S.shown[q.qid] || (rec && rec.ok !== null));
+    var fav = site.allFav()[q._gid];
+
+    var head = el('div', 'q-head');
+    var tag = el('span', 'tag tag-type', decl.label || q.type);
+    head.appendChild(tag);
+    head.appendChild(el('span', 'tag tag-diff d-' + (DIFF_ORDER[q.diff] != null ? DIFF_ORDER[q.diff] : 1), q.diff));
+    head.appendChild(el('span', 'q-topic', q.topic));
+    var no = el('span', 'q-no', (S.idx + 1) + ' / ' + S.list.length);
+    head.appendChild(no);
+    card.appendChild(head);
+
+    var stem = el('div', 'q-stem');
+    stem.innerHTML = view(q, 'stem');
+    card.appendChild(stem);
+
+    if (q.media && q.media.img) {
+      var im = el('img', 'q-img');
+      im.src = q.media.img;
+      im.alt = '题图';
+      card.appendChild(im);
+    }
+
+    var area = el('div', 'q-area');
+
+    if (decl.answerShape === 'choice') {
+      var opts = el('div', 'opts');
+      var picked = redoing ? (S.draft[q.qid] || [])
+        : ((rec && rec.p) ? rec.p.slice() : (S.draft[q.qid] || []));
+      q.options.forEach(function (text, i) {
+        var b = el('button', 'opt');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        if (picked.indexOf(i) >= 0) b.classList.add('picked');
+        if (revealed) {
+          b.disabled = true;
+          if ((q.answer || []).indexOf(i) >= 0) b.classList.add('right');
+          else if (picked.indexOf(i) >= 0) b.classList.add('wrong');
+        }
+        var k = el('span', 'opt-k', optionMark(q, i));
+        b.appendChild(k);
+        var ot = el('span', 'opt-t');
+        ot.innerHTML = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(text);
+        b.appendChild(ot);
+        b.addEventListener('click', function () { pick(q, decl, i); });
+        opts.appendChild(b);
+      });
+      area.appendChild(opts);
+      if (decl.judge === 'set' && !revealed) {
+        var tip = el('p', 'hint', '多选题：选好后点「提交」');
+        area.appendChild(tip);
+      }
+    } else if (decl.answerShape === 'tokenList') {
+      var inp = el('input', 'in');
+      inp.type = 'text';
+      inp.placeholder = '在此填写答案';
+      inp.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      inp.disabled = revealed;
+      inp.addEventListener('input', function () { S.draft[q.qid] = inp.value; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(q, decl); });
+      area.appendChild(inp);
+    } else {
+      var ta = el('textarea', 'ta');
+      ta.placeholder = '写出你的答案或关键步骤，提交后与参考答案对照自评';
+      ta.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      ta.disabled = revealed;
+      ta.rows = 5;
+      ta.addEventListener('input', function () { S.draft[q.qid] = ta.value; });
+      area.appendChild(ta);
+    }
+    card.appendChild(area);
+
+    var bar = el('div', 'q-bar');
+    if (!revealed) {
+      var sub = el('button', 'btn primary', '提交');
+      sub.addEventListener('click', function () { submit(q, decl); });
+      bar.appendChild(sub);
+      if (decl.judge === 'rubric') {
+        bar.appendChild(el('span', 'hint', '主观题：提交后对照参考答案自评'));
+      }
+      var peek = el('button', 'btn ghost', '看答案');
+      peek.addEventListener('click', function () { S.shown[q.qid] = true; render(); });
+      bar.appendChild(peek);
+    } else {
+      // 只点过「看答案」还没作答时 rec 为空，别显示成「待自评」
+      var vClass = !rec ? 'mid' : (rec.ok === true ? 'ok' : (rec.ok === false ? 'bad' : 'mid'));
+      var vText = !rec ? '未作答 · 仅看答案' : (rec.ok === true ? '✓ 答对' : (rec.ok === false ? '✗ 答错' : '待自评'));
+      var verdict = el('div', 'verdict ' + vClass);
+      verdict.textContent = vText;
+      bar.appendChild(verdict);
+      if (rec && rec.c != null && rec.ok === false) bar.appendChild(el('span', 'hint', '得分率 ' + Math.round(rec.c * 100) + '%'));
+      var again = el('button', 'btn', '重做本题');
+      again.addEventListener('click', function () { redoOne(q); });
+      bar.appendChild(again);
+    }
+    var favBtn = el('button', 'btn ghost' + (fav ? ' on' : ''), fav ? '★ 已收藏' : '☆ 收藏');
+    favBtn.addEventListener('click', function () {
+      site.toggleFav(q._gid);
+      render();
+    });
+    bar.appendChild(favBtn);
+    if (rec && site.allWrong()[q._gid]) {
+      var sup = el('button', 'btn ghost', '移出错题本');
+      sup.addEventListener('click', function () { site.suppress(q._gid); render(); });
+      bar.appendChild(sup);
+    }
+    card.appendChild(bar);
+
+    if (revealed) {
+      var exp = el('div', 'exp');
+      exp.appendChild(el('div', 'exp-h', '答案与解析'));
+      var ansText = answerText(q, decl);
+      if (ansText) {
+        var a = el('p', 'exp-a');
+        a.innerHTML = '<b>答案：</b>' + ansText;
+        exp.appendChild(a);
+      }
+      if (q.exp) {
+        var p = el('p', 'exp-p');
+        p.innerHTML = view(q, 'exp');
+        exp.appendChild(p);
+      }
+      if (q.meta && q.meta.source) {
+        exp.appendChild(el('p', 'exp-src', '来源：' + q.meta.source + (q.meta.paperNo ? ' 第 ' + q.meta.paperNo + ' 题' : '')));
+      }
+      if (decl.judge === 'rubric' && rec && rec.ok === null) {
+        var self = el('div', 'self');
+        self.appendChild(el('span', 'hint', '自评：'));
+        [['达标', true, null], ['部分达标', false, 0.5], ['未达标', false, 0]].forEach(function (t) {
+          var b = el('button', 'btn small', t[0]);
+          b.addEventListener('click', function () { selfJudge(q, t[1], t[2]); });
+          self.appendChild(b);
+        });
+        exp.appendChild(self);
+      }
+      card.appendChild(exp);
+    }
+
+    var nav = $('#nav');
+    nav.innerHTML = '';
+    var prev = el('button', 'btn', '← 上一题');
+    prev.disabled = S.idx === 0;
+    prev.addEventListener('click', function () { go(S.idx - 1); });
+    var next = el('button', 'btn primary', '下一题 →');
+    next.disabled = S.idx >= S.list.length - 1;
+    next.addEventListener('click', function () { go(S.idx + 1); });
+    nav.appendChild(prev);
+    if (S.mode === 'wrong' && S.list.length) {
+      var all = el('button', 'btn small', '全部重做');
+      all.title = '清空本轮在错题本里的作答状态，从头再做一遍';
+      all.addEventListener('click', function () {
+        S.list.forEach(function (x) { delete S.shown[x.qid]; delete S.draft[x.qid]; S.redo[x.qid] = true; });
+        S.idx = 0;
+        render();
+        flash('已清空本轮作答，从头开始');
+      });
+      nav.appendChild(all);
+    }
+    nav.appendChild(el('span', 'nav-mid', (S.idx + 1) + ' / ' + S.list.length));
+    nav.appendChild(next);
+  }
+
+  function answerText(q, decl) {
+    if (decl.answerShape === 'choice') {
+      return (q.answer || []).map(function (i) {
+        var t = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(q.options[i]);
+        return optionMark(q, i) + '. ' + t;
+      }).join('；');
+    }
+    if (decl.answerShape === 'tokenList') {
+      var list = (q.views && q.views.answers && q.views.answers.length) ? q.views.answers : (q.answers || []).map(esc);
+      return list.join(' / ');
+    }
+    return (q.views && q.views.ref) ? q.views.ref : (q.ref ? esc(String(q.ref)) : '');
+  }
+
+  /* ------------------------------------------------------------ 交互 */
+
+  // 重新作答一道题：清掉本次会话的揭晓标记与草稿，回到未作答状态
+  function redoOne(q) {
+    S.redo[q.qid] = true;
+    delete S.shown[q.qid];
+    delete S.draft[q.qid];
+    render();
+    flash('已清空，可以重做了');
+  }
+
+  function pick(q, decl, i) {
+    var cur = (S.draft[q.qid] || []).slice();
+    if (decl.judge === 'set') {
+      var k = cur.indexOf(i);
+      if (k >= 0) cur.splice(k, 1); else cur.push(i);
+      S.draft[q.qid] = cur;
+      renderCard();
+    } else {
+      S.draft[q.qid] = [i];
+      submit(q, decl);
+    }
+  }
+
+  function submit(q, decl) {
+    var input = { picked: S.draft[q.qid] || [], text: S.draft[q.qid] || '' };
+    if (decl.answerShape === 'choice') input = { picked: S.draft[q.qid] || [] };
+    else input = { text: S.draft[q.qid] || '' };
+
+    if (decl.answerShape === 'choice' && (!input.picked || !input.picked.length)) {
+      flash('先选一个选项');
+      return;
+    }
+    if (decl.answerShape !== 'choice' && !String(input.text).trim()) {
+      flash('先写下答案');
+      return;
+    }
+
+    var res = QB.judge(q, decl, input);
+    var patch = { ok: res.ok, at: Date.now(), m: S.mode };
+    if (decl.replay === 'mask' && input.picked) patch.p = input.picked;
+    if (decl.replay === 'text' && input.text != null) patch.x = String(input.text);
+    if (res.credit != null) patch.c = res.credit;
+    if (res.ok === null) patch.self = false;
+
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && res.ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  function selfJudge(q, ok, credit) {
+    var patch = { ok: ok, at: Date.now(), m: S.mode, self: true };
+    if (credit != null) patch.c = credit;
+    var rec = site.get(q._gid);
+    if (rec && rec.x != null) patch.x = rec.x;
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  /* 翻题后不把页面拉回顶部。
+     只在题卡顶部已经滚出视野上方（rect.top < 8）时，把它瞬时拉回视野；
+     卡片顶部还在视野里就完全不动。用瞬时滚动、不用 smooth——
+     平滑滚动会和滑动翻题的滑出动画叠在一起，观感就是「回弹」。 */
+  function keepCardInView() {
+    var c = $('#card');
+    if (!c) return;
+    var top = c.getBoundingClientRect().top;
+    if (top >= 8) return;
+    var y = (window.scrollY || window.pageYOffset || 0) + top - 8;
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
+
+  function go(i) {
+    if (i < 0 || i >= S.list.length) return;
+    S.idx = i;
+    render();
+    keepCardInView();
+  }
+
+  var flashTimer = null;
+  function flash(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  /* ------------------------------------------------------------ 掌握度 */
+
+  function renderMastery() {
+    var rows = site.masteryAll().filter(function (r) { return r.n > 0; });
+    var box = $('#mastery');
+    box.innerHTML = '';
+    if (!rows.length) {
+      box.appendChild(el('p', 'hint', '还没有作答记录，掌握度会在作答后出现。'));
+      return;
+    }
+    var table = el('table', 'mt');
+    var thead = el('thead');
+    var tr = el('tr');
+    ['知识点', '得分', '状态', '作答数'].forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr2 = el('tr');
+      tr2.appendChild(el('td', 'mt-t', r.topic));
+      tr2.appendChild(el('td', 'mt-s', String(r.score)));
+      var lv = el('td');
+      lv.appendChild(el('span', 'lv ' + (r.level === '已掌握' ? 'lv-ok' : (r.level === '薄弱' ? 'lv-bad' : 'lv-mid')), r.level));
+      tr2.appendChild(lv);
+      tr2.appendChild(el('td', 'mt-n', String(r.n)));
+      tb.appendChild(tr2);
+    });
+    table.appendChild(tb);
+    box.appendChild(table);
+  }
+
+  /* ------------------------------------------------------------ 导出导入 */
+
+  function initTransfer() {
+    var sel = $('#x-scope');
+    if (def.units.length === 1) {
+      sel.innerHTML = '';
+      var o = el('option', null, '本题库');
+      o.value = 'unit:' + def.units[0].key;
+      sel.appendChild(o);
+    } else {
+      var s1 = el('option', null, '全站');
+      s1.value = 'site:';
+      sel.appendChild(s1);
+      def.units.forEach(function (u) {
+        var o2 = el('option', null, u.label + ' ' + u.title);
+        o2.value = 'unit:' + u.key;
+        sel.appendChild(o2);
+      });
+    }
+
+    $('#x-do').addEventListener('click', function () {
+      var v = sel.value.split(':');
+      try {
+        var code = site.encode(v[0], v[1]);
+        $('#x-code').value = code;
+        $('#x-info').textContent = '已生成 ' + code.length + ' 字符（预算 ' + site.budget + '）'
+          + (code.length > site.budget ? '，超出预算，建议改用题组作用域' : '');
+      } catch (e) {
+        $('#x-info').textContent = '生成失败：' + e.message;
+      }
+    });
+
+    $('#x-copy').addEventListener('click', function () {
+      var ta = $('#x-code');
+      if (!ta.value) return flash('先生成导出码');
+      ta.select();
+      try { document.execCommand('copy'); flash('已复制'); } catch (e) { flash('请手动复制'); }
+    });
+
+    $('#x-import').addEventListener('click', function () {
+      var code = $('#x-code').value.trim();
+      if (!code) return flash('请粘贴导出码');
+      try {
+        var r = site.importCode(code);
+        $('#x-info').textContent = '已导入 ' + r.count + ' 条（' + r.kind + ':' + (r.key || '全站') + '），作用域外记录未改动';
+        reload();
+      } catch (e) {
+        $('#x-info').textContent = '导入失败：' + e.message;
+      }
+    });
+
+    $('#x-undo').addEventListener('click', function () {
+      if (site.undoImport()) { $('#x-info').textContent = '已撤销上次导入'; reload(); }
+      else $('#x-info').textContent = '没有可撤销的导入';
+    });
+
+    $('#reset').addEventListener('click', function () {
+      if (!confirm('清空本题库在本机的作答、错题与收藏记录？此操作不可撤销。')) return;
+      site.resetScope(def.units.length === 1 ? 'unit' : 'site', def.units.length === 1 ? def.units[0].key : '');
+      S.shown = {}; S.redo = {}; S.draft = {};
+      reload();
+      flash('已清空');
+    });
+  }
+
+  /* ------------------------------------------------------------ 云同步 */
+
+  function initCloud() {
+    var wrap = $('#cloud-wrap');
+    if (!wrap) return;
+    var cfg = window.QB_SYNC_CFG;
+    if (!cfg || !window.QBSync) return;
+    wrap.style.display = '';
+
+    var sync = window.QBSync.create(site, cfg);
+    var codeInput = $('#s-code');
+    var info = $('#s-info');
+    var saved = sync.readSharedCode();
+    if (saved) codeInput.value = saved;
+
+    function say(msg) { info.textContent = msg; }
+
+    $('#s-save').addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (v.length < 10) return say('同步码至少 10 位（它是唯一凭证）');
+      sync.setCode(v);
+      codeInput.value = sync.code;
+      say('已保存，本机所有题库共用这个同步码');
+    });
+
+    function run(fn, label) {
+      var why = sync._guard();
+      if (why) return say(why);
+      say(label + '中…');
+      fn().then(function (r) {
+        say(label + '完成，云端共 ' + r.count + ' 条记录');
+        render();
+      }).catch(function (e) {
+        say(label + '失败：' + e.message);
+      });
+    }
+
+    $('#s-up').addEventListener('click', function () { run(function () { return sync.upload(); }, '上传'); });
+    $('#s-down').addEventListener('click', function () { run(function () { return sync.download(); }, '下载'); });
+
+    var pend = sync.pending();
+    say(pend ? ('有 ' + pend + ' 条本机改动尚未上传') : '同步码与云端一致时即可手动上传 / 下载');
+  }
+
+  /* ------------------------------------------------------------ 手势翻题 */
+
+  /* 左滑 → 下一题，右滑 → 上一题。所有题库共用这一份实现，页面不再各自绑定。
+     翻页走 go()，与「上一题 / 下一题」按钮同一条路径，不另起一套状态。
+     判定：水平位移 ≥ 56px、水平 ≥ 垂直 × 1.2、时长 ≤ 1.2s；
+     起手点在输入控件 / 控制区 / 折叠面板 / 可横向滚动的公式块内不触发；
+     纵向滑动超过阈值即判定为滚动并让位，全程 passive，不抢页面滚动。 */
+  function initSwipe() {
+    var MIN_X = 56;      // 触发所需最小水平位移
+    var LOCK_X = 12;     // 锁定为横向手势的位移
+    var LOCK_Y = 14;     // 纵向位移超过它且大于横向 → 判定为滚动
+    var SLOPE = 1.2;
+    var MAX_MS = 1200;
+    var EDGE = 24;       // 避开 iOS Safari 的边缘侧滑返回
+    var FOLLOW = 0.35;   // 拖动时卡片跟手系数
+    var ANIM_MS = 150;
+
+    var sx = 0, sy = 0, st = 0, tracking = false, locked = false, animating = false;
+    var muteUntil = 0;   // 滑动后短暂屏蔽 click，避免顺带点掉选项
+
+    function card() { return $('#card'); }
+
+    var SKIP = '.top, .ctl, details, .foot, #toast, input, textarea, select, [contenteditable="true"]';
+
+    // 起手点排除：交互控件、控制区，以及自身可横向滚动的容器（长公式、代码块）
+    function skip(el) {
+      if (!el || !el.closest) return true;
+      if (el.closest(SKIP)) return true;
+      var c = card();
+      for (var n = el; n && n !== c && n.nodeType === 1; n = n.parentNode) {
+        if (n.scrollWidth - n.clientWidth <= 2) continue;
+        var ox = window.getComputedStyle(n).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+      return false;
+    }
+
+    function reset() {
+      if (animating) return;          // 动画中不打断，否则会停在半路又被 go() 换题
+      var c = card();
+      if (!c) return;
+      c.style.transition = 'transform .18s ease, opacity .18s ease';
+      c.style.transform = '';
+      c.style.opacity = '';
+    }
+
+    function reduced() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // dir: 1 = 下一题，-1 = 上一题
+    function flip(dir) {
+      if (animating || !S.list.length) return;
+      var to = S.idx + dir;
+      if (to < 0 || to >= S.list.length) { reset(); return; }
+      var c = card();
+      if (!c) return;
+      muteUntil = Date.now() + 300;   // 吞掉滑动末尾那一次 click（选项点选即判分）
+      if (reduced()) { go(to); return; }
+      animating = true;
+      var out = dir > 0 ? -72 : 72;   // 下一题向左滑出，上一题向右滑出
+      c.style.transition = 'transform ' + ANIM_MS + 'ms ease, opacity ' + ANIM_MS + 'ms ease';
+      void c.offsetWidth;
+      c.style.transform = 'translateX(' + out + 'px)';
+      c.style.opacity = '0';
+      setTimeout(function () {
+        go(to);
+        c.style.transition = 'none';
+        c.style.transform = 'translateX(' + (-out) + 'px)';
+        c.style.opacity = '0';
+        requestAnimationFrame(function () {
+          c.style.transition = 'transform .2s ease, opacity .2s ease';
+          c.style.transform = '';
+          c.style.opacity = '';
+          animating = false;
+        });
+      }, ANIM_MS);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (Date.now() >= muteUntil) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('touchstart', function (e) {
+      if (animating || e.touches.length !== 1) return;
+      var t = e.touches[0];
+      if (t.clientX < EDGE || t.clientX > window.innerWidth - EDGE) return;
+      if (skip(e.target)) return;
+      sx = t.clientX; sy = t.clientY; st = Date.now();
+      tracking = true; locked = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      if (e.touches.length !== 1) { tracking = false; reset(); return; }
+      var t = e.touches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (!locked) {
+        if (Math.abs(dy) > LOCK_Y && Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+        if (Math.abs(dx) > LOCK_X) {
+          locked = true;
+          var c0 = card();
+          if (c0) c0.style.transition = 'none';
+        }
+      }
+      if (!locked) return;
+      var c = card();
+      if (!c) return;
+      c.style.transform = 'translateX(' + (dx * FOLLOW) + 'px)';
+      c.style.opacity = String(Math.max(0.55, 1 - Math.abs(dx) / 480));
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var was = locked; locked = false;
+      if (!was) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st;
+      if (Math.abs(dx) < MIN_X || Math.abs(dx) < Math.abs(dy) * SLOPE || dt > MAX_MS) { reset(); return; }
+      flip(dx < 0 ? 1 : -1);   // 左滑 → 下一题；右滑 → 上一题
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      tracking = false; locked = false;
+      reset();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------ 入口 */
+
+  // 只重画当前这一屏：题号、列表都保持不变。
+  // 在错题本里答对后题目会移出错题集合，若这里重组卷，卡片会当场跳到下一题，
+  // 用户看不到自己刚做对的结果。列表只在换模式 / 换筛选 / 导入时重建。
+  function render() {
+    renderStats();
+    renderFilters();
+    renderCard();
+    renderMastery();
+    writeRoute();
+  }
+
+  function reload() {
+    buildList();
+    render();
+  }
+
+  function init() {
+    readRoute();
+    // 旧版记录迁移：csg_* / csunitN_* 等命名空间并进全站三表，幂等，旧键不删
+    try {
+      var mig = site.migrateLegacy();
+      if (mig && !mig.skipped && (mig.ans || mig.wrong || mig.fav)) {
+        setTimeout(function () { flash('已迁移旧版记录：作答 ' + mig.ans + '、错题 ' + mig.wrong + '、收藏 ' + mig.fav); }, 400);
+      }
+    } catch (e) { /* 迁移失败不阻塞作答 */ }
+    $('#site-title').textContent = def.title || meta.title || '题库';
+    $('#bank-name').textContent = def.units.length === 1
+      ? (def.units[0].label + ' · ' + def.units[0].title)
+      : (def.subjectName || '');
+    if (def.units.length === 1 && def.units[0].desc) $('#bank-desc').textContent = def.units[0].desc;
+    if (meta.home) $('#home').href = meta.home;
+    else $('#home').style.display = 'none';
+
+    $$('#modes button').forEach(function (b) {
+      b.addEventListener('click', function () { S.mode = b.dataset.mode; S.idx = 0; reload(); });
+    });
+    $('#f-type').addEventListener('change', function (e) { S.type = e.target.value; S.idx = 0; reload(); });
+    $('#f-diff').addEventListener('change', function (e) { S.diff = e.target.value; S.idx = 0; reload(); });
+    var kwTimer = null;
+    $('#f-kw').addEventListener('input', function (e) {
+      clearTimeout(kwTimer);
+      var v = e.target.value;
+      kwTimer = setTimeout(function () { S.kw = v; S.idx = 0; reload(); }, 220);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(S.idx - 1);
+      if (e.key === 'ArrowRight') go(S.idx + 1);
+      if (/^[1-9]$/.test(e.key)) {
+        var q = S.list[S.idx];
+        if (q && def.types[q.type].answerShape === 'choice' && q.options[Number(e.key) - 1] != null) {
+          pick(q, def.types[q.type], Number(e.key) - 1);
+        }
+      }
+    });
+
+    initSwipe();
+    initTransfer();
+    initCloud();
+    reload();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

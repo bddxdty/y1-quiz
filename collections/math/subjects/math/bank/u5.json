@@ -1,0 +1,99 @@
+{
+ "version": 1,
+ "unit": "u5",
+ "questions": [
+  {
+   "qid": "math.u5-001",
+   "type": "single",
+   "topic": "5.4 反常积分",
+   "diff": "中",
+   "stem": "下列反常积分收敛的是（　）。",
+   "exp": "p 积分 ∫₁^∞ dx/x^p 当 p > 1 时收敛，B 的 p = 3；A 的 p = 1/2 发散。C 在 x = 0 处 p = 3 > 1，发散；D 在 x = 0 处奇点，p = 1，发散。",
+   "options": [
+    "∫₁^(+∞) dx/√x",
+    "∫₁^(+∞) dx/x³",
+    "∫₀¹ dx/x³",
+    "∫₋₁¹ dx/x"
+   ],
+   "answer": [
+    1
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "一.4",
+    "tex": {
+     "stem": "下列反常积分收敛的是（　）。",
+     "options": [
+      "$\\displaystyle\\int_{1}^{+\\infty}\\dfrac{\\mathrm{d}x}{\\sqrt{x}}$",
+      "$\\displaystyle\\int_{1}^{+\\infty}\\dfrac{\\mathrm{d}x}{x^{3}}$",
+      "$\\displaystyle\\int_{0}^{1}\\dfrac{\\mathrm{d}x}{x^{3}}$",
+      "$\\displaystyle\\int_{-1}^{1}\\dfrac{\\mathrm{d}x}{x}$"
+     ],
+     "exp": "$p$ 积分 $\\displaystyle\\int_{1}^{+\\infty}\\dfrac{\\mathrm{d}x}{x^{p}}$ 当 $p>1$ 时收敛，B 的 $p=3$；A 的 $p=\\dfrac{1}{2}$ 发散。C 在 $x=0$ 处 $p=3>1$，发散；D 在 $x=0$ 处为奇点且 $p=1$，发散。"
+    }
+   }
+  },
+  {
+   "qid": "math.u5-002",
+   "type": "blank",
+   "topic": "5.3 定积分的性质",
+   "diff": "易",
+   "stem": "∫₋₁¹ x³·∛(4−x²) dx = ______。",
+   "exp": "被积函数为奇函数，积分区间对称于原点，积分值为 0。",
+   "answers": [
+    "0"
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "三.4",
+    "tex": {
+     "stem": "$\\displaystyle\\int_{-1}^{1}x^{3}\\sqrt[3]{4-x^{2}}\\,\\mathrm{d}x=$ ______。",
+     "exp": "被积函数为奇函数，积分区间对称于原点，积分值为 $0$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u5-003",
+   "type": "blank",
+   "topic": "5.5 定积分的应用",
+   "diff": "中",
+   "stem": "曲线 y = (2/3)x^(3/2) 上相应于 3 ≤ x ≤ 8 的一段弧的长度为 ______。",
+   "exp": "y′ = x^(1/2)，弧长 = ∫₃⁸√(1+x)dx = (2/3)(1+x)^(3/2)|₃⁸ = (2/3)(27 − 8) = 38/3。",
+   "answers": [
+    "38/3"
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "三.9",
+    "tex": {
+     "stem": "曲线 $y=\\dfrac{2}{3}x^{3/2}$ 上相应于 $3\\le x\\le 8$ 的一段弧的长度为 ______。",
+     "exp": "$y'=x^{1/2}$，弧长 $=\\displaystyle\\int_{3}^{8}\\sqrt{1+x}\\,\\mathrm{d}x=\\dfrac{2}{3}(1+x)^{3/2}\\Big|_{3}^{8}=\\dfrac{2}{3}(27-8)=\\dfrac{38}{3}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u5-004",
+   "type": "blank",
+   "topic": "5.5 定积分的应用",
+   "diff": "易",
+   "stem": "函数 f(x) = 4 − x 在 [0,3] 上的平均值为 ______。",
+   "exp": "平均值 = (1/3)∫₀³(4−x)dx = (1/3)(12 − 9/2) = 5/2。",
+   "answers": [
+    "5/2",
+    "2.5"
+   ],
+   "meta": {
+    "source": "2023-2024-1 高等数学（基础）期中自测题",
+    "paper": "mid2023selftest",
+    "paperNo": "三.10",
+    "tex": {
+     "stem": "函数 $f(x)=4-x$ 在 $[0,3]$ 上的平均值为 ______。",
+     "exp": "平均值 $=\\dfrac{1}{3}\\displaystyle\\int_{0}^{3}(4-x)\\,\\mathrm{d}x=\\dfrac{1}{3}\\left(12-\\dfrac{9}{2}\\right)=\\dfrac{5}{2}$。"
+    }
+   }
+  }
+ ]
+}

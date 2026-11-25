@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学",
+  "typepack": "math",
+  "units": [
+    {
+      "key": "u4",
+      "kind": "unit",
+      "label": "第 4 章",
+      "title": "不定积分",
+      "desc": "原函数与不定积分、换元积分法、分部积分法、有理函数积分",
+      "bank": "bank/u4.json",
+      "order": 4
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

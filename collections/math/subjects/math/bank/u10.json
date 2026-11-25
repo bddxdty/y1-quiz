@@ -1,0 +1,83 @@
+{
+ "version": 1,
+ "unit": "u10",
+ "questions": [
+  {
+   "qid": "math.u10-001",
+   "type": "blank",
+   "topic": "11.1 对弧长的曲线积分",
+   "diff": "中",
+   "stem": "设曲线 L：y = x²（0 ≤ x ≤ √2），则 ∫_L x ds = ______。",
+   "exp": "ds = √(1 + 4x²)dx，故 ∫₀^{√2} x√(1+4x²)dx = (1/12)(1+4x²)^{3/2}|₀^{√2} = (27 − 1)/12 = 13/6。",
+   "answers": [
+    "13/6"
+   ],
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "一.8",
+    "tex": {
+     "stem": "设曲线 $L$：$y=x^{2}$（$0\\le x\\le\\sqrt{2}$），则 $\\displaystyle\\int_{L}x\\,\\mathrm{d}s=$ ______。",
+     "exp": "$\\mathrm{d}s=\\sqrt{1+4x^{2}}\\,\\mathrm{d}x$，故 $\\displaystyle\\int_{0}^{\\sqrt{2}}x\\sqrt{1+4x^{2}}\\,\\mathrm{d}x=\\dfrac{1}{12}(1+4x^{2})^{3/2}\\Big|_{0}^{\\sqrt{2}}=\\dfrac{27-1}{12}=\\dfrac{13}{6}$。"
+    }
+   }
+  },
+  {
+   "qid": "math.u10-002",
+   "type": "calc",
+   "topic": "11.2 格林公式",
+   "diff": "难",
+   "stem": "计算 ∫_L eˣ(1 − 2cos y)dx + 2eˣ sin y dy，其中 L 为曲线 y = sin x 上由点 A(π, 0) 到点 O(0, 0) 的一段弧。",
+   "exp": "P = eˣ(1−2cos y)，Q = 2eˣ sin y，恰好 ∂Q/∂x = ∂P/∂y，属「与路径无关」型；补线用格林公式最省力。",
+   "ref": "补上直线段 OA：y = 0（0 ≤ x ≤ π），与 L 围成闭区域 D。由格林公式，∮_{L+OA} = ∬_D (∂Q/∂x − ∂P/∂y)dxdy = ∬_D 0 dxdy = 0。故 ∫_L = −∫_{OA} = −∫₀^π eˣdx = e^π − 1（方向：OA 从 O 到 A，与闭合正向一致）。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.5",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\int_{L}\\mathrm{e}^{x}(1-2\\cos y)\\,\\mathrm{d}x+2\\mathrm{e}^{x}\\sin y\\,\\mathrm{d}y$，其中 $L$ 为曲线 $y=\\sin x$ 上由点 $A(\\pi,0)$ 到点 $O(0,0)$ 的一段弧。",
+     "ref": "记 $P=\\mathrm{e}^{x}(1-2\\cos y)$，$Q=2\\mathrm{e}^{x}\\sin y$，则 $\\dfrac{\\partial Q}{\\partial x}=2\\mathrm{e}^{x}\\sin y=\\dfrac{\\partial P}{\\partial y}$，积分与路径无关。取原函数 $\\varphi(x,y)=\\mathrm{e}^{x}(1-2\\cos y)$，则 $\\displaystyle\\int_{L}=\\varphi(O)-\\varphi(A)=\\mathrm{e}^{0}(1-2)-\\mathrm{e}^{\\pi}(1-2)=\\mathrm{e}^{\\pi}-1$。",
+     "exp": "$\\dfrac{\\partial Q}{\\partial x}=\\dfrac{\\partial P}{\\partial y}$ 是「与路径无关」的判据，此时找原函数比补线用格林公式更省力，也不容易在方向上出错。"
+    }
+   }
+  },
+  {
+   "qid": "math.u10-003",
+   "type": "calc",
+   "topic": "11.3 对面积的曲面积分",
+   "diff": "中",
+   "stem": "计算 ∬_Σ √(R² − x² − y²) dS，其中 Σ 为上半球面 z = √(R² − x² − y²)。",
+   "exp": "被积函数与 dS 中的分母相消，是球面面积分的典型化简。",
+   "ref": "dS = √(1 + zₓ² + z_y²)dxdy = R/√(R² − x² − y²) dxdy，投影区域 D 为 x² + y² ≤ R²。故原式 = ∬_D R dxdy = R·πR² = πR³。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.6",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\iint_{\\Sigma}\\sqrt{R^{2}-x^{2}-y^{2}}\\,\\mathrm{d}S$，其中 $\\Sigma$ 为上半球面 $z=\\sqrt{R^{2}-x^{2}-y^{2}}$。",
+     "ref": "$\\mathrm{d}S=\\sqrt{1+z_{x}^{2}+z_{y}^{2}}\\,\\mathrm{d}x\\,\\mathrm{d}y=\\dfrac{R}{\\sqrt{R^{2}-x^{2}-y^{2}}}\\,\\mathrm{d}x\\,\\mathrm{d}y$，投影区域 $D$ 为 $x^{2}+y^{2}\\le R^{2}$。故原式 $=\\displaystyle\\iint_{D}R\\,\\mathrm{d}x\\,\\mathrm{d}y=R\\cdot\\pi R^{2}=\\pi R^{3}$。",
+     "exp": "被积函数与 $\\mathrm{d}S$ 中的分母相消，是球面面积分的典型化简。"
+    }
+   }
+  },
+  {
+   "qid": "math.u10-004",
+   "type": "calc",
+   "topic": "11.4 高斯公式",
+   "diff": "难",
+   "stem": "计算 ∬_Σ 2x³dydz + 2y³dzdx + 3(z² − 1)dxdy，其中 Σ 为曲面 z = 1 − x² − y²（z ≥ 0）部分的上侧。",
+   "exp": "第二类曲面积分补面用高斯公式时，注意补面的侧向决定正负号；散度 6(x²+y²+z) 用柱坐标最省事。",
+   "ref": "补平面 Σ₁：z = 0（x² + y² ≤ 1）取下侧，与 Σ 围成闭区域 Ω。由高斯公式，∬_Σ = ∬_{Σ+Σ₁} − ∬_{Σ₁} = ∭_Ω (6x² + 6y² + 6z)dv + 3∬_{D_xy}(0 − 1)dxdy。用柱坐标算得 ∭_Ω = 2π，后一项为 −3π，故结果为 −π。",
+   "meta": {
+    "source": "高等数学 A（下）测试卷（2023）",
+    "paper": "final2023b",
+    "paperNo": "二.7",
+    "tex": {
+     "stem": "计算 $\\displaystyle\\iint_{\\Sigma}2x^{3}\\,\\mathrm{d}y\\,\\mathrm{d}z+2y^{3}\\,\\mathrm{d}z\\,\\mathrm{d}x+3(z^{2}-1)\\,\\mathrm{d}x\\,\\mathrm{d}y$，其中 $\\Sigma$ 为曲面 $z=1-x^{2}-y^{2}$（$z\\ge 0$）部分的上侧。",
+     "ref": "补平面 $\\Sigma_{1}$：$z=0$（$x^{2}+y^{2}\\le 1$）取下侧，与 $\\Sigma$ 围成闭区域 $\\Omega$。散度为 $6(x^{2}+y^{2}+z)$，用柱坐标算得 $\\displaystyle\\iiint_{\\Omega}6(x^{2}+y^{2}+z)\\,\\mathrm{d}v=2\\pi$。$\\Sigma_{1}$ 取下侧，故 $\\displaystyle\\iint_{\\Sigma_{1}}3(z^{2}-1)\\,\\mathrm{d}x\\,\\mathrm{d}y=-\\iint_{D_{xy}}(-3)\\,\\mathrm{d}x\\,\\mathrm{d}y=3\\pi$。由高斯公式，$\\displaystyle\\iint_{\\Sigma}=2\\pi-3\\pi=-\\pi$。",
+     "exp": "补面用高斯公式时，补面的侧向决定正负号；散度 $6(x^{2}+y^{2}+z)$ 用柱坐标最省事。"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学",
+  "typepack": "math",
+  "units": [
+    {
+      "key": "u1",
+      "kind": "unit",
+      "label": "第 1 章",
+      "title": "函数与极限",
+      "desc": "函数概念、数列与函数极限、无穷小的比较、连续性与间断点",
+      "bank": "bank/u1.json",
+      "order": 1
+    },
+    {
+      "key": "u2",
+      "kind": "unit",
+      "label": "第 2 章",
+      "title": "导数与微分",
+      "desc": "导数定义、求导法则、高阶导数、隐函数与参数方程求导、微分",
+      "bank": "bank/u2.json",
+      "order": 2
+    },
+    {
+      "key": "u3",
+      "kind": "unit",
+      "label": "第 3 章",
+      "title": "微分中值定理与导数的应用",
+      "desc": "中值定理、洛必达法则、单调性与极值、凹凸与拐点、渐近线、泰勒公式",
+      "bank": "bank/u3.json",
+      "order": 3
+    },
+    {
+      "key": "u4",
+      "kind": "unit",
+      "label": "第 4 章",
+      "title": "不定积分",
+      "desc": "原函数与不定积分、换元积分法、分部积分法、有理函数积分",
+      "bank": "bank/u4.json",
+      "order": 4
+    },
+    {
+      "key": "u5",
+      "kind": "unit",
+      "label": "第 5 章",
+      "title": "定积分及其应用",
+      "desc": "定积分的性质与计算、反常积分、定积分的几何与物理应用",
+      "bank": "bank/u5.json",
+      "order": 5
+    },
+    {
+      "key": "u7",
+      "kind": "unit",
+      "label": "第 8 章",
+      "title": "向量代数与空间解析几何",
+      "desc": "向量的运算、平面与直线、曲面与空间曲线",
+      "bank": "bank/u7.json",
+      "order": 7
+    },
+    {
+      "key": "u8",
+      "kind": "unit",
+      "label": "第 9 章",
+      "title": "多元函数微分法及其应用",
+      "desc": "二元函数的极限与连续、偏导数与全微分、复合与隐函数求导、切平面与极值",
+      "bank": "bank/u8.json",
+      "order": 8
+    },
+    {
+      "key": "u9",
+      "kind": "unit",
+      "label": "第 10 章",
+      "title": "重积分",
+      "desc": "二重积分与三重积分的计算、交换积分次序、极坐标与柱坐标",
+      "bank": "bank/u9.json",
+      "order": 9
+    },
+    {
+      "key": "u10",
+      "kind": "unit",
+      "label": "第 11 章",
+      "title": "曲线积分与曲面积分",
+      "desc": "两类曲线积分、两类曲面积分、格林公式、高斯公式、斯托克斯公式",
+      "bank": "bank/u10.json",
+      "order": 10
+    },
+    {
+      "key": "u11",
+      "kind": "unit",
+      "label": "第 12 章",
+      "title": "无穷级数",
+      "desc": "常数项级数的审敛法、幂级数的收敛域与和函数、函数展开、傅里叶级数",
+      "bank": "bank/u11.json",
+      "order": 11
+    },
+    {
+      "key": "midterm",
+      "kind": "midterm",
+      "label": "期中考试",
+      "title": "期中真题卷",
+      "desc": "2024 期中测验题、2023-2024-1 期中自测题，按卷面顺序排列",
+      "bank": "bank/midterm.json",
+      "order": 12
+    },
+    {
+      "key": "final",
+      "kind": "final",
+      "label": "期末考试",
+      "title": "期末真题卷",
+      "desc": "高等数学 A（下）测试卷（2023），按卷面顺序排列",
+      "bank": "bank/final.json",
+      "order": 13
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [1, 3, 7]
+  }
+}

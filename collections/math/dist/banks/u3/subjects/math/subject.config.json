@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学",
+  "typepack": "math",
+  "units": [
+    {
+      "key": "u3",
+      "kind": "unit",
+      "label": "第 3 章",
+      "title": "微分中值定理与导数的应用",
+      "desc": "中值定理、洛必达法则、单调性与极值、凹凸与拐点、渐近线、泰勒公式",
+      "bank": "bank/u3.json",
+      "order": 3
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

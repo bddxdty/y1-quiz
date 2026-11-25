@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "id": "ethics.ch4",
+  "key": "ch4",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第四章",
+  "title": "明确价值要求 践行价值准则",
+  "desc": "社会主义核心价值观 · 核心价值体系 · 显著特征 · 践行",
+  "collection": {
+    "id": "ethics",
+    "name": "思想道德与法治"
+  },
+  "subject": {
+    "key": "ethics",
+    "name": "思想道德与法治",
+    "typepack": "ethics"
+  },
+  "count": 26,
+  "types": [
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "4.1 核心价值观总论",
+    "4.2 核心价值观的基本内容",
+    "4.3 核心价值观的显著特征",
+    "4.4 践行社会主义核心价值观"
+  ],
+  "sources": [
+    "《思想道德与法制》配套题库（原卷 PDF）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 5
+}

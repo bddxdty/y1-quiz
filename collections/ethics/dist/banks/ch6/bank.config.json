@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "id": "ethics.ch6",
+  "key": "ch6",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第六章",
+  "title": "学习法治思想 提升法治素养",
+  "desc": "法律的本质与运行 · 习近平法治思想 · 宪法 · 法治思维 · 权利义务",
+  "collection": {
+    "id": "ethics",
+    "name": "思想道德与法治"
+  },
+  "subject": {
+    "key": "ethics",
+    "name": "思想道德与法治",
+    "typepack": "ethics"
+  },
+  "count": 37,
+  "types": [
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "6.1 法律及其历史发展",
+    "6.10 法治思维",
+    "6.11 法律权利与法律义务",
+    "6.2 社会主义法律的本质",
+    "6.3 社会主义法律的运行",
+    "6.4 习近平法治思想",
+    "6.6 中国特色社会主义法治道路",
+    "6.7 中国特色社会主义法治体系",
+    "6.8 宪法",
+    "6.9 我国宪法法律规定的权利"
+  ],
+  "sources": [
+    "《思想道德与法制》配套题库（原卷 PDF）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 7
+}

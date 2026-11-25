@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "id": "ethics.ch3",
+  "key": "ch3",
+  "kind": "unit",
+  "kindLabel": "单元",
+  "label": "第三章",
+  "title": "继承优良传统 弘扬中国精神",
+  "desc": "中国精神 · 爱国主义 · 总体国家安全观 · 改革创新",
+  "collection": {
+    "id": "ethics",
+    "name": "思想道德与法治"
+  },
+  "subject": {
+    "key": "ethics",
+    "name": "思想道德与法治",
+    "typepack": "ethics"
+  },
+  "count": 39,
+  "types": [
+    "multi",
+    "short",
+    "single"
+  ],
+  "topics": [
+    "3.1 中国精神的内涵",
+    "3.3 爱国主义",
+    "3.4 爱国爱党爱社会主义",
+    "3.5 传承中华优秀传统文化",
+    "3.6 总体国家安全观",
+    "3.7 改革创新"
+  ],
+  "sources": [
+    "《思想道德与法制》配套题库（原卷 PDF）"
+  ],
+  "entry": "index.html",
+  "standalone": true,
+  "depends": [],
+  "builtAt": "2026-11-25 23:29",
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  },
+  "order": 4
+}

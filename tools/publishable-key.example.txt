@@ -1,0 +1,9 @@
+# 把 CloudBase 控制台 → 环境 → 登录授权 → Publishable Key 的整行 JWT 粘贴到
+# tools/publishable-key.txt（本文件同目录，去掉 .example）。
+#
+# 这个 Key 是匿名钥匙（JWT payload 里 scope=anonymous），设计上随页面公开，
+# 但换 Key 时只需要改本地文件，不必进仓库。没有它也能构建：
+# 页面会注入 __PUBLISHABLE_KEY__ / __ENV_ID__ 占位符，除云端同步外一切功能正常。
+#
+# 云环境 ID 不用手填——collections/cs/sync.config.json 里留 __ENV_ID__ 时，
+# 构建器会从 Key 的 JWT payload 解出 project_id。换环境只换这一处 Key。

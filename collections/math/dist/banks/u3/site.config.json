@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "site": {
+    "title": "高等数学 · 第 3 章 微分中值定理与导数的应用",
+    "defaultSubject": "math"
+  },
+  "subjects": [
+    {
+      "key": "math",
+      "name": "高等数学",
+      "accent": "#0f766e",
+      "status": "active"
+    }
+  ],
+  "codec": {
+    "version": 10,
+    "gidBits": 32,
+    "budgetBytes": 6000
+  }
+}

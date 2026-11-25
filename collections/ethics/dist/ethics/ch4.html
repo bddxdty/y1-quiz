@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>思想道德与法治 · 第四章 明确价值要求 践行价值准则</title>
+<style>/* qb-page.css — 题库页面样式（内核共用，不含任何科目特有内容） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef; --ok-line:#b7e6cf;
+  --bad:#b42318; --bad-soft:#fdecea; --bad-line:#f6c9c4;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:20px 16px 72px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+.top h1{font-size:21px;margin:0;letter-spacing:.2px}
+.top .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.top .spacer{flex:1}
+.home{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.home:hover{color:var(--accent);border-color:#c7dbff;text-decoration:none}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.block{padding:14px 16px;margin-bottom:14px}
+
+/* stats */
+#stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px;margin-bottom:14px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:19px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:7px;overflow:hidden}
+.stat-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl+.ctl{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.seg{display:inline-flex;background:#f1f4fa;border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:13.5px;color:#48505f}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+select,input[type=search]{
+  font:inherit;font-size:13.5px;color:var(--text);border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:7px 10px;outline:none
+}
+select:focus,input[type=search]:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=search]{min-width:170px;flex:1}
+.btn{
+  border:1px solid var(--line);background:#fff;color:#3c4353;border-radius:9px;padding:7px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;transition:.15s
+}
+.btn:hover:not(:disabled){border-color:#c7dbff;color:var(--accent);background:var(--accent-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#2557c7;border-color:#2557c7;color:#fff}
+.btn.ghost{background:#fff}
+.btn.ghost.on{color:#b54708;border-color:#f5dcb4;background:var(--warn-soft)}
+.btn.small{padding:5px 11px;font-size:13px}
+
+/* card */
+#card{padding:18px 18px 16px;margin-bottom:14px}
+.q-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fafbfd;white-space:nowrap}
+.tag-type{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.tag-diff.d-0{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.tag-diff.d-1{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.tag-diff.d-2{color:var(--bad);border-color:var(--bad-line);background:var(--bad-soft)}
+.q-topic{font-size:12.5px;color:var(--muted2)}
+.q-no{margin-left:auto;font-size:12.5px;color:var(--muted2);font-variant-numeric:tabular-nums}
+.q-stem{font-size:16.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.q-img{max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line)}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;
+  font:inherit;font-size:15px;line-height:1.6;cursor:pointer;transition:.13s;color:var(--text)
+}
+.opt:hover:not(:disabled){border-color:#c7dbff;background:#fafcff}
+.opt:disabled{cursor:default}
+.opt-k{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#f1f4fa;color:#48505f;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600
+}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt.picked .opt-k{background:var(--accent);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .opt-k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .opt-k{background:var(--bad);color:#fff}
+
+/* inputs */
+.in,.ta{
+  width:100%;margin-top:14px;font:inherit;font-size:15px;color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:11px 13px;outline:none;background:#fff;resize:vertical
+}
+.in:focus,.ta:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+.in:disabled,.ta:disabled{background:#fafbfd;color:var(--muted)}
+
+/* action bar */
+.q-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12.5px;color:var(--muted2)}
+.verdict{font-size:14px;font-weight:650;padding:5px 12px;border-radius:999px}
+.verdict.ok{color:var(--ok);background:var(--ok-soft)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft)}
+.verdict.mid{color:var(--warn);background:var(--warn-soft)}
+
+/* explanation */
+.exp{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.exp-h{font-size:12.5px;color:var(--muted2);letter-spacing:.4px;margin-bottom:7px}
+.exp-a{font-size:14.5px;margin:0 0 8px;padding:10px 12px;background:#f7f9fd;border-radius:9px;border:1px solid var(--line2)}
+.exp-p{font-size:14.5px;color:#333a49;margin:0 0 6px;white-space:pre-wrap}
+.exp-src{font-size:12px;color:var(--muted2);margin:6px 0 0}
+.self{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* nav */
+#nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nav-mid{flex:1;text-align:center;font-size:13px;color:var(--muted2);font-variant-numeric:tabular-nums}
+
+/* mastery */
+#mastery{padding:14px 16px;margin-bottom:14px}
+.mt{width:100%;border-collapse:collapse;font-size:13.5px}
+.mt th{text-align:left;font-weight:600;color:var(--muted2);font-size:12px;letter-spacing:.3px;padding:0 0 8px;border-bottom:1px solid var(--line2)}
+.mt td{padding:7px 0;border-bottom:1px solid var(--line2);vertical-align:middle}
+.mt tr:last-child td{border-bottom:0}
+.mt-t{color:#333a49}
+.mt-s{font-variant-numeric:tabular-nums;font-weight:650;width:56px}
+.mt-n{color:var(--muted2);width:56px;text-align:right}
+.lv{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.lv-ok{color:var(--ok);background:var(--ok-soft)}
+.lv-mid{color:var(--warn);background:var(--warn-soft)}
+.lv-bad{color:var(--bad);background:var(--bad-soft)}
+
+/* transfer */
+#transfer{padding:14px 16px;margin-bottom:14px}
+#x-code{width:100%;min-height:86px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;resize:vertical;background:#fafbfd;color:#333a49}
+#x-info{font-size:12.5px;color:var(--muted2);margin-top:8px;min-height:18px}
+.x-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* misc */
+.empty{padding:34px 8px;text-align:center}
+.empty-t{font-size:15.5px;font-weight:600}
+.empty-s{color:var(--muted2);font-size:13.5px;margin:6px 0 0}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:#1e2330;color:#fff;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:99
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:18px;line-height:1.8}
+
+@media (max-width:640px){
+  .wrap{padding:14px 12px 64px}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .top h1{font-size:18.5px}
+  .q-stem{font-size:16px}
+  .opt{font-size:14.5px}
+  input[type=search]{min-width:100%}
+}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">思想道德与法治 · 第四章 明确价值要求 践行价值准则</h1>
+      <div class="sub"><span id="bank-name"></span> · <span id="bank-desc"></span></div>
+    </div>
+    <div class="spacer"></div>
+    <a class="home" id="home" href="../index.html">返回题库集</a>
+  </div>
+
+  <div class="panel" id="stats"></div>
+
+  <div class="panel block">
+    <div class="ctl">
+      <div class="seg" id="modes">
+        <button data-mode="seq" class="on">顺序</button>
+        <button data-mode="random">随机</button>
+        <button data-mode="wrong">错题</button>
+        <button data-mode="fav">收藏</button>
+        <button data-mode="undone">未做</button>
+      </div>
+      <select id="f-type"><option value="">全部题型</option></select>
+      <select id="f-diff"><option value="">全部难度</option><option>易</option><option>中</option><option>难</option></select>
+    </div>
+    <div class="ctl">
+      <input type="search" id="f-kw" placeholder="搜索题干 / 知识点">
+      <span class="hint">键盘 ← → 翻题，数字键选项；手机在题目上左右滑动翻题</span>
+    </div>
+  </div>
+
+  <div class="panel" id="card"></div>
+  <div id="nav"></div>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">掌握度（按知识点）</summary>
+    <div id="mastery" style="padding-top:10px"></div>
+  </details>
+
+  <details class="panel block" id="cloud-wrap" style="display:none">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">云同步（手动上传 / 下载）</summary>
+    <div style="padding-top:10px">
+      <div class="x-row">
+        <input type="text" id="s-code" class="in" style="flex:1;min-width:180px;margin-top:0"
+               placeholder="同步码（≥10 位，与旧页面共用）">
+        <button class="btn" id="s-save">保存</button>
+        <button class="btn primary" id="s-up">上传</button>
+        <button class="btn" id="s-down">下载</button>
+      </div>
+      <div id="s-info" class="hint" style="margin-top:8px;min-height:18px"></div>
+    </div>
+  </details>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">导出 / 导入进度码</summary>
+    <div id="transfer" style="padding-top:10px">
+      <div class="x-row">
+        <select id="x-scope"></select>
+        <button class="btn" id="x-do">生成</button>
+        <button class="btn" id="x-copy">复制</button>
+        <button class="btn" id="x-import">导入</button>
+        <button class="btn" id="x-undo">撤销导入</button>
+        <button class="btn ghost" id="reset" style="margin-left:auto">清空本机记录</button>
+      </div>
+      <textarea id="x-code" placeholder="在此粘贴他人分享的进度码，或点「生成」得到自己的"></textarea>
+      <div id="x-info"></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    思想道德与法治 · 第四章 明确价值要求 践行价值准则 · 26 题<br>
+    进度保存在本机浏览器，不上传；换设备请用进度码迁移。
+  </div>
+</div>
+<div id="mjx-cache" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></div>
+<div id="toast"></div>
+<script>window.QB_META={"home":"../index.html","title":"思想道德与法治 · 第四章 明确价值要求 践行价值准则"};</script>
+<script>window.QB_SITE={"title":"思想道德与法治 · 第四章 明确价值要求 践行价值准则","subjectKey":"ethics","subjectName":"思想道德与法治","types":{"single":{"key":"single","label":"单选题","answerShape":"choice","judge":"exact","replay":"mask","maxOptions":4,"fault":"builtin:fact-recall","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，恰好 1 项"}},"multi":{"key":"multi","label":"多选题","answerShape":"choice","judge":"set","replay":"mask","maxOptions":4,"fault":"builtin:concept-boundary","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，≥ 2 项"}},"short":{"key":"short","label":"简答题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}}},"units":[{"key":"ch4","label":"第四章","title":"明确价值要求 践行价值准则","desc":"社会主义核心价值观 · 核心价值体系 · 显著特征 · 践行","questions":[{"qid":"ethics.ch4-001","type":"single","topic":"4.1 核心价值观总论","diff":"易","stem":"（　）承载着一个民族、一个国家的精神追求，体现着一个社会评判是非曲直的价值标准。","exp":"核心价值观承载着一个民族、一个国家的精神追求，体现着一个社会评判是非曲直的价值标准。社会主义核心价值观是当代中国精神的集中体现。","options":["社会主义核心价值观","核心价值观","社会主义荣辱观","中华民族伟大复兴的中国梦"],"answer":[1],"meta":{"origin":{"id":"m4-01","no":1,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-002","type":"single","topic":"4.4 践行社会主义核心价值观","diff":"中","stem":"2018 年 3 月，（　）通过宪法修正案，把国家倡导社会主义核心价值观正式写入宪法，进一步凸显了社会主义核心价值观的重大意义。","exp":"2018 年 3 月，十三届全国人大一次会议通过宪法修正案，将“国家倡导社会主义核心价值观”写入宪法。","options":["十九届一中全会","十九届二中全会","十三届全国人大一次会议","十三届全国人大二次会议"],"answer":[2],"meta":{"origin":{"id":"m4-02","no":2,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-003","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"培育和弘扬社会主义核心价值观，必须从（　）中汲取丰富营养。","exp":"中华优秀传统文化是中华民族的精神命脉，培育和弘扬社会主义核心价值观必须从中汲取丰富营养。","options":["中华优秀传统文化","马克思主义理论","中华民族传统美德","中国特色社会主义理想信念"],"answer":[0],"meta":{"origin":{"id":"m4-03","no":3,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-004","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"（　）是涵养社会主义核心价值观的重要源泉。","exp":"中华优秀传统文化是涵养社会主义核心价值观的重要源泉。社会主义核心价值观的根脉在中华文化之中。","options":["中华优秀传统文化","马克思主义理论","中华民族传统美德","中国特色社会主义理想信念"],"answer":[0],"meta":{"origin":{"id":"m4-04","no":4,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-005","type":"single","topic":"4.2 核心价值观的基本内容","diff":"中","stem":"（　）是对待生产劳动和人类生存的一种根本价值态度。","exp":"敬业是对待生产劳动和人类生存的一种根本价值态度，体现为忠于职守、精益求精、认真负责。","options":["爱国","诚信","敬业","友善"],"answer":[2],"meta":{"origin":{"id":"m4-05","no":5,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-006","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"（　）是社会主义核心价值观的根本特性。","exp":"人民性是社会主义核心价值观的根本特性。社会主义核心价值观反映人民诉求、维护人民利益、依靠人民践行。","options":["先进性","人民性","真实性","实践性"],"answer":[1],"meta":{"origin":{"id":"m4-06","no":6,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-007","type":"single","topic":"4.2 核心价值观的基本内容","diff":"易","stem":"（　）反映了人们对美好社会的期望和憧憬，是衡量现代社会是否高度发展、充满活力、和谐有序的重要标志。","exp":"自由、平等、公正、法治是社会层面的价值取向，反映人们对美好社会的期望，是衡量现代社会是否高度发展、充满活力、和谐有序的重要标志。","options":["富强、民主、文明、和谐","爱国、敬业、诚信、友善","爱岗、敬业、公平、正义","自由、平等、公正、法治"],"answer":[3],"meta":{"origin":{"id":"m4-07","no":7,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-008","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"社会主义核心价值观之所以彰显出强大的生命力、吸引力和感召力，正因其深深地扎根于（　）的生动实践之中。","exp":"社会主义核心价值观扎根于中国特色社会主义建设的生动实践，实践是其生命力的源泉。单列某一领域都不完整。","options":["中国特色社会主义经济建设","中国特色社会主义政治建设","中国特色社会主义建设","中国特色社会主义文化建设"],"answer":[2],"meta":{"origin":{"id":"m4-08","no":8,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-009","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"深深地根植于（　），是社会主义核心价值观历史底蕴的集中体现。","exp":"根植于中华优秀传统文化，是社会主义核心价值观历史底蕴的集中体现。中华文化积淀着中华民族最深层的精神追求。","options":["社会主义先进文化","大众文化","中华优秀传统文化","中国特色社会主义文化"],"answer":[2],"meta":{"origin":{"id":"m4-09","no":9,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-010","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"（　）以无可辩驳的事实生动展示着社会主义核心价值观的生机活力。","exp":"中国特色社会主义建设的伟大成就，以无可辩驳的事实生动展示了社会主义核心价值观的生机活力。","options":["中国特色社会主义经济建设","中国特色社会主义政治建设","中国特色社会主义建设","中国特色社会主义文化建设"],"answer":[2],"meta":{"origin":{"id":"m4-10","no":10,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-011","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"（　）是文化软实力的灵魂、文化软实力建设的重点。","exp":"核心价值观是文化软实力的灵魂，是文化软实力建设的重点。一个国家的文化软实力，从根本上取决于其核心价值观的生命力、凝聚力、感召力。","options":["核心价值观","民族精神","文化承载力","中华优秀传统文化"],"answer":[0],"meta":{"origin":{"id":"m4-11","no":11,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-012","type":"single","topic":"4.4 践行社会主义核心价值观","diff":"中","stem":"蔡元培曾经说过：“若无德，则虽体魄智力发达，适足助其为恶。”道德之于个人、之于社会，都具有基础性意义，做人做事第一位的是（　）。","exp":"“若无德”的警示指向德的优先性：做人做事第一位的是崇德修身。德行是才干的方向盘。","options":["崇德修身","志存高远","明辨是非","自强自立"],"answer":[0],"meta":{"origin":{"id":"m4-12","no":12,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-013","type":"single","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"（　）是我们党执政的最深厚的基础和最大底气。","exp":"人民是我们党执政的最深厚基础和最大底气。人民性是社会主义核心价值观的根本特性，也决定了党的根本立场。","options":["发展","制度","人民","共同富裕"],"answer":[2],"meta":{"origin":{"id":"m4-13","no":13,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-014","type":"single","topic":"4.2 核心价值观的基本内容","diff":"中","stem":"（　）是人类社会进步的标尺，是社会主义制度的本质要求。","exp":"公正是人类社会进步的标尺，是社会主义制度的本质要求，也是社会层面价值取向的重要内容。","options":["公正","友善","爱国","敬业"],"answer":[0],"meta":{"origin":{"id":"m4-14","no":14,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-015","type":"single","topic":"4.4 践行社会主义核心价值观","diff":"难","stem":"有人说：“圣人是肯做工夫的庸人，庸人是不肯做工夫的圣人。”这句话表达的做人做事要（　）。","exp":"“肯做工夫”强调脚踏实地、埋头苦干，即笃实。圣与庸的差别不在天资，而在是否肯下苦功。","options":["笃实","修德","诚信","爱国"],"answer":[0],"meta":{"origin":{"id":"m4-15","no":15,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-016","type":"multi","topic":"4.1 核心价值观总论","diff":"中","stem":"社会主义核心价值观（　）。","exp":"教材从三个方面界定：反映社会主义基本制度的本质要求、渗透于五个文明建设的各个方面、是社会主义制度的内在精神之魂。A 属于另一层表述，本卷未列入。","options":["体现着中国特色社会主义的价值取向","反映着我国社会主义基本制度的本质要求","渗透于经济、政治、文化、社会、生态建设的各个方面","是我国社会主义制度的内在精神之魂"],"answer":[1,2,3],"meta":{"origin":{"id":"m4-16","no":16,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-017","type":"multi","topic":"4.1 核心价值观总论","diff":"中","stem":"社会主义核心价值观和社会主义核心价值体系，两者是（　）的。","exp":"二者紧密联系、互为依存、相辅相成。社会主义核心价值观是核心价值体系的精神内核，不是简单的“继承与发展”关系。","options":["互为依存","继承与发展","紧密联系","相辅相成"],"answer":[0,2,3],"meta":{"origin":{"id":"m4-17","no":17,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-018","type":"multi","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"一个国家的文化软实力，从根本上说，取决于其核心价值观的（　）。","exp":"文化软实力取决于核心价值观的生命力、凝聚力、感召力。“向心力”不在教材的这一表述中。","options":["生命力","凝聚力","向心力","感召力"],"answer":[0,1,3],"meta":{"origin":{"id":"m4-18","no":18,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-019","type":"multi","topic":"4.2 核心价值观的基本内容","diff":"易","stem":"（　）是中国共产党人的初心和使命，也是我们党领导现代化建设的出发点和落脚点。","exp":"党的初心和使命是为中国人民谋幸福、为中华民族谋复兴。B、C 的“谋和谐”“谋团结”不是规范表述。","options":["为人民谋幸福","为人民谋和谐","为中华民族谋团结","为中华民族谋复兴"],"answer":[0,3],"meta":{"origin":{"id":"m4-19","no":19,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-020","type":"multi","topic":"4.2 核心价值观的基本内容","diff":"中","stem":"社会主义核心价值观把涉及国家、社会、公民的价值要求融为一体，是对我们要（　）等重大问题的深刻解答。","exp":"社会主义核心价值观回答三个问题：建设什么样的国家、建设什么样的社会、培育什么样的公民。政府建设不在其列。","options":["建设什么样的社会","建设什么样的国家","培育什么样的公民","建设什么样的政府"],"answer":[0,1,2],"meta":{"origin":{"id":"m4-20","no":20,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-021","type":"multi","topic":"4.4 践行社会主义核心价值观","diff":"中","stem":"大学生要坚持由易到难、由近及远，从现在做起，从自己做起，为实现（　）的中国梦凝聚强大的青春能量。","exp":"中国梦的内涵是国家富强、民族振兴、人民幸福。“社会进步”不属于中国梦的规范表述。","options":["社会进步","国家富强","民族振兴","人民幸福"],"answer":[1,2,3],"meta":{"origin":{"id":"m4-21","no":21,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-022","type":"multi","topic":"4.3 核心价值观的显著特征","diff":"中","stem":"坚定的核心价值观自信，是中国特色社会主义（　）的价值内核。","exp":"核心价值观自信是道路自信、理论自信、制度自信、文化自信的价值内核，四者统一于中国特色社会主义伟大实践。","options":["道路自信","理论自信","制度自信","文化自信"],"answer":[0,1,2,3],"meta":{"origin":{"id":"m4-22","no":22,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-023","type":"multi","topic":"4.3 核心价值观的显著特征","diff":"难","stem":"马克思主义提出在生产力高度发展和生产资料公有制的基础上，建立真正实现人人平等的公平正义的社会，是迄今为止人类（　）的价值追求。","exp":"这一价值追求是迄今为止人类最先进、最广泛的价值追求。教材以“先进性、广泛性”概括社会主义公平正义追求的历史地位。","options":["最先进","最广泛","最真实","最突出"],"answer":[0,1],"meta":{"origin":{"id":"m4-23","no":23,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-024","type":"multi","topic":"4.1 核心价值观总论","diff":"中","stem":"社会主义核心价值体系主要包括马克思主义指导思想、（　）。","exp":"社会主义核心价值体系包括马克思主义指导思想、中国特色社会主义共同理想、民族精神与时代精神、社会主义荣辱观四个方面。","options":["以爱国主义为核心的民族精神","以改革创新为核心的时代精神","社会主义荣辱观","中国特色社会主义共同理想"],"answer":[0,1,2,3],"meta":{"origin":{"id":"m4-24","no":24,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-025","type":"multi","topic":"4.1 核心价值观总论","diff":"难","stem":"社会主义核心价值观是社会主义核心价值体系的精神内核，它体现了社会主义核心价值体系的（　）。","exp":"社会主义核心价值观体现了核心价值体系的根本性质和基本特征，是核心价值体系的高度凝练和集中表达。B、D 不是教材的对应表述。","options":["基本特征","本质属性","根本性质","基本要求"],"answer":[0,2],"meta":{"origin":{"id":"m4-25","no":25,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"},{"qid":"ethics.ch4-026","type":"short","topic":"4.1 核心价值观总论","diff":"中","stem":"简述社会主义核心价值观和社会主义核心价值体系的关系。","exp":"要点：核心价值体系是“框架”，核心价值观是“内核”；二者一致而层次不同。","ref":"①二者紧密联系、互为依存、相辅相成。\n②社会主义核心价值体系主要包括马克思主义指导思想、中国特色社会主义共同理想、以爱国主义为核心的民族精神和以改革创新为核心的时代精神、社会主义荣辱观。\n③社会主义核心价值观是社会主义核心价值体系的精神内核，体现了核心价值体系的根本性质和基本特征，反映了其丰富内涵和实践要求，是核心价值体系的高度凝练和集中表达。\n④二者具有内在一致性，都体现了社会主义意识形态的本质要求，体现了社会主义制度在思想和精神层面的质的规定性，是建成社会主义现代化强国、实现中华民族伟大复兴的价值引领。","meta":{"origin":{"id":"m4-26","no":26,"mod":"第四章","ch":4},"source":"《思想道德与法制》配套题库（原卷 PDF）"},"_unit":"ch4"}]}],"wrong":{"exitStreak":1},"mastery":{"wAll":0.4,"wRecent":0.6,"recentN":5,"weakBelow":60,"solidAt":85,"solidStreak":4,"passMinQ":4,"passRate":0.9,"dueDays":[1,3,7]},"codec":{"version":10,"gidBits":32,"budgetBytes":6000},"order":["g838276c1","g2baaf817","gbddd5c08","g799bc404","g29fb725c","g62ed35a4","gc45d110c","ge8e9181d","ged263e8c","g802d0bd1","g60e5af12","gfdf45aab","gdd41e26e","g86eb8979","g97ff9f65","g18523797","ga7cb78d3","g79b2ce07","g05828fc2","g99df13a8","g8ad7f6f6","g699f39b1","gbb0cd467","g02434527","g34652888","g5dca9696","g31e754e0","gf2a8beba","g8c382d4f","gc3317c8b","g6142c67f","gb5f2a0f0","g770df240","g4b02c814","gb5d9a386","g0edbbf97","g2f3ffe70","gdf89905c","gc6e2b698","gb20419cd","g48290b77","g69582fc6","g2d8f02ed","g72997d54","g9cd18ece","g6efe4a14","g7db37b79","g5dd8aa43","gbdb23140","g9360b557","gff8ef8a5","g47866ee3","g423c945e","gcfeef7cb","g85c725ff","gbca3e893","g68d1b57f","g193e6e87","gd3f6f827","g88791748","g5f08f5f3","g39bf15aa","gdcffceea","gcd9b73ff","gd36e4f7b","gd661646b","g2789fd38","g5e45e75c","ga7c3bd61","g5e4e41ed","g1cdd7c04","g8e8baf01","ga4e71dc5","gbd671227","g76f62d66","gc871f9b7","gca7045c9","gb75eee54","g9bef4f56","g91e041fd","gf98fd457","geef3ac3f","gba992975","g04197fde","g40368523","g1c811f22","g18e35974","g474cfc59","g6e657a85","g51caf719","g5e0d4a9a","g20a5f46a","ga9598683","g5d5f8e2a","g7fdbbb10","g3810b9ce","g31af7090","g40c339c1","g109b048e","g1d28dc1e","g4e11a46e","g72c83e9a","gc9a3bc5f","g29408b6d","g4824a843","g1202a6f5","gd7e807b3","ge593244f","gc53d4253","gb3b7efda","gb6fc360b","gfa1e43d8","g4d8e75d2","gde290a09","gd347dea7","ge34954d8","gfa9801a4","g82c2f94c","g6242a613","gb82ee803","g0ffe731b","g70088390","g4aa437d7","g0362e8f9","g397301b9","g7f457f8c","ga8382dbd","ga3b48140","g23073365","gba605e92","g0e6acce1","g2935f35f","gd9536ab7","g301627c3","g3a658f7d","ged75d469","g98ef44b0","ge8dab929","g1cbd95a5","g6ad7a3a7","g5b223b75","g4e7eff64","g8db73477","g4b4b3d20","gafa78527","gaf79ce85","g6cb758af","gcae3f92e","g2b12851b","g0a9157e6","gead05221","gcad7637b","g2d1c1e9d","g2f22125b","g1515eba3","ge4a02b08","gbabab864","g39321711","gd18f1f11","g8d2b4dfb","ga526cbdc","gfa952751","ga2b75f74","g87b480ae","gc7381f50","g89c4963c","g2c55da0a","gd5e25ace","gf793e879","g6bab34ef","g0574f0b6","geddbaafc","gee7e6328","g0bc2fd12","g647ba325","gb0ee18c5","g295298b3","gbb4f35f9","gddcb56b4","g42af5fad","g5f7cb8fc","g7fda8c9d","g3a731ca4","g98a3f814","g32d75ef9","g4409d4f8","gcb19bff1","g91e7fdb7","g73a9e1da","g7fdec2e8","g2f385330","g223fd23a","g806f458e","gdd9bcba4","g03cb4f81","gca61ce15","gc681112d","gfab27190","g43ad5762","g0f4434a2","g9971b6eb","g11c643ba","g0eae8678","g19830f26","g401ff6a1","g318d0527","g90fa5904","ge8a74fc5","g1a17b041","gee32bd6b","ga135e2e1","g92f715cb","g6aa3a232","gded9946b","ga5f1bf19","g7334bf6f","g0c16aa23","g2783acc7","gd52f839d","g73229957","ga06132f5","g83af9a2d","g33e933b4","g3627b73c","gc83f8faf","g980abc2c","g7f7981c7","g2e479276","g57ababe1","g5b708db2","g34d89d7c","g7f7feb68","g6f548f8a","ge3ba95fd","ge114af4f","g7fd53808","gffb7dbf7","g78dd957d","g3b0944c6","g1cc333a3","gbfeab8a3","g4df2553a","ga453b1bb","ge9e5dd0d","gba8f743d","gf16ff548","g79877804","g26cab598","g76aa5511","gd580bfec"],"retired":[],"storePrefix":"qb.site"};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-page.js — 练习页渲染层
+ * 只读 window.QB_SITE（站点定义 + 本题组题目），所有状态变更走 QB 内核（规范 6.4）。
+ */
+(function () {
+  'use strict';
+
+  var def = window.QB_SITE;
+  var meta = window.QB_META || {};
+  if (!def) return;
+
+  var site = QB.create(def);
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var S = {
+    mode: 'seq',
+    type: '',
+    diff: '',
+    kw: '',
+    list: [],
+    idx: 0,
+    shown: {},       // qid -> true，已揭晓答案
+    redo: {},        // qid -> true，本题正在重做，忽略旧记录
+    draft: {}        // qid -> 当前输入
+  };
+
+  var DIFF_ORDER = { '易': 0, '中': 1, '难': 2 };
+  var TYPE_ORDER = Object.keys(def.types || {});
+
+  /* ------------------------------------------------------------ 路由 */
+
+  function readRoute() {
+    var h = location.hash.replace(/^#/, '');
+    var p = new URLSearchParams(h);
+    S.mode = p.get('mode') || 'seq';
+    S.type = p.get('t') || '';
+    S.diff = p.get('d') || '';
+    S.kw = p.get('kw') || '';
+    var qid = p.get('q');
+    if (qid) S.pendingQid = qid;
+  }
+
+  function writeRoute() {
+    var p = new URLSearchParams();
+    if (S.mode !== 'seq') p.set('mode', S.mode);
+    if (S.type) p.set('t', S.type);
+    if (S.diff) p.set('d', S.diff);
+    if (S.kw) p.set('kw', S.kw);
+    var q = S.list[S.idx];
+    if (q) p.set('q', q.qid);
+    var url = location.pathname + '#' + p.toString();
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// 下可能被拒，忽略 */ }
+  }
+
+  /* ------------------------------------------------------------ 组卷 */
+
+  function buildList() {
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var all = site.questions.slice();
+
+    if (S.type) all = all.filter(function (q) { return q.type === S.type; });
+    if (S.diff) all = all.filter(function (q) { return q.diff === S.diff; });
+    if (S.kw) {
+      var kw = S.kw.toLowerCase();
+      all = all.filter(function (q) {
+        return (q.stem + ' ' + q.topic + ' ' + (q.exp || '')).toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+
+    if (S.mode === 'wrong') all = all.filter(function (q) { return wrong[q._gid]; });
+    else if (S.mode === 'fav') all = all.filter(function (q) { return fav[q._gid]; });
+    else if (S.mode === 'undone') all = all.filter(function (q) { return !ans[q._gid]; });
+
+    if (S.mode === 'random') {
+      for (var i = all.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+    }
+    S.list = all;
+    if (S.pendingQid) {
+      var k = all.findIndex(function (q) { return q.qid === S.pendingQid; });
+      if (k >= 0) S.idx = k;
+      S.pendingQid = null;
+    }
+    if (S.idx >= all.length) S.idx = Math.max(0, all.length - 1);
+  }
+
+  /* ------------------------------------------------------------ 渲染 */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // 显示优先用构建期排好版的视图（公式是内联 SVG），没有就转义纯文本
+  function view(q, field, fallback) {
+    if (q.views && q.views[field] != null) return q.views[field];
+    var raw = fallback !== undefined ? fallback : q[field];
+    return esc(raw).replace(/\n/g, '<br>');
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function renderStats() {
+    var st = site.stats(def.units.length === 1 ? def.units[0].key : null);
+    var box = $('#stats');
+    box.innerHTML = '';
+    var items = [
+      ['进度', st.answered + ' / ' + st.total, st.total ? Math.round(100 * st.answered / st.total) : 0],
+      ['正确率', st.rate == null ? '—' : st.rate + '%', st.rate || 0],
+      ['错题', String(st.wrong), 0],
+      ['收藏', String(st.fav), 0]
+    ];
+    items.forEach(function (it) {
+      var c = el('div', 'stat');
+      c.appendChild(el('div', 'stat-k', it[0]));
+      c.appendChild(el('div', 'stat-v', it[1]));
+      if (it[2]) {
+        var bar = el('div', 'stat-bar');
+        var fill = el('i');
+        fill.style.width = it[2] + '%';
+        bar.appendChild(fill);
+        c.appendChild(bar);
+      }
+      box.appendChild(c);
+    });
+    var label = def.units.length === 1 ? '题组口径' : '题库集口径（gid 去重）';
+    $('#stats').setAttribute('data-scope', label);
+  }
+
+  function renderFilters() {
+    var tsel = $('#f-type');
+    if (tsel.options.length <= 1) {
+      TYPE_ORDER.forEach(function (t) {
+        var o = el('option', null, def.types[t].label || t);
+        o.value = t;
+        tsel.appendChild(o);
+      });
+    }
+    tsel.value = S.type;
+    $('#f-diff').value = S.diff;
+    $('#f-kw').value = S.kw;
+    $$('#modes button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.mode === S.mode);
+    });
+  }
+
+  function optionMark(q, i) {
+    return String.fromCharCode(65 + i);
+  }
+
+  function renderCard() {
+    var card = $('#card');
+    card.innerHTML = '';
+    var q = S.list[S.idx];
+
+    if (!q) {
+      var empty = el('div', 'empty');
+      empty.appendChild(el('div', 'empty-t', S.mode === 'wrong' ? '错题本是空的' : (S.mode === 'fav' ? '还没有收藏' : '没有符合条件的题目')));
+      empty.appendChild(el('p', 'empty-s', S.mode === 'wrong'
+        ? '答错的题会自动进入这里；在错题本里做对一次才会移出。'
+        : '换个筛选条件，或者切回顺序练习。'));
+      card.appendChild(empty);
+      $('#nav').innerHTML = '';
+      return;
+    }
+
+    var decl = def.types[q.type] || {};
+    var rec = site.get(q._gid);
+    // 错题本里默认让人重做：不预置上次的选项、也不提前摊开答案。
+    // 点「重做」的题同理；其余模式仍按「做过就显示结果」的老规矩。
+    var redoing = !!S.redo[q.qid] || (S.mode === 'wrong' && !S.shown[q.qid]);
+    var revealed = !redoing && (!!S.shown[q.qid] || (rec && rec.ok !== null));
+    var fav = site.allFav()[q._gid];
+
+    var head = el('div', 'q-head');
+    var tag = el('span', 'tag tag-type', decl.label || q.type);
+    head.appendChild(tag);
+    head.appendChild(el('span', 'tag tag-diff d-' + (DIFF_ORDER[q.diff] != null ? DIFF_ORDER[q.diff] : 1), q.diff));
+    head.appendChild(el('span', 'q-topic', q.topic));
+    var no = el('span', 'q-no', (S.idx + 1) + ' / ' + S.list.length);
+    head.appendChild(no);
+    card.appendChild(head);
+
+    var stem = el('div', 'q-stem');
+    stem.innerHTML = view(q, 'stem');
+    card.appendChild(stem);
+
+    if (q.media && q.media.img) {
+      var im = el('img', 'q-img');
+      im.src = q.media.img;
+      im.alt = '题图';
+      card.appendChild(im);
+    }
+
+    var area = el('div', 'q-area');
+
+    if (decl.answerShape === 'choice') {
+      var opts = el('div', 'opts');
+      var picked = redoing ? (S.draft[q.qid] || [])
+        : ((rec && rec.p) ? rec.p.slice() : (S.draft[q.qid] || []));
+      q.options.forEach(function (text, i) {
+        var b = el('button', 'opt');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        if (picked.indexOf(i) >= 0) b.classList.add('picked');
+        if (revealed) {
+          b.disabled = true;
+          if ((q.answer || []).indexOf(i) >= 0) b.classList.add('right');
+          else if (picked.indexOf(i) >= 0) b.classList.add('wrong');
+        }
+        var k = el('span', 'opt-k', optionMark(q, i));
+        b.appendChild(k);
+        var ot = el('span', 'opt-t');
+        ot.innerHTML = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(text);
+        b.appendChild(ot);
+        b.addEventListener('click', function () { pick(q, decl, i); });
+        opts.appendChild(b);
+      });
+      area.appendChild(opts);
+      if (decl.judge === 'set' && !revealed) {
+        var tip = el('p', 'hint', '多选题：选好后点「提交」');
+        area.appendChild(tip);
+      }
+    } else if (decl.answerShape === 'tokenList') {
+      var inp = el('input', 'in');
+      inp.type = 'text';
+      inp.placeholder = '在此填写答案';
+      inp.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      inp.disabled = revealed;
+      inp.addEventListener('input', function () { S.draft[q.qid] = inp.value; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(q, decl); });
+      area.appendChild(inp);
+    } else {
+      var ta = el('textarea', 'ta');
+      ta.placeholder = '写出你的答案或关键步骤，提交后与参考答案对照自评';
+      ta.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      ta.disabled = revealed;
+      ta.rows = 5;
+      ta.addEventListener('input', function () { S.draft[q.qid] = ta.value; });
+      area.appendChild(ta);
+    }
+    card.appendChild(area);
+
+    var bar = el('div', 'q-bar');
+    if (!revealed) {
+      var sub = el('button', 'btn primary', '提交');
+      sub.addEventListener('click', function () { submit(q, decl); });
+      bar.appendChild(sub);
+      if (decl.judge === 'rubric') {
+        bar.appendChild(el('span', 'hint', '主观题：提交后对照参考答案自评'));
+      }
+      var peek = el('button', 'btn ghost', '看答案');
+      peek.addEventListener('click', function () { S.shown[q.qid] = true; render(); });
+      bar.appendChild(peek);
+    } else {
+      // 只点过「看答案」还没作答时 rec 为空，别显示成「待自评」
+      var vClass = !rec ? 'mid' : (rec.ok === true ? 'ok' : (rec.ok === false ? 'bad' : 'mid'));
+      var vText = !rec ? '未作答 · 仅看答案' : (rec.ok === true ? '✓ 答对' : (rec.ok === false ? '✗ 答错' : '待自评'));
+      var verdict = el('div', 'verdict ' + vClass);
+      verdict.textContent = vText;
+      bar.appendChild(verdict);
+      if (rec && rec.c != null && rec.ok === false) bar.appendChild(el('span', 'hint', '得分率 ' + Math.round(rec.c * 100) + '%'));
+      var again = el('button', 'btn', '重做本题');
+      again.addEventListener('click', function () { redoOne(q); });
+      bar.appendChild(again);
+    }
+    var favBtn = el('button', 'btn ghost' + (fav ? ' on' : ''), fav ? '★ 已收藏' : '☆ 收藏');
+    favBtn.addEventListener('click', function () {
+      site.toggleFav(q._gid);
+      render();
+    });
+    bar.appendChild(favBtn);
+    if (rec && site.allWrong()[q._gid]) {
+      var sup = el('button', 'btn ghost', '移出错题本');
+      sup.addEventListener('click', function () { site.suppress(q._gid); render(); });
+      bar.appendChild(sup);
+    }
+    card.appendChild(bar);
+
+    if (revealed) {
+      var exp = el('div', 'exp');
+      exp.appendChild(el('div', 'exp-h', '答案与解析'));
+      var ansText = answerText(q, decl);
+      if (ansText) {
+        var a = el('p', 'exp-a');
+        a.innerHTML = '<b>答案：</b>' + ansText;
+        exp.appendChild(a);
+      }
+      if (q.exp) {
+        var p = el('p', 'exp-p');
+        p.innerHTML = view(q, 'exp');
+        exp.appendChild(p);
+      }
+      if (q.meta && q.meta.source) {
+        exp.appendChild(el('p', 'exp-src', '来源：' + q.meta.source + (q.meta.paperNo ? ' 第 ' + q.meta.paperNo + ' 题' : '')));
+      }
+      if (decl.judge === 'rubric' && rec && rec.ok === null) {
+        var self = el('div', 'self');
+        self.appendChild(el('span', 'hint', '自评：'));
+        [['达标', true, null], ['部分达标', false, 0.5], ['未达标', false, 0]].forEach(function (t) {
+          var b = el('button', 'btn small', t[0]);
+          b.addEventListener('click', function () { selfJudge(q, t[1], t[2]); });
+          self.appendChild(b);
+        });
+        exp.appendChild(self);
+      }
+      card.appendChild(exp);
+    }
+
+    var nav = $('#nav');
+    nav.innerHTML = '';
+    var prev = el('button', 'btn', '← 上一题');
+    prev.disabled = S.idx === 0;
+    prev.addEventListener('click', function () { go(S.idx - 1); });
+    var next = el('button', 'btn primary', '下一题 →');
+    next.disabled = S.idx >= S.list.length - 1;
+    next.addEventListener('click', function () { go(S.idx + 1); });
+    nav.appendChild(prev);
+    if (S.mode === 'wrong' && S.list.length) {
+      var all = el('button', 'btn small', '全部重做');
+      all.title = '清空本轮在错题本里的作答状态，从头再做一遍';
+      all.addEventListener('click', function () {
+        S.list.forEach(function (x) { delete S.shown[x.qid]; delete S.draft[x.qid]; S.redo[x.qid] = true; });
+        S.idx = 0;
+        render();
+        flash('已清空本轮作答，从头开始');
+      });
+      nav.appendChild(all);
+    }
+    nav.appendChild(el('span', 'nav-mid', (S.idx + 1) + ' / ' + S.list.length));
+    nav.appendChild(next);
+  }
+
+  function answerText(q, decl) {
+    if (decl.answerShape === 'choice') {
+      return (q.answer || []).map(function (i) {
+        var t = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(q.options[i]);
+        return optionMark(q, i) + '. ' + t;
+      }).join('；');
+    }
+    if (decl.answerShape === 'tokenList') {
+      var list = (q.views && q.views.answers && q.views.answers.length) ? q.views.answers : (q.answers || []).map(esc);
+      return list.join(' / ');
+    }
+    return (q.views && q.views.ref) ? q.views.ref : (q.ref ? esc(String(q.ref)) : '');
+  }
+
+  /* ------------------------------------------------------------ 交互 */
+
+  // 重新作答一道题：清掉本次会话的揭晓标记与草稿，回到未作答状态
+  function redoOne(q) {
+    S.redo[q.qid] = true;
+    delete S.shown[q.qid];
+    delete S.draft[q.qid];
+    render();
+    flash('已清空，可以重做了');
+  }
+
+  function pick(q, decl, i) {
+    var cur = (S.draft[q.qid] || []).slice();
+    if (decl.judge === 'set') {
+      var k = cur.indexOf(i);
+      if (k >= 0) cur.splice(k, 1); else cur.push(i);
+      S.draft[q.qid] = cur;
+      renderCard();
+    } else {
+      S.draft[q.qid] = [i];
+      submit(q, decl);
+    }
+  }
+
+  function submit(q, decl) {
+    var input = { picked: S.draft[q.qid] || [], text: S.draft[q.qid] || '' };
+    if (decl.answerShape === 'choice') input = { picked: S.draft[q.qid] || [] };
+    else input = { text: S.draft[q.qid] || '' };
+
+    if (decl.answerShape === 'choice' && (!input.picked || !input.picked.length)) {
+      flash('先选一个选项');
+      return;
+    }
+    if (decl.answerShape !== 'choice' && !String(input.text).trim()) {
+      flash('先写下答案');
+      return;
+    }
+
+    var res = QB.judge(q, decl, input);
+    var patch = { ok: res.ok, at: Date.now(), m: S.mode };
+    if (decl.replay === 'mask' && input.picked) patch.p = input.picked;
+    if (decl.replay === 'text' && input.text != null) patch.x = String(input.text);
+    if (res.credit != null) patch.c = res.credit;
+    if (res.ok === null) patch.self = false;
+
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && res.ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  function selfJudge(q, ok, credit) {
+    var patch = { ok: ok, at: Date.now(), m: S.mode, self: true };
+    if (credit != null) patch.c = credit;
+    var rec = site.get(q._gid);
+    if (rec && rec.x != null) patch.x = rec.x;
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  /* 翻题后不把页面拉回顶部。
+     只在题卡顶部已经滚出视野上方（rect.top < 8）时，把它瞬时拉回视野；
+     卡片顶部还在视野里就完全不动。用瞬时滚动、不用 smooth——
+     平滑滚动会和滑动翻题的滑出动画叠在一起，观感就是「回弹」。 */
+  function keepCardInView() {
+    var c = $('#card');
+    if (!c) return;
+    var top = c.getBoundingClientRect().top;
+    if (top >= 8) return;
+    var y = (window.scrollY || window.pageYOffset || 0) + top - 8;
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
+
+  function go(i) {
+    if (i < 0 || i >= S.list.length) return;
+    S.idx = i;
+    render();
+    keepCardInView();
+  }
+
+  var flashTimer = null;
+  function flash(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  /* ------------------------------------------------------------ 掌握度 */
+
+  function renderMastery() {
+    var rows = site.masteryAll().filter(function (r) { return r.n > 0; });
+    var box = $('#mastery');
+    box.innerHTML = '';
+    if (!rows.length) {
+      box.appendChild(el('p', 'hint', '还没有作答记录，掌握度会在作答后出现。'));
+      return;
+    }
+    var table = el('table', 'mt');
+    var thead = el('thead');
+    var tr = el('tr');
+    ['知识点', '得分', '状态', '作答数'].forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr2 = el('tr');
+      tr2.appendChild(el('td', 'mt-t', r.topic));
+      tr2.appendChild(el('td', 'mt-s', String(r.score)));
+      var lv = el('td');
+      lv.appendChild(el('span', 'lv ' + (r.level === '已掌握' ? 'lv-ok' : (r.level === '薄弱' ? 'lv-bad' : 'lv-mid')), r.level));
+      tr2.appendChild(lv);
+      tr2.appendChild(el('td', 'mt-n', String(r.n)));
+      tb.appendChild(tr2);
+    });
+    table.appendChild(tb);
+    box.appendChild(table);
+  }
+
+  /* ------------------------------------------------------------ 导出导入 */
+
+  function initTransfer() {
+    var sel = $('#x-scope');
+    if (def.units.length === 1) {
+      sel.innerHTML = '';
+      var o = el('option', null, '本题库');
+      o.value = 'unit:' + def.units[0].key;
+      sel.appendChild(o);
+    } else {
+      var s1 = el('option', null, '全站');
+      s1.value = 'site:';
+      sel.appendChild(s1);
+      def.units.forEach(function (u) {
+        var o2 = el('option', null, u.label + ' ' + u.title);
+        o2.value = 'unit:' + u.key;
+        sel.appendChild(o2);
+      });
+    }
+
+    $('#x-do').addEventListener('click', function () {
+      var v = sel.value.split(':');
+      try {
+        var code = site.encode(v[0], v[1]);
+        $('#x-code').value = code;
+        $('#x-info').textContent = '已生成 ' + code.length + ' 字符（预算 ' + site.budget + '）'
+          + (code.length > site.budget ? '，超出预算，建议改用题组作用域' : '');
+      } catch (e) {
+        $('#x-info').textContent = '生成失败：' + e.message;
+      }
+    });
+
+    $('#x-copy').addEventListener('click', function () {
+      var ta = $('#x-code');
+      if (!ta.value) return flash('先生成导出码');
+      ta.select();
+      try { document.execCommand('copy'); flash('已复制'); } catch (e) { flash('请手动复制'); }
+    });
+
+    $('#x-import').addEventListener('click', function () {
+      var code = $('#x-code').value.trim();
+      if (!code) return flash('请粘贴导出码');
+      try {
+        var r = site.importCode(code);
+        $('#x-info').textContent = '已导入 ' + r.count + ' 条（' + r.kind + ':' + (r.key || '全站') + '），作用域外记录未改动';
+        reload();
+      } catch (e) {
+        $('#x-info').textContent = '导入失败：' + e.message;
+      }
+    });
+
+    $('#x-undo').addEventListener('click', function () {
+      if (site.undoImport()) { $('#x-info').textContent = '已撤销上次导入'; reload(); }
+      else $('#x-info').textContent = '没有可撤销的导入';
+    });
+
+    $('#reset').addEventListener('click', function () {
+      if (!confirm('清空本题库在本机的作答、错题与收藏记录？此操作不可撤销。')) return;
+      site.resetScope(def.units.length === 1 ? 'unit' : 'site', def.units.length === 1 ? def.units[0].key : '');
+      S.shown = {}; S.redo = {}; S.draft = {};
+      reload();
+      flash('已清空');
+    });
+  }
+
+  /* ------------------------------------------------------------ 云同步 */
+
+  function initCloud() {
+    var wrap = $('#cloud-wrap');
+    if (!wrap) return;
+    var cfg = window.QB_SYNC_CFG;
+    if (!cfg || !window.QBSync) return;
+    wrap.style.display = '';
+
+    var sync = window.QBSync.create(site, cfg);
+    var codeInput = $('#s-code');
+    var info = $('#s-info');
+    var saved = sync.readSharedCode();
+    if (saved) codeInput.value = saved;
+
+    function say(msg) { info.textContent = msg; }
+
+    $('#s-save').addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (v.length < 10) return say('同步码至少 10 位（它是唯一凭证）');
+      sync.setCode(v);
+      codeInput.value = sync.code;
+      say('已保存，本机所有题库共用这个同步码');
+    });
+
+    function run(fn, label) {
+      var why = sync._guard();
+      if (why) return say(why);
+      say(label + '中…');
+      fn().then(function (r) {
+        say(label + '完成，云端共 ' + r.count + ' 条记录');
+        render();
+      }).catch(function (e) {
+        say(label + '失败：' + e.message);
+      });
+    }
+
+    $('#s-up').addEventListener('click', function () { run(function () { return sync.upload(); }, '上传'); });
+    $('#s-down').addEventListener('click', function () { run(function () { return sync.download(); }, '下载'); });
+
+    var pend = sync.pending();
+    say(pend ? ('有 ' + pend + ' 条本机改动尚未上传') : '同步码与云端一致时即可手动上传 / 下载');
+  }
+
+  /* ------------------------------------------------------------ 手势翻题 */
+
+  /* 左滑 → 下一题，右滑 → 上一题。所有题库共用这一份实现，页面不再各自绑定。
+     翻页走 go()，与「上一题 / 下一题」按钮同一条路径，不另起一套状态。
+     判定：水平位移 ≥ 56px、水平 ≥ 垂直 × 1.2、时长 ≤ 1.2s；
+     起手点在输入控件 / 控制区 / 折叠面板 / 可横向滚动的公式块内不触发；
+     纵向滑动超过阈值即判定为滚动并让位，全程 passive，不抢页面滚动。 */
+  function initSwipe() {
+    var MIN_X = 56;      // 触发所需最小水平位移
+    var LOCK_X = 12;     // 锁定为横向手势的位移
+    var LOCK_Y = 14;     // 纵向位移超过它且大于横向 → 判定为滚动
+    var SLOPE = 1.2;
+    var MAX_MS = 1200;
+    var EDGE = 24;       // 避开 iOS Safari 的边缘侧滑返回
+    var FOLLOW = 0.35;   // 拖动时卡片跟手系数
+    var ANIM_MS = 150;
+
+    var sx = 0, sy = 0, st = 0, tracking = false, locked = false, animating = false;
+    var muteUntil = 0;   // 滑动后短暂屏蔽 click，避免顺带点掉选项
+
+    function card() { return $('#card'); }
+
+    var SKIP = '.top, .ctl, details, .foot, #toast, input, textarea, select, [contenteditable="true"]';
+
+    // 起手点排除：交互控件、控制区，以及自身可横向滚动的容器（长公式、代码块）
+    function skip(el) {
+      if (!el || !el.closest) return true;
+      if (el.closest(SKIP)) return true;
+      var c = card();
+      for (var n = el; n && n !== c && n.nodeType === 1; n = n.parentNode) {
+        if (n.scrollWidth - n.clientWidth <= 2) continue;
+        var ox = window.getComputedStyle(n).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+      return false;
+    }
+
+    function reset() {
+      if (animating) return;          // 动画中不打断，否则会停在半路又被 go() 换题
+      var c = card();
+      if (!c) return;
+      c.style.transition = 'transform .18s ease, opacity .18s ease';
+      c.style.transform = '';
+      c.style.opacity = '';
+    }
+
+    function reduced() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // dir: 1 = 下一题，-1 = 上一题
+    function flip(dir) {
+      if (animating || !S.list.length) return;
+      var to = S.idx + dir;
+      if (to < 0 || to >= S.list.length) { reset(); return; }
+      var c = card();
+      if (!c) return;
+      muteUntil = Date.now() + 300;   // 吞掉滑动末尾那一次 click（选项点选即判分）
+      if (reduced()) { go(to); return; }
+      animating = true;
+      var out = dir > 0 ? -72 : 72;   // 下一题向左滑出，上一题向右滑出
+      c.style.transition = 'transform ' + ANIM_MS + 'ms ease, opacity ' + ANIM_MS + 'ms ease';
+      void c.offsetWidth;
+      c.style.transform = 'translateX(' + out + 'px)';
+      c.style.opacity = '0';
+      setTimeout(function () {
+        go(to);
+        c.style.transition = 'none';
+        c.style.transform = 'translateX(' + (-out) + 'px)';
+        c.style.opacity = '0';
+        requestAnimationFrame(function () {
+          c.style.transition = 'transform .2s ease, opacity .2s ease';
+          c.style.transform = '';
+          c.style.opacity = '';
+          animating = false;
+        });
+      }, ANIM_MS);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (Date.now() >= muteUntil) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('touchstart', function (e) {
+      if (animating || e.touches.length !== 1) return;
+      var t = e.touches[0];
+      if (t.clientX < EDGE || t.clientX > window.innerWidth - EDGE) return;
+      if (skip(e.target)) return;
+      sx = t.clientX; sy = t.clientY; st = Date.now();
+      tracking = true; locked = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      if (e.touches.length !== 1) { tracking = false; reset(); return; }
+      var t = e.touches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (!locked) {
+        if (Math.abs(dy) > LOCK_Y && Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+        if (Math.abs(dx) > LOCK_X) {
+          locked = true;
+          var c0 = card();
+          if (c0) c0.style.transition = 'none';
+        }
+      }
+      if (!locked) return;
+      var c = card();
+      if (!c) return;
+      c.style.transform = 'translateX(' + (dx * FOLLOW) + 'px)';
+      c.style.opacity = String(Math.max(0.55, 1 - Math.abs(dx) / 480));
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var was = locked; locked = false;
+      if (!was) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st;
+      if (Math.abs(dx) < MIN_X || Math.abs(dx) < Math.abs(dy) * SLOPE || dt > MAX_MS) { reset(); return; }
+      flip(dx < 0 ? 1 : -1);   // 左滑 → 下一题；右滑 → 上一题
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      tracking = false; locked = false;
+      reset();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------ 入口 */
+
+  // 只重画当前这一屏：题号、列表都保持不变。
+  // 在错题本里答对后题目会移出错题集合，若这里重组卷，卡片会当场跳到下一题，
+  // 用户看不到自己刚做对的结果。列表只在换模式 / 换筛选 / 导入时重建。
+  function render() {
+    renderStats();
+    renderFilters();
+    renderCard();
+    renderMastery();
+    writeRoute();
+  }
+
+  function reload() {
+    buildList();
+    render();
+  }
+
+  function init() {
+    readRoute();
+    // 旧版记录迁移：csg_* / csunitN_* 等命名空间并进全站三表，幂等，旧键不删
+    try {
+      var mig = site.migrateLegacy();
+      if (mig && !mig.skipped && (mig.ans || mig.wrong || mig.fav)) {
+        setTimeout(function () { flash('已迁移旧版记录：作答 ' + mig.ans + '、错题 ' + mig.wrong + '、收藏 ' + mig.fav); }, 400);
+      }
+    } catch (e) { /* 迁移失败不阻塞作答 */ }
+    $('#site-title').textContent = def.title || meta.title || '题库';
+    $('#bank-name').textContent = def.units.length === 1
+      ? (def.units[0].label + ' · ' + def.units[0].title)
+      : (def.subjectName || '');
+    if (def.units.length === 1 && def.units[0].desc) $('#bank-desc').textContent = def.units[0].desc;
+    if (meta.home) $('#home').href = meta.home;
+    else $('#home').style.display = 'none';
+
+    $$('#modes button').forEach(function (b) {
+      b.addEventListener('click', function () { S.mode = b.dataset.mode; S.idx = 0; reload(); });
+    });
+    $('#f-type').addEventListener('change', function (e) { S.type = e.target.value; S.idx = 0; reload(); });
+    $('#f-diff').addEventListener('change', function (e) { S.diff = e.target.value; S.idx = 0; reload(); });
+    var kwTimer = null;
+    $('#f-kw').addEventListener('input', function (e) {
+      clearTimeout(kwTimer);
+      var v = e.target.value;
+      kwTimer = setTimeout(function () { S.kw = v; S.idx = 0; reload(); }, 220);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(S.idx - 1);
+      if (e.key === 'ArrowRight') go(S.idx + 1);
+      if (/^[1-9]$/.test(e.key)) {
+        var q = S.list[S.idx];
+        if (q && def.types[q.type].answerShape === 'choice' && q.options[Number(e.key) - 1] != null) {
+          pick(q, def.types[q.type], Number(e.key) - 1);
+        }
+      }
+    });
+
+    initSwipe();
+    initTransfer();
+    initCloud();
+    reload();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

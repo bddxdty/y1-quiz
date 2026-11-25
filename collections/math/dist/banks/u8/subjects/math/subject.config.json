@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "key": "math",
+  "name": "高等数学",
+  "typepack": "math",
+  "units": [
+    {
+      "key": "u8",
+      "kind": "unit",
+      "label": "第 9 章",
+      "title": "多元函数微分法及其应用",
+      "desc": "二元函数的极限与连续、偏导数与全微分、复合与隐函数求导、切平面与极值",
+      "bank": "bank/u8.json",
+      "order": 8
+    }
+  ],
+  "wrong": {
+    "exitStreak": 1
+  },
+  "mastery": {
+    "wAll": 0.4,
+    "wRecent": 0.6,
+    "recentN": 5,
+    "weakBelow": 60,
+    "solidAt": 85,
+    "solidStreak": 4,
+    "passMinQ": 4,
+    "passRate": 0.9,
+    "dueDays": [
+      1,
+      3,
+      7
+    ]
+  }
+}

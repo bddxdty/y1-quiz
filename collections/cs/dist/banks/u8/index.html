@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>计算机导论 · 第八单元 计算机网络</title>
+<style>/* qb-page.css — 题库页面样式（内核共用，不含任何科目特有内容） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef; --ok-line:#b7e6cf;
+  --bad:#b42318; --bad-soft:#fdecea; --bad-line:#f6c9c4;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:20px 16px 72px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+.top h1{font-size:21px;margin:0;letter-spacing:.2px}
+.top .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.top .spacer{flex:1}
+.home{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.home:hover{color:var(--accent);border-color:#c7dbff;text-decoration:none}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.block{padding:14px 16px;margin-bottom:14px}
+
+/* stats */
+#stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px;margin-bottom:14px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:19px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:7px;overflow:hidden}
+.stat-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl+.ctl{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.seg{display:inline-flex;background:#f1f4fa;border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:13.5px;color:#48505f}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+select,input[type=search]{
+  font:inherit;font-size:13.5px;color:var(--text);border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:7px 10px;outline:none
+}
+select:focus,input[type=search]:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=search]{min-width:170px;flex:1}
+.btn{
+  border:1px solid var(--line);background:#fff;color:#3c4353;border-radius:9px;padding:7px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;transition:.15s
+}
+.btn:hover:not(:disabled){border-color:#c7dbff;color:var(--accent);background:var(--accent-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#2557c7;border-color:#2557c7;color:#fff}
+.btn.ghost{background:#fff}
+.btn.ghost.on{color:#b54708;border-color:#f5dcb4;background:var(--warn-soft)}
+.btn.small{padding:5px 11px;font-size:13px}
+
+/* card */
+#card{padding:18px 18px 16px;margin-bottom:14px}
+.q-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fafbfd;white-space:nowrap}
+.tag-type{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.tag-diff.d-0{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.tag-diff.d-1{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.tag-diff.d-2{color:var(--bad);border-color:var(--bad-line);background:var(--bad-soft)}
+.q-topic{font-size:12.5px;color:var(--muted2)}
+.q-no{margin-left:auto;font-size:12.5px;color:var(--muted2);font-variant-numeric:tabular-nums}
+.q-stem{font-size:16.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.q-img{max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line)}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;
+  font:inherit;font-size:15px;line-height:1.6;cursor:pointer;transition:.13s;color:var(--text)
+}
+.opt:hover:not(:disabled){border-color:#c7dbff;background:#fafcff}
+.opt:disabled{cursor:default}
+.opt-k{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#f1f4fa;color:#48505f;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600
+}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt.picked .opt-k{background:var(--accent);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .opt-k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .opt-k{background:var(--bad);color:#fff}
+
+/* inputs */
+.in,.ta{
+  width:100%;margin-top:14px;font:inherit;font-size:15px;color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:11px 13px;outline:none;background:#fff;resize:vertical
+}
+.in:focus,.ta:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+.in:disabled,.ta:disabled{background:#fafbfd;color:var(--muted)}
+
+/* action bar */
+.q-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12.5px;color:var(--muted2)}
+.verdict{font-size:14px;font-weight:650;padding:5px 12px;border-radius:999px}
+.verdict.ok{color:var(--ok);background:var(--ok-soft)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft)}
+.verdict.mid{color:var(--warn);background:var(--warn-soft)}
+
+/* explanation */
+.exp{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.exp-h{font-size:12.5px;color:var(--muted2);letter-spacing:.4px;margin-bottom:7px}
+.exp-a{font-size:14.5px;margin:0 0 8px;padding:10px 12px;background:#f7f9fd;border-radius:9px;border:1px solid var(--line2)}
+.exp-p{font-size:14.5px;color:#333a49;margin:0 0 6px;white-space:pre-wrap}
+.exp-src{font-size:12px;color:var(--muted2);margin:6px 0 0}
+.self{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* nav */
+#nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nav-mid{flex:1;text-align:center;font-size:13px;color:var(--muted2);font-variant-numeric:tabular-nums}
+
+/* mastery */
+#mastery{padding:14px 16px;margin-bottom:14px}
+.mt{width:100%;border-collapse:collapse;font-size:13.5px}
+.mt th{text-align:left;font-weight:600;color:var(--muted2);font-size:12px;letter-spacing:.3px;padding:0 0 8px;border-bottom:1px solid var(--line2)}
+.mt td{padding:7px 0;border-bottom:1px solid var(--line2);vertical-align:middle}
+.mt tr:last-child td{border-bottom:0}
+.mt-t{color:#333a49}
+.mt-s{font-variant-numeric:tabular-nums;font-weight:650;width:56px}
+.mt-n{color:var(--muted2);width:56px;text-align:right}
+.lv{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.lv-ok{color:var(--ok);background:var(--ok-soft)}
+.lv-mid{color:var(--warn);background:var(--warn-soft)}
+.lv-bad{color:var(--bad);background:var(--bad-soft)}
+
+/* transfer */
+#transfer{padding:14px 16px;margin-bottom:14px}
+#x-code{width:100%;min-height:86px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;resize:vertical;background:#fafbfd;color:#333a49}
+#x-info{font-size:12.5px;color:var(--muted2);margin-top:8px;min-height:18px}
+.x-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* misc */
+.empty{padding:34px 8px;text-align:center}
+.empty-t{font-size:15.5px;font-weight:600}
+.empty-s{color:var(--muted2);font-size:13.5px;margin:6px 0 0}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:#1e2330;color:#fff;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:99
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:18px;line-height:1.8}
+
+@media (max-width:640px){
+  .wrap{padding:14px 12px 64px}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .top h1{font-size:18.5px}
+  .q-stem{font-size:16px}
+  .opt{font-size:14.5px}
+  input[type=search]{min-width:100%}
+}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">计算机导论 · 第八单元 计算机网络</h1>
+      <div class="sub"><span id="bank-name"></span> · <span id="bank-desc"></span></div>
+    </div>
+    <div class="spacer"></div>
+    <a class="home" id="home" href="../../index.html">返回题库集</a>
+  </div>
+
+  <div class="panel" id="stats"></div>
+
+  <div class="panel block">
+    <div class="ctl">
+      <div class="seg" id="modes">
+        <button data-mode="seq" class="on">顺序</button>
+        <button data-mode="random">随机</button>
+        <button data-mode="wrong">错题</button>
+        <button data-mode="fav">收藏</button>
+        <button data-mode="undone">未做</button>
+      </div>
+      <select id="f-type"><option value="">全部题型</option></select>
+      <select id="f-diff"><option value="">全部难度</option><option>易</option><option>中</option><option>难</option></select>
+    </div>
+    <div class="ctl">
+      <input type="search" id="f-kw" placeholder="搜索题干 / 知识点">
+      <span class="hint">键盘 ← → 翻题，数字键选项；手机在题目上左右滑动翻题</span>
+    </div>
+  </div>
+
+  <div class="panel" id="card"></div>
+  <div id="nav"></div>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">掌握度（按知识点）</summary>
+    <div id="mastery" style="padding-top:10px"></div>
+  </details>
+
+  <details class="panel block" id="cloud-wrap" style="display:none">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">云同步（手动上传 / 下载）</summary>
+    <div style="padding-top:10px">
+      <div class="x-row">
+        <input type="text" id="s-code" class="in" style="flex:1;min-width:180px;margin-top:0"
+               placeholder="同步码（≥10 位，与旧页面共用）">
+        <button class="btn" id="s-save">保存</button>
+        <button class="btn primary" id="s-up">上传</button>
+        <button class="btn" id="s-down">下载</button>
+      </div>
+      <div id="s-info" class="hint" style="margin-top:8px;min-height:18px"></div>
+    </div>
+  </details>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">导出 / 导入进度码</summary>
+    <div id="transfer" style="padding-top:10px">
+      <div class="x-row">
+        <select id="x-scope"></select>
+        <button class="btn" id="x-do">生成</button>
+        <button class="btn" id="x-copy">复制</button>
+        <button class="btn" id="x-import">导入</button>
+        <button class="btn" id="x-undo">撤销导入</button>
+        <button class="btn ghost" id="reset" style="margin-left:auto">清空本机记录</button>
+      </div>
+      <textarea id="x-code" placeholder="在此粘贴他人分享的进度码，或点「生成」得到自己的"></textarea>
+      <div id="x-info"></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    独立题库 · 计算机导论 · 第八单元 计算机网络 · 108 题<br>
+    进度保存在本机浏览器，不上传；换设备请用进度码迁移。
+  </div>
+</div>
+<div id="mjx-cache" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></div>
+<div id="toast"></div>
+<script>window.QB_META={"home":"../../index.html","title":"计算机导论 · 第八单元 计算机网络"};</script>
+<script>window.QB_SITE={"title":"计算机导论 · 第八单元 计算机网络","subjectKey":"cs","subjectName":"计算机导论","types":{"single":{"key":"single","label":"单选题","answerShape":"choice","judge":"exact","replay":"mask","maxOptions":4,"fault":"builtin:fact-recall","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，恰好 1 项"}},"multi":{"key":"multi","label":"多选题","answerShape":"choice","judge":"set","replay":"mask","maxOptions":4,"fault":"builtin:concept-boundary","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，≥ 2 项"}},"fill":{"key":"fill","label":"填空题","answerShape":"tokenList","judge":"fuzzy","replay":"text","fault":"builtin:unit-memory","countsInMastery":true,"fields":{"answers":"可接受答案数组，含等价写法"}},"term":{"key":"term","label":"名词解释","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"short":{"key":"short","label":"简答题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"comp":{"key":"comp","label":"综合应用题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:chain-break","countsInMastery":true,"fields":{"ref":"参考答案文本"}}},"units":[{"key":"u8","label":"第八单元","title":"计算机网络","desc":"第 8 章 · 网络分类与拓扑、OSI 与 TCP/IP、IP 地址与域名、Internet 应用","questions":[{"qid":"cs.u8-001","type":"single","topic":"8.1 计算机网络的定义与功能","diff":"易","stem":"计算机网络是指（　）。","options":["多台计算机共用一个电源的系统","一台主机连接多台显示器的系统","将地理上分散的计算机（或其他智能设备）和设备用通信线路互联起来，实现互相通信、资源共享的集合","把多台计算机放在同一机房的系统"],"answer":[2],"exp":"定义有两个要点：一是「地理上分散」的设备用通信线路互联，二是目的是「互相通信、资源共享」。仅仅放在一起、共用电电源或外设，都不构成计算机网络。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-002","type":"single","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"计算机网络最具吸引力的功能是（　）。","options":["数据通信","资源共享","提高运算速度","降低硬件成本"],"answer":[1],"exp":"课件明确指出资源共享是计算机网络最具吸引力的功能：只要允许，用户可以共享网络中其他计算机的软件、硬件和数据资源，且不受资源地理位置的限制。数据通信是最基本的功能，但「最具吸引力」指的是资源共享。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-003","type":"single","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"计算机网络能实现的功能主要有（　）。","options":["排序与查找","编译与解释","编码与解码","数据通信与资源共享"],"answer":[3],"exp":"计算机网络的两大功能是数据通信（分散在不同地点甚至不同国家的计算机之间传送数据、交换信息）与资源共享（共享软件、硬件与数据资源）。其余三项分别是语言翻译、字符编码、算法层面的概念。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-004","type":"single","topic":"8.1 计算机网络的定义与功能","diff":"易","stem":"计算机网络中，计算机之间交换数据所遵守的规则、标准或约定称为（　）。","options":["协议","接口","拓扑","带宽"],"answer":[0],"exp":"协议（protocol）是通信双方必须遵守的一组信息交换规则，规定数据的格式、传输顺序以及出错时的处理方式。没有共同协议，两台机器即使物理连通也无法通信。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-005","type":"single","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"下列不属于计算机网络功能的是（　）。","options":["共享网络中的软件与硬件资源","实现分散计算机之间的数据通信","为计算机提供电源","共享网络中的数据资源"],"answer":[2],"exp":"供电是电源系统的职责，与网络无关。网络的功能集中在数据通信与资源共享（软件、硬件、数据）两方面。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-006","type":"multi","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"计算机网络的功能包括（　）。","options":["数据通信","软件资源共享","硬件资源共享","提高 CPU 主频"],"answer":[0,1,2],"exp":"前三项都是计算机网络的功能。提高 CPU 主频取决于处理器本身与散热、供电，与网络无关。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-007","type":"multi","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"关于网络协议，说法正确的有（　）。","options":["没有协议，物理连通也无法通信","协议由用户在使用时临时约定","是通信双方必须遵守的约定","规定数据的格式与传输顺序"],"answer":[0,2,3],"exp":"协议是标准化的约定，规定数据格式、传输顺序与差错处理，必须双方一致才能通信，因此不可能由用户临时约定。Internet 采用的标准协议族是 TCP/IP。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-008","type":"fill","topic":"8.1 计算机网络的定义与功能","diff":"易","stem":"计算机网络的目标是 ____ 和资源共享。","answers":["数据通信","通信"],"exp":"这是课件上的课上填空题：计算机网络的目标是数据通信和资源共享。两者一个解决「能传」，一个解决「能共用」。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）· 课上真题"},"_unit":"u8"},{"qid":"cs.u8-009","type":"short","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"什么是计算机网络？它有哪些主要功能？","ref":"计算机网络是将地理上分散的计算机（或其他智能设备）和设备用通信线路互联起来，实现互相通信、资源共享的复杂集合。主要功能：①数据通信——使分散在不同部门、不同地区甚至不同国家的计算机相互通信、传送数据、交换信息；②资源共享——用户可共享网络中其他计算机的软件、硬件和数据资源，且不受资源地理位置的限制，这是网络最具吸引力的功能。此外网络还带来高可靠性（资源冗余）与分布处理能力。","exp":"采分点：定义中的「地理分散 + 通信线路互联 + 通信与共享」；两大功能；指出资源共享最具吸引力。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-010","type":"comp","topic":"8.1 计算机网络的定义与功能","diff":"中","stem":"某实验室有 20 台计算机、1 台激光打印机、1 台文件服务器。说明联网后可以共享哪些资源，各举一例并指出共享带来的直接好处。","ref":"硬件共享：20 台机器共用 1 台激光打印机，不必每台配一台打印机，节省采购与维护成本。\n软件共享：共用文件服务器上的正版软件安装包与许可证，避免重复购买。\n数据共享：共用服务器上的实验数据与文档，任何人修改后其他人立即看到最新版本，避免各自保存副本导致版本不一致。\n数据通信：机器之间可直接传送文件、发送消息，不必用移动存储介质拷贝。\n归纳：资源共享的直接好处是降低总成本、提高资源利用率、保证数据一致性；数据通信则提高了协作效率。","exp":"采分点：①区分硬件/软件/数据三类共享并各举一例；②说明成本、利用率、一致性方面的好处；③提到数据通信。只罗列「可以共享打印机」不给满分。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-011","type":"single","topic":"8.2 计算机网络的分类","diff":"易","stem":"按覆盖范围划分，计算机网络可分为（　）。","options":["总线型、环型、星型","局域网、城域网、广域网","有线网、无线网、卫星网","公用网、专用网、虚拟网"],"answer":[1],"exp":"按覆盖范围分为局域网（几公里内）、城域网（城市范围）、广域网（几十到几千公里）。总线型、环型、星型是按拓扑结构分类。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-012","type":"single","topic":"8.2 计算机网络的分类","diff":"易","stem":"局域网的覆盖范围通常是（　）。","options":["一个城市范围","较小的地理范围，如几公里内","一个国家或横跨几个洲","全球范围"],"answer":[1],"exp":"局域网规模较小，局限于较小的地理范围（如几公里），典型例子是校园网、企业网、公司内部网。城域网覆盖城市，广域网覆盖国家甚至跨洲。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-013","type":"single","topic":"8.2 计算机网络的分类","diff":"中","stem":"城域网的主要作用是（　）。","options":["把一个机房内的服务器互联","把全球的计算机互联起来","在几米范围内连接外设","由网络运营商在城市范围内组建高速宽带网络，把大量局域网和个人计算机高速接入 Internet"],"answer":[3],"exp":"城域网（市域网）是网络运营商在城市范围内组建的高速宽带网络，起「汇聚接入」的作用：把城区内大量局域网与个人计算机高速接入 Internet。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-014","type":"single","topic":"8.2 计算机网络的分类","diff":"易","stem":"覆盖范围从几十公里到几千公里、往往覆盖一个国家或横跨几个洲的网络是（　）。","options":["广域网","城域网","局域网","个域网"],"answer":[0],"exp":"广域网覆盖范围从几十公里到几千公里甚至更大，往往覆盖一个国家、地区或横跨几个洲。Internet 就是世界上最大的广域网。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-015","type":"single","topic":"8.2 计算机网络的分类","diff":"易","stem":"Internet 属于（　）。","options":["一个城域网","世界上最大的局域网","世界上最大的广域网","一个个人区域网"],"answer":[2],"exp":"Internet 把全球的计算机网络互联起来，覆盖范围跨越国家与大洲，是世界上最典型的广域网（WAN）。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-016","type":"single","topic":"8.2 计算机网络的分类","diff":"易","stem":"一所大学校园内的网络属于（　）。","options":["城域网","局域网","广域网","国际网"],"answer":[1],"exp":"校园网、企业网、公司内部网都是局域网的典型例子：覆盖范围限于几公里内，由单位自行建设与管理。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-017","type":"multi","topic":"8.2 计算机网络的分类","diff":"中","stem":"按覆盖范围划分，计算机网络包括（　）。","options":["总线网","局域网","城域网","广域网"],"answer":[1,2,3],"exp":"按覆盖范围分为局域网、城域网、广域网三类。总线网是按拓扑结构划分出的一类，与覆盖范围不是同一个分类维度。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-018","type":"multi","topic":"8.2 计算机网络的分类","diff":"中","stem":"关于局域网的说法正确的有（　）。","options":["通常由单位自行建设和管理","Internet 本身就是一个局域网","覆盖范围较小，通常在几公里以内","校园网、企业网属于局域网"],"answer":[0,2,3],"exp":"局域网范围小、由单位自建自管，校园网与企业网是典型代表。Internet 是全球范围的广域网，不是局域网。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-019","type":"fill","topic":"8.2 计算机网络的分类","diff":"中","stem":"覆盖范围从几十公里到几千公里、往往覆盖一个国家或横跨几个洲的网络称为 ____。","answers":["广域网","WAN","wide area network"],"exp":"广域网（WAN）覆盖国家、地区甚至跨洲，Internet 是最大的广域网。与之相对，局域网（LAN）限于几公里，城域网（MAN）覆盖城市范围。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-020","type":"fill","topic":"8.2 计算机网络的分类","diff":"中","stem":"网络运营商在城市范围内组建、用于把大量局域网和个人计算机高速接入 Internet 的高速宽带网络称为 ____。","answers":["城域网","MAN","市域网"],"exp":"城域网（MAN，也称市域网）起城市范围内的汇聚接入作用，是局域网与广域网之间的中间层次。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-021","type":"short","topic":"8.2 计算机网络的分类","diff":"中","stem":"比较局域网、城域网、广域网。","ref":"①覆盖范围：局域网限于几公里内；城域网覆盖一个城市；广域网从几十公里到几千公里，可覆盖国家或跨洲。②典型例子：局域网如校园网、企业网、公司内部网；城域网是运营商在城市内组建的宽带接入网；广域网如 Internet，是世界上最大的广域网。③建设与管理：局域网多由单位自建自管；城域网由网络运营商建设运营；广域网通常由多个运营商与机构共同互联。④传输速率与误码率：一般局域网速率最高、误码率最低，广域网相对较低。","exp":"采分点：范围、例子、建设主体三项中答出两项即可，速率对比是加分项。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-022","type":"comp","topic":"8.2 计算机网络的分类","diff":"中","stem":"判断下列网络属于局域网、城域网还是广域网，并说明理由：①一间实验室内 30 台计算机互联；②某市运营商把全市家庭宽带汇聚后接入 Internet；③一所高校的北京校区与云南校区之间通过专线互联；④Internet。","ref":"①局域网：范围限于一间实验室（几十米），由实验室或学院自建。\n②城域网：由运营商在城市范围内组建，作用是把大量局域网与个人计算机高速接入 Internet。\n③广域网：跨省互联，距离数千公里，通常租用运营商专线实现，属广域网范畴。\n④广域网：覆盖全球、跨越国家与大洲，是世界上最典型的广域网。\n判断依据可归纳为「覆盖范围 + 建设主体」：几公里内自建为局域网，城市内运营商汇聚为城域网，跨城市乃至跨洲为广域网。","exp":"采分点：四个判断全对，理由落在「覆盖范围」与「建设主体」上。③最易错判为局域网（因为是同一所学校），但跨省即超出局域网范围。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-023","type":"single","topic":"8.3 网络拓扑结构","diff":"易","stem":"网络拓扑结构是指（　）。","options":["网络中计算机之间的物理连接方式","网络中传输的数据格式","网络的传输速率","网络中计算机的数量"],"answer":[0],"exp":"网络拓扑（Network Topology）指网络中计算机之间的物理连接方式，常见的有总线型、环型、星型三种。它决定数据如何在节点之间传递，也决定故障的影响范围。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-024","type":"single","topic":"8.3 网络拓扑结构","diff":"中","stem":"总线型拓扑中，所有节点连接到（　）。","options":["一个中央控制器上","一条公共电缆线上","一个闭合的环上","各自独立的线路上"],"answer":[1],"exp":"总线型拓扑把所有节点接到一条公共电缆上，这条电缆称为总线。发出的消息向总线两端传输、广播到整个网络，各节点判断消息是否发给自己。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-025","type":"single","topic":"8.3 网络拓扑结构","diff":"中","stem":"环型拓扑中，数据在环路上的传输方式是（　）。","options":["随机选择方向传输","向两端广播","由中央节点统一转发","按统一方向单向传输，绕环一周"],"answer":[3],"exp":"环型拓扑中所有设备串行连接成回路，数据按统一方向单向传输，绕环一周；节点检测经过的消息，是给自己的就接收，否则传给下一个节点。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-026","type":"single","topic":"8.3 网络拓扑结构","diff":"中","stem":"星型拓扑中，所有节点之间的通信都必须经过（　）。","options":["中央节点（中央控制器）","总线","环上的下一个节点","路由器"],"answer":[0],"exp":"星型拓扑把所有节点连接到中央控制器，各工作站之间的通信由中央控制器统一控制，采用中央集权方式，控制性好、容易查找故障点；但中央控制器故障会导致整个网络瘫痪。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-027","type":"single","topic":"8.3 网络拓扑结构","diff":"中","stem":"当网络中任何一个工作站发生故障时，都有可能导致整个网络停止工作，这种网络的拓扑结构是（　）。","options":["总线型","星型","环型","网状型"],"answer":[2],"exp":"环型拓扑中所有设备串行连接成一个回路，任一段线路中断或任一节点故障都会破坏环路，使整个网络无法正常运作，而且不容易查找故障点。星型是中央节点故障才全网瘫痪，总线型是总线断开才影响全网。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-028","type":"single","topic":"8.3 网络拓扑结构","diff":"中","stem":"星型拓扑最主要的优点是（　）。","options":["线路长度最短、成本最低","容易查找故障点，控制性好","不需要中央节点","任一节点故障不影响其他节点通信"],"answer":[1],"exp":"星型采用中央集权方式，各节点通信都经中央节点，因此控制性好、故障定位容易——某节点不通只需查它到中央节点那一段。代价是中央节点一旦故障全网瘫痪。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-029","type":"multi","topic":"8.3 网络拓扑结构","diff":"中","stem":"总线型拓扑的特点有（　）。","options":["任一节点故障都会导致全网瘫痪","所有发出的消息向总线两端传输，广播到整个网络","共享信道，每个时刻只允许一个节点发送数据","线路长度较短，增删节点方便，成本较低"],"answer":[1,2,3],"exp":"总线型采用广播式共享信道，同一时刻只允许一个节点发送，线路短、增删方便、成本低。但单个节点故障通常不影响全网（只是该节点失去通信能力），导致全网瘫痪的是总线本身断开。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-030","type":"fill","topic":"8.3 网络拓扑结构","diff":"中","stem":"所有网络节点连接到一条公共电缆线上、消息向两端广播的拓扑结构称为 ____。","answers":["总线型","总线","bus"],"exp":"总线型拓扑的公共电缆称为总线，采用共享信道、广播传输，多用于早期局域网。优点是线路短、增删方便、成本低。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-031","type":"fill","topic":"8.3 网络拓扑结构","diff":"中","stem":"所有设备彼此串行连接成回路、数据按统一方向单向传输的拓扑结构称为 ____。","answers":["环型","环形","ring"],"exp":"环型拓扑的数据沿环路单向传输，绕环一周。它的致命弱点是任一段线路中断或任一节点故障都会影响整个网络，且故障点不易查找。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-032","type":"short","topic":"8.3 网络拓扑结构","diff":"中","stem":"比较总线型、环型、星型三种拓扑结构的优缺点。","ref":"①总线型：所有节点接在一条公共总线上，消息向两端广播，共享信道、同一时刻只允许一个节点发送。优点：线路长度短、增删节点方便、工作可靠、方法简单、成本低。缺点：总线一旦断开全网瘫痪，节点增多时冲突加剧、性能下降。\n②环型：设备串行连接成回路，数据单向绕环传输。优点：传输方向确定、控制简单，适合光纤。缺点：任一段线路中断或任一节点故障都会影响整个网络，故障点不易查找。\n③星型：所有节点连到中央控制器，通信经中央节点转发。优点：中央集权、控制性好、容易查找故障点。缺点：中央控制器故障将导致整个网络瘫痪，且线路用量大。","exp":"采分点：三种拓扑的结构、优点、缺点各一句。三者共同的比较维度是「故障影响范围」——总线看总线、环型看任一节点、星型看中央节点。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-033","type":"comp","topic":"8.3 网络拓扑结构","diff":"中","stem":"某办公室有 12 台计算机，要求任一台机器出故障时不影响其他机器通信，且故障要容易定位；另一个车间环境恶劣、布线困难，只希望用尽量短的线缆把 8 台设备连起来。分别推荐哪种拓扑，并说明理由。","ref":"办公室推荐星型：所有机器接到一台交换机（中央节点），单台机器故障或网线损坏只影响该机器，其余通信不受影响；且故障定位容易——哪台不通就查它到交换机那一段。代价是交换机故障会全网瘫痪，可通过备用交换机缓解。\n车间推荐总线型：一条公共电缆贯穿各设备，线路总长度最短、布线简单、成本低，增删节点也方便。但要注意总线一旦断开会导致全网瘫痪，因此需做好线缆防护与固定。\n若车间对可靠性要求高，可改用星型并做冗余；拓扑选择本质上是「布线成本」与「故障影响范围」之间的权衡。","exp":"采分点：①两个场景各给出正确拓扑；②理由落在「故障影响范围」「故障定位」「布线成本」上；③指出所选拓扑的代价。只写拓扑名称不得分。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-034","type":"comp","topic":"8.3 网络拓扑结构","diff":"难","stem":"某环型网络有 6 个节点，采用单向传输。若节点 3 与节点 4 之间的线路被挖断，分析网络会发生什么情况，并说明如何改进。","ref":"情况分析：环型拓扑的可靠性依赖环路的完整性。节点 3 与 4 之间断开后，环路被切成一条链，数据无法绕行回到起点。若协议要求令牌绕环一周才能完成一次发送，则令牌无法回到发起节点，全网通信随即停止；即使采用某种单向传递方式，节点 4、5、6 与 1、2、3 之间的通信也全部中断，受影响的是整网而不是个别节点。此外断点位置难以从现象上判断，排障困难。\n改进：①采用双环结构（如 FDDI），主环断开时数据自动绕到备用环，形成自愈；②在关键位置加装旁路开关，故障节点或线段被自动短接；③改用星型或交换式以太网，把故障影响范围限制在单条链路；④增加链路监测与告警，缩短故障定位时间。","exp":"采分点：①指出环型断链导致全网失效（不是局部）；②说明令牌无法绕环的机制；③给出双环/旁路/改星型等改进方案。只答「网络断了」不得分。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-035","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 参考模型是由（　）制定的。","options":["国际标准化组织 ISO","美国国防部","国际电信联盟 ITU","电气电子工程师学会 IEEE"],"answer":[0],"exp":"OSI/RM（开放系统互联参考模型）由国际标准化组织 ISO（International Organization for Standardization）制定，是用于说明任意两个不同网络系统如何进行通信的理论模型。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-036","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI/RM 协议模型将计算机网络体系结构的通信协议规定为（　）。","options":["3 层","4 层","5 层","7 层"],"answer":[3],"exp":"OSI/RM 分七层，自上而下为应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。四层是 TCP/IP 模型，五层是教学中常用的折中模型。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-037","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 七层模型自上而下的顺序是（　）。","options":["应用层、表示层、会话层、传输层、网络层、数据链路层、物理层","物理层、数据链路层、网络层、传输层、会话层、表示层、应用层","应用层、会话层、表示层、传输层、网络层、数据链路层、物理层","应用层、表示层、传输层、会话层、网络层、物理层、数据链路层"],"answer":[0],"exp":"自上而下：应用、表示、会话、传输、网络、数据链路、物理，口诀「应表会传网数物」。自下而上则是完全相反的顺序。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-038","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 模型中，负责在物理介质中传输位流的是（　）。","options":["网络层","数据链路层","物理层","传输层"],"answer":[2],"exp":"物理层把 0、1 比特编码成线缆或信道上可传输的电信号、光信号，在物理介质上传输位流。它处理的是「比特」，关心电压、接口、传输介质等物理特性。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-039","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"把位组成帧、并加入物理地址信息的是（　）。","options":["物理层","数据链路层","网络层","传输层"],"answer":[1],"exp":"数据链路层把上层数据加上报头和报尾封装成帧，其中包含相邻站点的网卡物理地址（MAC 地址），负责两个相邻站点之间的点对点传递，并提供检错与重发。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-040","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 模型中，负责源站点与目的站点之间「包」的传送、并进行路由选择的是（　）。","options":["会话层","数据链路层","传输层","网络层"],"answer":[3],"exp":"网络层给上层信息加上含源、目的 IP 地址（逻辑地址）的报头形成「包」，通过路由选择与逻辑寻址，把包从源站点逐节点转发到目的站点。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-041","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 模型中，负责整个消息端到端传送的是（　）。","options":["传输层","网络层","会话层","应用层"],"answer":[0],"exp":"传输层把消息看成完整实体，负责整个消息从源到目的地的传送：分段、重组、差错检验与纠正、流量控制。网络层只管各独立包的端到端传送，传输层管整个消息。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-042","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 模型中，负责建立、保持和同步会话，并设置同步点的是（　）。","options":["传输层","表示层","会话层","应用层"],"answer":[2],"exp":"会话层控制用户间的会话：建立、保持与同步。它设置同步点，把长消息分成较短的部分，重发时只需从最后一个同步点开始，不必从头再来。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-043","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 模型中，负责解决信息语法与语义问题、并进行压缩与加密的是（　）。","options":["会话层","表示层","应用层","传输层"],"answer":[1],"exp":"表示层解决两个系统间交换信息的语法（格式）和语义（编码）差异，并进行压缩/解压缩、加密/解密，使不同体系的主机能互相理解数据。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-044","type":"single","topic":"8.4 OSI 参考模型","diff":"易","stem":"OSI 模型中，直接为用户的应用进程提供网络服务的是（　）。","options":["传输层","表示层","会话层","应用层"],"answer":[3],"exp":"应用层是七层中的最高层，是「人机交互界面」，为用户提供应用接口，使用户能方便地开发应用、访问网络，产生网络传输的原始数据。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-045","type":"single","topic":"8.4 OSI 参考模型","diff":"中","stem":"OSI 各层处理的数据单元，从下到上依次是（　）。","options":["比特、帧、包、段","帧、比特、段、包","包、帧、比特、段","比特、包、帧、段"],"answer":[0],"exp":"物理层处理比特，数据链路层组成帧，网络层形成包（分组），传输层形成段（报文段）。数据单元的变化正是逐层封装的结果。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-046","type":"single","topic":"8.4 OSI 参考模型","diff":"难","stem":"发送主机与接收主机的数据处理方向分别是（　）。","options":["双方都自下而上","双方都自上而下","发送方自上而下逐层封装，接收方自下而上逐层解封装","发送方自下而上，接收方自上而下"],"answer":[2],"exp":"发送时数据从应用层向下传递，每层加自己的首部（封装）；接收时从物理层向上传递，每层拆掉对应首部（解封装），最后还原成原始数据。对等层之间是逻辑通信，下层为上层提供服务。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-047","type":"multi","topic":"8.4 OSI 参考模型","diff":"中","stem":"关于 OSI 参考模型，说法正确的有（　）。","options":["是说明不同网络系统如何通信的理论模型","是 Internet 实际使用的协议族","由国际标准化组织 ISO 制定","共分七层"],"answer":[0,2,3],"exp":"OSI 由 ISO 制定、共七层，是理论上的参考模型，用于说明任意两个不同网络系统如何通信。Internet 实际使用的是 TCP/IP 协议族，OSI 主要起教学与对照作用。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-048","type":"multi","topic":"8.4 OSI 参考模型","diff":"中","stem":"传输层与网络层的区别有（　）。","options":["传输层使用 MAC 地址，网络层使用 IP 地址","传输层负责整个消息的端到端传送，网络层负责各独立包的端到端传送","传输层保证消息完整正确送达，网络层负责寻址与路由选择","传输层把消息分段后交给网络层，网络层逐包转发"],"answer":[1,2,3],"exp":"传输层面向整个消息（分段、重组、差错与流量控制），网络层面向单个包（逻辑寻址与路由）。使用 MAC 地址的是数据链路层，不是传输层。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-049","type":"fill","topic":"8.4 OSI 参考模型","diff":"中","stem":"OSI 七层模型自下而上依次为：物理层、数据链路层、____、传输层、会话层、表示层、应用层。","answers":["网络层"],"exp":"自下而上：物理、数据链路、网络、传输、会话、表示、应用。口诀「应表会传网数物」是自上而下的顺序，反过来即自下而上。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-050","type":"fill","topic":"8.4 OSI 参考模型","diff":"中","stem":"数据链路层把位组成逻辑单元，这个单元称为 ____。","answers":["帧","frame","数据帧"],"exp":"数据链路层在数据前后加报头和报尾，形成帧，其中含有相邻站点的网卡物理地址与校验信息。帧是链路层处理的数据单元。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-051","type":"fill","topic":"8.4 OSI 参考模型","diff":"易","stem":"物理层传输的数据单位是 ____。","answers":["比特","位","bit","位流"],"exp":"物理层把 0、1 比特编码成电信号或光信号在介质上传输，因此其数据单位就是比特（位）。比特流是最底层的传输形态。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-052","type":"short","topic":"8.4 OSI 参考模型","diff":"中","stem":"简述 OSI 参考模型各层的主要功能。","ref":"①物理层：在物理介质中传输位流，把比特编码成电信号或光信号。②数据链路层：把位组成帧，加入相邻站点的物理地址与校验信息，负责相邻站点间的点对点传递，并提供检错与重发。③网络层：加上含源、目的 IP 地址的报头形成包，通过路由选择把包从源站点转发到目的站点。④传输层：负责整个消息的端到端传送，分段、重组、差错检验与流量控制。⑤会话层：建立、保持和同步会话，设置同步点以便断点续传。⑥表示层：解决信息的语法与语义差异，完成压缩与加解密。⑦应用层：为用户提供应用接口，产生网络传输的原始数据。","exp":"采分点：七层名称与功能一一对应。最易混淆的是传输层与网络层（整个消息 vs 单个包）、表示层与会话层（格式转换 vs 会话管理）。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-053","type":"short","topic":"8.4 OSI 参考模型","diff":"中","stem":"说明数据的封装与解封装过程，以及「对等层通信」的含义。","ref":"封装：发送主机把数据自上而下逐层传递，每经过一层就加上该层的首部（数据链路层还加报尾），形成该层的协议数据单元——应用数据 → 传输层的段 → 网络层的包 → 链路层的帧 → 物理层的比特流。\n解封装：接收主机自下而上逐层处理，每层拆掉对应首部并交给上一层，最后还原出原始数据。\n对等层通信：发送方的第 N 层在逻辑上只与接收方的第 N 层通信（如发送方传输层与接收方传输层对话），实际上数据要逐层下传到物理介质、再逐层上传，中间经过下层的服务。上层的数据对下层而言都只是「数据」。","exp":"采分点：①封装方向与逐层加首部；②解封装方向与逐层去首部；③对等层的「逻辑通信」与实际「逐层传递」的区分。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-054","type":"comp","topic":"8.4 OSI 参考模型","diff":"难","stem":"用户在微信中发送一条消息给好友，消息从本机发出到对方收到，按 OSI 七层模型说明数据在各层的处理过程。","ref":"发送方（自上而下封装）：①应用层——用户在微信中输入消息，产生原始数据；②表示层——对消息编码（如 UTF-8）、必要时压缩与加密；③会话层——建立并维护与对方的会话，必要时设置同步点；④传输层——把消息分段并编号，加上端口号，保证完整有序送达；⑤网络层——为每个段加上源、目的 IP 地址形成包，通过路由选择确定转发路径；⑥数据链路层——加上相邻站点的 MAC 地址与校验信息形成帧；⑦物理层——把帧变成电信号或光信号，通过介质发送出去。\n中间网络：路由器主要在網絡层工作，逐跳转发包，每经过一跳重新封装链路层帧（MAC 地址改变，IP 地址不变）。\n接收方（自下而上解封装）：①物理层收到信号还原为比特；②链路层校验并拆帧；③网络层拆包、检查目的 IP；④传输层按序号重组消息并确认；⑤会话层维持会话；⑥表示层解密、解压、解码；⑦应用层把消息呈现给微信，好友看到内容。","exp":"采分点：①发送方七层自上而下各一句处理；②指出 MAC 逐跳改变、IP 保持不变；③接收方自下而上解封装。只写「分层传输」不得分。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-055","type":"single","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"TCP/IP 模型分为（　）层。","options":["7","4","5","3"],"answer":[1],"exp":"TCP/IP 模型分四层：应用层、传输层、网络互连层、网络接口层（自下而上为网络接口层、网络互连层、传输层、应用层）。OSI 是七层。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-056","type":"single","topic":"8.5 TCP/IP 体系结构","diff":"易","stem":"TCP/IP 四层模型自上而下的顺序是（　）。","options":["应用层、传输层、网络互连层、网络接口层","应用层、网络互连层、传输层、网络接口层","网络接口层、传输层、网络互连层、应用层","物理层、数据链路层、网络层、应用层"],"answer":[0],"exp":"自上而下：应用层、传输层、网络互连层（网际层）、网络接口层。每一层调用下一层提供的协议来完成自己的需求。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-057","type":"single","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"TCP/IP 协议族包含的协议数量约为（　）。","options":["2 个","100 多个","10 个以内","1000 多个"],"answer":[1],"exp":"TCP/IP 是一个协议族，包含 100 多个协议，其中 TCP（传输控制协议）和 IP（网际协议）是两个最基本、最重要的协议，协议族也因此得名。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-058","type":"single","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"TCP/IP 协议族中最基本、最重要的两个协议是（　）。","options":["UDP 和 ARP","HTTP 和 FTP","SMTP 和 DNS","TCP 和 IP"],"answer":[3],"exp":"TCP（传输控制协议）与 IP（网际协议）是协议族中最基本、最重要的两个，分别工作在传输层与网络互连层。TCP/IP 这个名称即由两者组合而来。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-059","type":"single","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"TCP/IP 模型传输层使用的主要协议是（　）。","options":["TCP 或 UDP","IP","HTTP","以太网"],"answer":[0],"exp":"传输层把数据封装为 TCP 数据段或 UDP 数据报，在两个应用程序之间传送数据：TCP 面向连接、可靠；UDP 无连接、开销小。IP 在网络互连层，HTTP 在应用层。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-060","type":"single","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"SMTP、HTTP、FTP 属于 TCP/IP 模型的（　）。","options":["网络互连层","传输层","应用层","网络接口层"],"answer":[2],"exp":"SMTP（简单邮件传输）、HTTP（超文本传输）、FTP（文件传输）都是应用程序之间的通信协议，工作在应用层。它们依赖下层的 TCP 或 UDP 提供服务。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-061","type":"multi","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"关于 TCP/IP 模型各层对应协议，正确的有（　）。","options":["传输层包括 TCP 与 UDP","网络互连层主要是 IP","网络接口层主要是 HTTP","应用层包括 SMTP、HTTP、FTP 等"],"answer":[0,1,3],"exp":"前三项对应关系正确。HTTP 是应用层的超文本传输协议，不在网络接口层——网络接口层对应的是以太网、FDDI、X.25、ATM 等。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-062","type":"fill","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"TCP/IP 四层模型自下而上依次为：网络接口层、____、传输层、应用层。","answers":["网络互连层","网际层","网络层"],"exp":"TCP/IP 的四层是网络接口层、网络互连层（网际层）、传输层、应用层。网络互连层的主要协议是 IP，负责寻址与路由转发。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-063","type":"fill","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"TCP/IP 网络互连层的主要协议是 ____，负责把数据报从发送方通过物理网络传送到接收方。","answers":["IP","网际协议","Internet Protocol"],"exp":"网络互连层的核心是 IP 协议：为数据加上源、目的 IP 地址，完成寻址、路由选择与数据转发。TCP/IP 中的 IP 地址即由该层使用。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-064","type":"short","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"比较 OSI 参考模型与 TCP/IP 模型。","ref":"①层数：OSI 为七层，TCP/IP 为四层。②对应关系：TCP/IP 的应用层大致对应 OSI 的应用层、表示层、会话层三层；传输层对应传输层；网络互连层对应网络层；网络接口层对应数据链路层与物理层。③性质：OSI 是先有模型后有实现的国际标准，偏理论、结构严谨但复杂；TCP/IP 是先有实现（ARPANET）后总结成模型，实用、简洁，是 Internet 实际使用的协议族。④应用：OSI 主要用于教学与对照分析，TCP/IP 是事实上的工业标准。","exp":"采分点：层数、对应关系、理论与实践之分三点。能把「应用层吸收了三层」说清楚是关键。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-065","type":"comp","topic":"8.5 TCP/IP 体系结构","diff":"中","stem":"一封电子邮件从发送方主机经以太网发出，说明数据在 TCP/IP 四层中逐层封装的过程与各层的数据单元名称。","ref":"①应用层：邮件正文与信头作为应用数据（报文），由 SMTP 处理。②传输层：应用数据被封装为 1 个或多个 TCP 数据段（报文段），加上源/目的端口号，保证可靠有序。③网络互连层：TCP 段被封装为 IP 数据报，加上源/目的 IP 地址，由 IP 完成寻址与路由。④网络接口层：IP 数据报被封装成以太网帧（加 MAC 地址与校验），转换为比特流在物理介质上传输。\n接收方反向逐层解封装：以太网帧 → IP 数据报 → TCP 段 → 应用数据，最后交给邮件客户端显示。","exp":"采分点：四层封装顺序、各层数据单元（报文/段/数据报/帧）、端口号与 IP 地址分别在哪层加入。把 IP 地址说成链路层加入是常见错误。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-066","type":"single","topic":"8.6 IP 地址与域名","diff":"易","stem":"IPv4 规定每个 IP 地址使用（　）表示。","options":["8 个字节（64 个二进位）","4 个字节（32 个二进位）","16 个字节（128 个二进位）","2 个字节（16 个二进位）"],"answer":[1],"exp":"IPv4 地址为 32 位二进制数，即 4 个字节，通常写成 4 个用圆点隔开的十进制数（点分十进制）。128 位、16 字节是 IPv6。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-067","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"IP 地址由（　）两部分组成。","options":["协议号与校验号","国家号与地区号","端口号与进程号","网络号与主机号"],"answer":[3],"exp":"IP 地址包含网络号（NET ID）与主机号（HOST ID）：前者标识主机所从属的物理网络，后者标识该网络中的具体主机。同一网络内主机号不同、网络号相同。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-068","type":"single","topic":"8.6 IP 地址与域名","diff":"易","stem":"把 32 位二进制 IP 地址写成 4 个用圆点隔开的十进制数，这种表示法称为（　）。","options":["点分十进制表示法","冒分十六进制表示法","二进制表示法","八进制表示法"],"answer":[0],"exp":"点分十进制便于人读写，32 位二进制便于计算机存储与运算，两者是同一地址的两种表示。IPv6 采用冒分十六进制。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-069","type":"single","topic":"8.6 IP 地址与域名","diff":"易","stem":"A 类 IP 地址的第一个字节范围是（　）。","options":["192～223","128～191","1～126","224～239"],"answer":[2],"exp":"A 类首字节 1～126（0 与 127 保留），网络号 7 位、可用网络 126 个，主机号 24 位、每个网络约 1677 万台主机，适用于大型网络。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-070","type":"single","topic":"8.6 IP 地址与域名","diff":"易","stem":"B 类 IP 地址的第一个字节范围是（　）。","options":["1～126","128～191","192～223","240～255"],"answer":[1],"exp":"B 类首字节 128～191，网络号 14 位、可用网络 16384 个，主机号 16 位、每个网络 65534 台主机，适用于中型网络。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-071","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"C 类 IP 地址的第一个字节范围是（　）。","options":["1～126","128～191","224～239","192～223"],"answer":[3],"exp":"C 类首字节 192～223，网络号 21 位、可用网络 2097152 个，主机号 8 位、每个网络 254 台主机，适用于小型局域网。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-072","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"北京林业大学的 IP 地址 211.71.x.x 属于（　）。","options":["C 类地址","A 类地址","B 类地址","D 类地址"],"answer":[0],"exp":"首字节 211 落在 192～223 区间，属 C 类地址。判断类别只看第一个字节即可：1～126 为 A，128～191 为 B，192～223 为 C，224～239 为 D（组播），240～255 为 E（保留）。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-073","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"在 Internet 中，下列 IP 地址中不可能出现的是（　）。","options":["202.96.13.25","176.78.89.67","123.256.36.2","189.76.56.156"],"answer":[2],"exp":"点分十进制中每个十进制数的取值范围是 0～255（对应 8 位二进制）。123.256.36.2 中第二段 256 超出范围，因此不可能是合法 IP 地址。其余三个各段均在 0～255 之间。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-074","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"IPv6 规定每个 IP 地址使用（　）表示。","options":["4 个字节（32 个二进位）","16 个字节（128 个二进位）","8 个字节（64 个二进位）","6 个字节（48 个二进位）"],"answer":[1],"exp":"IPv6 地址为 128 位，即 16 个字节，采用冒分十六进制表示，理论上可表示约 3.4×10³⁸ 个地址，彻底解决了 IPv4 地址耗尽的问题。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-075","type":"single","topic":"8.6 IP 地址与域名","diff":"难","stem":"某 IP 地址的主机号部分全为 1，该地址表示（　）。","options":["一个保留地址","该网络本身","某台特定主机","该网络的广播地址"],"answer":[3],"exp":"主机号全 0 表示网络地址（网络本身），主机号全 1 表示该网络的广播地址，两者都不能分配给具体主机。因此每个网络的可用主机数是 2ⁿ−2。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-076","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"Internet 采用域名地址的原因是（　）。","options":["IP 地址不便于记忆","IP 地址不能唯一标识一台主机","一台主机必须同时用 IP 与域名标识","域名比 IP 地址更准确"],"answer":[0],"exp":"IP 地址是一串数字，难以记忆；域名用有意义的字符串标识主机，便于用户使用。域名只是逻辑概念，最终仍要由 DNS 解析成 IP 地址才能通信——一台主机必须至少有一个 IP 地址，域名可以没有。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-077","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"域名系统 DNS 的作用是（　）。","options":["为网络中的主机分配域名","把 IP 地址翻译成物理地址","把域名翻译成对应的 IP 地址","加密网络中的传输数据"],"answer":[2],"exp":"DNS（Domain Name System）负责把用户输入的域名解析成对应的 IP 地址，客户端拿到 IP 后才能与服务器建立连接。把 IP 解析成 MAC 地址是 ARP 的任务。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-078","type":"multi","topic":"8.6 IP 地址与域名","diff":"中","stem":"关于 IP 地址，说法正确的有（　）。","options":["IPv4 地址为 32 位二进制数","IP 地址由网络号与主机号组成","IP 地址分为 A、B、C、D、E 五类","同一网络中所有主机的 IP 地址完全相同"],"answer":[0,1,2],"exp":"IPv4 为 32 位，由网络号与主机号构成，分 A～E 五类。同一网络中主机的网络号相同、主机号不同，因此 IP 地址各不相同——相同就会冲突。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-079","type":"multi","topic":"8.6 IP 地址与域名","diff":"中","stem":"关于域名的说法正确的有（　）。","options":["域名采用层次树状结构命名","每一级域名不超过 63 个字符","完整域名总长不超过 255 个字符","域名直接决定主机所在的物理地点"],"answer":[0,1,2],"exp":"域名采用层次树状结构，每级不超过 63 个字符，全长不超过 255 个字符，且不区分大小写。域名只是逻辑概念，并不代表计算机所在的物理地点。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-080","type":"fill","topic":"8.6 IP 地址与域名","diff":"易","stem":"IPv4 规定每个 IP 地址使用 ____ 个字节表示。","answers":["4","四"],"exp":"4 个字节 = 32 位，通常写成 4 个用圆点隔开的十进制数，每段取值 0～255。IPv6 则是 16 个字节、128 位。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-081","type":"fill","topic":"8.6 IP 地址与域名","diff":"中","stem":"负责把域名转换为 IP 地址的系统称为 ____。","answers":["DNS","域名系统","域名服务器","Domain Name System"],"exp":"DNS 是 Internet 的域名解析系统，采用层次树状结构，全球共有 13 组根域名服务器。用户输入域名后，由 DNS 逐级查询得到对应 IP 地址。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-082","type":"fill","topic":"8.6 IP 地址与域名","diff":"中","stem":"C 类地址的主机号为 8 位，每个网络中可分配给主机的地址数为 ____ 个。","answers":["254"],"exp":"主机号 8 位可表示 2⁸ = 256 个编码，其中主机号全 0 是网络地址、全 1 是广播地址，二者不能分配给主机，故可用主机数为 256 − 2 = 254。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-083","type":"short","topic":"8.6 IP 地址与域名","diff":"中","stem":"说明 IPv4 地址的分类及各类的适用范围。","ref":"IPv4 地址按第一个字节的取值分为五类：①A 类，首字节 1～126（0 与 127 保留），网络号 7 位、可用网络 126 个，主机号 24 位、每网约 1677 万台主机，适用于大型网络；②B 类，首字节 128～191，网络号 14 位、16384 个网络，主机号 16 位、每网 65534 台主机，适用于中型网络；③C 类，首字节 192～223，网络号 21 位、约 209 万个网络，主机号 8 位、每网 254 台主机，适用于小型局域网；④D 类，首字节 224～239，为组播（多播）地址，不分配给主机；⑤E 类，首字节 240～255，保留作实验与研究用。","exp":"采分点：五类的首字节范围、主机号位数与每网主机数、适用范围。D 类与 E 类的用途最易漏答。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-084","type":"comp","topic":"8.6 IP 地址与域名","diff":"中","stem":"判断下列 IP 地址各属哪一类，并计算该类每个网络可用的主机数：①10.10.1.5；②172.16.5.20；③202.204.112.57；④224.0.0.5。","ref":"①10.10.1.5：首字节 10，属 A 类。主机号 24 位，可用主机数 2²⁴ − 2 = 16777214 台。\n②172.16.5.20：首字节 172，属 B 类。主机号 16 位，可用主机数 2¹⁶ − 2 = 65534 台。\n③202.204.112.57：首字节 202，属 C 类。主机号 8 位，可用主机数 2⁸ − 2 = 254 台。\n④224.0.0.5：首字节 224，属 D 类（组播地址），不划分网络号与主机号，不能分配给单台主机。\n计算要点：可用主机数 = 2^主机号位数 − 2，减去的是网络地址（主机号全 0）与广播地址（主机号全 1）。","exp":"采分点：四个类别判断正确；三处主机数计算正确；能说明「减 2」的原因。④最易错判为 C 类或 E 类。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-085","type":"comp","topic":"8.6 IP 地址与域名","diff":"难","stem":"某单位分到一个 C 类网络 202.204.112.0/24，需要划分为 4 个大小相同的子网，每个子网要容纳 50 台主机。判断是否可行，写出各子网的网络地址与可用主机数。","ref":"分析：C 类网络主机号 8 位。要划分 4 个子网需借用 2 位主机号作子网号（2² = 4），剩余 6 位作主机号。每个子网可用主机数 = 2⁶ − 2 = 62 台，大于 50 台，可行。子网掩码为 255.255.255.192（/26）。\n各子网（步长 64）：\n①202.204.112.0/26，可用 202.204.112.1～202.204.112.62；\n②202.204.112.64/26，可用 .65～.126；\n③202.204.112.128/26，可用 .129～.190；\n④202.204.112.192/26，可用 .193～.254。\n每个子网的第一个地址是网络地址、最后一个是广播地址，均不可分配给主机。","exp":"采分点：①判断可行并说明理由（62 ≥ 50）；②子网掩码 /26；③四个子网的网络地址与地址范围；④指出网络地址与广播地址不可用。若答「划分 8 个子网」则每个只有 30 台主机，不满足 50 台的要求。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-086","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"下列域名中，写法不符合规范的是（　）。","options":["WWW.tj.net.jp","WWW.163.COM","www.863.org.cn","WWW.Nk.cn.edu"],"answer":[3],"exp":"域名自左向右级别由低到高，最右边必须是顶级域名。WWW.Nk.cn.edu 以 edu 结尾，把通用顶级域名 edu 放在了国家域名 cn 之后，层次颠倒，不符合书写规则。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-087","type":"single","topic":"8.6 IP 地址与域名","diff":"中","stem":"在域名 www.bjfu.edu.cn 中，顶级域名是（　）。","options":["edu","www","bjfu","cn"],"answer":[3],"exp":"域名书写从叶子（主机）写到根，最右边是顶级域名。www 是主机名，bjfu 是机构名（二级域名），edu 是类别名，cn 是顶级域名（国家顶级域名）。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-088","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"URL 的中文名称是（　）。","options":["通用资源语言","统一资源定位器","统一注册链接","用户资源列表"],"answer":[1],"exp":"URL（Uniform Resource Locators）即统一资源定位器，俗称「网址」，是对互联网上资源位置的标准表示方式。互联网上的所有资源都有一个唯一确定的 URL。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-089","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"一个 URL 通常由（　）三部分构成。","options":["IP 地址、子网掩码、网关","协议名称、端口号、密码","用户名、密码、域名","协议名称、Web 服务器域名（主机）、文件名（路径）"],"answer":[3],"exp":"URL 格式为 <协议>://<主机>:<端口>/<路径>，基本三部分是协议名称、Web 服务器域名、文件名（含路径）。协议与主机之间用 :// 隔开，主机与路径之间用 / 隔开。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-090","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"HTTP 的默认端口号是（　）。","options":["80","21","25","443"],"answer":[0],"exp":"HTTP 默认端口为 80，端口号在 URL 中可省略。作为对照：FTP 为 21、SMTP 为 25、HTTPS 为 443。","meta":{"source":"第 8 章课件（陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-091","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"电子邮件发送使用的协议是（　）。","options":["FTP","HTTP","SMTP","Telnet"],"answer":[2],"exp":"SMTP（Simple Mail Transfer Protocol，简单邮件传输协议）负责邮件的发送与传输。电子邮件地址格式为「用户账号@主机域名」。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-092","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"易","stem":"电子邮件地址的正确格式是（　）。","options":["主机域名@用户账号","用户账号@主机域名","用户账号.主机域名","用户账号#主机域名"],"answer":[1],"exp":"电子邮件地址由用户账号与主机域名两部分组成，中间用 @ 分隔，如 student@bjfu.edu.cn。@ 读作 at，表示「在某个邮件服务器上」。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-093","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"FTP 的主要功能是（　）。","options":["发送电子邮件","浏览超文本页面","远程登录到另一台主机","在两台计算机之间传输文件并保证传输的可靠性"],"answer":[3],"exp":"FTP（File Transfer Protocol，文件传输协议）负责把文件从一台计算机传输到另一台计算机并保证可靠性，支持上传与下载，广泛用于数据共享与远程操作。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-094","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"在因特网上，一台计算机可以作为另一台主机的远程终端并使用其资源，这种服务称为（　）。","options":["Telnet","FTP","BBS","WWW"],"answer":[0],"exp":"Telnet 是远程登录服务：本地计算机通过 Internet 成为远程主机的一个虚拟终端，从而使用该主机的资源。FTP 传文件，WWW 浏览网页，BBS 是电子公告板。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-095","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"万维网（WWW）是一种基于（　）的超文本系统。","options":["文件目录","数据库","超链接","电子邮件"],"answer":[2],"exp":"WWW（World Wide Web）把各种类型的信息（静止图像、文本、声音、影像）有机集成起来供用户阅读和查找，是一种基于超链接（Hyperlink）的超文本（Hypertext）系统。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-096","type":"single","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"万维网的网址以 HTTP 为前导，表示遵从（　）协议。","options":["纯文本","超文本传输","文件传输","邮件传输"],"answer":[1],"exp":"HTTP 即 HyperText Transfer Protocol，超文本传输协议，负责在浏览器与 Web 服务器之间传输超文本。它与纯文本、FTP（文件传输）、SMTP（邮件传输）是不同的协议。","meta":{"source":"第 8 章课件（8-计算机网络.pptx）· 课上真题","optperm":true},"_unit":"u8"},{"qid":"cs.u8-097","type":"multi","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"属于 Internet 提供的服务有（　）。","options":["远程登录","编译与链接","电子邮件","文件传输"],"answer":[0,2,3],"exp":"前三项都是 Internet 提供的服务（分别用 SMTP、FTP、Telnet）。编译与链接是本地开发工具链的功能，不是网络服务。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-098","type":"fill","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"万维网（WWW）使用的传输协议是 ____。","answers":["HTTP","超文本传输协议","HyperText Transfer Protocol"],"exp":"HTTP 是超文本传输协议，负责浏览器与 Web 服务器之间超文本的传输。网址以 http:// 开头即表示使用该协议。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-099","type":"fill","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"把本地计算机通过 Internet 变成远程主机虚拟终端的服务称为 ____。","answers":["Telnet","远程登录"],"exp":"Telnet（远程终端访问协议）让用户从本地机器登录到远程主机，像坐在那台机器前一样使用其资源。它传输的是明文，安全性差，现多被 SSH 取代。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-100","type":"short","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"列举 Internet 的主要应用服务，并说明各自使用的协议。","ref":"①电子邮件：以电子信件形式通信，发送使用 SMTP（简单邮件传输协议），地址格式为「用户账号@主机域名」。②文件传输：在两站点之间传送文件并保证可靠性，使用 FTP（文件传输协议）。③远程登录：本地计算机成为远程主机的虚拟终端，使用 Telnet。④万维网：基于超链接的超文本信息系统，使用 HTTP（超文本传输协议）。⑤搜索引擎：主动搜索各 WWW 服务器中的信息并建立索引，供用户查询。⑥即时通信等其他应用。","exp":"采分点：至少四项服务及其协议对应正确。把 HTTP 说成「超文本标记语言」、把 SMTP 与 POP3 混用是常见错误。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-101","type":"comp","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"拆解 URL：http://www.bjfu.edu.cn:8080/news/index.html，指出各部分的名称与作用，并说明端口号 8080 与省略端口时有何不同。","ref":"①http —— 协议名称，表示使用超文本传输协议；②www.bjfu.edu.cn —— Web 服务器的域名，其中 www 为主机名、bjfu 为机构名、edu 为类别名、cn 为顶级域名；③8080 —— 端口号，标识服务器上提供该服务的进程；④/news/index.html —— 路径与文件名，news 为文件夹名，index.html 为文档名与扩展名。\n端口差异：HTTP 的默认端口是 80，若 URL 中省略端口号，浏览器按 80 端口连接；写成 :8080 则明确要求连接服务器的 8080 端口，通常用于开发测试或同一台服务器上部署多个站点。","exp":"采分点：四部分名称与作用、域名各级含义、默认端口 80 与显式端口的区别。只答「协议、域名、路径」三部分得一半分。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-102","type":"comp","topic":"8.7 URL 与 Internet 应用","diff":"中","stem":"用户在浏览器地址栏输入 www.bjfu.edu.cn 后看到了学校主页。说明从输入域名到页面显示，DNS、HTTP 与 TCP/IP 各自承担了什么工作。","ref":"①DNS 解析：浏览器先查本地缓存，若无则向 DNS 服务器发起查询，逐级（根、顶级、权威）解析域名，得到该主机的 IP 地址。\n②建立连接：浏览器用该 IP 与服务器的 80 端口建立 TCP 连接（三次握手），保证可靠传输。\n③发送请求：浏览器按 HTTP 协议发出请求报文（如 GET / HTTP/1.1），报文中含请求的资源路径与头部信息。\n④服务器响应：服务器返回 HTTP 响应报文，正文是 HTML 文档。\n⑤传输与解析：HTTP 报文经 TCP 分段、IP 打包、链路层成帧后传输；浏览器收到后解析 HTML，再对页面引用的图片、样式、脚本重复上述过程。\n⑥渲染显示：浏览器按 HTML 与 CSS 渲染页面，呈现给用户。","exp":"采分点：①DNS 的作用是「域名→IP」；②TCP 提供可靠连接；③HTTP 承载请求与响应；④三者分工清楚（DNS 负责找地址、TCP 负责可靠传输、HTTP 负责内容格式）。只说「DNS 解析、HTTP 传输」过于笼统。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-103","type":"single","topic":"8.8 Internet 发展趋势","diff":"中","stem":"下列不属于 Internet 发展趋势的是（　）。","options":["运营产业化","应用商业化","互联全球化与宽带化","终端单一化"],"answer":[3],"exp":"Internet 的发展趋势是：运营产业化、应用商业化、互联全球化、互联宽带化、多业务综合平台化与智能化。终端不是走向单一，而是多样化（手机、平板、车机、物联网设备）。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-104","type":"single","topic":"8.8 Internet 发展趋势","diff":"中","stem":"下列技术中，属于当前 Internet 发展热点的是（　）。","options":["云计算、大数据、人工智能","机械制图、数控加工","印刷排版、图像扫描","光盘刻录、磁带备份"],"answer":[0],"exp":"课件把云计算、大数据、人工智能、互联网+ 列为当前 Internet 发展的热点方向，它们都建立在网络互联与数据汇聚的基础之上。其余三项属于传统制造与办公技术。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-105","type":"single","topic":"8.8 Internet 发展趋势","diff":"中","stem":"「互联宽带化」这一趋势的直接表现是（　）。","options":["网络协议种类减少","网络中的主机数量减少","接入速率不断提高，光纤与移动宽带普及","终端设备体积变大"],"answer":[2],"exp":"互联宽带化指接入带宽持续提升：光纤到户、4G/5G 移动宽带普及，使高清视频、云应用等大流量业务成为常态。它与主机数量、协议种类、终端体积没有直接关系。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-106","type":"multi","topic":"8.8 Internet 发展趋势","diff":"中","stem":"Internet 的发展趋势包括（　）。","options":["终端单一化","运营产业化","应用商业化","互联全球化"],"answer":[1,2,3],"exp":"前三项都是 Internet 的发展趋势（此外还有互联宽带化、多业务综合平台化与智能化）。终端不是走向单一，而是手机、平板、车机、物联网设备多样化并存。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）","optperm":true},"_unit":"u8"},{"qid":"cs.u8-107","type":"fill","topic":"8.8 Internet 发展趋势","diff":"中","stem":"Internet 的发展趋势可概括为：运营产业化、应用商业化、互联全球化、互联 ____、多业务综合平台化与智能化。","answers":["宽带化"],"exp":"互联宽带化指接入带宽持续提升，光纤与移动宽带普及，支撑高清视频、云计算等大流量应用。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"},{"qid":"cs.u8-108","type":"short","topic":"8.8 Internet 发展趋势","diff":"中","stem":"简述 Internet 的发展趋势，并各举一个当前的技术表现。","ref":"①运营产业化：网络运营成为独立的产业，形成运营商、内容提供商、云服务商分工协作的链条。②应用商业化：电子商务、在线教育、移动支付等成为主流商业模式。③互联全球化：跨国互联与全球内容分发，跨境业务依赖网络完成。④互联宽带化：光纤到户与 5G 普及，接入速率大幅提升。⑤多业务综合平台化、智能化：同一网络承载语音、视频、数据等多种业务，并结合云计算、大数据、人工智能提供智能化服务。","exp":"采分点：五条趋势齐全并各有一例。只背五条名词而无具体表现，最多得一半分。","meta":{"source":"第 8 章课件（8-计算机网络.pptx / 陈8 计算机网络.pdf）"},"_unit":"u8"}]}],"wrong":{"exitStreak":1},"mastery":{"wAll":0.4,"wRecent":0.6,"recentN":5,"weakBelow":60,"solidAt":85,"solidStreak":4,"passMinQ":4,"passRate":0.9,"dueDays":[1,3,7]},"codec":{"version":10,"gidBits":32,"budgetBytes":6000},"order":["g7b36b9f9","geb76ff8a","g5604cb4e","gbbf40dfe","g53d3c631","gc8006e41","gdde89a21","gffcece9c","gbf4af0af","gf58d538b","g986a45cb","g16fafab6","g390c53cf","gd341e104","g5caa97bb","g63505a11","g262242e2","g53357d53","g15895c5a","gb37205e6","ga8ff66f5","gf78a1598","g2312f909","gd84ac421","g531e9c29","g11a301b7","g9182d1cb","g5ac960f1","g879fc5c7","g7d406c09","ge31b0414","ga0a1269f","gd6d7ba22","g96ce59ac","g1d239cea","g40f44857","g039b0e40","g2f3b78a4","g01c4cc52","g8a075482","g60a43282","gc2a5be02","g429eefc9","g9336931d","g1ca6d6e6","g3929ecd5","g6973d129","g3abb4969","ge0a933a7","gb120c052","g7d8fc4da","g1b380426","g97d834a5","g741c176d","gf4dc7861","g1235df51","g4f107c97","g8fdb65e0","g698ac205","ge61b55d3","g667cadf8","gabc70a0d","g77e9b112","g445ffe28","g16cd76e7","gb3fdad90","gcb5ba655","gd0d46845","g54bc7b55","gf6075fe1","g25a2682d","g057bd0db","g3b63256f","gbfab8367","g03aab32a","gb636e3f9","g3dcab7a9","g614ccd92","g884fb846","ge937909f","g11f716f7","g8ec3308b","g1a5f3cef","g96f701f5","g242e98e4","ge2157664","gf18eec25","g8e96cd21","gf0386650","g09d71ed5","g92ff9098","g064ea04e","gc83c3a94","g4af76b06","g3da490b9","g0808d4bc","ge3203fc6","g6fa225e2","g7c9f9f44","g4a2157b0","g25025c87","g104b192e","ge7adff58","ga387e22f","gfa59440f","g08e3bcf7","ge01cfa65","g6dea2267","g13218d7e","g65e9e0ef","g79d528ac","g599a0546","g2517f440","ga595f820","gcf460211","g9f71e789","gb01e3f0c","g1eb06575","gb8113912","g807c5984","gdcf4f1fb","gd2696c88","gfa8310ce","gf2f53cbe","g7b98981e","g076213f8","g7e6a6487","g6b2e2652","g87551d5d","g19b18cab","gfcdcdb65","g6ddcc1a3","g94b7ac42","g5ac2baaf","gb7b5b440","g2b0e7157","g0bab589f","g7ad36dda","gb6546538","g81b30939","g9f373780","g48a39971","gc1a4a843","g480becd5","gf72b0129","g9d028d5b","g2916ada0","g04845edf","gab29a6c0","g40a8aff0","g8b4113dc","g1c55697c","g9ea354eb","geb042c04","ga75a360b","gb9126faa","g30861bf5","g07275d63","g53b65631","g271e0878","g29dcf4e5","g25945d4b","gc163bcf5","g6be7fbfc","gfed7562f","ge830a02d","gd76932b5","g02c72447","ge3ee2ce1","gcb43c1d8","gaff8d526","g6777446a","g6b0f5484","g7b16fc75","gb9384f7a","g65b101b4","ge86d921c","g0502c34c","g5552c324","g1fcbdb63","g4d9794e4","g0709c199","gc65f1f04","ge46f101d","g047c30f7","g3548609e","g3abb81aa","g5cb03c59","g755a072d","g0b5ee65f","gafff9c1a","g30fefd34","gdc0ad1a0","gb554f7ff","g9cb28e54","g58ce5356","g11ffb230","g64ca99d0","gd01d8957","ga192474e","gbad3e88e","g1eac9fdd","g45a1cb22","ge489ee95","g28737307","g99d841f4","g3ae29aa4","gee5a9af5","ga463db95","g2d14a96b","g19c5b86c","gfc497e47","g860dfe6f","gd52b6854","g5f2b382f","g81ed9139","g784b3f52","g0942dc38","g1cd7a593","g6d667048","g5d049ec5","g4da8a56b","gcb81d309","gd36e2b50","ga15b5260","gf00b39f7","ge0efc098","g27daa553","g521ec2c4","g87982a59","g36df1844","gc6ed8228","ge5d73644","g45556f93","g53e5df5a","g9131eaab","g18182317","gdf2d5991","gaac5c5a6","ge8c98d9d","g1b90f280","ge5d10cc9","gc2f7c458","g21672a80","ge829ef5e","g61883d92","gd88b8337","g86c30186","g723d03a0","gd124800f","gdc5a8de4","g0ce2855c","gf7183600","g7d8225db","g0bca8c14","gf2788df2","gd7ec85c4","gaf39f94d","gd9c02349","ge6b8955b","gd7ebc6e3","g9735b846","gd67600a0","g6b12c7a9","g7856223d","g91477aa8","g72c273ea","g39fcc785","g1d0267b8","g9e1ccec7","g4698a807","g606e7360","gefda3600","gcdb48269","g4fd7aefd","g06618860","g3484ce2c","g9013f833","gcc6c9698","g31f473ec","ga3c2551e","ga1c46d58","g9af476c8","gbb32c34f","g82231fdb","gb5f99f65","g751c3602","gd62ba5b7","gf870b686","g6e0ace30","g1a11f037","g377569ba","g005091ce","gf69b61b9","gdb7f9796","g0a829bba","g34e2ec81","g046909de","g392c3158","gb7b9c6a2","g1c82c70d","g0b383d9f","g8bccef7d","g20dd6ab5","g0754abd4","g9b86128e","g4bccab8d","g648df109","gcdf615a9","gf1d07828","g063bb02f","g90e5d869","g4803ead2","gca51813d","g9b90dd7c","g211dd90c","ga27b8728","gcf26d826","g97305b12","gc8c0be9f","gd18a7cc5","gf5f8c466","gbba38e34","g21a306a6","g0bb1ca08","g4fce4e00","g70c0d310","g16b5af71","g141d2034","g66273e63","gec1951de","gbf9c9d24","g0295fbc8","g0b510d14","g79e288b6","gd6b25d8b","g232fbc3b","g1a5c00e3","g34d0fc7d","g0ce7771b","gba7db737","g4bf631a0","g182e9cf3","ge8028d8f","gba8a3f81","g85a7aaca","g9834532e","gb3578cce","ged935acf","g4d3521a3","g65393667","ge7a49d7a","g62d2d2ad","gca252dd3","g34809955","g199ca519","gb44e9b2c","gffe1f78d","g256838a9","ga30571f5","gb1a66859","g859b1a44","g83f7c550","g47a3938d","gcfbc632d","ge5c0fd78","gb166ee1b","g3fe03929","g5944ee4a","g87a21103","g29dea8c8","gab893cb0","g9084d7af","g72f2d960","g05585003","gd6b12c60","gd3a885f5","gb06aad8a","g3ac4e044","ge26a99c7","g69fbd3f3","gd1e91b9a","gbad355af","g6156937f","gc4976239","g6cf9a331","g88bba261","g1683ddfe","g91329588","g4ce1266f","ge1a1df3b","g2a422c82","g8966d5ad","g575d9b24","g8f652ab8","g1ef33c40","gf6e5088a","g17cbd5c5","gb5b3c1d7","g9dfc35fa","g0d3e065f","gd6016c4c","g610c5d97","gac20c821","gb614020b","g320fd4bc","g922fe37c","g91bcb19a","g71eff3b9","g7861653f","g9167561f","g72c6c698","g87f7bc15","g1d18be7d","g682de451","ge5ee3a97","g0ee384cf","g425fe1ac","g47481aa2","g6de15ca0","g61f7ca7a","g6ce6ac6a","g61ee0c2d","gf7590d49","g5b7f5f97","gdea56c0e","g0301f0ad","g5c15e249","g7d85ae14","gbc551597","g68a3ca15","ge380db07","g9b358884","g1d769e69","gbb06b2bf","gf2fe26f3","g68496199","g78a0064e","g5545c120","gc17fc744","g367dd129","ga58c3d48","gdf702ad2","gf124bf86","g8c49adb8","g7c4f8a73","gec43edc2","g0c7afa3a","g4c41a4c4","gd1182805","ge5f204d3","g813692ab","g4b988942","g88ca27ce","g96c798b4","g48496d3f","gd5192563","g663b0242","g853ea0c6","g83cf961a","gf7bf2063","g84d05d74","gaeb1b19a","g618382e1","g6a223f53","g9544d813","gcb820abe","g386fe161","g9a0c591e","g98ee8bf6","gb4cc71ae","gd3780423","g11f35851","g2787f399","g039071a6","g12ae5152","g3683f7d2","g7f88c332","gf7220fe0","gc88218a7","g4bbd0c01","g72f27294","g5c933d6a","gbd02801c","geda4707a","gd3b39057","gb80adaa9","ge992ed26","ged75ac2f","gfe4e26d0","g590d6513","gee4ff3c3","g91990fcb","gad3d4a4e","ge1b977c3","g50dfd45b","g5e39de6b","g395d0208","g44055549","g5893523c","gc75d4eb6","g7ec741bb","g56a85716","g63d28a27","g69b42f55","gb78a12eb","gd22cf7e4","gea2300ee","g47bded58","gb61ea4d7","g38673333","g0546a8ed","gdec61e9c","gfad58297","gd46cd534","g59e9d96e","g7635907b","g331361d7","g565098d8","gd46bab12","gab8da80f","gcc1b5ae7","g061e9883","g7a4b0770","g83364f6e","g8971840e","g1567916c","g31627dbf","gebe9d47b","ga84b35e2","g4ace2010","g7a9276ff","ga98d73a6","g9058b4d2","ge4cf7f1b","g8ce1b9bd","g0eadbcd8","g0a4c6e4d","g7218c103","g271b3f51","g34f73ddb","g2e377cef","geafd4f2b","gd896823e","g21c0302f","gd3e275db","g115a119f","gb3a96c08","g60f07933","g809f9206","gdb5839ff","gfe559cf4","gf154bb7f","g53934aac","gb8fff518","ge3c25455","gf81fa9a3","ge0068075","g0578cdda","gb5683b44","gc131dea2","gef1b0c64","g18d9e9ac","gf4d44e88","g5597978e","gf9fd7b35","g468fad2e","g95a519cb","ge273ff95","g31926fe3","gecb9ed7d","g97804432","gd0ba4569","g119700fd","ga1b92ff5","g253daff3","gef50ec08","g37edb496","g666f81e6","gc2487d42","gf77d8646","g9ac47b75","gde0c2b8f","gb7f9fe74","gc4bde062","g4fa4a961","g859c9d87","gf4f2fd83","g63731ddf","g9ebb67b5","gb3799d0d","g8daadc69","gf61ada50","g157013bf","ga92ffb5c","gca2eb295","g55ba2786","gc9388a84","gff687187","g345f6ec4","g09ba9df6","gda1bcea7","ga5288acc","g40d7a7e6","g667b7738","g810ed989","g9cad1b0c","g5b8c4bca","g7e705d22","gaf000e88","gf726c363","g03ee1191","g97c6c2cd","gf7100c45","g1aa6cc18","g41a671eb","gc1278ec9","gf0edb25f","g2de9a636","g5ffebba2","gde102447","ge16a73ee","g62c67c2c","gea01ed10","gf943baaf","gaa58ef17","g01bf8f33","g27702a7c","g480e99d4","g0685d4ef","g2a39826e","gdeb8196f","g1708883f","gbe49de8d","gae294cc6","ga147005e","gc2323627","g0be918fc","g03b1e6fe","g1e857075","gf6da754b","g1d6d2b9b","g487db1a7","g02ce2119","g42166d92","g64fbd179","g31f6f2a0","gfadc502a","g50314a2a","g08577df1","g9df202bc","g9d70ba13","g11cd48d6","gb969e0f0","g58fbdc00","ge4c4be34","g45b68f72","g65a648fc","g788136cc","gfefc29f0","g197938cc","g53234bd1","gf4d9ab5a","gf935d0a1","g52b8e1a1","geea6ca11","g8c425be2","g23383ddf","g58d50319","ge4deaeff","g548548b3","gf3fbd0f0","g0f6d9de5","g9983d61e","gef65b67f","g7aac1ab7","gbf747999","g908ff632","g00c800bb","g29aefcc5","g66b3406f","gfc333988","gd4fe666a","g17b22100","g1fc34e26","g28f088b3","g25a358f4","gb71bd484","gec30ec1f","g1def4d3d","gc3f6842f","g0e31eea2","g4726273a","g9fffd27c","ga5c118b0","g46bd69b0","g239dfa7f","gd98a97d7","g27e1906f","ga5c863a2","gd254d10f","gdd560391","gd2d4f461","ge3206fb6","g90fa4f82","gea5051a6","gb883dd01","g6d226542","g94e4e3ea","gd2d3f445","g77b6a846","g5bd50165","g383aab82","g834ef7a5","g7985dce3","gb58d4317","g81f96778","g22ecf364","g86000d91","g259c170c","gfc38f49a","g71c4455a","g4f37e387","g70dfd539","gc5c5b7f5","gc89a0730","g10b41190","g9ded027e","g75627128","gb58b3a9b","gaff06362","g2de7ff2e","gcacaa77c","gf8f10dc3","g8c7e1dce","g1487e553","g1ee0767d","gf96a456f","g6e3a40c6","g34b48f9b","ge63963a7","ge36ecefb","g92008e36","geb7eb57d","g751645c8","ge94124da","gfdda41ff","g79f1b19b","gcf32fa8b","g3428db12","g8858e799","g20a855ce","gf022522b","g031a2ba4","ge589a257","g2bac2dd7","gbc4fdd29","gbfe5f248","gbb0df6c3","gba3d7699","g7c32036b","gf085df40","g7ff78144","g364e2ca0","g5574fc0b","g5760a939","gdd4a294d","g8644b80e","g2f65df33","g20dfb8f3","g9c68309f","gbccde705","gd42dd1aa","g67a08e97","g4b143706","gb7f41124","ga9c3b933","gc3dec284","gbec66549","gae5c6134","g97f0a83b","ga859d4a4","gb2dc3884","ga3396296","g1c686085","g6c33c990","g39b8679f","g81bf95b7","g0d271157","g62c630ab","g79cb7262","g0ed945bf","gbb19f36f","gd3669d3f","gb5b3e688","g7d7ee56c","g87a782d9","g4ea93f7a","g751066a5","gb0b2e9b3","ga49524ae","g548def89","g6fe23e8e","gb1f8d702","g9ddbcbd0","g30957a2a","g2783978a","gf6a70765","gd20e8494","gd9363d46","g6f746810","g8ac98223","g13cd915e","g8b693cc6","g0ff5718b","g2e1ab98f","gd527f5a6","g53d11445","g3f1f9125","g26fb92fe","gc1949df6","g705f29cf","ge02c998d","ged3739cb","g49a2d102","g1eb56166","g4603aec4","g68488780","g6977fc4c","ga8f8ebea","g23995cac","ge6d96aaf","g0b0785de","g93b5b5ae","g1371ca57","g8a20a636","g12fa5864","g06ed68df","g3150b1ac","g90615c4d","gc00c98f3","g2de65d70","g619c85be","g35b47564","g27fc97d6","g65c056aa","gf13f193d","g34be7961","g9c403606","g2f40610e","gcb106dd6","g3c312936","g97a49c34","gf6bc08d9","g4acf98f1","ge2182c54","g906ad220","g82b8cf07","g5f5afb99","g7754f051","gd48c18fa","gc9ed4e07","ga76c2311","g84621cc2","gd33c46fb","gbbf4d994","g2fba926b","g6f0a8339","g2359dc90","g5d8142bb","gcda68b56","g32168d2c","g21f3ac55","gdc8e9bd7","g498a01d0","g342bb6d8","gc653f918","gdac677a6","gdf5de807","gbc1099d6","gd9f7b8a5","gebd271a2","g86fc77ff","gab894684","gb0379923","g788208f2","g1dbf987a","gd1aa6ef1","g812e0e95","g8f75a681","g6f15a1dc","g188d142a","g27ccced1","gd8f6a68e","g8ae75243","ga3c5872e","gbf14c24b","gee7d07b2","gc96cf649","g8b0655b2","g8259ad78","g55cb6e19","g3a01b923","gaa925f5c","g3278fcf5","g893f98e3","gad878cc0","gdb3694a6","gf8f066d5","g646b82d3","g9834ecca","g6c2a0844","gbaccfdfa","g273ad52b","ge8255e15","gf01923b1","g7df72076","g3ea73e5c","gbe3879ae","g8dde7b4e","g519cf2ec","g2ea96766","g190c2b31","gc561cc40","g842eccc7","g6d334def","gcc706093","g5b548e79","g38181fb9","g613c072b","g7b70cc45","gc5f9a766","gfbf3967e","g4951c619","gda0c60c0","g907b1f18","gd389f7bd","g092ec92d","gaa144d51","g13940466","gb2051f4f","g748ecd8d","gf98e4df5","g2c274ab3","g92b45a8b","ge4ef4c7e","g8f2bdfed","gb83464b4","gb4330433","g4812c6d2","g0942a45c","g8a4c6875","g6122d77b","gfecc02ca","ge8006d3c","g8a19b658","gcd1845a2","g89f8561a","ge978d438","gc5af59fa","gfce0fb3e","ge17475e6","g86df50a7","gf1edce77","g3baa6712","g3b8d965c","gf0e85e95","g2dcd9a1f","ga276eac1","gbecb215f","ged38f116","gc450fdfe","g77d8bf47","g4c2d8806","gb0a06d05","g088cf6d0","g57570373","gb342a65d","gd10ddac7","g527fd5c8","g2a9498ee","gf25d89ef","g59c979ca","g9566b46e","ge0cf6c69","ga393cec7","gb524b4a6","gee959d2d","gf0a6bfbf","g8fb5b14f","g697fb618","gb1456986","g7e911e16","g3c038ad5","gaec103b0","g2c674b55","gf02ef848","g33711178","gacf4f246","gb1a8bd74","g8c0f6047","ga534b835","g1ee23efd","g04ab999d","gb5b68065","g02b93582","g55dad198","g5db31cd8","g32dfc0b2","g9718d3b9","gefd62de0","g918f61ed","g158aa06f","g00d24d83","gcedbd423","g77da6a73","g2b6417f9","gc5c3da30","g9fc69d95","ge4c1d368","g628df15f","gddb99436","g6333df1d","gbcb8ebf2","gdb9a18ab","g4fa68a60","g69f8caf1","g040e28d2","gad4a45d4","ge325afd7","gf24fa186","ga815aeca","g3d1bd527","ged81e4b4","g3b764cbc","g6178ece0","gff8841d4","g1502082d","g2753bfa1","g2f074350","g4b93b055","g3574828a","gd3c8c48b","gb36d64d1","gb54cc99e","g4935a29f","g3a580416","geb8ca501","g164f1fdf","g2544f8e6","g693767b0","g47d5cf31","gc25b1cd4","gd9d1e859","gd48f8c4d","ge19aaffb","gbe7de046","ga9fccf00","ga00ec99a","g7a7b9722","gb0db6651","g10029c4e","g42aabd56","gb8f9fe94","g6edc58c3","g04a2993a","g685d41ac","g2895dab7","g4067065c","g5c8a42ff","g376ffc5e","g82e522ee","gf7b2eceb","ge985415d","gb7339ce0","gb27f2665","g2e7d316a","g10dd14c2","g281a53d3","ga5689648","ga7637fdc","ge4a893fd","gcd18f7d6","g299ffd90","gd184034e","gd696b160","g4e152e55","g8a99e241","gcff8d920","g5e73b170","g97522da6","g43193b46","gc1e12c9e","gc5be3f08","g73c18a45","g2c367137","gdbb1fe6d","g83d71aaf","gdf973479","gd26be9fe","gb43758a8","g5d91321d","g807ecb9a","g1e9c8109","g0c72c143","gff36502d","geaa873fa","ge2cc0861","g175b04f1","g94923f81","g45ea723b","g160fd7f6","gaeaac5fa","g76d20b37","g38010e58","g0f5cb299","gc34a0014","gbafb48de","g76e069ce","g677da40a","gc644d6b2","g994cb161","g5c53c415","g98b8dc39","g59504006","g30ffb51d","gf914e4b8","g273a413c","g56cb2d18","gd57573dc","g93120e2d","gafc23d42","gd7794306","ge64b5513","g101259e8","gdda65693","g307a433d","g121443c7","g1c770280","gef83dfc1","g1449e75e","g9ef37883","g3258bb75","gc9ff951a","g3c1e2d4e","gc394723f","gb4c85102","ge0e82f2c","g9b9efa1f","gdd3e7164","gd57d25df","ge08d13f7","gfc939473","g33dbbc0c","gc257631e","g6061e833","g0659988f","gab6142a6","g6e0a2de3","gbc9019f3","gf2865e72","g0f3667a6","g4733567b","g4756de4b","g9038541f","g33b09a4c","g4cec8c5b","ga4df5768","g7e8d736d","g562de47b","g69db51e9","g008c79c1","gc7c536e9","gd31ec5c1","gaa4d6e86","ge3ec0196","g2c37b1ab","gba2848cd","g47950c2d","gc119ce97","gb17411e5","g1a8b2fd6","g57edd025","g8eaa856b","gc2dd9d7b","gb5b63262","g3dd95916","g63190b8d","g118c8226","g957c6da8","g7b2d0be3","geb433cff","g04e4005a","g8b9c0ebd","g44b32dd2","g18db568f","g8b77fbc7","gd8384ee9","g7007532c","ga9345400","ge3c0f644","gcd9d07c0","gd1ef7aed","g9cf809c3","g16ee5adc","g4bf0888a","g18446003","gd5f823c1","gc84e3c86","gb905f92a","g25fd5d89","g89c0b3dc","gc2baf00f","ge8ba4a9c","g2a2ab0d3","gf1c9a9e1","ge3c1fb9f","g15a5bd1e","g3e78065d","g3c112db8","gbc4ef69e","gfc0e63b5","g3c0849a3","ga5233d36","gbe7d8c08","g572106e5","g8477937b","g1aafa51d","g68c5554b","g2cf2263f","g79917188","g2806c93f","gc36acde4"],"retired":[],"storePrefix":"qb.site"};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>window.QB_SYNC_CFG={"env":"__ENV_ID__","key":"__PUBLISHABLE_KEY__","rpc":"","quiz":"global","codeKey":"csquiz_sync_code_v1"};</script>
+<script>/* qb-sync.js — 云端同步（手动上传 / 下载，不做任何自动网络请求）
+ *
+ * 与线上原方案C 完全同一套契约，保证老页面与新页面读写同一行、同一份数据：
+ *   环境      window.QB_SYNC.env
+ *   RPC       POST <env>.api.tcloudbasegateway.com/v1/rdb/rest/rpc/quiz_pull | quiz_push
+ *   鉴权      Authorization: Bearer <publishable key>
+ *   行键      (同步码, 'global')，全站一行
+ *   payload   {v:1, quiz:'global', at, ans:{gid:{picked,text,done,ok,self,upd}}, del:{gid:t}, fav:{gid:{on,t}}}
+ *   同步码    localStorage['csquiz_sync_code_v1']（与旧页面共用，用户不用重填）
+ *
+ * 内核内部记录用规范 3.2 的短键（ok/at/p/x/self），payload 用旧站的长键。
+ * 转换集中在本文件的 toRemote / fromRemote，两端格式谁都不改，所以新旧页面可以并存。
+ */
+(function (root) {
+  'use strict';
+
+  var QB = root.QB;
+  if (!QB) return;
+
+  function Sync(site, cfg) {
+    this.site = site;
+    this.cfg = cfg || {};
+    this.env = this.cfg.env || '';
+    this.key = this.cfg.key || '';
+    this.code = this.cfg.code || '';
+    this.quiz = this.cfg.quiz || 'global';
+    this.base = this.cfg.rpc || ('https://' + this.env + '.api.tcloudbasegateway.com/v1/rdb/rest/rpc/');
+    this.busy = false;
+    this.lastMsg = '';
+    this.lastAt = 0;
+    this.codeKey = this.cfg.codeKey || 'csquiz_sync_code_v1';
+    this.stateKey = 'qb.site.sync.v1';
+    var st = this._load();
+    if (!this.code && st.code) this.code = st.code;
+  }
+
+  Sync.prototype._load = function () {
+    try {
+      var raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.stateKey) : null;
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  };
+
+  Sync.prototype._save = function (patch) {
+    var st = this._load();
+    for (var k in patch) st[k] = patch[k];
+    st.at = Date.now();
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.stateKey, JSON.stringify(st)); } catch (e) {}
+  };
+
+  Sync.prototype.configured = function () {
+    return !!this.env && this.key.length > 20 && this.key.indexOf('__') !== 0;
+  };
+
+  Sync.prototype.enabled = function () { return this.configured() && !!this.code; };
+
+  Sync.prototype.setCode = function (v) {
+    this.code = QB.cleanText(v).trim().toUpperCase();
+    this._save({ code: this.code });
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.codeKey, this.code); } catch (e) {}
+  };
+
+  Sync.prototype.readSharedCode = function () {
+    try {
+      var v = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.codeKey) : '';
+      if (v && !this.code) { this.code = v; }
+      return this.code || '';
+    } catch (e) { return this.code || ''; }
+  };
+
+  /* ---------- 记录形态转换 ---------- */
+
+  function toRemote(rec) {
+    if (!rec) return null;
+    var picked = Array.isArray(rec.p) ? rec.p.slice(0, 16) : [];
+    var text = rec.x == null ? '' : String(rec.x).slice(0, 2000);
+    return {
+      picked: picked,
+      text: text,
+      done: rec.ok !== null || picked.length > 0 || text.length > 0,
+      ok: rec.ok === true ? true : (rec.ok === false ? false : null),
+      self: rec.self === true ? true : null,
+      upd: typeof rec.at === 'number' ? rec.at : 0
+    };
+  }
+
+  function fromRemote(r) {
+    if (!r || typeof r !== 'object') return null;
+    var rec = { ok: r.ok === true ? true : (r.ok === false ? false : null), at: typeof r.upd === 'number' ? r.upd : Date.now() };
+    if (Array.isArray(r.picked) && r.picked.length) {
+      rec.p = r.picked.filter(function (k) { return typeof k === 'number' && k >= 0 && k < 16; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (typeof r.text === 'string' && r.text) rec.x = QB.cleanText(r.text);
+    if (r.self === true) rec.self = true;
+    return rec;
+  }
+
+  Sync.prototype._localSnap = function () {
+    var site = this.site;
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var known = {};
+    site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    Object.keys(ans).forEach(function (g) {
+      if (!known[g]) return;
+      var r = toRemote(ans[g]);
+      if (r) snap.ans[g] = r;
+    });
+    Object.keys(fav).forEach(function (g) { if (known[g]) snap.fav[g] = { on: true, t: fav[g] || 0 }; });
+    return snap;
+  };
+
+  Sync.prototype._remoteSnap = function (payload) {
+    var known = {};
+    this.site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    var a = (payload && payload.ans) || {};
+    var d = (payload && payload.del) || {};
+    var f = (payload && payload.fav) || {};
+    Object.keys(a).forEach(function (g) {
+      if (!known[g]) return;
+      var r = fromRemote(a[g]);
+      if (r) snap.ans[g] = toRemote(r);
+    });
+    Object.keys(d).forEach(function (g) { if (known[g] && typeof d[g] === 'number') snap.del[g] = d[g]; });
+    Object.keys(f).forEach(function (g) {
+      if (known[g] && f[g] && typeof f[g] === 'object') snap.fav[g] = { on: f[g].on === true, t: typeof f[g].t === 'number' ? f[g].t : 0 };
+    });
+    return snap;
+  };
+
+  /* 合并：并集，同一条取 upd 较新者；墓碑优先 */
+  function combine(a, b) {
+    var out = { ans: {}, del: {}, fav: {} };
+    [b, a].forEach(function (src) {
+      Object.keys(src.ans).forEach(function (g) {
+        var cur = out.ans[g];
+        if (!cur || (src.ans[g].upd || 0) >= (cur.upd || 0)) out.ans[g] = src.ans[g];
+      });
+    });
+    var dels = {};
+    [a, b].forEach(function (src) {
+      Object.keys(src.del).forEach(function (g) { dels[g] = Math.max(dels[g] || 0, src.del[g]); });
+    });
+    Object.keys(dels).forEach(function (g) {
+      var rec = out.ans[g];
+      if (!rec || dels[g] >= (rec.upd || 0)) { delete out.ans[g]; out.del[g] = dels[g]; }
+    });
+    var keys = {};
+    Object.keys(a.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(b.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(keys).forEach(function (k) {
+      var x = a.fav[k], y = b.fav[k];
+      out.fav[k] = (x && y) ? ((x.t || 0) >= (y.t || 0) ? x : y) : (x || y);
+    });
+    return out;
+  }
+
+  Sync.prototype._apply = function (snap) {
+    var site = this.site;
+    var ans = site.allAns(), fav = site.allFav();
+    Object.keys(snap.ans).forEach(function (g) {
+      var incoming = fromRemote(snap.ans[g]);
+      if (incoming) ans[g] = QB.mergeRecord(ans[g] || null, incoming);
+    });
+    Object.keys(snap.del).forEach(function (g) { delete ans[g]; });
+    Object.keys(snap.fav).forEach(function (g) { if (snap.fav[g].on) fav[g] = snap.fav[g].t || Date.now(); else delete fav[g]; });
+    site.store.set('ans', ans);
+    site.store.set('fav', fav);
+  };
+
+  Sync.prototype._payload = function (snap) {
+    var ans = {};
+    Object.keys(snap.ans).forEach(function (g) {
+      var r = snap.ans[g];
+      ans[g] = { picked: r.picked, text: r.text, done: r.done, ok: r.ok, self: r.self, upd: r.upd };
+    });
+    return { v: 1, quiz: this.quiz, at: Date.now(), ans: ans, del: snap.del, fav: snap.fav };
+  };
+
+  /* ---------- 网络 ---------- */
+
+  Sync.prototype._rpc = function (fn, body) {
+    var self = this;
+    return fetch(this.base + fn, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.key
+      },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function (text) {
+      // 统一按 UTF-8 文本解析，避免响应头缺 charset 时按 latin-1 解出乱码
+      var json;
+      try { json = JSON.parse(text); } catch (e) { throw new Error('云端返回非 JSON'); }
+      if (json && json.ok === false && json.error === 'conflict') return json;
+      if (!json || json.ok === false) throw new Error((json && json.error) || '云端返回异常');
+      return json;
+    });
+  };
+
+  Sync.prototype._guard = function () {
+    if (!this.configured()) return '同步未配置（缺少环境或 Key）';
+    if (!this.code) return '请先填写并保存同步码';
+    if (this.busy) return '正在同步中';
+    return null;
+  };
+
+  Sync.prototype.upload = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+
+    function once() {
+      return self._rpc('quiz_pull', { p_code: self.code, p_quiz: self.quiz }).then(function (r) {
+        var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+        return self._rpc('quiz_push', {
+          p_code: self.code, p_quiz: self.quiz,
+          p_base_rev: r.rev || 0, p_payload: self._payload(merged)
+        }).then(function (res) { return { res: res, merged: merged }; });
+      });
+    }
+
+    return once().then(function (x) {
+      if (x.res && x.res.ok === false && x.res.error === 'conflict') return once();   // 被别的设备抢先，重来一次
+      self._apply(x.merged);
+      self._save({ rev: x.res.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(x.merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.download = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+    return this._rpc('quiz_pull', { p_code: this.code, p_quiz: this.quiz }).then(function (r) {
+      var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+      self._apply(merged);
+      self._save({ rev: r.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.pending = function () {
+    var st = this._load();
+    var since = st.at || 0;
+    var n = 0;
+    var ans = this.site.allAns();
+    Object.keys(ans).forEach(function (g) { if ((ans[g].at || 0) > since) n++; });
+    return n;
+  };
+
+  root.QBSync = { create: function (site, cfg) { return new Sync(site, cfg); }, toRemote: toRemote, fromRemote: fromRemote };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-page.js — 练习页渲染层
+ * 只读 window.QB_SITE（站点定义 + 本题组题目），所有状态变更走 QB 内核（规范 6.4）。
+ */
+(function () {
+  'use strict';
+
+  var def = window.QB_SITE;
+  var meta = window.QB_META || {};
+  if (!def) return;
+
+  var site = QB.create(def);
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var S = {
+    mode: 'seq',
+    type: '',
+    diff: '',
+    kw: '',
+    list: [],
+    idx: 0,
+    shown: {},       // qid -> true，已揭晓答案
+    redo: {},        // qid -> true，本题正在重做，忽略旧记录
+    draft: {}        // qid -> 当前输入
+  };
+
+  var DIFF_ORDER = { '易': 0, '中': 1, '难': 2 };
+  var TYPE_ORDER = Object.keys(def.types || {});
+
+  /* ------------------------------------------------------------ 路由 */
+
+  function readRoute() {
+    var h = location.hash.replace(/^#/, '');
+    var p = new URLSearchParams(h);
+    S.mode = p.get('mode') || 'seq';
+    S.type = p.get('t') || '';
+    S.diff = p.get('d') || '';
+    S.kw = p.get('kw') || '';
+    var qid = p.get('q');
+    if (qid) S.pendingQid = qid;
+  }
+
+  function writeRoute() {
+    var p = new URLSearchParams();
+    if (S.mode !== 'seq') p.set('mode', S.mode);
+    if (S.type) p.set('t', S.type);
+    if (S.diff) p.set('d', S.diff);
+    if (S.kw) p.set('kw', S.kw);
+    var q = S.list[S.idx];
+    if (q) p.set('q', q.qid);
+    var url = location.pathname + '#' + p.toString();
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// 下可能被拒，忽略 */ }
+  }
+
+  /* ------------------------------------------------------------ 组卷 */
+
+  function buildList() {
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var all = site.questions.slice();
+
+    if (S.type) all = all.filter(function (q) { return q.type === S.type; });
+    if (S.diff) all = all.filter(function (q) { return q.diff === S.diff; });
+    if (S.kw) {
+      var kw = S.kw.toLowerCase();
+      all = all.filter(function (q) {
+        return (q.stem + ' ' + q.topic + ' ' + (q.exp || '')).toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+
+    if (S.mode === 'wrong') all = all.filter(function (q) { return wrong[q._gid]; });
+    else if (S.mode === 'fav') all = all.filter(function (q) { return fav[q._gid]; });
+    else if (S.mode === 'undone') all = all.filter(function (q) { return !ans[q._gid]; });
+
+    if (S.mode === 'random') {
+      for (var i = all.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+    }
+    S.list = all;
+    if (S.pendingQid) {
+      var k = all.findIndex(function (q) { return q.qid === S.pendingQid; });
+      if (k >= 0) S.idx = k;
+      S.pendingQid = null;
+    }
+    if (S.idx >= all.length) S.idx = Math.max(0, all.length - 1);
+  }
+
+  /* ------------------------------------------------------------ 渲染 */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // 显示优先用构建期排好版的视图（公式是内联 SVG），没有就转义纯文本
+  function view(q, field, fallback) {
+    if (q.views && q.views[field] != null) return q.views[field];
+    var raw = fallback !== undefined ? fallback : q[field];
+    return esc(raw).replace(/\n/g, '<br>');
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function renderStats() {
+    var st = site.stats(def.units.length === 1 ? def.units[0].key : null);
+    var box = $('#stats');
+    box.innerHTML = '';
+    var items = [
+      ['进度', st.answered + ' / ' + st.total, st.total ? Math.round(100 * st.answered / st.total) : 0],
+      ['正确率', st.rate == null ? '—' : st.rate + '%', st.rate || 0],
+      ['错题', String(st.wrong), 0],
+      ['收藏', String(st.fav), 0]
+    ];
+    items.forEach(function (it) {
+      var c = el('div', 'stat');
+      c.appendChild(el('div', 'stat-k', it[0]));
+      c.appendChild(el('div', 'stat-v', it[1]));
+      if (it[2]) {
+        var bar = el('div', 'stat-bar');
+        var fill = el('i');
+        fill.style.width = it[2] + '%';
+        bar.appendChild(fill);
+        c.appendChild(bar);
+      }
+      box.appendChild(c);
+    });
+    var label = def.units.length === 1 ? '题组口径' : '题库集口径（gid 去重）';
+    $('#stats').setAttribute('data-scope', label);
+  }
+
+  function renderFilters() {
+    var tsel = $('#f-type');
+    if (tsel.options.length <= 1) {
+      TYPE_ORDER.forEach(function (t) {
+        var o = el('option', null, def.types[t].label || t);
+        o.value = t;
+        tsel.appendChild(o);
+      });
+    }
+    tsel.value = S.type;
+    $('#f-diff').value = S.diff;
+    $('#f-kw').value = S.kw;
+    $$('#modes button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.mode === S.mode);
+    });
+  }
+
+  function optionMark(q, i) {
+    return String.fromCharCode(65 + i);
+  }
+
+  function renderCard() {
+    var card = $('#card');
+    card.innerHTML = '';
+    var q = S.list[S.idx];
+
+    if (!q) {
+      var empty = el('div', 'empty');
+      empty.appendChild(el('div', 'empty-t', S.mode === 'wrong' ? '错题本是空的' : (S.mode === 'fav' ? '还没有收藏' : '没有符合条件的题目')));
+      empty.appendChild(el('p', 'empty-s', S.mode === 'wrong'
+        ? '答错的题会自动进入这里；在错题本里做对一次才会移出。'
+        : '换个筛选条件，或者切回顺序练习。'));
+      card.appendChild(empty);
+      $('#nav').innerHTML = '';
+      return;
+    }
+
+    var decl = def.types[q.type] || {};
+    var rec = site.get(q._gid);
+    // 错题本里默认让人重做：不预置上次的选项、也不提前摊开答案。
+    // 点「重做」的题同理；其余模式仍按「做过就显示结果」的老规矩。
+    var redoing = !!S.redo[q.qid] || (S.mode === 'wrong' && !S.shown[q.qid]);
+    var revealed = !redoing && (!!S.shown[q.qid] || (rec && rec.ok !== null));
+    var fav = site.allFav()[q._gid];
+
+    var head = el('div', 'q-head');
+    var tag = el('span', 'tag tag-type', decl.label || q.type);
+    head.appendChild(tag);
+    head.appendChild(el('span', 'tag tag-diff d-' + (DIFF_ORDER[q.diff] != null ? DIFF_ORDER[q.diff] : 1), q.diff));
+    head.appendChild(el('span', 'q-topic', q.topic));
+    var no = el('span', 'q-no', (S.idx + 1) + ' / ' + S.list.length);
+    head.appendChild(no);
+    card.appendChild(head);
+
+    var stem = el('div', 'q-stem');
+    stem.innerHTML = view(q, 'stem');
+    card.appendChild(stem);
+
+    if (q.media && q.media.img) {
+      var im = el('img', 'q-img');
+      im.src = q.media.img;
+      im.alt = '题图';
+      card.appendChild(im);
+    }
+
+    var area = el('div', 'q-area');
+
+    if (decl.answerShape === 'choice') {
+      var opts = el('div', 'opts');
+      var picked = redoing ? (S.draft[q.qid] || [])
+        : ((rec && rec.p) ? rec.p.slice() : (S.draft[q.qid] || []));
+      q.options.forEach(function (text, i) {
+        var b = el('button', 'opt');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        if (picked.indexOf(i) >= 0) b.classList.add('picked');
+        if (revealed) {
+          b.disabled = true;
+          if ((q.answer || []).indexOf(i) >= 0) b.classList.add('right');
+          else if (picked.indexOf(i) >= 0) b.classList.add('wrong');
+        }
+        var k = el('span', 'opt-k', optionMark(q, i));
+        b.appendChild(k);
+        var ot = el('span', 'opt-t');
+        ot.innerHTML = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(text);
+        b.appendChild(ot);
+        b.addEventListener('click', function () { pick(q, decl, i); });
+        opts.appendChild(b);
+      });
+      area.appendChild(opts);
+      if (decl.judge === 'set' && !revealed) {
+        var tip = el('p', 'hint', '多选题：选好后点「提交」');
+        area.appendChild(tip);
+      }
+    } else if (decl.answerShape === 'tokenList') {
+      var inp = el('input', 'in');
+      inp.type = 'text';
+      inp.placeholder = '在此填写答案';
+      inp.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      inp.disabled = revealed;
+      inp.addEventListener('input', function () { S.draft[q.qid] = inp.value; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(q, decl); });
+      area.appendChild(inp);
+    } else {
+      var ta = el('textarea', 'ta');
+      ta.placeholder = '写出你的答案或关键步骤，提交后与参考答案对照自评';
+      ta.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      ta.disabled = revealed;
+      ta.rows = 5;
+      ta.addEventListener('input', function () { S.draft[q.qid] = ta.value; });
+      area.appendChild(ta);
+    }
+    card.appendChild(area);
+
+    var bar = el('div', 'q-bar');
+    if (!revealed) {
+      var sub = el('button', 'btn primary', '提交');
+      sub.addEventListener('click', function () { submit(q, decl); });
+      bar.appendChild(sub);
+      if (decl.judge === 'rubric') {
+        bar.appendChild(el('span', 'hint', '主观题：提交后对照参考答案自评'));
+      }
+      var peek = el('button', 'btn ghost', '看答案');
+      peek.addEventListener('click', function () { S.shown[q.qid] = true; render(); });
+      bar.appendChild(peek);
+    } else {
+      // 只点过「看答案」还没作答时 rec 为空，别显示成「待自评」
+      var vClass = !rec ? 'mid' : (rec.ok === true ? 'ok' : (rec.ok === false ? 'bad' : 'mid'));
+      var vText = !rec ? '未作答 · 仅看答案' : (rec.ok === true ? '✓ 答对' : (rec.ok === false ? '✗ 答错' : '待自评'));
+      var verdict = el('div', 'verdict ' + vClass);
+      verdict.textContent = vText;
+      bar.appendChild(verdict);
+      if (rec && rec.c != null && rec.ok === false) bar.appendChild(el('span', 'hint', '得分率 ' + Math.round(rec.c * 100) + '%'));
+      var again = el('button', 'btn', '重做本题');
+      again.addEventListener('click', function () { redoOne(q); });
+      bar.appendChild(again);
+    }
+    var favBtn = el('button', 'btn ghost' + (fav ? ' on' : ''), fav ? '★ 已收藏' : '☆ 收藏');
+    favBtn.addEventListener('click', function () {
+      site.toggleFav(q._gid);
+      render();
+    });
+    bar.appendChild(favBtn);
+    if (rec && site.allWrong()[q._gid]) {
+      var sup = el('button', 'btn ghost', '移出错题本');
+      sup.addEventListener('click', function () { site.suppress(q._gid); render(); });
+      bar.appendChild(sup);
+    }
+    card.appendChild(bar);
+
+    if (revealed) {
+      var exp = el('div', 'exp');
+      exp.appendChild(el('div', 'exp-h', '答案与解析'));
+      var ansText = answerText(q, decl);
+      if (ansText) {
+        var a = el('p', 'exp-a');
+        a.innerHTML = '<b>答案：</b>' + ansText;
+        exp.appendChild(a);
+      }
+      if (q.exp) {
+        var p = el('p', 'exp-p');
+        p.innerHTML = view(q, 'exp');
+        exp.appendChild(p);
+      }
+      if (q.meta && q.meta.source) {
+        exp.appendChild(el('p', 'exp-src', '来源：' + q.meta.source + (q.meta.paperNo ? ' 第 ' + q.meta.paperNo + ' 题' : '')));
+      }
+      if (decl.judge === 'rubric' && rec && rec.ok === null) {
+        var self = el('div', 'self');
+        self.appendChild(el('span', 'hint', '自评：'));
+        [['达标', true, null], ['部分达标', false, 0.5], ['未达标', false, 0]].forEach(function (t) {
+          var b = el('button', 'btn small', t[0]);
+          b.addEventListener('click', function () { selfJudge(q, t[1], t[2]); });
+          self.appendChild(b);
+        });
+        exp.appendChild(self);
+      }
+      card.appendChild(exp);
+    }
+
+    var nav = $('#nav');
+    nav.innerHTML = '';
+    var prev = el('button', 'btn', '← 上一题');
+    prev.disabled = S.idx === 0;
+    prev.addEventListener('click', function () { go(S.idx - 1); });
+    var next = el('button', 'btn primary', '下一题 →');
+    next.disabled = S.idx >= S.list.length - 1;
+    next.addEventListener('click', function () { go(S.idx + 1); });
+    nav.appendChild(prev);
+    if (S.mode === 'wrong' && S.list.length) {
+      var all = el('button', 'btn small', '全部重做');
+      all.title = '清空本轮在错题本里的作答状态，从头再做一遍';
+      all.addEventListener('click', function () {
+        S.list.forEach(function (x) { delete S.shown[x.qid]; delete S.draft[x.qid]; S.redo[x.qid] = true; });
+        S.idx = 0;
+        render();
+        flash('已清空本轮作答，从头开始');
+      });
+      nav.appendChild(all);
+    }
+    nav.appendChild(el('span', 'nav-mid', (S.idx + 1) + ' / ' + S.list.length));
+    nav.appendChild(next);
+  }
+
+  function answerText(q, decl) {
+    if (decl.answerShape === 'choice') {
+      return (q.answer || []).map(function (i) {
+        var t = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(q.options[i]);
+        return optionMark(q, i) + '. ' + t;
+      }).join('；');
+    }
+    if (decl.answerShape === 'tokenList') {
+      var list = (q.views && q.views.answers && q.views.answers.length) ? q.views.answers : (q.answers || []).map(esc);
+      return list.join(' / ');
+    }
+    return (q.views && q.views.ref) ? q.views.ref : (q.ref ? esc(String(q.ref)) : '');
+  }
+
+  /* ------------------------------------------------------------ 交互 */
+
+  // 重新作答一道题：清掉本次会话的揭晓标记与草稿，回到未作答状态
+  function redoOne(q) {
+    S.redo[q.qid] = true;
+    delete S.shown[q.qid];
+    delete S.draft[q.qid];
+    render();
+    flash('已清空，可以重做了');
+  }
+
+  function pick(q, decl, i) {
+    var cur = (S.draft[q.qid] || []).slice();
+    if (decl.judge === 'set') {
+      var k = cur.indexOf(i);
+      if (k >= 0) cur.splice(k, 1); else cur.push(i);
+      S.draft[q.qid] = cur;
+      renderCard();
+    } else {
+      S.draft[q.qid] = [i];
+      submit(q, decl);
+    }
+  }
+
+  function submit(q, decl) {
+    var input = { picked: S.draft[q.qid] || [], text: S.draft[q.qid] || '' };
+    if (decl.answerShape === 'choice') input = { picked: S.draft[q.qid] || [] };
+    else input = { text: S.draft[q.qid] || '' };
+
+    if (decl.answerShape === 'choice' && (!input.picked || !input.picked.length)) {
+      flash('先选一个选项');
+      return;
+    }
+    if (decl.answerShape !== 'choice' && !String(input.text).trim()) {
+      flash('先写下答案');
+      return;
+    }
+
+    var res = QB.judge(q, decl, input);
+    var patch = { ok: res.ok, at: Date.now(), m: S.mode };
+    if (decl.replay === 'mask' && input.picked) patch.p = input.picked;
+    if (decl.replay === 'text' && input.text != null) patch.x = String(input.text);
+    if (res.credit != null) patch.c = res.credit;
+    if (res.ok === null) patch.self = false;
+
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && res.ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  function selfJudge(q, ok, credit) {
+    var patch = { ok: ok, at: Date.now(), m: S.mode, self: true };
+    if (credit != null) patch.c = credit;
+    var rec = site.get(q._gid);
+    if (rec && rec.x != null) patch.x = rec.x;
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  /* 翻题后不把页面拉回顶部。
+     只在题卡顶部已经滚出视野上方（rect.top < 8）时，把它瞬时拉回视野；
+     卡片顶部还在视野里就完全不动。用瞬时滚动、不用 smooth——
+     平滑滚动会和滑动翻题的滑出动画叠在一起，观感就是「回弹」。 */
+  function keepCardInView() {
+    var c = $('#card');
+    if (!c) return;
+    var top = c.getBoundingClientRect().top;
+    if (top >= 8) return;
+    var y = (window.scrollY || window.pageYOffset || 0) + top - 8;
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
+
+  function go(i) {
+    if (i < 0 || i >= S.list.length) return;
+    S.idx = i;
+    render();
+    keepCardInView();
+  }
+
+  var flashTimer = null;
+  function flash(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  /* ------------------------------------------------------------ 掌握度 */
+
+  function renderMastery() {
+    var rows = site.masteryAll().filter(function (r) { return r.n > 0; });
+    var box = $('#mastery');
+    box.innerHTML = '';
+    if (!rows.length) {
+      box.appendChild(el('p', 'hint', '还没有作答记录，掌握度会在作答后出现。'));
+      return;
+    }
+    var table = el('table', 'mt');
+    var thead = el('thead');
+    var tr = el('tr');
+    ['知识点', '得分', '状态', '作答数'].forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr2 = el('tr');
+      tr2.appendChild(el('td', 'mt-t', r.topic));
+      tr2.appendChild(el('td', 'mt-s', String(r.score)));
+      var lv = el('td');
+      lv.appendChild(el('span', 'lv ' + (r.level === '已掌握' ? 'lv-ok' : (r.level === '薄弱' ? 'lv-bad' : 'lv-mid')), r.level));
+      tr2.appendChild(lv);
+      tr2.appendChild(el('td', 'mt-n', String(r.n)));
+      tb.appendChild(tr2);
+    });
+    table.appendChild(tb);
+    box.appendChild(table);
+  }
+
+  /* ------------------------------------------------------------ 导出导入 */
+
+  function initTransfer() {
+    var sel = $('#x-scope');
+    if (def.units.length === 1) {
+      sel.innerHTML = '';
+      var o = el('option', null, '本题库');
+      o.value = 'unit:' + def.units[0].key;
+      sel.appendChild(o);
+    } else {
+      var s1 = el('option', null, '全站');
+      s1.value = 'site:';
+      sel.appendChild(s1);
+      def.units.forEach(function (u) {
+        var o2 = el('option', null, u.label + ' ' + u.title);
+        o2.value = 'unit:' + u.key;
+        sel.appendChild(o2);
+      });
+    }
+
+    $('#x-do').addEventListener('click', function () {
+      var v = sel.value.split(':');
+      try {
+        var code = site.encode(v[0], v[1]);
+        $('#x-code').value = code;
+        $('#x-info').textContent = '已生成 ' + code.length + ' 字符（预算 ' + site.budget + '）'
+          + (code.length > site.budget ? '，超出预算，建议改用题组作用域' : '');
+      } catch (e) {
+        $('#x-info').textContent = '生成失败：' + e.message;
+      }
+    });
+
+    $('#x-copy').addEventListener('click', function () {
+      var ta = $('#x-code');
+      if (!ta.value) return flash('先生成导出码');
+      ta.select();
+      try { document.execCommand('copy'); flash('已复制'); } catch (e) { flash('请手动复制'); }
+    });
+
+    $('#x-import').addEventListener('click', function () {
+      var code = $('#x-code').value.trim();
+      if (!code) return flash('请粘贴导出码');
+      try {
+        var r = site.importCode(code);
+        $('#x-info').textContent = '已导入 ' + r.count + ' 条（' + r.kind + ':' + (r.key || '全站') + '），作用域外记录未改动';
+        reload();
+      } catch (e) {
+        $('#x-info').textContent = '导入失败：' + e.message;
+      }
+    });
+
+    $('#x-undo').addEventListener('click', function () {
+      if (site.undoImport()) { $('#x-info').textContent = '已撤销上次导入'; reload(); }
+      else $('#x-info').textContent = '没有可撤销的导入';
+    });
+
+    $('#reset').addEventListener('click', function () {
+      if (!confirm('清空本题库在本机的作答、错题与收藏记录？此操作不可撤销。')) return;
+      site.resetScope(def.units.length === 1 ? 'unit' : 'site', def.units.length === 1 ? def.units[0].key : '');
+      S.shown = {}; S.redo = {}; S.draft = {};
+      reload();
+      flash('已清空');
+    });
+  }
+
+  /* ------------------------------------------------------------ 云同步 */
+
+  function initCloud() {
+    var wrap = $('#cloud-wrap');
+    if (!wrap) return;
+    var cfg = window.QB_SYNC_CFG;
+    if (!cfg || !window.QBSync) return;
+    wrap.style.display = '';
+
+    var sync = window.QBSync.create(site, cfg);
+    var codeInput = $('#s-code');
+    var info = $('#s-info');
+    var saved = sync.readSharedCode();
+    if (saved) codeInput.value = saved;
+
+    function say(msg) { info.textContent = msg; }
+
+    $('#s-save').addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (v.length < 10) return say('同步码至少 10 位（它是唯一凭证）');
+      sync.setCode(v);
+      codeInput.value = sync.code;
+      say('已保存，本机所有题库共用这个同步码');
+    });
+
+    function run(fn, label) {
+      var why = sync._guard();
+      if (why) return say(why);
+      say(label + '中…');
+      fn().then(function (r) {
+        say(label + '完成，云端共 ' + r.count + ' 条记录');
+        render();
+      }).catch(function (e) {
+        say(label + '失败：' + e.message);
+      });
+    }
+
+    $('#s-up').addEventListener('click', function () { run(function () { return sync.upload(); }, '上传'); });
+    $('#s-down').addEventListener('click', function () { run(function () { return sync.download(); }, '下载'); });
+
+    var pend = sync.pending();
+    say(pend ? ('有 ' + pend + ' 条本机改动尚未上传') : '同步码与云端一致时即可手动上传 / 下载');
+  }
+
+  /* ------------------------------------------------------------ 手势翻题 */
+
+  /* 左滑 → 下一题，右滑 → 上一题。所有题库共用这一份实现，页面不再各自绑定。
+     翻页走 go()，与「上一题 / 下一题」按钮同一条路径，不另起一套状态。
+     判定：水平位移 ≥ 56px、水平 ≥ 垂直 × 1.2、时长 ≤ 1.2s；
+     起手点在输入控件 / 控制区 / 折叠面板 / 可横向滚动的公式块内不触发；
+     纵向滑动超过阈值即判定为滚动并让位，全程 passive，不抢页面滚动。 */
+  function initSwipe() {
+    var MIN_X = 56;      // 触发所需最小水平位移
+    var LOCK_X = 12;     // 锁定为横向手势的位移
+    var LOCK_Y = 14;     // 纵向位移超过它且大于横向 → 判定为滚动
+    var SLOPE = 1.2;
+    var MAX_MS = 1200;
+    var EDGE = 24;       // 避开 iOS Safari 的边缘侧滑返回
+    var FOLLOW = 0.35;   // 拖动时卡片跟手系数
+    var ANIM_MS = 150;
+
+    var sx = 0, sy = 0, st = 0, tracking = false, locked = false, animating = false;
+    var muteUntil = 0;   // 滑动后短暂屏蔽 click，避免顺带点掉选项
+
+    function card() { return $('#card'); }
+
+    var SKIP = '.top, .ctl, details, .foot, #toast, input, textarea, select, [contenteditable="true"]';
+
+    // 起手点排除：交互控件、控制区，以及自身可横向滚动的容器（长公式、代码块）
+    function skip(el) {
+      if (!el || !el.closest) return true;
+      if (el.closest(SKIP)) return true;
+      var c = card();
+      for (var n = el; n && n !== c && n.nodeType === 1; n = n.parentNode) {
+        if (n.scrollWidth - n.clientWidth <= 2) continue;
+        var ox = window.getComputedStyle(n).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+      return false;
+    }
+
+    function reset() {
+      if (animating) return;          // 动画中不打断，否则会停在半路又被 go() 换题
+      var c = card();
+      if (!c) return;
+      c.style.transition = 'transform .18s ease, opacity .18s ease';
+      c.style.transform = '';
+      c.style.opacity = '';
+    }
+
+    function reduced() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // dir: 1 = 下一题，-1 = 上一题
+    function flip(dir) {
+      if (animating || !S.list.length) return;
+      var to = S.idx + dir;
+      if (to < 0 || to >= S.list.length) { reset(); return; }
+      var c = card();
+      if (!c) return;
+      muteUntil = Date.now() + 300;   // 吞掉滑动末尾那一次 click（选项点选即判分）
+      if (reduced()) { go(to); return; }
+      animating = true;
+      var out = dir > 0 ? -72 : 72;   // 下一题向左滑出，上一题向右滑出
+      c.style.transition = 'transform ' + ANIM_MS + 'ms ease, opacity ' + ANIM_MS + 'ms ease';
+      void c.offsetWidth;
+      c.style.transform = 'translateX(' + out + 'px)';
+      c.style.opacity = '0';
+      setTimeout(function () {
+        go(to);
+        c.style.transition = 'none';
+        c.style.transform = 'translateX(' + (-out) + 'px)';
+        c.style.opacity = '0';
+        requestAnimationFrame(function () {
+          c.style.transition = 'transform .2s ease, opacity .2s ease';
+          c.style.transform = '';
+          c.style.opacity = '';
+          animating = false;
+        });
+      }, ANIM_MS);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (Date.now() >= muteUntil) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('touchstart', function (e) {
+      if (animating || e.touches.length !== 1) return;
+      var t = e.touches[0];
+      if (t.clientX < EDGE || t.clientX > window.innerWidth - EDGE) return;
+      if (skip(e.target)) return;
+      sx = t.clientX; sy = t.clientY; st = Date.now();
+      tracking = true; locked = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      if (e.touches.length !== 1) { tracking = false; reset(); return; }
+      var t = e.touches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (!locked) {
+        if (Math.abs(dy) > LOCK_Y && Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+        if (Math.abs(dx) > LOCK_X) {
+          locked = true;
+          var c0 = card();
+          if (c0) c0.style.transition = 'none';
+        }
+      }
+      if (!locked) return;
+      var c = card();
+      if (!c) return;
+      c.style.transform = 'translateX(' + (dx * FOLLOW) + 'px)';
+      c.style.opacity = String(Math.max(0.55, 1 - Math.abs(dx) / 480));
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var was = locked; locked = false;
+      if (!was) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st;
+      if (Math.abs(dx) < MIN_X || Math.abs(dx) < Math.abs(dy) * SLOPE || dt > MAX_MS) { reset(); return; }
+      flip(dx < 0 ? 1 : -1);   // 左滑 → 下一题；右滑 → 上一题
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      tracking = false; locked = false;
+      reset();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------ 入口 */
+
+  // 只重画当前这一屏：题号、列表都保持不变。
+  // 在错题本里答对后题目会移出错题集合，若这里重组卷，卡片会当场跳到下一题，
+  // 用户看不到自己刚做对的结果。列表只在换模式 / 换筛选 / 导入时重建。
+  function render() {
+    renderStats();
+    renderFilters();
+    renderCard();
+    renderMastery();
+    writeRoute();
+  }
+
+  function reload() {
+    buildList();
+    render();
+  }
+
+  function init() {
+    readRoute();
+    // 旧版记录迁移：csg_* / csunitN_* 等命名空间并进全站三表，幂等，旧键不删
+    try {
+      var mig = site.migrateLegacy();
+      if (mig && !mig.skipped && (mig.ans || mig.wrong || mig.fav)) {
+        setTimeout(function () { flash('已迁移旧版记录：作答 ' + mig.ans + '、错题 ' + mig.wrong + '、收藏 ' + mig.fav); }, 400);
+      }
+    } catch (e) { /* 迁移失败不阻塞作答 */ }
+    $('#site-title').textContent = def.title || meta.title || '题库';
+    $('#bank-name').textContent = def.units.length === 1
+      ? (def.units[0].label + ' · ' + def.units[0].title)
+      : (def.subjectName || '');
+    if (def.units.length === 1 && def.units[0].desc) $('#bank-desc').textContent = def.units[0].desc;
+    if (meta.home) $('#home').href = meta.home;
+    else $('#home').style.display = 'none';
+
+    $$('#modes button').forEach(function (b) {
+      b.addEventListener('click', function () { S.mode = b.dataset.mode; S.idx = 0; reload(); });
+    });
+    $('#f-type').addEventListener('change', function (e) { S.type = e.target.value; S.idx = 0; reload(); });
+    $('#f-diff').addEventListener('change', function (e) { S.diff = e.target.value; S.idx = 0; reload(); });
+    var kwTimer = null;
+    $('#f-kw').addEventListener('input', function (e) {
+      clearTimeout(kwTimer);
+      var v = e.target.value;
+      kwTimer = setTimeout(function () { S.kw = v; S.idx = 0; reload(); }, 220);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(S.idx - 1);
+      if (e.key === 'ArrowRight') go(S.idx + 1);
+      if (/^[1-9]$/.test(e.key)) {
+        var q = S.list[S.idx];
+        if (q && def.types[q.type].answerShape === 'choice' && q.options[Number(e.key) - 1] != null) {
+          pick(q, def.types[q.type], Number(e.key) - 1);
+        }
+      }
+    });
+
+    initSwipe();
+    initTransfer();
+    initCloud();
+    reload();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

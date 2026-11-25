@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>计算机导论 · 名词解释专题 第 1～4 章术语过关</title>
+<style>/* qb-page.css — 题库页面样式（内核共用，不含任何科目特有内容） */
+:root{
+  --bg:#f4f6fa; --card:#fff; --line:#e4e8ef; --line2:#eef1f6;
+  --text:#1e2330; --muted:#5b6373; --muted2:#6b7383;
+  --accent:#2f6fed; --accent-ink:#2557c7; --accent-soft:#eaf1ff;
+  --ok:#0b6b48; --ok-soft:#e7f7ef; --ok-line:#b7e6cf;
+  --bad:#b42318; --bad-soft:#fdecea; --bad-line:#f6c9c4;
+  --warn:#b54708; --warn-soft:#fef3e2;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:20px 16px 72px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+.top h1{font-size:21px;margin:0;letter-spacing:.2px}
+.top .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.top .spacer{flex:1}
+.home{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 12px;background:#fff}
+.home:hover{color:var(--accent);border-color:#c7dbff;text-decoration:none}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.block{padding:14px 16px;margin-bottom:14px}
+
+/* stats */
+#stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px;margin-bottom:14px}
+.stat-k{font-size:12px;color:var(--muted2);letter-spacing:.3px}
+.stat-v{font-size:19px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat-bar{height:4px;border-radius:3px;background:#eef1f6;margin-top:7px;overflow:hidden}
+.stat-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl+.ctl{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.seg{display:inline-flex;background:#f1f4fa;border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:13.5px;color:#48505f}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+select,input[type=search]{
+  font:inherit;font-size:13.5px;color:var(--text);border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:7px 10px;outline:none
+}
+select:focus,input[type=search]:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=search]{min-width:170px;flex:1}
+.btn{
+  border:1px solid var(--line);background:#fff;color:#3c4353;border-radius:9px;padding:7px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;transition:.15s
+}
+.btn:hover:not(:disabled){border-color:#c7dbff;color:var(--accent);background:var(--accent-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#2557c7;border-color:#2557c7;color:#fff}
+.btn.ghost{background:#fff}
+.btn.ghost.on{color:#b54708;border-color:#f5dcb4;background:var(--warn-soft)}
+.btn.small{padding:5px 11px;font-size:13px}
+
+/* card */
+#card{padding:18px 18px 16px;margin-bottom:14px}
+.q-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fafbfd;white-space:nowrap}
+.tag-type{color:var(--accent-ink);border-color:#c7dbff;background:var(--accent-soft)}
+.tag-diff.d-0{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.tag-diff.d-1{color:var(--warn);border-color:#f5dcb4;background:var(--warn-soft)}
+.tag-diff.d-2{color:var(--bad);border-color:var(--bad-line);background:var(--bad-soft)}
+.q-topic{font-size:12.5px;color:var(--muted2)}
+.q-no{margin-left:auto;font-size:12.5px;color:var(--muted2);font-variant-numeric:tabular-nums}
+.q-stem{font-size:16.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.q-img{max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line)}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;
+  border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;
+  font:inherit;font-size:15px;line-height:1.6;cursor:pointer;transition:.13s;color:var(--text)
+}
+.opt:hover:not(:disabled){border-color:#c7dbff;background:#fafcff}
+.opt:disabled{cursor:default}
+.opt-k{
+  flex:0 0 24px;height:24px;border-radius:7px;background:#f1f4fa;color:#48505f;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600
+}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt.picked .opt-k{background:var(--accent);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .opt-k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .opt-k{background:var(--bad);color:#fff}
+
+/* inputs */
+.in,.ta{
+  width:100%;margin-top:14px;font:inherit;font-size:15px;color:var(--text);
+  border:1px solid var(--line);border-radius:11px;padding:11px 13px;outline:none;background:#fff;resize:vertical
+}
+.in:focus,.ta:focus{border-color:#c7dbff;box-shadow:0 0 0 3px var(--accent-soft)}
+.in:disabled,.ta:disabled{background:#fafbfd;color:var(--muted)}
+
+/* action bar */
+.q-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12.5px;color:var(--muted2)}
+.verdict{font-size:14px;font-weight:650;padding:5px 12px;border-radius:999px}
+.verdict.ok{color:var(--ok);background:var(--ok-soft)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft)}
+.verdict.mid{color:var(--warn);background:var(--warn-soft)}
+
+/* explanation */
+.exp{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.exp-h{font-size:12.5px;color:var(--muted2);letter-spacing:.4px;margin-bottom:7px}
+.exp-a{font-size:14.5px;margin:0 0 8px;padding:10px 12px;background:#f7f9fd;border-radius:9px;border:1px solid var(--line2)}
+.exp-p{font-size:14.5px;color:#333a49;margin:0 0 6px;white-space:pre-wrap}
+.exp-src{font-size:12px;color:var(--muted2);margin:6px 0 0}
+.self{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* nav */
+#nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nav-mid{flex:1;text-align:center;font-size:13px;color:var(--muted2);font-variant-numeric:tabular-nums}
+
+/* mastery */
+#mastery{padding:14px 16px;margin-bottom:14px}
+.mt{width:100%;border-collapse:collapse;font-size:13.5px}
+.mt th{text-align:left;font-weight:600;color:var(--muted2);font-size:12px;letter-spacing:.3px;padding:0 0 8px;border-bottom:1px solid var(--line2)}
+.mt td{padding:7px 0;border-bottom:1px solid var(--line2);vertical-align:middle}
+.mt tr:last-child td{border-bottom:0}
+.mt-t{color:#333a49}
+.mt-s{font-variant-numeric:tabular-nums;font-weight:650;width:56px}
+.mt-n{color:var(--muted2);width:56px;text-align:right}
+.lv{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.lv-ok{color:var(--ok);background:var(--ok-soft)}
+.lv-mid{color:var(--warn);background:var(--warn-soft)}
+.lv-bad{color:var(--bad);background:var(--bad-soft)}
+
+/* transfer */
+#transfer{padding:14px 16px;margin-bottom:14px}
+#x-code{width:100%;min-height:86px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;resize:vertical;background:#fafbfd;color:#333a49}
+#x-info{font-size:12.5px;color:var(--muted2);margin-top:8px;min-height:18px}
+.x-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* misc */
+.empty{padding:34px 8px;text-align:center}
+.empty-t{font-size:15.5px;font-weight:600}
+.empty-s{color:var(--muted2);font-size:13.5px;margin:6px 0 0}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:#1e2330;color:#fff;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:99
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{color:var(--muted2);font-size:12px;text-align:center;margin-top:18px;line-height:1.8}
+
+@media (max-width:640px){
+  .wrap{padding:14px 12px 64px}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .top h1{font-size:18.5px}
+  .q-stem{font-size:16px}
+  .opt{font-size:14.5px}
+  input[type=search]{min-width:100%}
+}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+
+/* ---------- 数学排版（MathJax SVG，无字体依赖） ---------- */
+mjx-container{
+  display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden;
+  vertical-align:middle;
+}
+mjx-container[display="true"]{
+  display:block; margin:10px 0; text-align:center;
+}
+/* 行间公式在窄屏可横向滚动，不撑破卡片 */
+.q-stem mjx-container[display="true"],
+.exp-p mjx-container[display="true"],
+.exp-a mjx-container[display="true"]{ padding:2px 0; }
+.q-stem{line-height:2.05}
+.opt-t mjx-container{vertical-align:-0.35ex}
+.exp-p{line-height:1.9}
+.math-err{color:var(--bad);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 id="site-title">计算机导论 · 名词解释专题 第 1～4 章术语过关</h1>
+      <div class="sub"><span id="bank-name"></span> · <span id="bank-desc"></span></div>
+    </div>
+    <div class="spacer"></div>
+    <a class="home" id="home" href="../../index.html">返回题库集</a>
+  </div>
+
+  <div class="panel" id="stats"></div>
+
+  <div class="panel block">
+    <div class="ctl">
+      <div class="seg" id="modes">
+        <button data-mode="seq" class="on">顺序</button>
+        <button data-mode="random">随机</button>
+        <button data-mode="wrong">错题</button>
+        <button data-mode="fav">收藏</button>
+        <button data-mode="undone">未做</button>
+      </div>
+      <select id="f-type"><option value="">全部题型</option></select>
+      <select id="f-diff"><option value="">全部难度</option><option>易</option><option>中</option><option>难</option></select>
+    </div>
+    <div class="ctl">
+      <input type="search" id="f-kw" placeholder="搜索题干 / 知识点">
+      <span class="hint">键盘 ← → 翻题，数字键选项；手机在题目上左右滑动翻题</span>
+    </div>
+  </div>
+
+  <div class="panel" id="card"></div>
+  <div id="nav"></div>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">掌握度（按知识点）</summary>
+    <div id="mastery" style="padding-top:10px"></div>
+  </details>
+
+  <details class="panel block" id="cloud-wrap" style="display:none">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">云同步（手动上传 / 下载）</summary>
+    <div style="padding-top:10px">
+      <div class="x-row">
+        <input type="text" id="s-code" class="in" style="flex:1;min-width:180px;margin-top:0"
+               placeholder="同步码（≥10 位，与旧页面共用）">
+        <button class="btn" id="s-save">保存</button>
+        <button class="btn primary" id="s-up">上传</button>
+        <button class="btn" id="s-down">下载</button>
+      </div>
+      <div id="s-info" class="hint" style="margin-top:8px;min-height:18px"></div>
+    </div>
+  </details>
+
+  <details class="panel block">
+    <summary style="cursor:pointer;font-size:14px;font-weight:600">导出 / 导入进度码</summary>
+    <div id="transfer" style="padding-top:10px">
+      <div class="x-row">
+        <select id="x-scope"></select>
+        <button class="btn" id="x-do">生成</button>
+        <button class="btn" id="x-copy">复制</button>
+        <button class="btn" id="x-import">导入</button>
+        <button class="btn" id="x-undo">撤销导入</button>
+        <button class="btn ghost" id="reset" style="margin-left:auto">清空本机记录</button>
+      </div>
+      <textarea id="x-code" placeholder="在此粘贴他人分享的进度码，或点「生成」得到自己的"></textarea>
+      <div id="x-info"></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    独立题库 · 计算机导论 · 名词解释专题 第 1～4 章术语过关 · 111 题<br>
+    进度保存在本机浏览器，不上传；换设备请用进度码迁移。
+  </div>
+</div>
+<div id="mjx-cache" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></div>
+<div id="toast"></div>
+<script>window.QB_META={"home":"../../index.html","title":"计算机导论 · 名词解释专题 第 1～4 章术语过关"};</script>
+<script>window.QB_SITE={"title":"计算机导论 · 名词解释专题 第 1～4 章术语过关","subjectKey":"cs","subjectName":"计算机导论","types":{"single":{"key":"single","label":"单选题","answerShape":"choice","judge":"exact","replay":"mask","maxOptions":4,"fault":"builtin:fact-recall","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，恰好 1 项"}},"multi":{"key":"multi","label":"多选题","answerShape":"choice","judge":"set","replay":"mask","maxOptions":4,"fault":"builtin:concept-boundary","countsInMastery":true,"fields":{"options":"选项文本数组，2～4 项","answer":"正确项下标数组，≥ 2 项"}},"fill":{"key":"fill","label":"填空题","answerShape":"tokenList","judge":"fuzzy","replay":"text","fault":"builtin:unit-memory","countsInMastery":true,"fields":{"answers":"可接受答案数组，含等价写法"}},"term":{"key":"term","label":"名词解释","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"short":{"key":"short","label":"简答题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:coverage","countsInMastery":true,"fields":{"ref":"参考答案文本"}},"comp":{"key":"comp","label":"综合应用题","answerShape":"text","judge":"rubric","replay":"text","fault":"builtin:chain-break","countsInMastery":true,"fields":{"ref":"参考答案文本"}}},"units":[{"key":"terms","label":"名词解释专题","title":"第 1～4 章术语过关","desc":"按章归集的名词解释（第 1～4 章），主观题自评","questions":[{"qid":"cs.terms-001","type":"term","topic":"1.3 计算机的工作原理","diff":"中","stem":"请解释“计算机”。","exp":"名词解释按“能高速运算 + 逻辑判断 + 存储记忆 + 电子设备”四个要素给分，答出三点即算通过。","ref":"一种能高速运算、具有逻辑判断和存储记忆能力的电子设备。广义上包括硬件与软件两部分；狭义上指主机与外设组成的硬件系统。","meta":{"origin":{"id":"t-01","no":508,"mod":"第 1 章 初识计算机","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-002","type":"term","topic":"1.3 计算机的工作原理","diff":"中","stem":"请解释“冯·诺依曼体系结构”。","exp":"要点：五大部分 + 存储程序 + 顺序执行。只答“五大部分”得一半分。","ref":"由运算器、控制器、存储器、输入设备、输出设备五大部分组成的计算机结构；程序和数据以二进制形式同等存放在存储器中，由控制器按顺序自动取指执行。","meta":{"origin":{"id":"t-02","no":509,"mod":"第 1 章 初识计算机","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-003","type":"term","topic":"1.3 计算机的工作原理","diff":"中","stem":"请解释“图灵机”。","exp":"要点：理论模型、纸带 + 读写头 + 状态、可计算性。可补充“与冯·诺依曼机的关系”。","ref":"1937 年英国数学家图灵提出的一种理论计算模型，由一条无限长的纸带、一个读写头和一个状态寄存器组成，用来刻画“什么可以被计算”。它是现代计算机的理论模型，冯·诺依曼机是其工程实现。","meta":{"origin":{"id":"t-03","no":510,"mod":"第 1 章 初识计算机","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-004","type":"term","topic":"1.1 计算机的历史与发展","diff":"中","stem":"请解释“摩尔定律”。","exp":"要点：18～24 个月、翻一番、成本下降。注意是人（戈登·摩尔）不是冯·诺依曼。","ref":"集成电路上可容纳的晶体管数目大约每 18～24 个月翻一番，同时性能翻倍、成本减半。这是戈登·摩尔提出的经验规律，并非物理定律。","meta":{"origin":{"id":"t-04","no":511,"mod":"第 1 章 初识计算机","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-005","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“位（bit）”。","exp":"要点：最小信息单位、取值 0/1。答成“存储单位”要扣分。","ref":"计算机中最小的信息单位，只有 0 和 1 两种取值。8 个二进制位组成 1 个字节。","meta":{"origin":{"id":"t-05","no":512,"mod":"第 2 章 数的表示与存储","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-006","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“字节（Byte）”。","exp":"要点：8 位、容量基本单位。","ref":"由 8 个二进制位组成的存储单位，是表示存储空间大小的基本容量单位，1B = 8bit。","meta":{"origin":{"id":"t-06","no":513,"mod":"第 2 章 数的表示与存储","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-007","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“字长”。","exp":"要点：一次并行处理的位数、由 CPU 决定、影响精度与能力。","ref":"一个字所包含的二进制位数，由 CPU 的类型决定，是 CPU 一次能并行处理的二进制位数，也是 CPU 的主要技术指标之一。字长越长，运算精度越高、处理能力越强。","meta":{"origin":{"id":"t-07","no":514,"mod":"第 2 章 数的表示与存储","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-008","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“机器数”。","exp":"要点：符号数字化、最高位为符号位、小数点是约定的。","ref":"把数值的符号和数值本身都数字化（编码为二进制）之后在计算机内部的表示形式。特点：位数受字长限制、符号位在最高位（0 正 1 负）、小数点的位置由约定隐含、不占位。","meta":{"origin":{"id":"t-08","no":515,"mod":"第 2 章 数的表示与存储","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-009","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“补码”。","exp":"要点：定义（负数反码加 1）+ 三个好处（统一符号位、减法变加法、0 唯一）。","ref":"正数的补码与原码相同；负数的补码为其反码末位加 1（即符号位为 1，其余位取反加 1）。补码使符号位与数值位统一处理，减法可转为加法，且 0 的表示唯一。","meta":{"origin":{"id":"t-09","no":516,"mod":"第 2 章 数的表示与存储","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-010","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“浮点数”。","exp":"要点：阶码 + 尾数、各自决定什么。常见错误是把两者作用说反。","ref":"用于表示非纯小数的数值表示方法，由阶码（含阶符）和尾数（含数符）两部分组成。阶码决定数值的大小（小数点位置、表示范围），尾数的位数决定数值的精度。","meta":{"origin":{"id":"t-10","no":517,"mod":"第 2 章 数的表示与存储","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-011","type":"term","topic":"3.1 CPU 与基本部件","diff":"中","stem":"请解释“CPU（中央处理单元）”。","exp":"要点：三个组成部分 + 各自职责。","ref":"计算机的核心部件，由运算器（ALU）、控制器和寄存器组组成。运算器完成算术与逻辑运算，控制器负责取指、译码并发出控制信号，寄存器用于暂存数据与地址。","meta":{"origin":{"id":"t-11","no":518,"mod":"计算机组成原理","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-012","type":"term","topic":"3.2 存储器与地址空间","diff":"中","stem":"请解释“地址空间”。","exp":"要点：地址单元总数、与地址线位数的换算关系。","ref":"存储器中所有可标识的独立地址单元的总数。N 个单元需要 log₂N 位地址；反过来 n 根地址线可寻址 2ⁿ 个单元。","meta":{"origin":{"id":"t-12","no":519,"mod":"计算机组成原理","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-013","type":"term","topic":"3.4 总线","diff":"中","stem":"请解释“总线”。","exp":"要点：公共通路 + 三类总线。可补充：数据总线双向、地址总线单向。","ref":"计算机各部件之间传送数据、地址和控制信息的公共通路。按传送内容分为数据总线、地址总线和控制总线三类。","meta":{"origin":{"id":"t-13","no":520,"mod":"计算机组成原理","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-014","type":"term","topic":"3.3 存储类型与层次结构","diff":"中","stem":"请解释“RAM 与 ROM”。","exp":"要点：能否改写 + 是否易失，两者都要答。","ref":"RAM（随机存储器）可随机读写，断电后信息全部丢失，用于存放正在运行的程序和数据；ROM（只读存储器）正常使用时只能读出、不能随意改写，断电后内容不丢失，用于存放固化程序。","meta":{"origin":{"id":"t-14","no":521,"mod":"计算机组成原理","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-015","type":"term","topic":"3.6 指令与指令周期","diff":"中","stem":"请解释“指令”。","exp":"要点：操作码 + 地址码、各自含义。","ref":"计算机执行某种操作的命令，由操作码和地址码组成。操作码指出做什么，地址码指出操作数在哪里。程序就是指令的有序序列。","meta":{"origin":{"id":"t-15","no":522,"mod":"计算机组成原理","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-016","type":"term","topic":"4.1 数据结构与数组","diff":"中","stem":"请解释“数据结构”。","exp":"要点：逻辑结构 + 存储结构两个层面。只答“数据的组织方式”不够。","ref":"数据元素之间存在的关系，以及它们在计算机中的存储表示。分为逻辑结构（与计算机无关，如线性/非线性）和存储结构（物理结构，如顺序/链式）。","meta":{"origin":{"id":"t-16","no":523,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-017","type":"term","topic":"4.4 栈与队列","diff":"中","stem":"请解释“栈”。","exp":"要点：同一端操作、后进先出。","ref":"只能在栈顶进行插入（push）和删除（pop）的线性表，遵循后进先出（LIFO）原则。可用数组或链表实现。","meta":{"origin":{"id":"t-17","no":524,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-018","type":"term","topic":"4.4 栈与队列","diff":"中","stem":"请解释“队列”。","exp":"要点：尾进头出、先进先出。","ref":"在队尾插入、在队头删除的线性表，遵循先进先出（FIFO）原则。可用数组或链表实现。","meta":{"origin":{"id":"t-18","no":525,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-019","type":"term","topic":"4.2 链表","diff":"中","stem":"请解释“链表”。","exp":"要点：节点 = 数据 + 指针、分散存储、插删快查找慢。","ref":"用指针把分散存储的节点串联起来的线性结构。每个节点包含数据域和指针域，头指针标识首元，空指针表示结束。插入删除只改指针，查找必须顺序遍历。","meta":{"origin":{"id":"t-19","no":526,"mod":"数据结构","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-020","type":"term","topic":"4.7 算法概念与表示","diff":"中","stem":"请解释“算法”。","exp":"要点：有限步骤 + 五个特征。注意“程序 ≠ 算法”，程序可以长期运行而算法必须有穷。","ref":"解决特定问题的有限步骤的准确描述，独立于计算机和程序设计语言。具有有穷性、确定性、可行性、输入、输出五个基本特征。","meta":{"origin":{"id":"t-20","no":527,"mod":"算法","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-021","type":"term","topic":"1.1 计算机的历史与发展","diff":"易","stem":"请解释“ENIAC”。","exp":"要点：1946 年、宾夕法尼亚大学、第一台通用电子数字计算机、未采用存储程序（靠插线编程）。易错：说成“第一台计算机”或说它已采用存储程序原理。","ref":"ENIAC（Electronic Numerical Integrator And Computer，电子数字积分计算机）是 1946 年 2 月在美国宾夕法尼亚大学研制成功的世界上第一台通用电子数字计算机。它由约 1.8 万只电子管组成，体积庞大、耗电惊人，采用十进制运算；没有采用存储程序原理，计算步骤要靠开关和插线来设定。","meta":{"origin":{"id":"tm-01","no":528,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-022","type":"term","topic":"1.3 计算机的工作原理","diff":"中","stem":"请解释“存储程序”。","exp":"要点：程序和数据一起存入存储器、用二进制表示、自动取指执行、无需人工干预。易错：只答“程序存在存储器里”，漏掉“数据同等存放”和“自动执行”。","ref":"把编好的程序和要处理的数据都预先以二进制形式存入计算机的存储器中，机器启动后由控制器自动逐条取出指令并执行，全程不需要人工干预。这一原理由冯·诺依曼提出，又称程序存储原理，是计算机能够自动、高速工作的基础。","meta":{"origin":{"id":"tm-02","no":529,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-023","type":"term","topic":"1.3 计算机的工作原理","diff":"中","stem":"请解释“冯·诺依曼体系结构”。","exp":"要点：五大部分 + 存储程序 + 顺序执行 + 指令与数据同等存储。易错：漏掉“指令与数据同等存储”；把冯·诺依曼与图灵混为一谈。","ref":"由运算器、控制器、存储器、输入设备和输出设备五大部分组成，并遵循“存储程序”和“程序控制（顺序执行）”两大原则的计算机结构。程序与数据以二进制形式同等存放在存储器中，由控制器按地址顺序自动取指、译码、执行。现代通用计算机大多仍采用这一结构，又称普林斯顿结构。","meta":{"origin":{"id":"tm-03","no":530,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-024","type":"term","topic":"1.3 计算机的工作原理","diff":"中","stem":"请解释“图灵机”。","exp":"要点：理论（抽象）模型、纸带 + 读写头 + 状态、刻画可计算性。易错：与冯·诺依曼机混为一谈——前者是理论模型，后者是工程实现。","ref":"1937 年英国数学家图灵提出的一种抽象计算模型，由一条无限长的纸带、一个读写头和一个有限状态控制器组成。读写头在纸带上左右移动并读、写符号，控制器按规则改变状态，用来精确刻画“什么问题可以被机械地计算”。它是可计算性理论的基础，也是现代计算机的理论模型，冯·诺依曼机则是它的工程实现。","meta":{"origin":{"id":"tm-04","no":531,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-025","type":"term","topic":"1.1 计算机的历史与发展","diff":"易","stem":"请解释“摩尔定律”。","exp":"要点：18～24 个月、翻一番、性能升价格降、属经验规律。易错：漏掉“晶体管数目”这个主语；误记为冯·诺依曼提出。","ref":"戈登·摩尔提出的经验规律：集成电路上可容纳的晶体管数目大约每 18～24 个月翻一番，同时性能提升一倍、价格下降一半。它揭示了集成电路集成度与性价比的增长趋势，几十年来一直指导芯片产业的发展，但它只是经验总结，并不是物理定律。","meta":{"origin":{"id":"tm-05","no":532,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-026","type":"term","topic":"1.2 计算机的特点与分类","diff":"易","stem":"请解释“计算机系统”。","exp":"要点：硬件 + 软件两大部分、各自包含什么、缺一不可。易错：只答硬件；把“计算机系统”与“CPU”等同。","ref":"由硬件系统和软件系统两大部分构成的完整系统。硬件是看得见摸得着的物理设备（运算器、控制器、存储器、输入/输出设备）；软件是程序、数据和相关文档的总称。两者缺一不可：没有软件硬件无法工作，没有硬件软件无处运行。","meta":{"origin":{"id":"tm-06","no":533,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-027","type":"term","topic":"1.2 计算机的特点与分类","diff":"易","stem":"请解释“软件”。","exp":"要点：程序 + 数据 + 文档、系统软件与应用软件、逻辑产品。易错：把软件等同于程序，漏掉数据与文档。","ref":"为运行、管理和维护计算机而编制的程序、数据和相关文档的总称。分两类：系统软件（操作系统、语言处理程序、数据库管理系统等）负责管理硬件、支持其他软件运行；应用软件（文字处理、浏览器、游戏等）面向具体应用需求。软件是逻辑产品，没有物理形体。","meta":{"origin":{"id":"tm-07","no":534,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-028","type":"term","topic":"1.2 计算机的特点与分类","diff":"易","stem":"请解释“主机”。","exp":"要点：CPU + 内存（主存）、不含外设。易错：把显示器、键盘算进主机；把硬盘（外存）算进主机。","ref":"计算机硬件中除去输入、输出设备以外的部分，即中央处理器（CPU）与内存储器（主存）的合称，通常装在主机箱内。主机是计算机的运算与控制核心，各种外部设备通过接口与主机相连。","meta":{"origin":{"id":"tm-08","no":535,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-029","type":"term","topic":"1.2 计算机的特点与分类","diff":"易","stem":"请解释“外部设备”。","exp":"要点：主机之外、输入/输出/外存三类齐全、通过接口连接。易错：只答输入输出设备，漏掉外部存储器。","ref":"计算机系统中除主机以外的所有设备的总称，包括输入设备（键盘、鼠标、扫描仪、摄像头）、输出设备（显示器、打印机、绘图仪）和外部存储器（硬盘、U 盘、光盘）。外设通过接口与主机交换信息，扩展了计算机的输入输出与存储能力。","meta":{"origin":{"id":"tm-09","no":536,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-030","type":"term","topic":"1.2 计算机的特点与分类","diff":"中","stem":"请解释“数字计算机”。","exp":"要点：离散（数字）量、二进制、精度高通用性强。易错：把“数字计算机”与“电子计算机”划等号，忽略还有模拟式与混合式。","ref":"在机器内部以数字（二进制）形式表示和处理离散数据的计算机。它由数字逻辑电路构成，精度高、抗干扰、便于存储和通用处理，PC、服务器、手机都属于这一类。按原理分类，与之并列的还有处理连续物理量的模拟计算机，以及两者结合的混合计算机。","meta":{"origin":{"id":"tm-10","no":537,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-031","type":"term","topic":"1.2 计算机的特点与分类","diff":"中","stem":"请解释“巨型计算机”。","exp":"要点：速度快、容量大、功能强；“巨型”指规模性能而非体积；典型应用。易错：只答“体积大”。","ref":"又称超级计算机，指同一时期中运算速度最快、存储容量最大、功能最强、价格最贵的计算机，用于天气预报、石油勘探、航空航天、核能计算等需要海量运算的领域。它是衡量一个国家计算机技术水平的重要标志，我国的银河、天河、神威·太湖之光都属于巨型机。","meta":{"origin":{"id":"tm-11","no":538,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-032","type":"term","topic":"1.4 计算机的应用","diff":"易","stem":"请解释“科学计算”。","exp":"要点：数值计算、计算量大精度高、最早的应用领域。易错：与“数据处理”混淆——后者以非数值数据为主。","ref":"又称数值计算，指利用计算机完成科学研究和工程技术中提出的数值计算问题，如卫星轨道计算、天气预报、结构强度分析。特点是计算工作量大、精度要求高、数学模型复杂，是计算机最早也是最基本的应用领域。","meta":{"origin":{"id":"tm-12","no":539,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-033","type":"term","topic":"1.4 计算机的应用","diff":"易","stem":"请解释“数据处理”。","exp":"要点：非数值数据、数据量大计算简单、增删改查与统计、应用最广。易错：答成“科学计算”。","ref":"又称信息管理或事务处理，指利用计算机对大量数据进行采集、存储、分类、排序、统计、检索和传输，从中提取有用信息的过程。特点是数据量大而计算相对简单，如人事管理、银行账务、图书检索，是目前应用最广泛的领域。","meta":{"origin":{"id":"tm-13","no":540,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-034","type":"term","topic":"1.4 计算机的应用","diff":"中","stem":"请解释“过程控制”。","exp":"要点：实时采集—处理—输出控制信号、闭环反馈、实时性。易错：漏掉“反馈控制”这一核心，只说“用来控制机器”。","ref":"又称实时控制，指用计算机实时采集被控对象的运行数据，按预定算法处理后输出控制信号去调节被控对象，使其保持在最佳工作状态。特点是实时性强、可靠性要求高，属闭环控制，广泛用于冶金、化工、电力、航天等连续生产过程，如炉温控制、数控机床。","meta":{"origin":{"id":"tm-14","no":541,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-035","type":"term","topic":"1.4 计算机的应用","diff":"易","stem":"请解释“计算机辅助技术”。","exp":"要点：CAD 设计、CAM 制造、CAI 教学的含义与缩写对应。易错：CAD 与 CAM 互换；把 CAI 说成辅助制造。","ref":"用计算机辅助人完成各类工作的技术总称：CAD 计算机辅助设计（绘图与建模）、CAM 计算机辅助制造（数控加工）、CAI 计算机辅助教学、CAT 计算机辅助测试；CIMS 则是把设计、制造与管理集成起来的一体化制造系统。","meta":{"origin":{"id":"tm-15","no":542,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-036","type":"term","topic":"1.4 计算机的应用","diff":"中","stem":"请解释“人工智能”。","exp":"要点：模拟人类智能、感知/学习/推理/决策、典型应用。易错：把人工智能写成“自动化”或“过程控制”。","ref":"研究用计算机模拟人类智能行为（感知、学习、推理、决策、自然语言理解）的学科与技术。典型应用有专家系统、机器学习、机器视觉、智能机器人，它是计算机应用的前沿领域，也是新一代计算机（智能计算机）的发展方向。","meta":{"origin":{"id":"tm-16","no":543,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-037","type":"term","topic":"1.6 计算思维","diff":"中","stem":"请解释“计算思维”。","exp":"要点：抽象—理论—设计三步、把问题转化为可计算步骤。易错：与“会编程”等同——计算思维不等于写代码。","ref":"运用计算机科学的基本概念与方法去求解问题、设计系统和理解人类行为的思维活动，核心是把问题抽象化并转化为可由计算机执行的步骤。其过程可概括为抽象（建模）、理论（分析）、设计（实现）三个层面，与读、写、算一样属于基本能力。","meta":{"origin":{"id":"tm-17","no":544,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-038","type":"term","topic":"1.5 计算机的发展趋势","diff":"易","stem":"请解释“计算机的发展趋势”。","exp":"要点：巨型化、微型化、网络化、智能化，四点齐全。易错：用“多媒体化、标准化”等本课程未列的提法替代。","ref":"当前计算机技术发展的四个主要方向：巨型化，追求更高速度与更大容量以满足尖端科研；微型化，体积更小、功耗更低，嵌入各类设备；网络化，互联互通、资源共享与云计算；智能化，模拟人的智能，向新一代智能计算机发展。","meta":{"origin":{"id":"tm-18","no":545,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-039","type":"term","topic":"2.1 进位计数制及其转换","diff":"易","stem":"请解释“进位计数制”。","exp":"要点：固定符号集 + 进位规则、“逢 R 进一、借一当 R”。易错：漏掉“位权”这一构成要素。","ref":"按进位方式计数的数制，即用一组固定的数字符号和统一的进位规则来表示数值的方法。R 进制有 0～R−1 共 R 个数字符号，运算时“逢 R 进一、借一当 R”。常用二进制、八进制、十进制和十六进制。","meta":{"origin":{"id":"tm-19","no":546,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-040","type":"term","topic":"2.1 进位计数制及其转换","diff":"易","stem":"请解释“基数”。","exp":"要点：数字符号的个数、决定进位规则与位权倍数。易错：把基数说成“进位的位数”。","ref":"一种进位计数制中所使用的数字符号的个数，记作 R。它决定进位规则（逢 R 进一）和相邻两位位权之间的倍数关系：二进制基数 2，八进制 8，十进制 10，十六进制 16（符号为 0～9 与 A～F）。","meta":{"origin":{"id":"tm-20","no":547,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-041","type":"term","topic":"2.1 进位计数制及其转换","diff":"易","stem":"请解释“位权”。","exp":"要点：R 的幂、整数右起从 R⁰ 开始、小数部分用负指数。易错：小数部分用正指数。","ref":"在进位计数制中，某一数位所代表的固定倍率，等于基数 R 的该位序号次幂。整数部分从右向左依次为 R⁰、R¹、R²…，小数部分从左向右依次为 R⁻¹、R⁻²…。一个数的值等于各位数字与其位权乘积之和，即按权展开求和。","meta":{"origin":{"id":"tm-21","no":548,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-042","type":"term","topic":"2.2 数据的存储与表示","diff":"易","stem":"请解释“位（bit）”。","exp":"要点：最小信息单位、取值只有 0 和 1。易错：答成“最小存储单位”——存储的基本单位是字节。","ref":"比特，计算机中最小的信息单位，只有 0 和 1 两种状态，对应电路的通/断、电平的高/低。它是二进制的一位，也是存储容量与数据传输速率的最小计量单位（如 bit/s）。","meta":{"origin":{"id":"tm-22","no":549,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-043","type":"term","topic":"2.2 数据的存储与表示","diff":"易","stem":"请解释“字节（Byte）”。","exp":"要点：8 位、容量基本单位、1024 进位。易错：写成 1KB = 1000B。","ref":"由 8 个二进制位组成的存储单位，记作 B，1B = 8bit。它是计算机存储容量的基本计量单位，也是内存编址的基本单元。常用换算按 2¹⁰ = 1024 进位：1KB = 1024B、1MB = 1024KB、1GB = 1024MB。","meta":{"origin":{"id":"tm-23","no":550,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-044","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“字长”。","exp":"要点：一次并行处理的位数、由 CPU 决定、影响精度与寻址。易错：与“字节”混淆——字长不一定等于 8 位。","ref":"CPU 一次能并行处理的二进制位数，由 CPU 型号决定，是 CPU 的主要性能指标之一。字长越长，一次处理的数据越多、运算精度越高、可表示的数值范围越大，常见有 8/16/32/64 位。字长还决定了数据总线宽度，并影响寻址能力。","meta":{"origin":{"id":"tm-24","no":551,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-045","type":"term","topic":"2.2 数据的存储与表示","diff":"易","stem":"请解释“存储容量”。","exp":"要点：以字节为单位、1024 进位、标称与实际有差。易错：按 1000 换算。","ref":"存储器能容纳的二进制信息总量，基本单位是字节（B），常用 KB、MB、GB、TB 表示。换算按 2¹⁰ = 1024 进位：1KB = 1024B、1MB = 1024KB、1GB = 1024MB、1TB = 1024GB。标称容量与格式化后的可用容量常有差异，如 128GB 硬盘实际约 119GB。","meta":{"origin":{"id":"tm-25","no":552,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-046","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“机器数”。","exp":"要点：符号数字化、最高位作符号位、位数受限、小数点是约定的。易错：漏掉“符号位在最高位”。","ref":"把符号也数字化之后，数值在计算机内部的表示形式。特点是：位数受字长限制；最高位为符号位（0 正 1 负）；小数点位置由约定隐含，不占位；运算结果可能溢出。机器数所对应的实际数值称为真值。","meta":{"origin":{"id":"tm-26","no":553,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-047","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“真值”。","exp":"要点：带符号的实际值、与机器数互为表里、需要按编码规则解释。易错：把真值说成“正确的数”而不强调符号。","ref":"机器数所代表的实际数值，即带 +/− 号的真实值。例如 8 位机器数 10000001 若按原码解释，其真值为 −1。真值是逻辑上的数值，机器数是它在机器内的编码形式，两者通过原码、反码、补码规则相互转换。","meta":{"origin":{"id":"tm-27","no":554,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-048","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“原码”。","exp":"要点：符号位 + 绝对值、0 有两种写法、n 位范围。易错：漏掉“0 不唯一”这一缺陷。","ref":"符号位加数值绝对值的表示法：最高位为符号位（0 正 1 负），其余各位为二进制绝对值。0 的原码有两种（+0 = 00000000，−0 = 10000000）；n 位原码的表示范围是 −(2ⁿ⁻¹−1)～+(2ⁿ⁻¹−1)。缺点是加减运算要先判断符号，且 0 不唯一。","meta":{"origin":{"id":"tm-28","no":555,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-049","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“反码”。","exp":"要点：正数同原码、负数数值位取反、0 有两种。易错：把符号位也一起取反。","ref":"正数的反码与原码相同；负数的反码是符号位保持不变、数值位逐位取反。0 的反码同样有两种（00000000 与 11111111）。反码通常只作为求补码的中间形式，很少直接用于运算。","meta":{"origin":{"id":"tm-29","no":556,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-050","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“补码”。","exp":"要点：负数如何求、三个好处（符号位统一、减法变加法、0 唯一）、表示范围。易错：忘了“末位加 1”；把 8 位范围写成 −127～127（应为 −128～127）。","ref":"正数的补码与原码相同；负数的补码等于其反码末位加 1（等价于符号位不变、数值位取反再加 1）。补码使符号位可以和数值位一起参加运算，减法化为加法（a − b = a + (−b)补），只需加法器即可完成加减；0 的补码唯一（00000000）；n 位补码表示范围为 −2ⁿ⁻¹～2ⁿ⁻¹−1。","meta":{"origin":{"id":"tm-30","no":557,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-051","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“定点数”。","exp":"要点：小数点位置固定、分定点整数与定点小数、范围小易溢出。易错：说成“小数点可以移动”——那是浮点数。","ref":"小数点位置固定不变的数。约定小数点在数值位之后为定点整数（纯整数），在符号位与数值位之间为定点小数（纯小数）。定点数表示简单、运算速度快，但表示范围小、容易溢出，适合表示整数或纯小数。","meta":{"origin":{"id":"tm-31","no":558,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-052","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“浮点数”。","exp":"要点：阶码 + 尾数、阶码管范围、尾数管精度。易错：把两者的作用说反，这是最常见的错误。","ref":"小数点位置可以浮动的数的表示方法，由阶码（含阶符）和尾数（含数符）两部分组成。阶码决定小数点的实际位置，即表示范围；尾数的位数决定有效数字的位数，即精度。同样字长下浮点数的表示范围远大于定点数，但运算更复杂。","meta":{"origin":{"id":"tm-32","no":559,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-053","type":"term","topic":"2.2 数据的存储与表示","diff":"难","stem":"请解释“规格化”。","exp":"要点：|M| ∈ [0.5, 1)、目的为唯一性与充分利用有效位。易错：把区间写成 [0.1, 1)，那是十进制说法。","ref":"对浮点数的尾数进行规范化，使尾数绝对值落在 [0.5, 1) 区间内（即二进制 0.1B～0.111…B）的过程。规格化保证浮点数表示的唯一性，并充分利用尾数的有效位，避免 0.0011×2³ 与 0.11×2¹ 这类同一数值的多种写法。","meta":{"origin":{"id":"tm-33","no":560,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-054","type":"term","topic":"2.2 数据的存储与表示","diff":"难","stem":"请解释“溢出”。","exp":"要点：超出表示范围、浮点分上溢与下溢、判断方法。易错：把“下溢当 0 处理”说成程序出错。","ref":"运算结果超出机器数所能表示的范围。定点数超出范围即溢出；浮点数阶码超出上限称上溢（结果过大，按溢出处理），阶码低于下限称下溢（结果过小，一般按 0 处理）。补码加减运算可用“最高位进位与次高位进位是否相同”来判断是否溢出。","meta":{"origin":{"id":"tm-34","no":561,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-055","type":"term","topic":"2.2 数据的存储与表示","diff":"中","stem":"请解释“BCD 码”。","exp":"要点：4 位表示 1 位十进制、8421 权值、与纯二进制要区分。易错：把 28 写成 11100B——那是二进制而不是 BCD。","ref":"用 4 位二进制数表示 1 位十进制数字的编码，最常用的是 8421 码（四位权值依次为 8、4、2、1）。例如十进制 28 的 BCD 码为 0010 1000。BCD 码便于人机交互和十进制运算，但存储效率低（1 字节只能存 2 位十进制数），且直接按二进制规则计算后需要修正。","meta":{"origin":{"id":"tm-35","no":562,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-056","type":"term","topic":"2.3 数据的运算","diff":"中","stem":"请解释“逻辑运算”。","exp":"要点：四种运算的规则、“按位独立、无进位”、异或“相同为 0 不同为 1”。易错：异或规则记反。","ref":"对二进制位按位进行的布尔运算，基本有与（AND，全 1 才为 1）、或（OR，有 1 即 1）、非（NOT，取反）和异或（XOR，相同为 0、不同为 1）。逻辑运算按位独立进行、不产生进位，是计算机进行判断、掩码、条件控制与加密的运算基础。","meta":{"origin":{"id":"tm-36","no":563,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-057","type":"term","topic":"2.4 字符型数据的编码","diff":"易","stem":"请解释“ASCII 码”。","exp":"要点：7 位、128 个字符、占 1 字节、A = 41H、a = 61H、0 = 30H。易错：说成 8 位编码 256 个字符——标准 ASCII 是 7 位。","ref":"美国信息交换标准代码，用 7 位二进制对 128 个字符编码（96 个可打印字符 + 32 个控制字符），存储时占用 1 个字节，最高位通常为 0。常用码值：数字 0～9 为 30H～39H，大写 A 为 41H（65），小写 a 为 61H（97），同类字符的码值连续。","meta":{"origin":{"id":"tm-37","no":564,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-058","type":"term","topic":"2.4 字符型数据的编码","diff":"中","stem":"请解释“汉字输入码”。","exp":"要点：面向输入、面向人、种类多、须转成机内码。易错：与机内码、国标码混为一谈。","ref":"又称外码，是为了把汉字输入计算机而设计的编码，如拼音码、五笔字型码、区位码、手写与语音识别码。输入码面向使用者，随输入方法不同而不同；它经转换程序换成机内码之后，才能在机器内存储和处理。","meta":{"origin":{"id":"tm-38","no":565,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-059","type":"term","topic":"2.4 字符型数据的编码","diff":"中","stem":"请解释“国标码”。","exp":"要点：交换码、两个字节、= 区位码 + 2020H。易错：与机内码的 +8080H 记混。","ref":"国家标准汉字编码 GB2312—80 规定的交换码，用于不同计算机系统之间交换汉字信息。它用两个字节表示一个汉字，由区位码换算而来：国标码 = 区位码 + 2020H，即区号、位号各加 32。","meta":{"origin":{"id":"tm-39","no":566,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-060","type":"term","topic":"2.4 字符型数据的编码","diff":"中","stem":"请解释“机内码”。","exp":"要点：机内存储用、最高位置 1、= 国标码 + 8080H、占 2 字节。易错：写成 +2020H；或误认为机内码与国标码相同。","ref":"汉字在计算机内部存储、处理和传输时使用的编码。为避免与 ASCII 码混淆，把国标码两个字节的最高位都置为 1：机内码 = 国标码 + 8080H = 区位码 + A0A0H。一个汉字的机内码占 2 个字节。","meta":{"origin":{"id":"tm-40","no":567,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-061","type":"term","topic":"2.4 字符型数据的编码","diff":"中","stem":"请解释“字形码”。","exp":"要点：描述字形、点阵或矢量、字节数公式（16×16 = 32B）。易错：把字形码当成汉字在内存中的存储编码。","ref":"又称字模码，是描述汉字字形（点阵或矢量轮廓）的编码，用于显示和打印输出。点阵字形码占用的字节数 = 列数 ÷ 8 × 行数，如 16×16 点阵占 32B、24×24 点阵占 72B。字形码数据量最大，一般以字库形式存放，只在输出时调用。","meta":{"origin":{"id":"tm-41","no":568,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-062","type":"term","topic":"3.1 CPU 与基本部件","diff":"易","stem":"请解释“CPU”。","exp":"要点：三部分（运算器 + 控制器 + 寄存器组）、取指译码执行、性能指标。易错：只答“运算器 + 控制器”，漏掉寄存器组。","ref":"中央处理单元（Central Processing Unit），计算机的运算与控制核心，由运算器（ALU）、控制器（CU）和寄存器组三部分构成。它负责取指令、分析指令并执行指令，完成算术与逻辑运算，控制各部件协调工作。主要性能指标有字长、主频、核心数、Cache 容量。","meta":{"origin":{"id":"tm-42","no":569,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-063","type":"term","topic":"3.1 CPU 与基本部件","diff":"易","stem":"请解释“运算器”。","exp":"要点：算术运算 + 逻辑运算、受控制器指挥、结果暂存寄存器。易错：把 ALU 说成“指挥各部件动作”的部件。","ref":"又称算术逻辑单元（ALU），是完成算术运算（加、减、乘、除）和逻辑运算（与、或、非、异或、比较、移位）的部件。它在控制器给出的控制信号下对操作数进行处理，运算结果一般暂存到寄存器或累加器中。","meta":{"origin":{"id":"tm-43","no":570,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-064","type":"term","topic":"3.1 CPU 与基本部件","diff":"易","stem":"请解释“控制器”。","exp":"要点：取指—译码—发控制信号、主要部件。易错：漏掉“取出指令”这一步，把取指当成存储器的职责。","ref":"计算机的指挥中心，负责从内存取出指令、分析（译码）指令，并按指令要求向各部件发出控制信号，使整机有序协调地工作。主要部件有程序计数器 PC、指令寄存器 IR、指令译码器和时序控制电路。","meta":{"origin":{"id":"tm-44","no":571,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-065","type":"term","topic":"3.1 CPU 与基本部件","diff":"中","stem":"请解释“寄存器”。","exp":"要点：CPU 内部、速度最快容量最小、暂存指令/数据/地址。易错：与 Cache、主存混为一谈。","ref":"CPU 内部用于暂存指令、数据和地址的高速小容量存储部件，由触发器构成，存取速度最快、容量最小（几十到几百字节）。按用途可分为通用寄存器、指令寄存器、程序计数器和状态寄存器等。","meta":{"origin":{"id":"tm-45","no":572,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-066","type":"term","topic":"3.1 CPU 与基本部件","diff":"中","stem":"请解释“程序计数器”。","exp":"要点：存下一条指令的地址、自动递增、转移时被改写。易错：说成“存放当前正在执行的指令”——那是指令寄存器 IR。","ref":"又称指令指针（PC / IP），是 CPU 中存放“下一条要执行指令的地址”的寄存器。每取出一条指令后 PC 自动递增（加上该指令的字节数），从而保证程序顺序执行；执行转移、调用类指令时 PC 被改写为目标地址。","meta":{"origin":{"id":"tm-46","no":573,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-067","type":"term","topic":"3.2 存储器与地址空间","diff":"中","stem":"请解释“地址”。","exp":"要点：存储单元的编号、用位模式表示、地址≠内容。易错：把地址与其中的数据混为一谈。","ref":"存储器中每个存储单元的编号，用位模式（一串二进制数）表示，相当于存储单元的“门牌号”。CPU 通过地址访问存储单元，n 位地址可以区分 2ⁿ 个单元。地址与地址单元中存放的内容是两个不同的概念。","meta":{"origin":{"id":"tm-47","no":574,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-068","type":"term","topic":"3.2 存储器与地址空间","diff":"中","stem":"请解释“地址空间”。","exp":"要点：可寻址单元总数、2ⁿ 与 log₂N 的换算、与实装容量无关。易错：把地址空间等同于内存条容量。","ref":"一个计算机系统中所有可标识（可编址）的存储单元的总数，由地址线位数决定：n 根地址线（n 位地址）可寻址 2ⁿ 个单元；反过来，N 个单元需要 log₂N 位地址。地址空间反映 CPU 的最大寻址能力，与实装内存容量无关。","meta":{"origin":{"id":"tm-48","no":575,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-069","type":"term","topic":"3.3 存储类型与层次结构","diff":"易","stem":"请解释“RAM”。","exp":"要点：可读可写、易失、按地址随机存取、SRAM 与 DRAM。易错：说成“只读”或“断电不丢”。","ref":"随机存储器（Random Access Memory），可随机读写、按地址直接存取，用来存放当前正在运行的程序和数据。它的内容是易失的，断电后信息全部丢失。分 SRAM（速度快、集成度低，用作 Cache）和 DRAM（集成度高、需定时刷新，用作主存）。","meta":{"origin":{"id":"tm-49","no":576,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-070","type":"term","topic":"3.3 存储类型与层次结构","diff":"易","stem":"请解释“ROM”。","exp":"要点：只读、非易失、存放固化程序。易错：认为 ROM 绝对不可写——EEPROM/Flash 可以擦写。","ref":"只读存储器（Read Only Memory），正常使用时只能读出、不能随意改写，断电后内容不丢失，用于存放固化的程序和数据，如 BIOS、引导程序、字库。按可改写性分为掩膜 ROM、PROM、EPROM、EEPROM（闪存）。","meta":{"origin":{"id":"tm-50","no":577,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-071","type":"term","topic":"3.3 存储类型与层次结构","diff":"中","stem":"请解释“Cache”。","exp":"要点：CPU 与主存之间、存副本、先查后用、局部性原理。易错：说 Cache 扩大了主存容量——它不增加逻辑容量，只提高速度。","ref":"高速缓冲存储器，位于 CPU 与主存之间、速度接近 CPU 的小容量存储器，存放主存中当前最活跃的程序和数据的副本。访问时先查 Cache，命中就直接读取，未命中再访问主存并把该块调入。它依据“程序访问的局部性”原理，用来缓解 CPU 与主存之间的速度差。","meta":{"origin":{"id":"tm-51","no":578,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-072","type":"term","topic":"3.3 存储类型与层次结构","diff":"难","stem":"请解释“命中率”。","exp":"要点：命中次数 ÷ 总次数、越高越快、受容量与替换算法影响。易错：与“缺失率”混用——两者互补，和为 1。","ref":"在 Cache（或虚拟存储）访问中，CPU 要访问的信息恰好在高速层中而被直接取到的次数占总访问次数的比例，即命中率 = 命中次数 ÷ 总访问次数。命中率越高，平均访问时间越短、系统性能越好，其高低取决于容量与替换算法。","meta":{"origin":{"id":"tm-52","no":579,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-073","type":"term","topic":"3.4 总线","diff":"易","stem":"请解释“总线”。","exp":"要点：公共通路、分时共享、三类总线。易错：漏掉“分时共享、同一时刻只能一个部件发送”。","ref":"计算机各功能部件之间传送数据、地址和控制信息的公共通路，由一组导线及相应的控制电路组成，具有分时共享的特点——同一时刻只允许一个部件发送信息。按传送的信息分为数据总线、地址总线和控制总线三类。","meta":{"origin":{"id":"tm-53","no":580,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-074","type":"term","topic":"3.4 总线","diff":"中","stem":"请解释“数据总线 / 地址总线 / 控制总线”。","exp":"要点：三类各传什么、数据双向/地址单向、地址线位数决定寻址容量。易错：把地址总线说成双向；把数据总线宽度说成决定容量。","ref":"系统总线按传送内容分为三类：数据总线（DB）传送数据，双向，宽度一般等于字长；地址总线（AB）传送存储单元或 I/O 端口地址，单向（由 CPU 发出），宽度决定最大寻址空间；控制总线（CB）传送控制与状态信号（读/写、中断请求、时钟），一般双向，条数因 CPU 型号而异。","meta":{"origin":{"id":"tm-54","no":581,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-075","type":"term","topic":"3.5 外设与外部存储","diff":"中","stem":"请解释“接口”。","exp":"要点：主机与外设之间、速度匹配 + 格式转换 + 缓冲 + 控制状态。易错：只答“插口”，不提速度匹配与格式转换。","ref":"主机与外部设备之间进行信息交换的衔接部件，由硬件电路和相应软件组成。作用是：实现速度匹配（外设远慢于 CPU）、完成数据格式转换（串/并、数/模）、提供数据缓冲与暂存、传递控制与状态信息。常见的有 USB 接口、显示接口、SATA 接口。","meta":{"origin":{"id":"tm-55","no":582,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-076","type":"term","topic":"3.5 外设与外部存储","diff":"中","stem":"请解释“磁盘（磁道 / 扇区 / 柱面）”。","exp":"要点：磁道、扇区、柱面三者的层次关系、机械寻址、非易失。易错：把磁道与扇区的包含关系说反。","ref":"以磁性材料为存储介质的外存储器。盘面被划分为若干同心圆磁道，每条磁道又分成若干扇区（通常 512B），各盘面上半径相同的磁道组成柱面。存取时磁头沿半径方向寻道、盘片旋转定位扇区，属非易失性存储；容量大、价格低，但机械寻址速度慢于内存。","meta":{"origin":{"id":"tm-56","no":583,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-077","type":"term","topic":"3.6 指令与指令周期","diff":"易","stem":"请解释“指令”。","exp":"要点：操作码 + 地址码、各自含义、指令系统。易错：漏掉地址码；把“程序”当作最小功能单位。","ref":"指挥计算机执行某种操作的命令，是计算机能够识别并执行的最小功能单位。一条指令通常由操作码和地址码组成：操作码指出做什么操作，地址码指出操作数在哪里或结果送到哪里。一台计算机全部指令的集合称为指令系统。","meta":{"origin":{"id":"tm-57","no":584,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-078","type":"term","topic":"3.6 指令与指令周期","diff":"中","stem":"请解释“指令周期”。","exp":"要点：取指—译码—执行三阶段、PC 自增、长度因指令而异。易错：把指令周期与时钟周期（主频的倒数）等同。","ref":"CPU 取出一条指令并执行完毕所需的时间，通常包括取指、译码、执行三个阶段（有的还包括取操作数和写结果）。取指阶段按 PC 从内存读出指令，PC 自动递增；不同指令的指令周期长度可以不同。","meta":{"origin":{"id":"tm-58","no":585,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-079","type":"term","topic":"3.6 指令与指令周期","diff":"难","stem":"请解释“流水线”。","exp":"要点：分阶段 + 重叠执行、提高吞吐率而非缩短单条延迟、需处理相关与冲突。易错：说“流水线使每条指令执行得更快”。","ref":"把指令的执行过程划分为若干阶段（取指、译码、执行、写回等），让不同指令的不同阶段在时间上重叠进行的技术。它并不缩短单条指令的完成时间，但能显著提高单位时间内完成的指令数（吞吐率），是现代 CPU 提高性能的主要手段之一。","meta":{"origin":{"id":"tm-59","no":586,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-080","type":"term","topic":"3.7 冯·诺依曼体系结构","diff":"中","stem":"请解释“哈佛结构”。","exp":"要点：指令与数据分开存、独立总线、可并行取指与取数。易错：与冯·诺依曼结构的特征弄反。","ref":"一种将程序（指令）与数据分开存储、并分别使用独立总线访问的计算机结构，因此可以同时取指令和取数据，速度快、可靠性高，但硬件更复杂。与之相对的是冯·诺依曼（普林斯顿）结构——指令与数据同等存储、共用总线。单片机、DSP 多采用哈佛结构。","meta":{"origin":{"id":"tm-60","no":587,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-081","type":"term","topic":"3.7 冯·诺依曼体系结构","diff":"中","stem":"请解释“并行处理”。","exp":"要点：多个任务同时执行、时间并行与空间并行、多核多机。易错：把并行与“分时轮流使用”混为一谈。","ref":"在同一时刻或同一时间间隔内完成多个处理任务的技术思想。实现方式包括时间并行（流水线）和空间并行（多处理机、多核、阵列处理机），即在系统中设置多个控制器、运算器和存储单元，使多个任务或指令同时执行。它是提高计算机性能的重要途径。","meta":{"origin":{"id":"tm-61","no":588,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-082","type":"term","topic":"4.1 数据结构与数组","diff":"易","stem":"请解释“数据结构”。","exp":"要点：逻辑结构 + 存储结构 + 运算三个层面。易错：只答“数据的组织形式”，漏掉逻辑与存储的区分。","ref":"数据元素之间存在的关系，以及这些关系在计算机中的存储表示。通常从三个层面理解：逻辑结构（元素之间的逻辑关系）、存储结构（在存储器中的表示）和定义在结构上的运算。它决定了数据的组织方式与处理效率。","meta":{"origin":{"id":"tm-62","no":589,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-083","type":"term","topic":"4.1 数据结构与数组","diff":"中","stem":"请解释“逻辑结构”。","exp":"要点：与计算机无关、一对一/一对多/多对多、线性与非线性。易错：把“顺序存储”当成逻辑结构。","ref":"数据元素之间抽象的逻辑关系，与计算机无关，是面向问题的。按元素间关系的不同分为线性结构（一对一，如线性表、栈、队列）和非线性结构（一对多如树、多对多如图），此外还有集合结构。","meta":{"origin":{"id":"tm-63","no":590,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-084","type":"term","topic":"4.1 数据结构与数组","diff":"中","stem":"请解释“存储结构”。","exp":"要点：物理实现、顺序与链式两种基本方式、一个逻辑结构可有多种实现。易错：认为存储结构只有顺序存储一种。","ref":"又称物理结构，是逻辑结构在计算机存储器中的表示与实现，与具体机器相关。基本方式有顺序存储（用连续单元，逻辑相邻即物理相邻）和链式存储（用指针表示逻辑关系，物理上可不连续），另有索引存储和散列存储。同一逻辑结构可以有多种存储结构。","meta":{"origin":{"id":"tm-64","no":591,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-085","type":"term","topic":"4.1 数据结构与数组","diff":"中","stem":"请解释“线性结构”。","exp":"要点：一对一关系、首元素无前驱末元素无后继、栈与队列属线性结构。易错：把二叉树、图说成线性结构。","ref":"数据元素之间为一对一（线性）关系的数据结构：除第一个元素没有前驱、最后一个元素没有后继外，每个元素有且仅有一个直接前驱和一个直接后继。典型的有线性表、栈、队列、串，可用顺序或链式方式存储。","meta":{"origin":{"id":"tm-65","no":592,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-086","type":"term","topic":"4.1 数据结构与数组","diff":"中","stem":"请解释“数据元素与数据项”。","exp":"要点：数据元素是基本单位、数据项是不可再分的最小单位、一对多的组成关系。易错：把两者的层次说反。","ref":"数据元素是数据的基本单位，在程序中作为一个整体被处理（如一条学生记录）；数据项是构成数据元素的、不可再分的最小单位（如学号、姓名），也称字段。一个数据元素可以由若干数据项组成。","meta":{"origin":{"id":"tm-66","no":593,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-087","type":"term","topic":"4.1 数据结构与数组","diff":"易","stem":"请解释“数组”。","exp":"要点：同类型、连续存放、下标随机访问、二维按行优先。易错：说数组插入删除很方便。","ref":"由相同类型的数据元素按一定顺序排列而成的集合，元素存放在连续的存储单元中，通过下标（索引）定位，可以随机访问（O(1)）。一维数组逻辑上是线性结构；二维数组逻辑上是二维的，物理上按行优先或列优先排成一维。在数组中插入、删除元素需要成批移动。","meta":{"origin":{"id":"tm-67","no":594,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-088","type":"term","topic":"4.1 数据结构与数组","diff":"中","stem":"请解释“线性表”。","exp":"要点：有限序列、一对一关系、顺序与链式两种实现、可以是空表。易错：把“线性表”与“数组”等同。","ref":"由 n（n ≥ 0）个相同类型的数据元素组成的有限序列，元素之间是一对一的线性关系，n = 0 时为空表。除首尾元素外，每个元素有唯一的前驱和后继。可用顺序表（数组）或链表实现，基本运算有插入、删除、查找和遍历。","meta":{"origin":{"id":"tm-68","no":595,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-089","type":"term","topic":"4.2 链表","diff":"易","stem":"请解释“链表”。","exp":"要点：结点 = 数据域 + 指针域、物理分散、插删快查找慢。易错：说链表支持随机访问。","ref":"用指针把物理上分散存储的结点链接起来以表示线性关系的存储结构。每个结点含数据域和指针域，头指针标识第一个结点，最后一个结点的指针为空（NULL）。插入、删除只需修改指针（O(1)，不含查找），查找必须从头顺序遍历（O(n)），不需要连续空间。","meta":{"origin":{"id":"tm-69","no":596,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-090","type":"term","topic":"4.2 链表","diff":"中","stem":"请解释“结点”。","exp":"要点：数据域 + 指针域、单链表与双链表指针个数不同。易错：把结点说成“数组中的一个元素”。","ref":"链式存储中数据的基本单位，通常由两部分组成：数据域存放数据元素本身，指针域（链域）存放指向后继（或前驱）结点的地址。单链表的结点只有一个指针域，双链表的结点有两个。","meta":{"origin":{"id":"tm-70","no":597,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-091","type":"term","topic":"4.2 链表","diff":"中","stem":"请解释“头指针”。","exp":"要点：指向首元结点、链表的入口、为空即空表、与头结点的区别。易错：把头指针与头结点混为一谈。","ref":"指向链表第一个结点（首元结点）的指针，是访问整个链表的入口。只要记住头指针，就能沿指针域依次找到每一个结点；头指针为空表示空表。为便于运算，有时在首元结点之前附加一个“头结点”，其数据域不保存有效数据。","meta":{"origin":{"id":"tm-71","no":598,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-092","type":"term","topic":"4.2 链表","diff":"中","stem":"请解释“循环链表”。","exp":"要点：尾结点指针指回头部、成环、可从任一结点遍历、需要终止条件。易错：说循环链表不能为空表。","ref":"首尾相接的链表：最后一个结点的指针域不再为空，而是指向头结点（或首元结点），使整个链表形成一个环。优点是从任一结点出发都能遍历全表，常用于约瑟夫环一类问题；缺点是遍历必须用计数或判等条件终止，否则会死循环。","meta":{"origin":{"id":"tm-72","no":599,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-093","type":"term","topic":"4.2 链表","diff":"中","stem":"请解释“双向链表”。","exp":"要点：两个指针域（前驱 + 后继）、可双向查找、空间开销大。易错：漏掉“删除时不必再找前驱”这一优势。","ref":"每个结点设置两个指针域的链表：一个指向直接后继（next），一个指向直接前驱（prior）。优点是可以从任一结点向前或向后查找，删除结点时不必再从头寻找前驱；缺点是每个结点多用一个指针，空间开销更大，插入删除要修改四个指针。","meta":{"origin":{"id":"tm-73","no":600,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-094","type":"term","topic":"4.3 抽象数据类型","diff":"中","stem":"请解释“抽象数据类型”。","exp":"要点：数据对象 + 操作、只讲接口隐藏实现、与实现无关。易错：把 ADT 与具体存储结构混同。","ref":"简称 ADT，指一个数学模型以及定义在该模型上的一组操作，包括数据对象和操作两部分。它只描述“能做什么”（对外接口与语义），隐藏“怎么做”（内部表示与实现），与具体实现无关。栈、队列、树、图都可以看作抽象数据类型。","meta":{"origin":{"id":"tm-74","no":601,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-095","type":"term","topic":"4.3 抽象数据类型","diff":"中","stem":"请解释“封装”。","exp":"要点：数据与操作打包、隐藏实现、只暴露接口。易错：把封装说成“加密”或“压缩”。","ref":"把数据的表示和定义在其上的操作组合在一起，对外只暴露操作接口、隐藏内部实现细节的机制。使用者只需知道“能做什么”，不必关心“怎么做”，从而降低耦合、便于修改和复用，是抽象数据类型得以实现的关键思想。","meta":{"origin":{"id":"tm-75","no":602,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-096","type":"term","topic":"4.4 栈与队列","diff":"易","stem":"请解释“栈”。","exp":"要点：同一端操作、后进先出、push/pop、典型应用。易错：说成一端插入另一端删除——那是队列。","ref":"只允许在同一端（栈顶）进行插入和删除操作的线性表，遵循后进先出（LIFO）原则。插入称进栈（push），删除称出栈（pop）；栈底固定不动。可用顺序存储（数组）或链式存储实现。典型应用有函数调用、表达式求值、括号匹配、进制转换和递归。","meta":{"origin":{"id":"tm-76","no":603,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-097","type":"term","topic":"4.4 栈与队列","diff":"易","stem":"请解释“队列”。","exp":"要点：队尾进队头出、先进先出、顺序实现需循环队列。易错：与栈的出入规则记混。","ref":"只允许在队尾插入、在队头删除的线性表，遵循先进先出（FIFO）原则。插入称入队，删除称出队；可用顺序存储（需用循环队列避免假溢出）或链式存储实现。典型应用有打印任务排队、进程调度、广度优先搜索和缓冲区。","meta":{"origin":{"id":"tm-77","no":604,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-098","type":"term","topic":"4.4 栈与队列","diff":"难","stem":"请解释“循环队列”。","exp":"要点：取模首尾相接、front/rear 移动规则、队空 front == rear、队满牺牲一个单元。易错：把队满判据写成 rear == front——那是队空。","ref":"把顺序存储的队列在逻辑上首尾相连（用取模运算使队尾指针回到数组开头）的实现方式。通常约定 front 指向队头元素、rear 指向队尾元素的下一个位置，入队 rear = (rear+1) % n，出队 front = (front+1) % n；为区分队空与队满，一般牺牲一个存储单元，队满条件为 (rear+1) % n == front。","meta":{"origin":{"id":"tm-78","no":605,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-099","type":"term","topic":"4.4 栈与队列","diff":"难","stem":"请解释“假溢出”。","exp":"要点：队尾到顶、前面有空位、用循环队列解决。易错：把假溢出说成真溢出——真溢出才是容量确实不够。","ref":"顺序队列经过多次入队、出队后，队尾指针已到达数组末端，而数组前端因元素出队留下大量空闲单元，此时明明还有空位却无法继续入队的现象。解决办法是把数组在逻辑上首尾相连，构成循环队列。","meta":{"origin":{"id":"tm-79","no":606,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-100","type":"term","topic":"4.5 树与二叉树","diff":"中","stem":"请解释“树”。","exp":"要点：层次关系、唯一根结点、一对多、递归定义（子树）。易错：说树是线性结构。","ref":"由 n（n ≥ 0）个结点组成的具有层次关系的有限集合。n = 0 时为空树；非空树有且仅有一个根结点，其余结点分成若干互不相交的子树，每个结点最多有一个前驱（双亲）、可以有多个后继（孩子）。树是一种一对多的非线性结构。","meta":{"origin":{"id":"tm-80","no":607,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-101","type":"term","topic":"4.5 树与二叉树","diff":"中","stem":"请解释“结点的度”。","exp":"要点：孩子个数、度为 0 即叶子、树的度为最大结点度。易错：把“结点的度”与“树的深度”混淆。","ref":"结点所拥有的子树（孩子）个数。度为 0 的结点是叶子结点，度不为 0 的是分支结点；树中所有结点度的最大值称为树的度。二叉树中结点的度只能取 0、1、2。","meta":{"origin":{"id":"tm-81","no":608,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-102","type":"term","topic":"4.5 树与二叉树","diff":"易","stem":"请解释“叶子结点”。","exp":"要点：度为 0、终端结点、n₀ = n₂ + 1。易错：把公式记成 n₀ = n₂ − 1。","ref":"又称终端结点，指度为 0（没有孩子）的结点。二叉树中有重要性质：n₀ = n₂ + 1，即叶子结点数总比度为 2 的结点数多 1，可由结点总数与分支总数的关系推出。","meta":{"origin":{"id":"tm-82","no":609,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-103","type":"term","topic":"4.5 树与二叉树","diff":"易","stem":"请解释“二叉树”。","exp":"要点：至多两棵子树、左右有序、第 i 层 2^(i−1)、k 层最多 2^k − 1。易错：漏掉“左右子树不能颠倒”。","ref":"每个结点至多有两棵子树的树，并且子树有左右之分、次序不能颠倒。第 i 层最多有 2^(i−1) 个结点，深度为 k 的二叉树最多有 2^k − 1 个结点。它是树结构中最常用的一种，便于存储与遍历。","meta":{"origin":{"id":"tm-83","no":610,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-104","type":"term","topic":"4.5 树与二叉树","diff":"中","stem":"请解释“满二叉树”。","exp":"要点：每层都满、共 2^k − 1 个结点、叶子都在最后一层。易错：与完全二叉树混为一谈。","ref":"深度为 k 且含有 2^k − 1 个结点的二叉树，即每一层的结点数都达到最大值。特点是除叶子结点外每个结点都有两棵子树，叶子全部集中在最下一层，结点可按层序从上到下、从左到右连续编号。","meta":{"origin":{"id":"tm-84","no":611,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-105","type":"term","topic":"4.5 树与二叉树","diff":"中","stem":"请解释“完全二叉树”。","exp":"要点：与满二叉树前 n 个编号一一对应、只缺右下角、适合数组存储。易错：把“每层都满”的满二叉树当成完全二叉树的定义。","ref":"深度为 k、有 n 个结点的二叉树，当且仅当它的每个结点都与深度为 k 的满二叉树中编号 1～n 的结点一一对应时，称为完全二叉树。特点是叶子只出现在最下两层、最下层的叶子集中在左侧、除最后一层外每层都满；适合用一维数组顺序存储，父结点下标为 i 时孩子为 2i 和 2i+1。","meta":{"origin":{"id":"tm-85","no":612,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-106","type":"term","topic":"4.5 树与二叉树","diff":"中","stem":"请解释“二叉树的遍历”。","exp":"要点：三种次序中“根”的位置、每结点仅访问一次、层次遍历。易错：先序与中序的次序写反。","ref":"按某条搜索路径访问二叉树中的每个结点，且每个结点仅访问一次的过程。按访问根结点的时机分为先序遍历（根—左—右）、中序遍历（左—根—右）、后序遍历（左—右—根），此外还有按层访问的层次遍历。遍历是查找、统计、复制等运算的基础。","meta":{"origin":{"id":"tm-86","no":613,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-107","type":"term","topic":"4.6 图","diff":"易","stem":"请解释“图”。","exp":"要点：V + E、多对多网状关系、有向/无向、可带权。易错：说图是线性结构或树形结构。","ref":"由非空的顶点集合 V 和描述顶点之间关系的边集合 E 组成的数据结构，记作 G = (V, E)。图中元素之间是多对多的网状关系，属非线性结构；边可以有方向（有向图）或无方向（无向图），也可以带权（网）。","meta":{"origin":{"id":"tm-87","no":614,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-108","type":"term","topic":"4.6 图","diff":"中","stem":"请解释“有向图与无向图”。","exp":"要点：有序对与无序对、两个边数上限公式。易错：把 n(n−1)/2 与 n(n−1) 用反。","ref":"边有方向的图称有向图，边称弧，用有序对 <vi, vj> 表示，vi→vj 与 vj→vi 是两条不同的弧；边无方向的图称无向图，边用无序对 (vi, vj) 表示，表示 vi 与 vj 互通。n 个顶点的无向图边数最多 n(n−1)/2，有向图最多 n(n−1)。","meta":{"origin":{"id":"tm-88","no":615,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-109","type":"term","topic":"4.6 图","diff":"中","stem":"请解释“顶点的度”。","exp":"要点：关联边数、有向图分入度与出度、度数之和为边数的 2 倍。易错：漏掉“2 倍”。","ref":"与该顶点相关联的边的数目。无向图中顶点 v 的度记作 TD(v)；有向图中分为出度（以 v 为起点的弧数）与入度（以 v 为终点的弧数），度 = 出度 + 入度。无向图所有顶点的度数之和等于边数的 2 倍；有向图所有顶点的入度之和等于出度之和，都等于弧数。","meta":{"origin":{"id":"tm-89","no":616,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-110","type":"term","topic":"4.6 图","diff":"中","stem":"请解释“邻接矩阵”。","exp":"要点：n×n 二维数组、1/0 或权值、无向图对称、O(n²) 空间。易错：把 0 解释成“有边”。","ref":"用二维数组表示图的存储结构：n 个顶点对应一个 n×n 矩阵，A[i][j] = 1（或边的权值）表示顶点 i 到 j 有边（弧），为 0 表示不邻接。无向图的邻接矩阵是对称矩阵。优点是判断两点是否邻接快、便于矩阵运算；缺点是稀疏图浪费空间，空间复杂度 O(n²)。","meta":{"origin":{"id":"tm-90","no":617,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"},{"qid":"cs.terms-111","type":"term","topic":"4.6 图","diff":"难","stem":"请解释“邻接表”。","exp":"要点：顶点数组 + 单链表、O(n+e)、适合稀疏图、求入度不便。易错：说邻接表适合稠密图。","ref":"图的一种链式存储结构：为每个顶点建立一个单链表，链表中的结点存放与该顶点相邻的顶点序号（及权值），各链表的头指针组成一个数组。空间复杂度 O(n+e)，适合稀疏图；缺点是判断两顶点是否邻接需遍历链表，表示有向图时求入度不便，可另建逆邻接表。","meta":{"origin":{"id":"tm-91","no":618,"mod":"名词解释","ch":null},"source":"计算机导论 题库合集（原站）"},"_unit":"terms"}]}],"wrong":{"exitStreak":1},"mastery":{"wAll":0.4,"wRecent":0.6,"recentN":5,"weakBelow":60,"solidAt":85,"solidStreak":4,"passMinQ":4,"passRate":0.9,"dueDays":[1,3,7]},"codec":{"version":10,"gidBits":32,"budgetBytes":6000},"order":["g7b36b9f9","geb76ff8a","g5604cb4e","gbbf40dfe","g53d3c631","gc8006e41","gdde89a21","gffcece9c","gbf4af0af","gf58d538b","g986a45cb","g16fafab6","g390c53cf","gd341e104","g5caa97bb","g63505a11","g262242e2","g53357d53","g15895c5a","gb37205e6","ga8ff66f5","gf78a1598","g2312f909","gd84ac421","g531e9c29","g11a301b7","g9182d1cb","g5ac960f1","g879fc5c7","g7d406c09","ge31b0414","ga0a1269f","gd6d7ba22","g96ce59ac","g1d239cea","g40f44857","g039b0e40","g2f3b78a4","g01c4cc52","g8a075482","g60a43282","gc2a5be02","g429eefc9","g9336931d","g1ca6d6e6","g3929ecd5","g6973d129","g3abb4969","ge0a933a7","gb120c052","g7d8fc4da","g1b380426","g97d834a5","g741c176d","gf4dc7861","g1235df51","g4f107c97","g8fdb65e0","g698ac205","ge61b55d3","g667cadf8","gabc70a0d","g77e9b112","g445ffe28","g16cd76e7","gb3fdad90","gcb5ba655","gd0d46845","g54bc7b55","gf6075fe1","g25a2682d","g057bd0db","g3b63256f","gbfab8367","g03aab32a","gb636e3f9","g3dcab7a9","g614ccd92","g884fb846","ge937909f","g11f716f7","g8ec3308b","g1a5f3cef","g96f701f5","g242e98e4","ge2157664","gf18eec25","g8e96cd21","gf0386650","g09d71ed5","g92ff9098","g064ea04e","gc83c3a94","g4af76b06","g3da490b9","g0808d4bc","ge3203fc6","g6fa225e2","g7c9f9f44","g4a2157b0","g25025c87","g104b192e","ge7adff58","ga387e22f","gfa59440f","g08e3bcf7","ge01cfa65","g6dea2267","g13218d7e","g65e9e0ef","g79d528ac","g599a0546","g2517f440","ga595f820","gcf460211","g9f71e789","gb01e3f0c","g1eb06575","gb8113912","g807c5984","gdcf4f1fb","gd2696c88","gfa8310ce","gf2f53cbe","g7b98981e","g076213f8","g7e6a6487","g6b2e2652","g87551d5d","g19b18cab","gfcdcdb65","g6ddcc1a3","g94b7ac42","g5ac2baaf","gb7b5b440","g2b0e7157","g0bab589f","g7ad36dda","gb6546538","g81b30939","g9f373780","g48a39971","gc1a4a843","g480becd5","gf72b0129","g9d028d5b","g2916ada0","g04845edf","gab29a6c0","g40a8aff0","g8b4113dc","g1c55697c","g9ea354eb","geb042c04","ga75a360b","gb9126faa","g30861bf5","g07275d63","g53b65631","g271e0878","g29dcf4e5","g25945d4b","gc163bcf5","g6be7fbfc","gfed7562f","ge830a02d","gd76932b5","g02c72447","ge3ee2ce1","gcb43c1d8","gaff8d526","g6777446a","g6b0f5484","g7b16fc75","gb9384f7a","g65b101b4","ge86d921c","g0502c34c","g5552c324","g1fcbdb63","g4d9794e4","g0709c199","gc65f1f04","ge46f101d","g047c30f7","g3548609e","g3abb81aa","g5cb03c59","g755a072d","g0b5ee65f","gafff9c1a","g30fefd34","gdc0ad1a0","gb554f7ff","g9cb28e54","g58ce5356","g11ffb230","g64ca99d0","gd01d8957","ga192474e","gbad3e88e","g1eac9fdd","g45a1cb22","ge489ee95","g28737307","g99d841f4","g3ae29aa4","gee5a9af5","ga463db95","g2d14a96b","g19c5b86c","gfc497e47","g860dfe6f","gd52b6854","g5f2b382f","g81ed9139","g784b3f52","g0942dc38","g1cd7a593","g6d667048","g5d049ec5","g4da8a56b","gcb81d309","gd36e2b50","ga15b5260","gf00b39f7","ge0efc098","g27daa553","g521ec2c4","g87982a59","g36df1844","gc6ed8228","ge5d73644","g45556f93","g53e5df5a","g9131eaab","g18182317","gdf2d5991","gaac5c5a6","ge8c98d9d","g1b90f280","ge5d10cc9","gc2f7c458","g21672a80","ge829ef5e","g61883d92","gd88b8337","g86c30186","g723d03a0","gd124800f","gdc5a8de4","g0ce2855c","gf7183600","g7d8225db","g0bca8c14","gf2788df2","gd7ec85c4","gaf39f94d","gd9c02349","ge6b8955b","gd7ebc6e3","g9735b846","gd67600a0","g6b12c7a9","g7856223d","g91477aa8","g72c273ea","g39fcc785","g1d0267b8","g9e1ccec7","g4698a807","g606e7360","gefda3600","gcdb48269","g4fd7aefd","g06618860","g3484ce2c","g9013f833","gcc6c9698","g31f473ec","ga3c2551e","ga1c46d58","g9af476c8","gbb32c34f","g82231fdb","gb5f99f65","g751c3602","gd62ba5b7","gf870b686","g6e0ace30","g1a11f037","g377569ba","g005091ce","gf69b61b9","gdb7f9796","g0a829bba","g34e2ec81","g046909de","g392c3158","gb7b9c6a2","g1c82c70d","g0b383d9f","g8bccef7d","g20dd6ab5","g0754abd4","g9b86128e","g4bccab8d","g648df109","gcdf615a9","gf1d07828","g063bb02f","g90e5d869","g4803ead2","gca51813d","g9b90dd7c","g211dd90c","ga27b8728","gcf26d826","g97305b12","gc8c0be9f","gd18a7cc5","gf5f8c466","gbba38e34","g21a306a6","g0bb1ca08","g4fce4e00","g70c0d310","g16b5af71","g141d2034","g66273e63","gec1951de","gbf9c9d24","g0295fbc8","g0b510d14","g79e288b6","gd6b25d8b","g232fbc3b","g1a5c00e3","g34d0fc7d","g0ce7771b","gba7db737","g4bf631a0","g182e9cf3","ge8028d8f","gba8a3f81","g85a7aaca","g9834532e","gb3578cce","ged935acf","g4d3521a3","g65393667","ge7a49d7a","g62d2d2ad","gca252dd3","g34809955","g199ca519","gb44e9b2c","gffe1f78d","g256838a9","ga30571f5","gb1a66859","g859b1a44","g83f7c550","g47a3938d","gcfbc632d","ge5c0fd78","gb166ee1b","g3fe03929","g5944ee4a","g87a21103","g29dea8c8","gab893cb0","g9084d7af","g72f2d960","g05585003","gd6b12c60","gd3a885f5","gb06aad8a","g3ac4e044","ge26a99c7","g69fbd3f3","gd1e91b9a","gbad355af","g6156937f","gc4976239","g6cf9a331","g88bba261","g1683ddfe","g91329588","g4ce1266f","ge1a1df3b","g2a422c82","g8966d5ad","g575d9b24","g8f652ab8","g1ef33c40","gf6e5088a","g17cbd5c5","gb5b3c1d7","g9dfc35fa","g0d3e065f","gd6016c4c","g610c5d97","gac20c821","gb614020b","g320fd4bc","g922fe37c","g91bcb19a","g71eff3b9","g7861653f","g9167561f","g72c6c698","g87f7bc15","g1d18be7d","g682de451","ge5ee3a97","g0ee384cf","g425fe1ac","g47481aa2","g6de15ca0","g61f7ca7a","g6ce6ac6a","g61ee0c2d","gf7590d49","g5b7f5f97","gdea56c0e","g0301f0ad","g5c15e249","g7d85ae14","gbc551597","g68a3ca15","ge380db07","g9b358884","g1d769e69","gbb06b2bf","gf2fe26f3","g68496199","g78a0064e","g5545c120","gc17fc744","g367dd129","ga58c3d48","gdf702ad2","gf124bf86","g8c49adb8","g7c4f8a73","gec43edc2","g0c7afa3a","g4c41a4c4","gd1182805","ge5f204d3","g813692ab","g4b988942","g88ca27ce","g96c798b4","g48496d3f","gd5192563","g663b0242","g853ea0c6","g83cf961a","gf7bf2063","g84d05d74","gaeb1b19a","g618382e1","g6a223f53","g9544d813","gcb820abe","g386fe161","g9a0c591e","g98ee8bf6","gb4cc71ae","gd3780423","g11f35851","g2787f399","g039071a6","g12ae5152","g3683f7d2","g7f88c332","gf7220fe0","gc88218a7","g4bbd0c01","g72f27294","g5c933d6a","gbd02801c","geda4707a","gd3b39057","gb80adaa9","ge992ed26","ged75ac2f","gfe4e26d0","g590d6513","gee4ff3c3","g91990fcb","gad3d4a4e","ge1b977c3","g50dfd45b","g5e39de6b","g395d0208","g44055549","g5893523c","gc75d4eb6","g7ec741bb","g56a85716","g63d28a27","g69b42f55","gb78a12eb","gd22cf7e4","gea2300ee","g47bded58","gb61ea4d7","g38673333","g0546a8ed","gdec61e9c","gfad58297","gd46cd534","g59e9d96e","g7635907b","g331361d7","g565098d8","gd46bab12","gab8da80f","gcc1b5ae7","g061e9883","g7a4b0770","g83364f6e","g8971840e","g1567916c","g31627dbf","gebe9d47b","ga84b35e2","g4ace2010","g7a9276ff","ga98d73a6","g9058b4d2","ge4cf7f1b","g8ce1b9bd","g0eadbcd8","g0a4c6e4d","g7218c103","g271b3f51","g34f73ddb","g2e377cef","geafd4f2b","gd896823e","g21c0302f","gd3e275db","g115a119f","gb3a96c08","g60f07933","g809f9206","gdb5839ff","gfe559cf4","gf154bb7f","g53934aac","gb8fff518","ge3c25455","gf81fa9a3","ge0068075","g0578cdda","gb5683b44","gc131dea2","gef1b0c64","g18d9e9ac","gf4d44e88","g5597978e","gf9fd7b35","g468fad2e","g95a519cb","ge273ff95","g31926fe3","gecb9ed7d","g97804432","gd0ba4569","g119700fd","ga1b92ff5","g253daff3","gef50ec08","g37edb496","g666f81e6","gc2487d42","gf77d8646","g9ac47b75","gde0c2b8f","gb7f9fe74","gc4bde062","g4fa4a961","g859c9d87","gf4f2fd83","g63731ddf","g9ebb67b5","gb3799d0d","g8daadc69","gf61ada50","g157013bf","ga92ffb5c","gca2eb295","g55ba2786","gc9388a84","gff687187","g345f6ec4","g09ba9df6","gda1bcea7","ga5288acc","g40d7a7e6","g667b7738","g810ed989","g9cad1b0c","g5b8c4bca","g7e705d22","gaf000e88","gf726c363","g03ee1191","g97c6c2cd","gf7100c45","g1aa6cc18","g41a671eb","gc1278ec9","gf0edb25f","g2de9a636","g5ffebba2","gde102447","ge16a73ee","g62c67c2c","gea01ed10","gf943baaf","gaa58ef17","g01bf8f33","g27702a7c","g480e99d4","g0685d4ef","g2a39826e","gdeb8196f","g1708883f","gbe49de8d","gae294cc6","ga147005e","gc2323627","g0be918fc","g03b1e6fe","g1e857075","gf6da754b","g1d6d2b9b","g487db1a7","g02ce2119","g42166d92","g64fbd179","g31f6f2a0","gfadc502a","g50314a2a","g08577df1","g9df202bc","g9d70ba13","g11cd48d6","gb969e0f0","g58fbdc00","ge4c4be34","g45b68f72","g65a648fc","g788136cc","gfefc29f0","g197938cc","g53234bd1","gf4d9ab5a","gf935d0a1","g52b8e1a1","geea6ca11","g8c425be2","g23383ddf","g58d50319","ge4deaeff","g548548b3","gf3fbd0f0","g0f6d9de5","g9983d61e","gef65b67f","g7aac1ab7","gbf747999","g908ff632","g00c800bb","g29aefcc5","g66b3406f","gfc333988","gd4fe666a","g17b22100","g1fc34e26","g28f088b3","g25a358f4","gb71bd484","gec30ec1f","g1def4d3d","gc3f6842f","g0e31eea2","g4726273a","g9fffd27c","ga5c118b0","g46bd69b0","g239dfa7f","gd98a97d7","g27e1906f","ga5c863a2","gd254d10f","gdd560391","gd2d4f461","ge3206fb6","g90fa4f82","gea5051a6","gb883dd01","g6d226542","g94e4e3ea","gd2d3f445","g77b6a846","g5bd50165","g383aab82","g834ef7a5","g7985dce3","gb58d4317","g81f96778","g22ecf364","g86000d91","g259c170c","gfc38f49a","g71c4455a","g4f37e387","g70dfd539","gc5c5b7f5","gc89a0730","g10b41190","g9ded027e","g75627128","gb58b3a9b","gaff06362","g2de7ff2e","gcacaa77c","gf8f10dc3","g8c7e1dce","g1487e553","g1ee0767d","gf96a456f","g6e3a40c6","g34b48f9b","ge63963a7","ge36ecefb","g92008e36","geb7eb57d","g751645c8","ge94124da","gfdda41ff","g79f1b19b","gcf32fa8b","g3428db12","g8858e799","g20a855ce","gf022522b","g031a2ba4","ge589a257","g2bac2dd7","gbc4fdd29","gbfe5f248","gbb0df6c3","gba3d7699","g7c32036b","gf085df40","g7ff78144","g364e2ca0","g5574fc0b","g5760a939","gdd4a294d","g8644b80e","g2f65df33","g20dfb8f3","g9c68309f","gbccde705","gd42dd1aa","g67a08e97","g4b143706","gb7f41124","ga9c3b933","gc3dec284","gbec66549","gae5c6134","g97f0a83b","ga859d4a4","gb2dc3884","ga3396296","g1c686085","g6c33c990","g39b8679f","g81bf95b7","g0d271157","g62c630ab","g79cb7262","g0ed945bf","gbb19f36f","gd3669d3f","gb5b3e688","g7d7ee56c","g87a782d9","g4ea93f7a","g751066a5","gb0b2e9b3","ga49524ae","g548def89","g6fe23e8e","gb1f8d702","g9ddbcbd0","g30957a2a","g2783978a","gf6a70765","gd20e8494","gd9363d46","g6f746810","g8ac98223","g13cd915e","g8b693cc6","g0ff5718b","g2e1ab98f","gd527f5a6","g53d11445","g3f1f9125","g26fb92fe","gc1949df6","g705f29cf","ge02c998d","ged3739cb","g49a2d102","g1eb56166","g4603aec4","g68488780","g6977fc4c","ga8f8ebea","g23995cac","ge6d96aaf","g0b0785de","g93b5b5ae","g1371ca57","g8a20a636","g12fa5864","g06ed68df","g3150b1ac","g90615c4d","gc00c98f3","g2de65d70","g619c85be","g35b47564","g27fc97d6","g65c056aa","gf13f193d","g34be7961","g9c403606","g2f40610e","gcb106dd6","g3c312936","g97a49c34","gf6bc08d9","g4acf98f1","ge2182c54","g906ad220","g82b8cf07","g5f5afb99","g7754f051","gd48c18fa","gc9ed4e07","ga76c2311","g84621cc2","gd33c46fb","gbbf4d994","g2fba926b","g6f0a8339","g2359dc90","g5d8142bb","gcda68b56","g32168d2c","g21f3ac55","gdc8e9bd7","g498a01d0","g342bb6d8","gc653f918","gdac677a6","gdf5de807","gbc1099d6","gd9f7b8a5","gebd271a2","g86fc77ff","gab894684","gb0379923","g788208f2","g1dbf987a","gd1aa6ef1","g812e0e95","g8f75a681","g6f15a1dc","g188d142a","g27ccced1","gd8f6a68e","g8ae75243","ga3c5872e","gbf14c24b","gee7d07b2","gc96cf649","g8b0655b2","g8259ad78","g55cb6e19","g3a01b923","gaa925f5c","g3278fcf5","g893f98e3","gad878cc0","gdb3694a6","gf8f066d5","g646b82d3","g9834ecca","g6c2a0844","gbaccfdfa","g273ad52b","ge8255e15","gf01923b1","g7df72076","g3ea73e5c","gbe3879ae","g8dde7b4e","g519cf2ec","g2ea96766","g190c2b31","gc561cc40","g842eccc7","g6d334def","gcc706093","g5b548e79","g38181fb9","g613c072b","g7b70cc45","gc5f9a766","gfbf3967e","g4951c619","gda0c60c0","g907b1f18","gd389f7bd","g092ec92d","gaa144d51","g13940466","gb2051f4f","g748ecd8d","gf98e4df5","g2c274ab3","g92b45a8b","ge4ef4c7e","g8f2bdfed","gb83464b4","gb4330433","g4812c6d2","g0942a45c","g8a4c6875","g6122d77b","gfecc02ca","ge8006d3c","g8a19b658","gcd1845a2","g89f8561a","ge978d438","gc5af59fa","gfce0fb3e","ge17475e6","g86df50a7","gf1edce77","g3baa6712","g3b8d965c","gf0e85e95","g2dcd9a1f","ga276eac1","gbecb215f","ged38f116","gc450fdfe","g77d8bf47","g4c2d8806","gb0a06d05","g088cf6d0","g57570373","gb342a65d","gd10ddac7","g527fd5c8","g2a9498ee","gf25d89ef","g59c979ca","g9566b46e","ge0cf6c69","ga393cec7","gb524b4a6","gee959d2d","gf0a6bfbf","g8fb5b14f","g697fb618","gb1456986","g7e911e16","g3c038ad5","gaec103b0","g2c674b55","gf02ef848","g33711178","gacf4f246","gb1a8bd74","g8c0f6047","ga534b835","g1ee23efd","g04ab999d","gb5b68065","g02b93582","g55dad198","g5db31cd8","g32dfc0b2","g9718d3b9","gefd62de0","g918f61ed","g158aa06f","g00d24d83","gcedbd423","g77da6a73","g2b6417f9","gc5c3da30","g9fc69d95","ge4c1d368","g628df15f","gddb99436","g6333df1d","gbcb8ebf2","gdb9a18ab","g4fa68a60","g69f8caf1","g040e28d2","gad4a45d4","ge325afd7","gf24fa186","ga815aeca","g3d1bd527","ged81e4b4","g3b764cbc","g6178ece0","gff8841d4","g1502082d","g2753bfa1","g2f074350","g4b93b055","g3574828a","gd3c8c48b","gb36d64d1","gb54cc99e","g4935a29f","g3a580416","geb8ca501","g164f1fdf","g2544f8e6","g693767b0","g47d5cf31","gc25b1cd4","gd9d1e859","gd48f8c4d","ge19aaffb","gbe7de046","ga9fccf00","ga00ec99a","g7a7b9722","gb0db6651","g10029c4e","g42aabd56","gb8f9fe94","g6edc58c3","g04a2993a","g685d41ac","g2895dab7","g4067065c","g5c8a42ff","g376ffc5e","g82e522ee","gf7b2eceb","ge985415d","gb7339ce0","gb27f2665","g2e7d316a","g10dd14c2","g281a53d3","ga5689648","ga7637fdc","ge4a893fd","gcd18f7d6","g299ffd90","gd184034e","gd696b160","g4e152e55","g8a99e241","gcff8d920","g5e73b170","g97522da6","g43193b46","gc1e12c9e","gc5be3f08","g73c18a45","g2c367137","gdbb1fe6d","g83d71aaf","gdf973479","gd26be9fe","gb43758a8","g5d91321d","g807ecb9a","g1e9c8109","g0c72c143","gff36502d","geaa873fa","ge2cc0861","g175b04f1","g94923f81","g45ea723b","g160fd7f6","gaeaac5fa","g76d20b37","g38010e58","g0f5cb299","gc34a0014","gbafb48de","g76e069ce","g677da40a","gc644d6b2","g994cb161","g5c53c415","g98b8dc39","g59504006","g30ffb51d","gf914e4b8","g273a413c","g56cb2d18","gd57573dc","g93120e2d","gafc23d42","gd7794306","ge64b5513","g101259e8","gdda65693","g307a433d","g121443c7","g1c770280","gef83dfc1","g1449e75e","g9ef37883","g3258bb75","gc9ff951a","g3c1e2d4e","gc394723f","gb4c85102","ge0e82f2c","g9b9efa1f","gdd3e7164","gd57d25df","ge08d13f7","gfc939473","g33dbbc0c","gc257631e","g6061e833","g0659988f","gab6142a6","g6e0a2de3","gbc9019f3","gf2865e72","g0f3667a6","g4733567b","g4756de4b","g9038541f","g33b09a4c","g4cec8c5b","ga4df5768","g7e8d736d","g562de47b","g69db51e9","g008c79c1","gc7c536e9","gd31ec5c1","gaa4d6e86","ge3ec0196","g2c37b1ab","gba2848cd","g47950c2d","gc119ce97","gb17411e5","g1a8b2fd6","g57edd025","g8eaa856b","gc2dd9d7b","gb5b63262","g3dd95916","g63190b8d","g118c8226","g957c6da8","g7b2d0be3","geb433cff","g04e4005a","g8b9c0ebd","g44b32dd2","g18db568f","g8b77fbc7","gd8384ee9","g7007532c","ga9345400","ge3c0f644","gcd9d07c0","gd1ef7aed","g9cf809c3","g16ee5adc","g4bf0888a","g18446003","gd5f823c1","gc84e3c86","gb905f92a","g25fd5d89","g89c0b3dc","gc2baf00f","ge8ba4a9c","g2a2ab0d3","gf1c9a9e1","ge3c1fb9f","g15a5bd1e","g3e78065d","g3c112db8","gbc4ef69e","gfc0e63b5","g3c0849a3","ga5233d36","gbe7d8c08","g572106e5","g8477937b","g1aafa51d","g68c5554b","g2cf2263f","g79917188","g2806c93f","gc36acde4"],"retired":[],"storePrefix":"qb.site"};</script>
+<script>/* qb-core.js — 多科目题库共享内核
+ * 职责：内容指纹、判定归一、错题状态机、掌握度、导出码 v10、状态存储。
+ * 不含任何题面文字、科目名、题组名（规范 6.1）。
+ * 浏览器与 Node 均可加载：Node 下走 module.exports，浏览器下挂 window.QB。
+ */
+(function (root) {
+  'use strict';
+
+  var U1 = '\u0001', U2 = '\u0002';
+
+  /* ---------------------------------------------------------------- 指纹 */
+
+  function fpNorm(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s+/g, '')
+      .replace(/[（）()［］【】]/g, '')
+      .replace(/[，,。．]/g, '');
+  }
+
+  // 必须用 Math.imul：朴素乘法中间结果超过 2^53，低位被浮点吞掉（gotchas #1）
+  function fpHash(str) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function fpHash2(str) {
+    var h = 0x01000193;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  function utf16Slice(s, n) {
+    var out = '', count = 0;
+    for (var i = 0; i < s.length; i++) {
+      var code = s.charCodeAt(i);
+      var need = (code >= 0xd800 && code <= 0xdbff) ? 2 : 1;
+      if (count + need > n) break;
+      out += s.charAt(i);
+      if (need === 2 && i + 1 < s.length) { out += s.charAt(i + 1); i++; }
+      count += need;
+    }
+    return out;
+  }
+
+  function fingerprint(q, bits) {
+    var base = String(q.type || '') + U1 + fpNorm(q.stem);
+    var extra;
+    if (q.options != null) {
+      extra = q.options.map(fpNorm).slice().sort().join(U1);
+    } else if (q.answers != null) {
+      extra = q.answers.map(fpNorm).slice().sort().join(U1);
+    } else {
+      extra = utf16Slice(fpNorm(q.ref), 80);
+    }
+    var seed = base + U2 + extra;
+    if (bits === 64) return 'g' + fpHash(seed) + fpHash2(seed);
+    return 'g' + fpHash(seed);
+  }
+
+  /* ---------------------------------------------------------------- 判分 */
+
+  // 判分用 norm，与指纹的 fpNorm 不是同一个函数（规范 5.3）
+  // 这里用 NFKC：把全角数字/字母、兼容区汉字折到标准形态，中文与全角输入才判得准
+  function norm(s) {
+    var t = cleanText(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFKC'); } catch (e) { /* 忽略 */ }
+    }
+    return t
+      .trim()
+      .toUpperCase()
+      .replace(/（/g, '(').replace(/）/g, ')')
+      .replace(/[，,、；;。．\s]/g, '');
+  }
+
+  /* 输入清洗：兼容多种来源的字符集差异
+   * - 去 BOM 与零宽字符（Windows 记事本、复制粘贴、旧版导出常带）
+   * - Unicode NFC 归一（全角/半角、组合字符、兼容区汉字统一到同一形态，
+   *   否则同一句中文在不同输入法下会算出不同的指纹与判分结果）
+   */
+  function cleanText(s) {
+    if (s == null) return '';
+    var t = String(s);
+    if (typeof t.normalize === 'function') {
+      try { t = t.normalize('NFC'); } catch (e) { /* 老浏览器忽略 */ }
+    }
+    return t
+      .replace(/^\uFEFF+/, '')
+      .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n');
+  }
+
+  function digitsOf(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    return m ? m : [];
+  }
+
+  function residualOf(s) {
+    return String(s)
+      .replace(/\d+(?:\.\d+)?/g, '')
+      .replace(/[年月日时分秒个只台次位条元米克吨度%％]/g, '')
+      .replace(/[()（）\[\]【】]/g, '');
+  }
+
+  // 三级比较：严格相等 → 数值相等（语义残差一致）→ 等价答案
+  function fuzzyEq(input, answer) {
+    var a = norm(input), b = norm(answer);
+    if (a === b) return true;
+    if (!a || !b) return false;
+    var da = digitsOf(a), db = digitsOf(b);
+    if (da.length && da.length === db.length && da.join('|') === db.join('|')
+        && residualOf(a) === residualOf(b)) return true;
+    return false;
+  }
+
+  function judge(q, decl, input) {
+    var kind = decl.judge;
+    if (kind === 'none') return { ok: null, credit: null };
+    if (kind === 'exact') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var picked = input.picked.slice().sort(function (x, y) { return x - y; });
+      var ans = q.answer.slice().sort(function (x, y) { return x - y; });
+      return { ok: picked.length === ans.length && picked.every(function (v, i) { return v === ans[i]; }), credit: null };
+    }
+    if (kind === 'set') {
+      if (!input || !input.picked || !q.answer) return { ok: null, credit: null };
+      var p = {}, a = {};
+      input.picked.forEach(function (v) { p[v] = 1; });
+      q.answer.forEach(function (v) { a[v] = 1; });
+      var pk = Object.keys(p), ak = Object.keys(a);
+      var same = pk.length === ak.length && pk.every(function (k) { return a[k]; });
+      // 多选半对：只选中部分正确项 → 记 false，用 c 记得分率
+      var hit = pk.filter(function (k) { return a[k]; }).length;
+      var credit = ak.length ? hit / ak.length : 0;
+      return { ok: same, credit: same ? null : Math.round(credit * 100) / 100 };
+    }
+    if (kind === 'numeric') {
+      if (input == null || input.text == null || input.text === '') return { ok: null, credit: null };
+      var tol = decl.tolerance != null ? Number(decl.tolerance) : 0;
+      var want = Number((q.answers || [])[0]);
+      var got = Number(String(input.text).replace(/[^\d.\-+eE]/g, ''));
+      if (!isFinite(want) || !isFinite(got)) return { ok: false, credit: 0 };
+      return { ok: Math.abs(got - want) <= tol, credit: null };
+    }
+    if (kind === 'fuzzy') {
+      if (input == null || input.text == null || String(input.text).trim() === '') return { ok: null, credit: null };
+      var list = q.answers || [];
+      for (var i = 0; i < list.length; i++) if (fuzzyEq(input.text, list[i])) return { ok: true, credit: null };
+      return { ok: false, credit: 0 };
+    }
+    // rubric / external：交给自评兜底（4.7 第 4 条）
+    return { ok: null, credit: null };
+  }
+
+  /* ---------------------------------------------------------------- 编码 v10 */
+
+  function BitWriter() { this.buf = []; this.cur = 0; this.n = 0; }
+  BitWriter.prototype.put = function (value, width) {
+    for (var k = width - 1; k >= 0; k--) {
+      this.cur = ((this.cur << 1) | ((value >> k) & 1)) & 0xff;
+      this.n++;
+      if (this.n === 8) { this.buf.push(this.cur); this.cur = 0; this.n = 0; }
+    }
+  };
+  BitWriter.prototype.finish = function () {
+    if (this.n) { this.buf.push((this.cur << (8 - this.n)) & 0xff); this.cur = 0; this.n = 0; }
+    return this.buf;
+  };
+
+  function BitReader(bytes, startByte) { this.b = bytes; this.pos = startByte * 8; }
+  BitReader.prototype.read = function (width) {
+    var v = 0;
+    for (var i = 0; i < width; i++) {
+      var idx = this.pos >> 3;
+      if (idx >= this.b.length) throw new Error('编码不完整：位流提前结束');
+      var bit = 7 - (this.pos & 7);
+      v = (v << 1) | ((this.b[idx] >> bit) & 1);
+      this.pos++;
+    }
+    return v;
+  };
+  BitReader.prototype.bytesUsed = function () { return (this.pos + 7) >> 3; };
+
+  function maskWidth(decl) {
+    if (!decl || decl.replay !== 'mask') return 0;
+    var cap = Number(decl.maxOptions || 0);
+    if (cap <= 4) return 4;
+    if (cap <= 8) return 8;
+    if (cap <= 16) return 16;
+    return 0;
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var s = (typeof btoa === 'function')
+      ? btoa(bin)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(bytes).toString('base64') : '');
+    return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function unb64url(text) {
+    // 容忍：标准 base64 的 +/、被折行或带空格的粘贴、缺省补齐的 =、前后引号
+    var s = cleanText(text)
+      .replace(/^["'`]+|["'`]+$/g, '')
+      .replace(/\s+/g, '')
+      .replace(/-/g, '+').replace(/_/g, '/');
+    while (s.length % 4) s += '=';
+    var bin = (typeof atob === 'function')
+      ? atob(s)
+      : (typeof Buffer !== 'undefined' ? Buffer.from(s, 'base64').toString('binary') : '');
+    var out = [];
+    for (var i = 0; i < bin.length; i++) out.push(bin.charCodeAt(i) & 0xff);
+    return out;
+  }
+
+  function utf8Bytes(str) {
+    var out = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        var c2 = str.charCodeAt(++i);
+        var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function utf8Decode(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length;) {
+      var c = bytes[i++];
+      if (c < 0x80) s += String.fromCharCode(c);
+      else if (c < 0xe0) s += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
+      else if (c < 0xf0) s += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
+      else {
+        var cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
+        cp -= 0x10000;
+        s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
+      }
+    }
+    return s;
+  }
+
+  /* ---------------------------------------------------------------- 站点实例 */
+
+  function Store(prefix) {
+    this.prefix = prefix || 'qb.site';
+    this.mem = null;   // Node / 无 localStorage 时的内存兜底
+  }
+
+  Store.prototype._key = function (name) { return this.prefix + '.' + name + '.v1'; };
+
+  Store.prototype.get = function (name, fallback) {
+    var raw;
+    try {
+      raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this._key(name)) : null;
+    } catch (e) { raw = null; }
+    if (raw == null) {
+      if (this.mem && this.mem[name] != null) return JSON.parse(JSON.stringify(this.mem[name]));
+      return fallback;
+    }
+    try { return JSON.parse(raw); } catch (e) { return fallback; }
+  };
+
+  Store.prototype.set = function (name, value) {
+    if (!this.mem) this.mem = {};
+    this.mem[name] = JSON.parse(JSON.stringify(value));
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(this._key(name), JSON.stringify(value));
+    } catch (e) { /* 配额满：保留内存态，不中断作答 */ }
+  };
+
+  Store.prototype.remove = function (name) {
+    if (this.mem) delete this.mem[name];
+    try { if (typeof localStorage !== 'undefined') localStorage.removeItem(this._key(name)); } catch (e) {}
+  };
+
+  function Site(def, store) {
+    this.def = def;
+    this.store = store || new Store(def.storePrefix || 'qb.site');
+    this.types = def.types || {};
+    this.order = (def.order || []).slice();
+    this.retired = {};
+    (def.retired || []).forEach(function (g) { this.retired[g] = 1; }, this);
+    this.bits = (def.codec && def.codec.gidBits) || 32;
+    this.budget = (def.codec && def.codec.budgetBytes) || 6000;
+    this.questions = [];
+    this.byGid = {};
+    this.byQid = {};
+    this.legacyIdMap = {};     // 旧题号（如 1-02）→ gid，用于迁移旧命名空间
+    this._streak = {};
+    this._index(def.units || []);
+  }
+
+  Site.prototype._index = function (units) {
+    var self = this;
+    this.scopeUnit = {};
+    this.scopeSubject = [];
+    var seenSubj = {};
+    units.forEach(function (unit) {
+      var list = [], seen = {};
+      (unit.questions || []).forEach(function (q) {
+        q._gid = fingerprint(q, self.bits);
+        q._unit = unit.key;
+        q._unitLabel = unit.label;
+        q._unitTitle = unit.title;
+        self.questions.push(q);
+        if (!self.byGid[q._gid]) self.byGid[q._gid] = q;
+        self.byQid[q.qid] = q;
+        if (!seen[q._gid]) { seen[q._gid] = 1; list.push(q._gid); }
+        if (!seenSubj[q._gid]) { seenSubj[q._gid] = 1; self.scopeSubject.push(q._gid); }
+        if (q.meta && q.meta.origin && q.meta.origin.id) {
+          self.legacyIdMap[String(q.meta.origin.id)] = q._gid;
+        }
+      });
+      self.scopeUnit[unit.key] = list;
+    });
+    // 未出现在序列表里的题（首次运行）追加到末尾，保证 seq 可用
+    var known = {};
+    this.order.forEach(function (g) { known[g] = 1; });
+    this.questions.forEach(function (q) {
+      if (!known[q._gid]) { self.order.push(q._gid); known[q._gid] = 1; }
+    });
+  };
+
+  Site.prototype.gidOf = function (q) { return q._gid || fingerprint(q, this.bits); };
+
+  // 作用域 gid 序：题组按题库顺序、科目按题组顺序去重。
+  // 同一道题同时出现在两个题组时，题组作用域各自保留一份——否则含副本的题组
+  // 会与独立部署包算出不同的序，导致进度码对不上。
+  Site.prototype.scopeGids = function (kind, key) {
+    if (kind === 'site') return this.order.slice();
+    if (kind === 'subject') return this.scopeSubject.slice();
+    return (this.scopeUnit[key] || []).slice();
+  };
+
+  /* ---- 状态读取（投影视图） ---- */
+
+  Site.prototype.get = function (gid) {
+    var ans = this.store.get('ans', {});
+    return ans[gid] || null;
+  };
+
+  Site.prototype.allAns = function () { return this.store.get('ans', {}); };
+  Site.prototype.allWrong = function () { return this.store.get('wrong', {}); };
+  Site.prototype.allFav = function () { return this.store.get('fav', {}); };
+
+  Site.prototype.put = function (gid, patch, mode) {
+    var ans = this.store.get('ans', {});
+    var prev = ans[gid] || null;
+    var rec = mergeRecord(prev, patch);
+    // 本机的一次新作答说了算：重做答错就要记成错，不能被「信息量优先」留住旧的 true。
+    // 跨设备 / 导入导出仍走 mergeRecord 的信息量优先，那是合并两处记录，不是同一次作答。
+    if (patch.ok !== undefined) rec.ok = patch.ok;
+    ans[gid] = rec;
+    this.store.set('ans', ans);
+    this._applyWrong(gid, rec, mode);
+    this._log({ g: gid, t: Date.now(), k: 'attempt', ok: rec.ok, m: mode || rec.m || 'seq',
+                c: rec.c, p: rec.p, x: rec.x });
+    return rec;
+  };
+
+  // 规范 5.8：按信息量合并，不用先到先得
+  function mergeRecord(prev, patch) {
+    if (!prev) {
+      var base = { ok: patch.ok == null ? null : patch.ok, at: patch.at || Date.now() };
+      if (patch.p && patch.p.length) base.p = patch.p.slice().sort(function (a, b) { return a - b; });
+      if (patch.x != null) base.x = patch.x;
+      if (patch.m) base.m = patch.m;
+      if (patch.c != null) base.c = patch.c;
+      if (patch.self) base.self = true;
+      return base;
+    }
+    var out = { ok: prev.ok, at: prev.at };
+    if (prev.p) out.p = prev.p.slice();
+    if (prev.x != null) out.x = prev.x;
+    if (prev.m) out.m = prev.m;
+    if (prev.c != null) out.c = prev.c;
+    if (prev.self) out.self = true;
+
+    var rank = { 'true': 3, 'false': 2, 'null': 1 };
+    var a = rank[String(prev.ok)], b = rank[String(patch.ok)];
+    if (patch.ok !== undefined && b > a) out.ok = patch.ok;
+    if (patch.at && patch.at > (out.at || 0)) out.at = patch.at;
+    if (patch.p && patch.p.length) out.p = patch.p.slice().sort(function (x, y) { return x - y; });
+    if (patch.x != null && String(patch.x).length >= String(out.x || '').length) out.x = patch.x;
+    if (patch.c != null && (out.c == null || patch.c > out.c)) out.c = patch.c;
+    if (patch.m) out.m = patch.m;
+    if (patch.self) out.self = true;
+    return out;
+  }
+
+  /* ---- 错题状态机（规范 5.2 八条） ---- */
+
+  Site.prototype._applyWrong = function (gid, rec, mode) {
+    var wrong = this.store.get('wrong', {});
+    var suppressed = this.store.get('suppress', {});
+    var inSet = !!wrong[gid];
+    var exitStreak = (this.def.wrong && this.def.wrong.exitStreak) || 1;
+    var now = Date.now();
+
+    if (rec.ok === false) {                       // #1 / #8
+      wrong[gid] = now;
+      delete suppressed[gid];
+      this.store.set('wrong', wrong);
+      this.store.set('suppress', suppressed);
+      return;
+    }
+    if (rec.ok === true && mode === 'wrong' && inSet) {   // #2
+      var streak = (this._streak[gid] || 0) + 1;
+      this._streak[gid] = streak;
+      if (streak >= exitStreak) {
+        delete wrong[gid];
+        delete this._streak[gid];
+        this.store.set('wrong', wrong);
+      }
+      return;
+    }
+    // #3 顺序练习答对：不变；#4 ok=null：不变
+  };
+
+  Site.prototype._streak = {};
+  Site.prototype.suppress = function (gid) {          // #6
+    var wrong = this.store.get('wrong', {});
+    var sup = this.store.get('suppress', {});
+    delete wrong[gid];
+    sup[gid] = Date.now();
+    this.store.set('wrong', wrong);
+    this.store.set('suppress', sup);
+    this._log({ g: gid, t: Date.now(), k: 'suppress' });
+  };
+
+  Site.prototype.resetScope = function (kind, key) {   // #7
+    var gids = this.scopeGids(kind, key);
+    var keep = {};
+    gids.forEach(function (g) { keep[g] = 1; });
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    gids.forEach(function (g) { delete ans[g]; delete wrong[g]; delete fav[g]; });
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    this._log({ g: '*', t: Date.now(), k: 'reset', scope: kind + ':' + key });
+  };
+
+  Site.prototype.toggleFav = function (gid) {
+    var fav = this.store.get('fav', {});
+    if (fav[gid]) delete fav[gid]; else fav[gid] = Date.now();
+    this.store.set('fav', fav);
+    return !!fav[gid];
+  };
+
+  /* ---- 事件日志与折叠 ---- */
+
+  Site.prototype._log = function (ev) {
+    var diag = this.store.get('diag', { events: [], rounds: {}, mastery: {} });
+    diag.events = diag.events || [];
+    diag.events.push(ev);
+    if (diag.events.length > 2000) {
+      // 折叠最旧的一半进快照，再截断（规范 5.1）
+      diag.events = diag.events.slice(-1000);
+    }
+    this.store.set('diag', diag);
+  };
+
+  Site.prototype.rebuild = function () {
+    var diag = this.store.get('diag', { events: [] });
+    var ans = {}, wrong = {};
+    (diag.events || []).forEach(function (e) {
+      if (e.k === 'reset') return;
+      if (e.g === '*') return;
+      if (e.k === 'attempt') {
+        ans[e.g] = mergeRecord(ans[e.g] || null, { ok: e.ok, at: e.t, p: e.p, x: e.x, m: e.m, c: e.c });
+        if (e.ok === false) wrong[e.g] = e.t;
+        else if (e.ok === true && e.m === 'wrong' && wrong[e.g]) delete wrong[e.g];
+      } else if (e.k === 'suppress') {
+        delete wrong[e.g];
+      }
+    });
+    return { ans: ans, wrong: wrong };
+  };
+
+  /* ---- 掌握度（规范 5.5） ---- */
+
+  Site.prototype.masteryOf = function (topic) {
+    var m = this.def.mastery || {};
+    var wAll = m.wAll != null ? m.wAll : 0.4;
+    var wRecent = m.wRecent != null ? m.wRecent : 0.6;
+    var recentN = m.recentN || 5;
+    var ans = this.store.get('ans', {});
+    var self = this;
+    var records = this.questions.filter(function (q) { return q.topic === topic && ans[q._gid]; })
+      .map(function (q) { return ans[q._gid]; })
+      .filter(function (r) { return r.ok !== null; });
+
+    if (!records.length) return { topic: topic, score: null, level: null, n: 0 };
+
+    function credit(r) {
+      if (r.ok === true) return 1;
+      if (r.c != null) return r.c;
+      return 0;
+    }
+    var all = records.reduce(function (s, r) { return s + credit(r); }, 0) / records.length;
+    var recent = records.slice(-recentN);
+    var rec = recent.reduce(function (s, r) { return s + credit(r); }, 0) / recent.length;
+    var score = Math.round(100 * (wAll * all + wRecent * rec));
+    var level = score < (m.weakBelow || 60) ? '薄弱'
+      : (score >= (m.solidAt || 85) ? '已掌握' : '巩固中');
+    return { topic: topic, score: score, level: level, n: records.length, recent: rec, all: all };
+  };
+
+  Site.prototype.masteryAll = function () {
+    var topics = {}, self = this;
+    this.questions.forEach(function (q) { topics[q.topic] = 1; });
+    return Object.keys(topics).sort().map(function (t) { return self.masteryOf(t); });
+  };
+
+  /* ---- 编码 / 解码 ---- */
+
+  // 规范 3.5：超预算时按 32→24→16→8→4→0 压缩文字段，仍超才报错；单段上限 255 字节
+  var TEXT_STEPS = [255, 32, 24, 16, 8, 4, 0];
+
+  Site.prototype.encode = function (kind, key, opts) {
+    var steps = (opts && opts.textLimit != null) ? [opts.textLimit] : TEXT_STEPS;
+    var last = null;
+    for (var i = 0; i < steps.length; i++) {
+      last = this._encodeWith(kind, key, steps[i]);
+      if (last.length <= this.budget) return last;
+    }
+    return last;   // 已降到 0 仍超预算：交给调用方提示改用题组作用域
+  };
+
+  Site.prototype._encodeWith = function (kind, key, textStep) {
+    var self = this;
+    var gids = this.scopeGids(kind, key);
+    if (!gids.length) throw new Error('作用域 ' + kind + ':' + key + ' 内没有题目');
+    var ans = this.store.get('ans', {});
+    var fav = this.store.get('fav', {});
+    var used = {}, widths = {};
+    gids.forEach(function (g) {
+      var q = self.byGid[g];
+      if (q && !used[q.type]) { used[q.type] = 1; widths[q.type] = maskWidth(self.types[q.type]); }
+    });
+
+    var n = gids.length;
+    var blen = (n + 7) >> 3;
+    var ansBits = new Array(blen).fill(0);
+    var favBits = new Array(blen).fill(0);
+    var txtBits = new Array(blen).fill(0);
+
+    var bw = new BitWriter();
+    var texts = [];
+
+    gids.forEach(function (g, i) {
+      var rec = ans[g];
+      if (!rec) return;
+      ansBits[i >> 3] |= 1 << (i & 7);
+      if (fav[g]) favBits[i >> 3] |= 1 << (i & 7);
+      bw.put(rec.ok === true ? 1 : (rec.ok === false ? 2 : 0), 2);
+      var w = widths[(self.byGid[g] || {}).type] || 0;
+      var mask = 0;
+      (rec.p || []).forEach(function (k) { if (k >= 0 && k < w) mask |= 1 << k; });
+      if (w) bw.put(mask, w);
+      if (rec.x != null && rec.x !== '' && textStep > 0) {
+        var bytes = utf8Bytes(String(rec.x)).slice(0, 255);
+        txtBits[i >> 3] |= 1 << (i & 7);
+        texts.push(bytes.slice(0, textStep));
+      } else if (rec.x != null && rec.x !== '') {
+        // 文字被压到 0 时不写文字段，但已答位仍置 1
+      }
+    });
+
+    var head = [10];
+    var anyWidth = Object.keys(widths).some(function (k) { return widths[k] > 0; });
+    head.push((anyWidth ? 1 : 0) | (texts.length ? 2 : 0));
+    head.push({ site: 0, subject: 1, unit: 2 }[kind]);
+    var kb = kind === 'site' ? [] : utf8Bytes(key);
+    head.push(kb.length);
+    head = head.concat(kb);
+    var typeKeys = Object.keys(widths).sort();   // 与校验门一致：题型表按字典序写
+    head.push(typeKeys.length);
+    typeKeys.forEach(function (t) {
+      var tb = utf8Bytes(t);
+      head.push(tb.length);
+      head = head.concat(tb);
+      head.push(widths[t]);
+    });
+    head.push((n >> 8) & 0xff, n & 0xff);
+    head = head.concat(ansBits, favBits, txtBits, bw.finish());
+    texts.forEach(function (blob) { head.push(blob.length); head = head.concat(blob); });
+
+    return '10:' + b64url(head);
+  };
+
+  Site.prototype.decode = function (code) {
+    code = cleanText(code).trim();
+    if (code.indexOf('10:') === 0) return this._decodeV10(code);
+    if (code.indexOf('9:') === 0) return this._decodeV9(code);
+    if (/^[89]:/.test(code)) throw new Error('该版本编码已不再支持，请用「导入」按钮旁的旧码迁移说明');
+    throw new Error('无法识别的进度码：应以 10: 或 9: 开头');
+  };
+
+  Site.prototype._decodeV10 = function (code) {
+    var data = unb64url(code.slice(3));
+    if (data.length < 6 || data[0] !== 10) throw new Error('编码头损坏');
+    var pos = 2;
+    var kindId = data[pos++];
+    var klen = data[pos++];
+    var key = utf8Decode(data.slice(pos, pos + klen)); pos += klen;
+    var tcount = data[pos++];
+    var widths = {};
+    for (var i = 0; i < tcount; i++) {
+      var kl = data[pos++];
+      var name = utf8Decode(data.slice(pos, pos + kl)); pos += kl;
+      widths[name] = data[pos++];
+    }
+    var total = (data[pos] << 8) | data[pos + 1]; pos += 2;
+    var blen = (total + 7) >> 3;
+    var ansBits = data.slice(pos, pos + blen); pos += blen;
+    var favBits = data.slice(pos, pos + blen); pos += blen;
+    var txtBits = data.slice(pos, pos + blen); pos += blen;
+
+    var kind = ['site', 'subject', 'unit'][kindId];
+    var gids = this.scopeGids(kind, key);
+    if (gids.length !== total) throw new Error('编码内 gid 数 ' + total + ' 与本地作用域 ' + gids.length + ' 不一致（题库版本不同？）');
+
+    var reader = new BitReader(data, pos);
+    var ans = {}, fav = {}, texts = {};
+    for (var j = 0; j < total; j++) {
+      var g = gids[j];
+      if (favBits[j >> 3] & (1 << (j & 7))) fav[g] = Date.now();
+      if (!(ansBits[j >> 3] & (1 << (j & 7)))) continue;
+      var okc = reader.read(2);
+      var w = widths[(this.byGid[g] || {}).type] || 0;
+      var mask = w ? reader.read(w) : 0;
+      var picked = [];
+      if (w) for (var k = 0; k < w; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed();
+    for (var j2 = 0; j2 < total; j2++) {
+      if (!(txtBits[j2 >> 3] & (1 << (j2 & 7)))) continue;
+      if (tpos >= data.length) throw new Error('文字段提前结束');
+      var ln = data[tpos++];
+      texts[gids[j2]] = utf8Decode(data.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: kind, key: key, ans: ans, fav: fav, texts: texts };
+  };
+
+  /* ---- v9 旧码：全站快照，按去重后的字典序 gid 排位（兼容线上原方案C） ---- */
+
+  Site.prototype.legacyGids = function () {
+    var seen = {}, out = [];
+    this.questions.forEach(function (q) {
+      if (!seen[q._gid]) { seen[q._gid] = 1; out.push(q._gid); }
+    });
+    return out.sort();          // 旧版 GID_ALL = 去重后按码元序排列
+  };
+
+  Site.prototype._decodeV9 = function (code) {
+    var bin = unb64url(code.slice(2));
+    if (bin.length < 3 || bin[0] !== 9) throw new Error('v9 编码头损坏');
+    var total = (bin[1] << 8) | bin[2];
+    var len = (total + 7) >> 3;
+    var hdr = 3 + len * 3;
+    if (bin.length < hdr) throw new Error('v9 编码不完整，可能复制时漏了字符');
+    var gids = this.legacyGids();
+    if (gids.length !== total) {
+      throw new Error('v9 编码含 ' + total + ' 个 gid，本地题库为 ' + gids.length + ' 个（题库版本不同）');
+    }
+    var ansBits = bin.slice(3, 3 + len);
+    var favBits = bin.slice(3 + len, 3 + 2 * len);
+    var txtBits = bin.slice(3 + 2 * len, hdr);
+    var reader = new BitReader(bin, hdr);
+    var ans = {}, fav = {};
+    for (var i = 0; i < total; i++) {
+      var g = gids[i];
+      if (favBits[i >> 3] & (1 << (i & 7))) fav[g] = Date.now();
+      if (!(ansBits[i >> 3] & (1 << (i & 7)))) continue;
+      var okc = reader.read(2);
+      var mask = reader.read(4);        // v9 固定 4 位掩码
+      var picked = [];
+      for (var k = 0; k < 4; k++) if (mask & (1 << k)) picked.push(k);
+      ans[g] = { ok: okc === 1 ? true : (okc === 2 ? false : null), at: Date.now(), p: picked };
+    }
+    var tpos = reader.bytesUsed(), texts = {};
+    for (var j = 0; j < total; j++) {
+      if (!(txtBits[j >> 3] & (1 << (j & 7)))) continue;
+      if (tpos >= bin.length) break;
+      var ln = bin[tpos++];
+      texts[gids[j]] = utf8Decode(bin.slice(tpos, tpos + ln));
+      tpos += ln;
+    }
+    return { kind: 'site', key: '', ans: ans, fav: fav, texts: texts, v: 9 };
+  };
+
+  /* ---- 旧版本机记录迁移：csg_*（gid 键）与 csunitN_*（旧题号键） ---- */
+
+  var LEGACY_RE = /^(?:csg|cs(?:unit\d+|exam|terms|calc|midterm))_(ans|wrong|fav)_v1$/;
+
+  function toRecord(r) {
+    if (!r || typeof r !== 'object') return null;
+    var ok = r.ok === true ? true : (r.ok === false ? false : null);
+    var picked = Array.isArray(r.picked) ? r.picked : (Array.isArray(r.p) ? r.p : null);
+    var text = r.text != null ? r.text : (r.x != null ? r.x : '');
+    var answered = !!picked || !!text || ok !== null || r.done === true;
+    if (!answered) return null;
+    var rec = { ok: ok, at: typeof r.at === 'number' ? r.at : Date.now() };
+    if (picked && picked.length) {
+      rec.p = picked.filter(function (k) { return typeof k === 'number' && k >= 0; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (text) rec.x = cleanText(text).trim();
+    if (r.self === true) rec.self = true;
+    if (typeof r.c === 'number') rec.c = r.c;
+    return rec;
+  }
+
+  function eachLegacyEntry(value, fn) {
+    if (value == null) return;
+    if (Array.isArray(value)) { value.forEach(function (g) { if (typeof g === 'string') fn(g, 1); }); return; }
+    if (typeof value !== 'object') return;
+    Object.keys(value).forEach(function (g) { fn(g, value[g]); });
+  }
+
+  // 幂等：迁移过一次就记标记，不重复覆盖用户此后产生的记录
+  Site.prototype.migrateLegacy = function () {
+    var store = this.store;
+    if (store.get('migrated', null)) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+    if (typeof localStorage === 'undefined' || !localStorage.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    var idMap = this.legacyIdMap || {};
+    var ans = store.get('ans', {});
+    var wrong = store.get('wrong', {});
+    var fav = store.get('fav', {});
+    var self = this;
+    var counts = { ans: 0, wrong: 0, fav: 0, orphan: 0 };
+    var handled = [];
+
+    function resolve(key) {
+      if (/^g[0-9a-f]{8}([0-9a-f]{8})?$/.test(key)) return key;
+      return idMap[key] || null;
+    }
+
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) names.push(localStorage.key(i));
+
+    names.forEach(function (name) {
+      var m = LEGACY_RE.exec(name);
+      if (!m) return;
+      var kind = m[1];
+      var raw;
+      try { raw = JSON.parse(localStorage.getItem(name) || 'null'); } catch (e) { return; }
+      handled.push(name);
+
+      eachLegacyEntry(raw, function (key, val) {
+        var gid = resolve(key);
+        if (!gid) { counts.orphan++; return; }
+        if (kind === 'ans') {
+          var rec = toRecord(val);
+          if (!rec) return;
+          if (!ans[gid]) { ans[gid] = rec; counts.ans++; }
+          else if (ans[gid].ok === null && rec.ok !== null) { ans[gid] = rec; counts.ans++; }
+        } else if (kind === 'wrong') {
+          if (!wrong[gid]) { wrong[gid] = typeof val === 'number' ? val : Date.now(); counts.wrong++; }
+        } else if (kind === 'fav') {
+          if (!fav[gid]) { fav[gid] = (val && typeof val === 'object' && typeof val.t === 'number') ? val.t : Date.now(); counts.fav++; }
+        }
+      });
+    });
+
+    if (!handled.length) return { skipped: true, ans: 0, wrong: 0, fav: 0 };
+
+    store.set('ans', ans);
+    store.set('wrong', wrong);
+    store.set('fav', fav);
+    store.set('migrated', { at: Date.now(), from: handled, counts: counts });
+    // 旧键一律不删：回退到旧页面仍可用（规范 8.2 第 4 条）
+    return counts;
+  };
+
+  // 导入：只覆盖作用域内，域外原样保留（规范 3.3）
+  Site.prototype.importCode = function (code) {
+    var snapshot = {
+      ans: this.store.get('ans', {}), wrong: this.store.get('wrong', {}), fav: this.store.get('fav', {})
+    };
+    this.store.set('bak', { at: Date.now(), data: snapshot });
+
+    var got = this.decode(code);
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var self = this;
+    var touched = 0;
+
+    Object.keys(got.ans).forEach(function (g) {
+      var incoming = got.ans[g];
+      if (got.texts[g] != null) incoming.x = cleanText(got.texts[g]);
+      ans[g] = mergeRecord(ans[g] || null, incoming);
+      if (incoming.ok === false) wrong[g] = Date.now();
+      touched++;
+    });
+    Object.keys(got.fav).forEach(function (g) { fav[g] = fav[g] || Date.now(); });
+
+    this.store.set('ans', ans);
+    this.store.set('wrong', wrong);
+    this.store.set('fav', fav);
+    return { kind: got.kind, key: got.key, count: touched, v: got.v || 10 };
+  };
+
+  Site.prototype.undoImport = function () {
+    var bak = this.store.get('bak', null);
+    if (!bak) return false;
+    this.store.set('ans', bak.data.ans || {});
+    this.store.set('wrong', bak.data.wrong || {});
+    this.store.set('fav', bak.data.fav || {});
+    return true;
+  };
+
+  /* ---- 统计（三级口径，分母一律 gid 去重） ---- */
+
+  Site.prototype.stats = function (unitKey) {
+    var self = this;
+    var ans = this.store.get('ans', {});
+    var wrong = this.store.get('wrong', {});
+    var fav = this.store.get('fav', {});
+    var gids = unitKey ? this.scopeGids('unit', unitKey) : this.order.slice();
+    var seen = {}, total = 0, answered = 0, correct = 0, wrongN = 0, favN = 0;
+    gids.forEach(function (g) {
+      if (seen[g]) return;
+      seen[g] = 1;
+      total++;
+      var r = ans[g];
+      if (r) {
+        answered++;
+        if (r.ok === true) correct++;
+      }
+      if (wrong[g]) wrongN++;
+      if (fav[g]) favN++;
+    });
+    return {
+      total: total, answered: answered, correct: correct,
+      rate: answered ? Math.round(100 * correct / answered) : null,
+      wrong: wrongN, fav: favN
+    };
+  };
+
+  var QB = {
+    fpNorm: fpNorm, fpHash: fpHash, fingerprint: fingerprint,
+    norm: norm, judge: judge, fuzzyEq: fuzzyEq, cleanText: cleanText,
+    maskWidth: maskWidth, mergeRecord: mergeRecord,
+    Store: Store, Site: Site,
+    create: function (def, store) { return new Site(def, store); }
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = QB;
+  else root.QB = QB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>window.QB_SYNC_CFG={"env":"__ENV_ID__","key":"__PUBLISHABLE_KEY__","rpc":"","quiz":"global","codeKey":"csquiz_sync_code_v1"};</script>
+<script>/* qb-sync.js — 云端同步（手动上传 / 下载，不做任何自动网络请求）
+ *
+ * 与线上原方案C 完全同一套契约，保证老页面与新页面读写同一行、同一份数据：
+ *   环境      window.QB_SYNC.env
+ *   RPC       POST <env>.api.tcloudbasegateway.com/v1/rdb/rest/rpc/quiz_pull | quiz_push
+ *   鉴权      Authorization: Bearer <publishable key>
+ *   行键      (同步码, 'global')，全站一行
+ *   payload   {v:1, quiz:'global', at, ans:{gid:{picked,text,done,ok,self,upd}}, del:{gid:t}, fav:{gid:{on,t}}}
+ *   同步码    localStorage['csquiz_sync_code_v1']（与旧页面共用，用户不用重填）
+ *
+ * 内核内部记录用规范 3.2 的短键（ok/at/p/x/self），payload 用旧站的长键。
+ * 转换集中在本文件的 toRemote / fromRemote，两端格式谁都不改，所以新旧页面可以并存。
+ */
+(function (root) {
+  'use strict';
+
+  var QB = root.QB;
+  if (!QB) return;
+
+  function Sync(site, cfg) {
+    this.site = site;
+    this.cfg = cfg || {};
+    this.env = this.cfg.env || '';
+    this.key = this.cfg.key || '';
+    this.code = this.cfg.code || '';
+    this.quiz = this.cfg.quiz || 'global';
+    this.base = this.cfg.rpc || ('https://' + this.env + '.api.tcloudbasegateway.com/v1/rdb/rest/rpc/');
+    this.busy = false;
+    this.lastMsg = '';
+    this.lastAt = 0;
+    this.codeKey = this.cfg.codeKey || 'csquiz_sync_code_v1';
+    this.stateKey = 'qb.site.sync.v1';
+    var st = this._load();
+    if (!this.code && st.code) this.code = st.code;
+  }
+
+  Sync.prototype._load = function () {
+    try {
+      var raw = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.stateKey) : null;
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  };
+
+  Sync.prototype._save = function (patch) {
+    var st = this._load();
+    for (var k in patch) st[k] = patch[k];
+    st.at = Date.now();
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.stateKey, JSON.stringify(st)); } catch (e) {}
+  };
+
+  Sync.prototype.configured = function () {
+    return !!this.env && this.key.length > 20 && this.key.indexOf('__') !== 0;
+  };
+
+  Sync.prototype.enabled = function () { return this.configured() && !!this.code; };
+
+  Sync.prototype.setCode = function (v) {
+    this.code = QB.cleanText(v).trim().toUpperCase();
+    this._save({ code: this.code });
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem(this.codeKey, this.code); } catch (e) {}
+  };
+
+  Sync.prototype.readSharedCode = function () {
+    try {
+      var v = (typeof localStorage !== 'undefined') ? localStorage.getItem(this.codeKey) : '';
+      if (v && !this.code) { this.code = v; }
+      return this.code || '';
+    } catch (e) { return this.code || ''; }
+  };
+
+  /* ---------- 记录形态转换 ---------- */
+
+  function toRemote(rec) {
+    if (!rec) return null;
+    var picked = Array.isArray(rec.p) ? rec.p.slice(0, 16) : [];
+    var text = rec.x == null ? '' : String(rec.x).slice(0, 2000);
+    return {
+      picked: picked,
+      text: text,
+      done: rec.ok !== null || picked.length > 0 || text.length > 0,
+      ok: rec.ok === true ? true : (rec.ok === false ? false : null),
+      self: rec.self === true ? true : null,
+      upd: typeof rec.at === 'number' ? rec.at : 0
+    };
+  }
+
+  function fromRemote(r) {
+    if (!r || typeof r !== 'object') return null;
+    var rec = { ok: r.ok === true ? true : (r.ok === false ? false : null), at: typeof r.upd === 'number' ? r.upd : Date.now() };
+    if (Array.isArray(r.picked) && r.picked.length) {
+      rec.p = r.picked.filter(function (k) { return typeof k === 'number' && k >= 0 && k < 16; })
+        .sort(function (a, b) { return a - b; });
+    }
+    if (typeof r.text === 'string' && r.text) rec.x = QB.cleanText(r.text);
+    if (r.self === true) rec.self = true;
+    return rec;
+  }
+
+  Sync.prototype._localSnap = function () {
+    var site = this.site;
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var known = {};
+    site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    Object.keys(ans).forEach(function (g) {
+      if (!known[g]) return;
+      var r = toRemote(ans[g]);
+      if (r) snap.ans[g] = r;
+    });
+    Object.keys(fav).forEach(function (g) { if (known[g]) snap.fav[g] = { on: true, t: fav[g] || 0 }; });
+    return snap;
+  };
+
+  Sync.prototype._remoteSnap = function (payload) {
+    var known = {};
+    this.site.questions.forEach(function (q) { known[q._gid] = 1; });
+    var snap = { ans: {}, del: {}, fav: {} };
+    var a = (payload && payload.ans) || {};
+    var d = (payload && payload.del) || {};
+    var f = (payload && payload.fav) || {};
+    Object.keys(a).forEach(function (g) {
+      if (!known[g]) return;
+      var r = fromRemote(a[g]);
+      if (r) snap.ans[g] = toRemote(r);
+    });
+    Object.keys(d).forEach(function (g) { if (known[g] && typeof d[g] === 'number') snap.del[g] = d[g]; });
+    Object.keys(f).forEach(function (g) {
+      if (known[g] && f[g] && typeof f[g] === 'object') snap.fav[g] = { on: f[g].on === true, t: typeof f[g].t === 'number' ? f[g].t : 0 };
+    });
+    return snap;
+  };
+
+  /* 合并：并集，同一条取 upd 较新者；墓碑优先 */
+  function combine(a, b) {
+    var out = { ans: {}, del: {}, fav: {} };
+    [b, a].forEach(function (src) {
+      Object.keys(src.ans).forEach(function (g) {
+        var cur = out.ans[g];
+        if (!cur || (src.ans[g].upd || 0) >= (cur.upd || 0)) out.ans[g] = src.ans[g];
+      });
+    });
+    var dels = {};
+    [a, b].forEach(function (src) {
+      Object.keys(src.del).forEach(function (g) { dels[g] = Math.max(dels[g] || 0, src.del[g]); });
+    });
+    Object.keys(dels).forEach(function (g) {
+      var rec = out.ans[g];
+      if (!rec || dels[g] >= (rec.upd || 0)) { delete out.ans[g]; out.del[g] = dels[g]; }
+    });
+    var keys = {};
+    Object.keys(a.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(b.fav).forEach(function (k) { keys[k] = 1; });
+    Object.keys(keys).forEach(function (k) {
+      var x = a.fav[k], y = b.fav[k];
+      out.fav[k] = (x && y) ? ((x.t || 0) >= (y.t || 0) ? x : y) : (x || y);
+    });
+    return out;
+  }
+
+  Sync.prototype._apply = function (snap) {
+    var site = this.site;
+    var ans = site.allAns(), fav = site.allFav();
+    Object.keys(snap.ans).forEach(function (g) {
+      var incoming = fromRemote(snap.ans[g]);
+      if (incoming) ans[g] = QB.mergeRecord(ans[g] || null, incoming);
+    });
+    Object.keys(snap.del).forEach(function (g) { delete ans[g]; });
+    Object.keys(snap.fav).forEach(function (g) { if (snap.fav[g].on) fav[g] = snap.fav[g].t || Date.now(); else delete fav[g]; });
+    site.store.set('ans', ans);
+    site.store.set('fav', fav);
+  };
+
+  Sync.prototype._payload = function (snap) {
+    var ans = {};
+    Object.keys(snap.ans).forEach(function (g) {
+      var r = snap.ans[g];
+      ans[g] = { picked: r.picked, text: r.text, done: r.done, ok: r.ok, self: r.self, upd: r.upd };
+    });
+    return { v: 1, quiz: this.quiz, at: Date.now(), ans: ans, del: snap.del, fav: snap.fav };
+  };
+
+  /* ---------- 网络 ---------- */
+
+  Sync.prototype._rpc = function (fn, body) {
+    var self = this;
+    return fetch(this.base + fn, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.key
+      },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function (text) {
+      // 统一按 UTF-8 文本解析，避免响应头缺 charset 时按 latin-1 解出乱码
+      var json;
+      try { json = JSON.parse(text); } catch (e) { throw new Error('云端返回非 JSON'); }
+      if (json && json.ok === false && json.error === 'conflict') return json;
+      if (!json || json.ok === false) throw new Error((json && json.error) || '云端返回异常');
+      return json;
+    });
+  };
+
+  Sync.prototype._guard = function () {
+    if (!this.configured()) return '同步未配置（缺少环境或 Key）';
+    if (!this.code) return '请先填写并保存同步码';
+    if (this.busy) return '正在同步中';
+    return null;
+  };
+
+  Sync.prototype.upload = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+
+    function once() {
+      return self._rpc('quiz_pull', { p_code: self.code, p_quiz: self.quiz }).then(function (r) {
+        var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+        return self._rpc('quiz_push', {
+          p_code: self.code, p_quiz: self.quiz,
+          p_base_rev: r.rev || 0, p_payload: self._payload(merged)
+        }).then(function (res) { return { res: res, merged: merged }; });
+      });
+    }
+
+    return once().then(function (x) {
+      if (x.res && x.res.ok === false && x.res.error === 'conflict') return once();   // 被别的设备抢先，重来一次
+      self._apply(x.merged);
+      self._save({ rev: x.res.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(x.merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.download = function () {
+    var self = this, why = this._guard();
+    if (why) return Promise.reject(new Error(why));
+    this.busy = true;
+    return this._rpc('quiz_pull', { p_code: this.code, p_quiz: this.quiz }).then(function (r) {
+      var merged = combine(self._localSnap(), self._remoteSnap(r.payload));
+      self._apply(merged);
+      self._save({ rev: r.rev || 0, code: self.code });
+      self.busy = false;
+      return { count: Object.keys(merged.ans).length };
+    }).catch(function (e) { self.busy = false; throw e; });
+  };
+
+  Sync.prototype.pending = function () {
+    var st = this._load();
+    var since = st.at || 0;
+    var n = 0;
+    var ans = this.site.allAns();
+    Object.keys(ans).forEach(function (g) { if ((ans[g].at || 0) > since) n++; });
+    return n;
+  };
+
+  root.QBSync = { create: function (site, cfg) { return new Sync(site, cfg); }, toRemote: toRemote, fromRemote: fromRemote };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* qb-page.js — 练习页渲染层
+ * 只读 window.QB_SITE（站点定义 + 本题组题目），所有状态变更走 QB 内核（规范 6.4）。
+ */
+(function () {
+  'use strict';
+
+  var def = window.QB_SITE;
+  var meta = window.QB_META || {};
+  if (!def) return;
+
+  var site = QB.create(def);
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var S = {
+    mode: 'seq',
+    type: '',
+    diff: '',
+    kw: '',
+    list: [],
+    idx: 0,
+    shown: {},       // qid -> true，已揭晓答案
+    redo: {},        // qid -> true，本题正在重做，忽略旧记录
+    draft: {}        // qid -> 当前输入
+  };
+
+  var DIFF_ORDER = { '易': 0, '中': 1, '难': 2 };
+  var TYPE_ORDER = Object.keys(def.types || {});
+
+  /* ------------------------------------------------------------ 路由 */
+
+  function readRoute() {
+    var h = location.hash.replace(/^#/, '');
+    var p = new URLSearchParams(h);
+    S.mode = p.get('mode') || 'seq';
+    S.type = p.get('t') || '';
+    S.diff = p.get('d') || '';
+    S.kw = p.get('kw') || '';
+    var qid = p.get('q');
+    if (qid) S.pendingQid = qid;
+  }
+
+  function writeRoute() {
+    var p = new URLSearchParams();
+    if (S.mode !== 'seq') p.set('mode', S.mode);
+    if (S.type) p.set('t', S.type);
+    if (S.diff) p.set('d', S.diff);
+    if (S.kw) p.set('kw', S.kw);
+    var q = S.list[S.idx];
+    if (q) p.set('q', q.qid);
+    var url = location.pathname + '#' + p.toString();
+    try { history.replaceState(null, '', url); } catch (e) { /* file:// 下可能被拒，忽略 */ }
+  }
+
+  /* ------------------------------------------------------------ 组卷 */
+
+  function buildList() {
+    var ans = site.allAns(), wrong = site.allWrong(), fav = site.allFav();
+    var all = site.questions.slice();
+
+    if (S.type) all = all.filter(function (q) { return q.type === S.type; });
+    if (S.diff) all = all.filter(function (q) { return q.diff === S.diff; });
+    if (S.kw) {
+      var kw = S.kw.toLowerCase();
+      all = all.filter(function (q) {
+        return (q.stem + ' ' + q.topic + ' ' + (q.exp || '')).toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+
+    if (S.mode === 'wrong') all = all.filter(function (q) { return wrong[q._gid]; });
+    else if (S.mode === 'fav') all = all.filter(function (q) { return fav[q._gid]; });
+    else if (S.mode === 'undone') all = all.filter(function (q) { return !ans[q._gid]; });
+
+    if (S.mode === 'random') {
+      for (var i = all.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+    }
+    S.list = all;
+    if (S.pendingQid) {
+      var k = all.findIndex(function (q) { return q.qid === S.pendingQid; });
+      if (k >= 0) S.idx = k;
+      S.pendingQid = null;
+    }
+    if (S.idx >= all.length) S.idx = Math.max(0, all.length - 1);
+  }
+
+  /* ------------------------------------------------------------ 渲染 */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // 显示优先用构建期排好版的视图（公式是内联 SVG），没有就转义纯文本
+  function view(q, field, fallback) {
+    if (q.views && q.views[field] != null) return q.views[field];
+    var raw = fallback !== undefined ? fallback : q[field];
+    return esc(raw).replace(/\n/g, '<br>');
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function renderStats() {
+    var st = site.stats(def.units.length === 1 ? def.units[0].key : null);
+    var box = $('#stats');
+    box.innerHTML = '';
+    var items = [
+      ['进度', st.answered + ' / ' + st.total, st.total ? Math.round(100 * st.answered / st.total) : 0],
+      ['正确率', st.rate == null ? '—' : st.rate + '%', st.rate || 0],
+      ['错题', String(st.wrong), 0],
+      ['收藏', String(st.fav), 0]
+    ];
+    items.forEach(function (it) {
+      var c = el('div', 'stat');
+      c.appendChild(el('div', 'stat-k', it[0]));
+      c.appendChild(el('div', 'stat-v', it[1]));
+      if (it[2]) {
+        var bar = el('div', 'stat-bar');
+        var fill = el('i');
+        fill.style.width = it[2] + '%';
+        bar.appendChild(fill);
+        c.appendChild(bar);
+      }
+      box.appendChild(c);
+    });
+    var label = def.units.length === 1 ? '题组口径' : '题库集口径（gid 去重）';
+    $('#stats').setAttribute('data-scope', label);
+  }
+
+  function renderFilters() {
+    var tsel = $('#f-type');
+    if (tsel.options.length <= 1) {
+      TYPE_ORDER.forEach(function (t) {
+        var o = el('option', null, def.types[t].label || t);
+        o.value = t;
+        tsel.appendChild(o);
+      });
+    }
+    tsel.value = S.type;
+    $('#f-diff').value = S.diff;
+    $('#f-kw').value = S.kw;
+    $$('#modes button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.mode === S.mode);
+    });
+  }
+
+  function optionMark(q, i) {
+    return String.fromCharCode(65 + i);
+  }
+
+  function renderCard() {
+    var card = $('#card');
+    card.innerHTML = '';
+    var q = S.list[S.idx];
+
+    if (!q) {
+      var empty = el('div', 'empty');
+      empty.appendChild(el('div', 'empty-t', S.mode === 'wrong' ? '错题本是空的' : (S.mode === 'fav' ? '还没有收藏' : '没有符合条件的题目')));
+      empty.appendChild(el('p', 'empty-s', S.mode === 'wrong'
+        ? '答错的题会自动进入这里；在错题本里做对一次才会移出。'
+        : '换个筛选条件，或者切回顺序练习。'));
+      card.appendChild(empty);
+      $('#nav').innerHTML = '';
+      return;
+    }
+
+    var decl = def.types[q.type] || {};
+    var rec = site.get(q._gid);
+    // 错题本里默认让人重做：不预置上次的选项、也不提前摊开答案。
+    // 点「重做」的题同理；其余模式仍按「做过就显示结果」的老规矩。
+    var redoing = !!S.redo[q.qid] || (S.mode === 'wrong' && !S.shown[q.qid]);
+    var revealed = !redoing && (!!S.shown[q.qid] || (rec && rec.ok !== null));
+    var fav = site.allFav()[q._gid];
+
+    var head = el('div', 'q-head');
+    var tag = el('span', 'tag tag-type', decl.label || q.type);
+    head.appendChild(tag);
+    head.appendChild(el('span', 'tag tag-diff d-' + (DIFF_ORDER[q.diff] != null ? DIFF_ORDER[q.diff] : 1), q.diff));
+    head.appendChild(el('span', 'q-topic', q.topic));
+    var no = el('span', 'q-no', (S.idx + 1) + ' / ' + S.list.length);
+    head.appendChild(no);
+    card.appendChild(head);
+
+    var stem = el('div', 'q-stem');
+    stem.innerHTML = view(q, 'stem');
+    card.appendChild(stem);
+
+    if (q.media && q.media.img) {
+      var im = el('img', 'q-img');
+      im.src = q.media.img;
+      im.alt = '题图';
+      card.appendChild(im);
+    }
+
+    var area = el('div', 'q-area');
+
+    if (decl.answerShape === 'choice') {
+      var opts = el('div', 'opts');
+      var picked = redoing ? (S.draft[q.qid] || [])
+        : ((rec && rec.p) ? rec.p.slice() : (S.draft[q.qid] || []));
+      q.options.forEach(function (text, i) {
+        var b = el('button', 'opt');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        if (picked.indexOf(i) >= 0) b.classList.add('picked');
+        if (revealed) {
+          b.disabled = true;
+          if ((q.answer || []).indexOf(i) >= 0) b.classList.add('right');
+          else if (picked.indexOf(i) >= 0) b.classList.add('wrong');
+        }
+        var k = el('span', 'opt-k', optionMark(q, i));
+        b.appendChild(k);
+        var ot = el('span', 'opt-t');
+        ot.innerHTML = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(text);
+        b.appendChild(ot);
+        b.addEventListener('click', function () { pick(q, decl, i); });
+        opts.appendChild(b);
+      });
+      area.appendChild(opts);
+      if (decl.judge === 'set' && !revealed) {
+        var tip = el('p', 'hint', '多选题：选好后点「提交」');
+        area.appendChild(tip);
+      }
+    } else if (decl.answerShape === 'tokenList') {
+      var inp = el('input', 'in');
+      inp.type = 'text';
+      inp.placeholder = '在此填写答案';
+      inp.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      inp.disabled = revealed;
+      inp.addEventListener('input', function () { S.draft[q.qid] = inp.value; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(q, decl); });
+      area.appendChild(inp);
+    } else {
+      var ta = el('textarea', 'ta');
+      ta.placeholder = '写出你的答案或关键步骤，提交后与参考答案对照自评';
+      ta.value = redoing ? (S.draft[q.qid] || '') : ((rec && rec.x) || S.draft[q.qid] || '');
+      ta.disabled = revealed;
+      ta.rows = 5;
+      ta.addEventListener('input', function () { S.draft[q.qid] = ta.value; });
+      area.appendChild(ta);
+    }
+    card.appendChild(area);
+
+    var bar = el('div', 'q-bar');
+    if (!revealed) {
+      var sub = el('button', 'btn primary', '提交');
+      sub.addEventListener('click', function () { submit(q, decl); });
+      bar.appendChild(sub);
+      if (decl.judge === 'rubric') {
+        bar.appendChild(el('span', 'hint', '主观题：提交后对照参考答案自评'));
+      }
+      var peek = el('button', 'btn ghost', '看答案');
+      peek.addEventListener('click', function () { S.shown[q.qid] = true; render(); });
+      bar.appendChild(peek);
+    } else {
+      // 只点过「看答案」还没作答时 rec 为空，别显示成「待自评」
+      var vClass = !rec ? 'mid' : (rec.ok === true ? 'ok' : (rec.ok === false ? 'bad' : 'mid'));
+      var vText = !rec ? '未作答 · 仅看答案' : (rec.ok === true ? '✓ 答对' : (rec.ok === false ? '✗ 答错' : '待自评'));
+      var verdict = el('div', 'verdict ' + vClass);
+      verdict.textContent = vText;
+      bar.appendChild(verdict);
+      if (rec && rec.c != null && rec.ok === false) bar.appendChild(el('span', 'hint', '得分率 ' + Math.round(rec.c * 100) + '%'));
+      var again = el('button', 'btn', '重做本题');
+      again.addEventListener('click', function () { redoOne(q); });
+      bar.appendChild(again);
+    }
+    var favBtn = el('button', 'btn ghost' + (fav ? ' on' : ''), fav ? '★ 已收藏' : '☆ 收藏');
+    favBtn.addEventListener('click', function () {
+      site.toggleFav(q._gid);
+      render();
+    });
+    bar.appendChild(favBtn);
+    if (rec && site.allWrong()[q._gid]) {
+      var sup = el('button', 'btn ghost', '移出错题本');
+      sup.addEventListener('click', function () { site.suppress(q._gid); render(); });
+      bar.appendChild(sup);
+    }
+    card.appendChild(bar);
+
+    if (revealed) {
+      var exp = el('div', 'exp');
+      exp.appendChild(el('div', 'exp-h', '答案与解析'));
+      var ansText = answerText(q, decl);
+      if (ansText) {
+        var a = el('p', 'exp-a');
+        a.innerHTML = '<b>答案：</b>' + ansText;
+        exp.appendChild(a);
+      }
+      if (q.exp) {
+        var p = el('p', 'exp-p');
+        p.innerHTML = view(q, 'exp');
+        exp.appendChild(p);
+      }
+      if (q.meta && q.meta.source) {
+        exp.appendChild(el('p', 'exp-src', '来源：' + q.meta.source + (q.meta.paperNo ? ' 第 ' + q.meta.paperNo + ' 题' : '')));
+      }
+      if (decl.judge === 'rubric' && rec && rec.ok === null) {
+        var self = el('div', 'self');
+        self.appendChild(el('span', 'hint', '自评：'));
+        [['达标', true, null], ['部分达标', false, 0.5], ['未达标', false, 0]].forEach(function (t) {
+          var b = el('button', 'btn small', t[0]);
+          b.addEventListener('click', function () { selfJudge(q, t[1], t[2]); });
+          self.appendChild(b);
+        });
+        exp.appendChild(self);
+      }
+      card.appendChild(exp);
+    }
+
+    var nav = $('#nav');
+    nav.innerHTML = '';
+    var prev = el('button', 'btn', '← 上一题');
+    prev.disabled = S.idx === 0;
+    prev.addEventListener('click', function () { go(S.idx - 1); });
+    var next = el('button', 'btn primary', '下一题 →');
+    next.disabled = S.idx >= S.list.length - 1;
+    next.addEventListener('click', function () { go(S.idx + 1); });
+    nav.appendChild(prev);
+    if (S.mode === 'wrong' && S.list.length) {
+      var all = el('button', 'btn small', '全部重做');
+      all.title = '清空本轮在错题本里的作答状态，从头再做一遍';
+      all.addEventListener('click', function () {
+        S.list.forEach(function (x) { delete S.shown[x.qid]; delete S.draft[x.qid]; S.redo[x.qid] = true; });
+        S.idx = 0;
+        render();
+        flash('已清空本轮作答，从头开始');
+      });
+      nav.appendChild(all);
+    }
+    nav.appendChild(el('span', 'nav-mid', (S.idx + 1) + ' / ' + S.list.length));
+    nav.appendChild(next);
+  }
+
+  function answerText(q, decl) {
+    if (decl.answerShape === 'choice') {
+      return (q.answer || []).map(function (i) {
+        var t = (q.views && q.views.opts && q.views.opts[i] != null) ? q.views.opts[i] : esc(q.options[i]);
+        return optionMark(q, i) + '. ' + t;
+      }).join('；');
+    }
+    if (decl.answerShape === 'tokenList') {
+      var list = (q.views && q.views.answers && q.views.answers.length) ? q.views.answers : (q.answers || []).map(esc);
+      return list.join(' / ');
+    }
+    return (q.views && q.views.ref) ? q.views.ref : (q.ref ? esc(String(q.ref)) : '');
+  }
+
+  /* ------------------------------------------------------------ 交互 */
+
+  // 重新作答一道题：清掉本次会话的揭晓标记与草稿，回到未作答状态
+  function redoOne(q) {
+    S.redo[q.qid] = true;
+    delete S.shown[q.qid];
+    delete S.draft[q.qid];
+    render();
+    flash('已清空，可以重做了');
+  }
+
+  function pick(q, decl, i) {
+    var cur = (S.draft[q.qid] || []).slice();
+    if (decl.judge === 'set') {
+      var k = cur.indexOf(i);
+      if (k >= 0) cur.splice(k, 1); else cur.push(i);
+      S.draft[q.qid] = cur;
+      renderCard();
+    } else {
+      S.draft[q.qid] = [i];
+      submit(q, decl);
+    }
+  }
+
+  function submit(q, decl) {
+    var input = { picked: S.draft[q.qid] || [], text: S.draft[q.qid] || '' };
+    if (decl.answerShape === 'choice') input = { picked: S.draft[q.qid] || [] };
+    else input = { text: S.draft[q.qid] || '' };
+
+    if (decl.answerShape === 'choice' && (!input.picked || !input.picked.length)) {
+      flash('先选一个选项');
+      return;
+    }
+    if (decl.answerShape !== 'choice' && !String(input.text).trim()) {
+      flash('先写下答案');
+      return;
+    }
+
+    var res = QB.judge(q, decl, input);
+    var patch = { ok: res.ok, at: Date.now(), m: S.mode };
+    if (decl.replay === 'mask' && input.picked) patch.p = input.picked;
+    if (decl.replay === 'text' && input.text != null) patch.x = String(input.text);
+    if (res.credit != null) patch.c = res.credit;
+    if (res.ok === null) patch.self = false;
+
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && res.ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  function selfJudge(q, ok, credit) {
+    var patch = { ok: ok, at: Date.now(), m: S.mode, self: true };
+    if (credit != null) patch.c = credit;
+    var rec = site.get(q._gid);
+    if (rec && rec.x != null) patch.x = rec.x;
+    site.put(q._gid, patch, S.mode);
+    delete S.redo[q.qid];
+    S.shown[q.qid] = true;
+    if (S.mode === 'wrong' && ok === true) flash('答对了，已移出错题本');
+    render();
+  }
+
+  /* 翻题后不把页面拉回顶部。
+     只在题卡顶部已经滚出视野上方（rect.top < 8）时，把它瞬时拉回视野；
+     卡片顶部还在视野里就完全不动。用瞬时滚动、不用 smooth——
+     平滑滚动会和滑动翻题的滑出动画叠在一起，观感就是「回弹」。 */
+  function keepCardInView() {
+    var c = $('#card');
+    if (!c) return;
+    var top = c.getBoundingClientRect().top;
+    if (top >= 8) return;
+    var y = (window.scrollY || window.pageYOffset || 0) + top - 8;
+    window.scrollTo(0, y > 0 ? y : 0);
+  }
+
+  function go(i) {
+    if (i < 0 || i >= S.list.length) return;
+    S.idx = i;
+    render();
+    keepCardInView();
+  }
+
+  var flashTimer = null;
+  function flash(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  /* ------------------------------------------------------------ 掌握度 */
+
+  function renderMastery() {
+    var rows = site.masteryAll().filter(function (r) { return r.n > 0; });
+    var box = $('#mastery');
+    box.innerHTML = '';
+    if (!rows.length) {
+      box.appendChild(el('p', 'hint', '还没有作答记录，掌握度会在作答后出现。'));
+      return;
+    }
+    var table = el('table', 'mt');
+    var thead = el('thead');
+    var tr = el('tr');
+    ['知识点', '得分', '状态', '作答数'].forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr2 = el('tr');
+      tr2.appendChild(el('td', 'mt-t', r.topic));
+      tr2.appendChild(el('td', 'mt-s', String(r.score)));
+      var lv = el('td');
+      lv.appendChild(el('span', 'lv ' + (r.level === '已掌握' ? 'lv-ok' : (r.level === '薄弱' ? 'lv-bad' : 'lv-mid')), r.level));
+      tr2.appendChild(lv);
+      tr2.appendChild(el('td', 'mt-n', String(r.n)));
+      tb.appendChild(tr2);
+    });
+    table.appendChild(tb);
+    box.appendChild(table);
+  }
+
+  /* ------------------------------------------------------------ 导出导入 */
+
+  function initTransfer() {
+    var sel = $('#x-scope');
+    if (def.units.length === 1) {
+      sel.innerHTML = '';
+      var o = el('option', null, '本题库');
+      o.value = 'unit:' + def.units[0].key;
+      sel.appendChild(o);
+    } else {
+      var s1 = el('option', null, '全站');
+      s1.value = 'site:';
+      sel.appendChild(s1);
+      def.units.forEach(function (u) {
+        var o2 = el('option', null, u.label + ' ' + u.title);
+        o2.value = 'unit:' + u.key;
+        sel.appendChild(o2);
+      });
+    }
+
+    $('#x-do').addEventListener('click', function () {
+      var v = sel.value.split(':');
+      try {
+        var code = site.encode(v[0], v[1]);
+        $('#x-code').value = code;
+        $('#x-info').textContent = '已生成 ' + code.length + ' 字符（预算 ' + site.budget + '）'
+          + (code.length > site.budget ? '，超出预算，建议改用题组作用域' : '');
+      } catch (e) {
+        $('#x-info').textContent = '生成失败：' + e.message;
+      }
+    });
+
+    $('#x-copy').addEventListener('click', function () {
+      var ta = $('#x-code');
+      if (!ta.value) return flash('先生成导出码');
+      ta.select();
+      try { document.execCommand('copy'); flash('已复制'); } catch (e) { flash('请手动复制'); }
+    });
+
+    $('#x-import').addEventListener('click', function () {
+      var code = $('#x-code').value.trim();
+      if (!code) return flash('请粘贴导出码');
+      try {
+        var r = site.importCode(code);
+        $('#x-info').textContent = '已导入 ' + r.count + ' 条（' + r.kind + ':' + (r.key || '全站') + '），作用域外记录未改动';
+        reload();
+      } catch (e) {
+        $('#x-info').textContent = '导入失败：' + e.message;
+      }
+    });
+
+    $('#x-undo').addEventListener('click', function () {
+      if (site.undoImport()) { $('#x-info').textContent = '已撤销上次导入'; reload(); }
+      else $('#x-info').textContent = '没有可撤销的导入';
+    });
+
+    $('#reset').addEventListener('click', function () {
+      if (!confirm('清空本题库在本机的作答、错题与收藏记录？此操作不可撤销。')) return;
+      site.resetScope(def.units.length === 1 ? 'unit' : 'site', def.units.length === 1 ? def.units[0].key : '');
+      S.shown = {}; S.redo = {}; S.draft = {};
+      reload();
+      flash('已清空');
+    });
+  }
+
+  /* ------------------------------------------------------------ 云同步 */
+
+  function initCloud() {
+    var wrap = $('#cloud-wrap');
+    if (!wrap) return;
+    var cfg = window.QB_SYNC_CFG;
+    if (!cfg || !window.QBSync) return;
+    wrap.style.display = '';
+
+    var sync = window.QBSync.create(site, cfg);
+    var codeInput = $('#s-code');
+    var info = $('#s-info');
+    var saved = sync.readSharedCode();
+    if (saved) codeInput.value = saved;
+
+    function say(msg) { info.textContent = msg; }
+
+    $('#s-save').addEventListener('click', function () {
+      var v = codeInput.value.trim();
+      if (v.length < 10) return say('同步码至少 10 位（它是唯一凭证）');
+      sync.setCode(v);
+      codeInput.value = sync.code;
+      say('已保存，本机所有题库共用这个同步码');
+    });
+
+    function run(fn, label) {
+      var why = sync._guard();
+      if (why) return say(why);
+      say(label + '中…');
+      fn().then(function (r) {
+        say(label + '完成，云端共 ' + r.count + ' 条记录');
+        render();
+      }).catch(function (e) {
+        say(label + '失败：' + e.message);
+      });
+    }
+
+    $('#s-up').addEventListener('click', function () { run(function () { return sync.upload(); }, '上传'); });
+    $('#s-down').addEventListener('click', function () { run(function () { return sync.download(); }, '下载'); });
+
+    var pend = sync.pending();
+    say(pend ? ('有 ' + pend + ' 条本机改动尚未上传') : '同步码与云端一致时即可手动上传 / 下载');
+  }
+
+  /* ------------------------------------------------------------ 手势翻题 */
+
+  /* 左滑 → 下一题，右滑 → 上一题。所有题库共用这一份实现，页面不再各自绑定。
+     翻页走 go()，与「上一题 / 下一题」按钮同一条路径，不另起一套状态。
+     判定：水平位移 ≥ 56px、水平 ≥ 垂直 × 1.2、时长 ≤ 1.2s；
+     起手点在输入控件 / 控制区 / 折叠面板 / 可横向滚动的公式块内不触发；
+     纵向滑动超过阈值即判定为滚动并让位，全程 passive，不抢页面滚动。 */
+  function initSwipe() {
+    var MIN_X = 56;      // 触发所需最小水平位移
+    var LOCK_X = 12;     // 锁定为横向手势的位移
+    var LOCK_Y = 14;     // 纵向位移超过它且大于横向 → 判定为滚动
+    var SLOPE = 1.2;
+    var MAX_MS = 1200;
+    var EDGE = 24;       // 避开 iOS Safari 的边缘侧滑返回
+    var FOLLOW = 0.35;   // 拖动时卡片跟手系数
+    var ANIM_MS = 150;
+
+    var sx = 0, sy = 0, st = 0, tracking = false, locked = false, animating = false;
+    var muteUntil = 0;   // 滑动后短暂屏蔽 click，避免顺带点掉选项
+
+    function card() { return $('#card'); }
+
+    var SKIP = '.top, .ctl, details, .foot, #toast, input, textarea, select, [contenteditable="true"]';
+
+    // 起手点排除：交互控件、控制区，以及自身可横向滚动的容器（长公式、代码块）
+    function skip(el) {
+      if (!el || !el.closest) return true;
+      if (el.closest(SKIP)) return true;
+      var c = card();
+      for (var n = el; n && n !== c && n.nodeType === 1; n = n.parentNode) {
+        if (n.scrollWidth - n.clientWidth <= 2) continue;
+        var ox = window.getComputedStyle(n).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+      return false;
+    }
+
+    function reset() {
+      if (animating) return;          // 动画中不打断，否则会停在半路又被 go() 换题
+      var c = card();
+      if (!c) return;
+      c.style.transition = 'transform .18s ease, opacity .18s ease';
+      c.style.transform = '';
+      c.style.opacity = '';
+    }
+
+    function reduced() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // dir: 1 = 下一题，-1 = 上一题
+    function flip(dir) {
+      if (animating || !S.list.length) return;
+      var to = S.idx + dir;
+      if (to < 0 || to >= S.list.length) { reset(); return; }
+      var c = card();
+      if (!c) return;
+      muteUntil = Date.now() + 300;   // 吞掉滑动末尾那一次 click（选项点选即判分）
+      if (reduced()) { go(to); return; }
+      animating = true;
+      var out = dir > 0 ? -72 : 72;   // 下一题向左滑出，上一题向右滑出
+      c.style.transition = 'transform ' + ANIM_MS + 'ms ease, opacity ' + ANIM_MS + 'ms ease';
+      void c.offsetWidth;
+      c.style.transform = 'translateX(' + out + 'px)';
+      c.style.opacity = '0';
+      setTimeout(function () {
+        go(to);
+        c.style.transition = 'none';
+        c.style.transform = 'translateX(' + (-out) + 'px)';
+        c.style.opacity = '0';
+        requestAnimationFrame(function () {
+          c.style.transition = 'transform .2s ease, opacity .2s ease';
+          c.style.transform = '';
+          c.style.opacity = '';
+          animating = false;
+        });
+      }, ANIM_MS);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (Date.now() >= muteUntil) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('touchstart', function (e) {
+      if (animating || e.touches.length !== 1) return;
+      var t = e.touches[0];
+      if (t.clientX < EDGE || t.clientX > window.innerWidth - EDGE) return;
+      if (skip(e.target)) return;
+      sx = t.clientX; sy = t.clientY; st = Date.now();
+      tracking = true; locked = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      if (e.touches.length !== 1) { tracking = false; reset(); return; }
+      var t = e.touches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if (!locked) {
+        if (Math.abs(dy) > LOCK_Y && Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+        if (Math.abs(dx) > LOCK_X) {
+          locked = true;
+          var c0 = card();
+          if (c0) c0.style.transition = 'none';
+        }
+      }
+      if (!locked) return;
+      var c = card();
+      if (!c) return;
+      c.style.transform = 'translateX(' + (dx * FOLLOW) + 'px)';
+      c.style.opacity = String(Math.max(0.55, 1 - Math.abs(dx) / 480));
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var was = locked; locked = false;
+      if (!was) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st;
+      if (Math.abs(dx) < MIN_X || Math.abs(dx) < Math.abs(dy) * SLOPE || dt > MAX_MS) { reset(); return; }
+      flip(dx < 0 ? 1 : -1);   // 左滑 → 下一题；右滑 → 上一题
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      tracking = false; locked = false;
+      reset();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------ 入口 */
+
+  // 只重画当前这一屏：题号、列表都保持不变。
+  // 在错题本里答对后题目会移出错题集合，若这里重组卷，卡片会当场跳到下一题，
+  // 用户看不到自己刚做对的结果。列表只在换模式 / 换筛选 / 导入时重建。
+  function render() {
+    renderStats();
+    renderFilters();
+    renderCard();
+    renderMastery();
+    writeRoute();
+  }
+
+  function reload() {
+    buildList();
+    render();
+  }
+
+  function init() {
+    readRoute();
+    // 旧版记录迁移：csg_* / csunitN_* 等命名空间并进全站三表，幂等，旧键不删
+    try {
+      var mig = site.migrateLegacy();
+      if (mig && !mig.skipped && (mig.ans || mig.wrong || mig.fav)) {
+        setTimeout(function () { flash('已迁移旧版记录：作答 ' + mig.ans + '、错题 ' + mig.wrong + '、收藏 ' + mig.fav); }, 400);
+      }
+    } catch (e) { /* 迁移失败不阻塞作答 */ }
+    $('#site-title').textContent = def.title || meta.title || '题库';
+    $('#bank-name').textContent = def.units.length === 1
+      ? (def.units[0].label + ' · ' + def.units[0].title)
+      : (def.subjectName || '');
+    if (def.units.length === 1 && def.units[0].desc) $('#bank-desc').textContent = def.units[0].desc;
+    if (meta.home) $('#home').href = meta.home;
+    else $('#home').style.display = 'none';
+
+    $$('#modes button').forEach(function (b) {
+      b.addEventListener('click', function () { S.mode = b.dataset.mode; S.idx = 0; reload(); });
+    });
+    $('#f-type').addEventListener('change', function (e) { S.type = e.target.value; S.idx = 0; reload(); });
+    $('#f-diff').addEventListener('change', function (e) { S.diff = e.target.value; S.idx = 0; reload(); });
+    var kwTimer = null;
+    $('#f-kw').addEventListener('input', function (e) {
+      clearTimeout(kwTimer);
+      var v = e.target.value;
+      kwTimer = setTimeout(function () { S.kw = v; S.idx = 0; reload(); }, 220);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(S.idx - 1);
+      if (e.key === 'ArrowRight') go(S.idx + 1);
+      if (/^[1-9]$/.test(e.key)) {
+        var q = S.list[S.idx];
+        if (q && def.types[q.type].answerShape === 'choice' && q.options[Number(e.key) - 1] != null) {
+          pick(q, def.types[q.type], Number(e.key) - 1);
+        }
+      }
+    });
+
+    initSwipe();
+    initTransfer();
+    initCloud();
+    reload();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>
